@@ -35,7 +35,7 @@
 
   if (!initialMode) {
     var pathNow = window.location.pathname || '';
-    var isHub = (pathNow.endsWith('/index.html') || pathNow === '/' || pathNow.indexOf('personas/index.html') >= 0);
+    var isHub = (pathNow.endsWith('/index.html') || pathNow.endsWith('/') || pathNow.indexOf('personas/index.html') >= 0 || pathNow.endsWith('/personas'));
     initialMode = isHub ? 'matrix' : 'from-down';
   }
 
@@ -188,7 +188,7 @@
     if (id === 'dockprev' || txt.indexOf('prev ') >= 0 || txt.indexOf('back ') >= 0 || link.textContent.indexOf('\u2190') >= 0 || link.textContent.indexOf('\u25C0') >= 0) {
       return 'from-left';
     }
-    if ((dstPath.endsWith('/index.html') || dstPath === '/') && dstPath.indexOf('/personas/') < 0) {
+    if ((dstPath.endsWith('/index.html') || dstPath.endsWith('/')) && dstPath.indexOf('/personas') < 0) {
       return 'from-up';
     }
     if (link.classList.contains('sw-chip') && curPath.indexOf('agent_blueprint.html') >= 0) {
