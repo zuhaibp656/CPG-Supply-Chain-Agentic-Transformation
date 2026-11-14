@@ -275,7 +275,16 @@ try {
     document.getElementById('counter').textContent = p.code + ' / ' + personas.length;
     document.getElementById('backBoard').href = 'index.html' + (activeDept !== 'all' ? '?dept=' + encodeURIComponent(activeDept) : '');
 
-    var v = p.val || { prod: 0.5, flow: 2, shield: 2, recov: 1, total: 5.5 };
+    function fmtINR(cr, sfx) {
+      var suffix = sfx || '';
+      var n = Number(cr) || 0;
+      if (n <= 0) return '—';
+      if (n >= 1000) return '₹' + n.toLocaleString('en-IN', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' Cr' + suffix;
+      if (n >= 1) return '₹' + n.toFixed(1) + ' Cr' + suffix;
+      return '₹' + Math.max(1, Math.round(n * 100)) + ' L' + suffix;
+    }
+
+    var v = p.val || { prod: 0.6, flow: 7.2, shield: 7.2, recov: 3.6, total: 18.6 };
     var tot = Math.max(0.1, v.total);
     var suite = p.agentSuite || [];
 
@@ -293,7 +302,7 @@ try {
             '<div class="agent-badges">' +
               '<span class="badge-id">' + esc(a.code) + '</span>' +
               pBadge + newBadge + liveBadge +
-              '<span class="agent-money">$' + a.annualValueM.toFixed(1) + 'M<small style="font-weight:400;font-size:11px">/yr</small></span>' +
+              '<span class="agent-money">' + fmtINR(a.annualValueCr) + '<small style="font-weight:400;font-size:11px">/yr</small></span>' +
             '</div>' +
             '<h3 class="agent-title">' + esc(a.name) + '</h3>' +
             '<p class="agent-one-line">' + esc(a.oneLine) + '</p>' +
@@ -324,14 +333,14 @@ try {
       '</article>';
     }).join('');
 
-    var sortedSuite = suite.slice().sort(function (a, b) { return b.annualValueM - a.annualValueM; });
-    var topVal = (sortedSuite[0] && sortedSuite[0].annualValueM) || 1;
+    var sortedSuite = suite.slice().sort(function (a, b) { return b.annualValueCr - a.annualValueCr; });
+    var topVal = (sortedSuite[0] && sortedSuite[0].annualValueCr) || 1;
     var pfRows = sortedSuite.map(function (a, i) {
-      var wPct = Math.max(8, (a.annualValueM / topVal) * 100);
+      var wPct = Math.max(8, (a.annualValueCr / topVal) * 100);
       return '<div class="pf-row">' +
         '<span class="pf-rank">#' + (i + 1) + '</span>' +
         '<span class="pf-name">' + esc(a.name) + (a.isNewCpgAgent ? ' <small style="color:var(--g-purple);font-family:var(--mono)">[NEW]</small>' : '') + '</span>' +
-        '<span class="pf-val">$' + a.annualValueM.toFixed(1) + 'M/yr</span>' +
+        '<span class="pf-val">' + fmtINR(a.annualValueCr, '/yr') + '</span>' +
         '<span class="pf-bar"><span class="pf-fill" style="width:' + wPct.toFixed(1) + '%"></span></span>' +
         '<span class="pf-sub">' + esc(a.priorityTier) + ' · ' + a.paybackDays + 'd payback</span>' +
       '</div>';
@@ -343,7 +352,7 @@ try {
           '<div class="portrait-mono" style="background:' + p.deptColor + '">' + initials(p.personName) + '</div>' +
           '<div class="figure">' +
             '<div class="figure-key">Role Annual Value</div>' +
-            '<div class="figure-val">$' + v.total.toFixed(1) + 'M/yr</div>' +
+            '<div class="figure-val">' + fmtINR(v.total, '/yr') + '</div>' +
             '<div class="figure-sub">across 4 value levers<br><b>' + p.toilHoursBefore + 'h &rarr; ' + p.toilHoursAfter + 'h/wk</b> manual toil</div>' +
           '</div>' +
         '</div>' +
@@ -371,7 +380,7 @@ try {
         '<div class="squad">' + suiteCardsHtml + '</div>' +
 
         '<div class="bstrip">' +
-          '<div class="bstrip-h"><span>How ' + esc(firstName) + '\'s suite creates value</span><span style="color:var(--green-ink)">$' + v.total.toFixed(1) + 'M / yr modeled</span></div>' +
+          '<div class="bstrip-h"><span>How ' + esc(firstName) + '\'s suite creates value</span><span style="color:var(--green-ink)">' + fmtINR(v.total, ' / yr modeled') + '</span></div>' +
           '<div class="bstrip-bar">' +
             '<span class="b-prod" style="width:' + ((v.prod / tot) * 100).toFixed(1) + '%"></span>' +
             '<span class="b-flow" style="width:' + ((v.flow / tot) * 100).toFixed(1) + '%"></span>' +
@@ -379,10 +388,10 @@ try {
             '<span class="b-recov" style="width:' + ((v.recov / tot) * 100).toFixed(1) + '%"></span>' +
           '</div>' +
           '<div class="bstrip-cells">' +
-            '<div class="bcell"><span class="bcell-key">Productivity</span><span class="bcell-val">$' + v.prod.toFixed(1) + 'M</span><span class="bcell-sub">' + p.savedHrs + ' hrs/wk redeployed</span></div>' +
-            '<div class="bcell"><span class="bcell-key">Flow &amp; Working Capital</span><span class="bcell-val">' + (v.flow ? '$' + v.flow.toFixed(1) + 'M' : '&mdash;') + '</span><span class="bcell-sub">' + (v.flow ? 'MEIO, FEFO &amp; OEE flow' : 'No physical stock held here') + '</span></div>' +
-            '<div class="bcell"><span class="bcell-key">Leakage &amp; Risk Shield</span><span class="bcell-val">' + (v.shield ? '$' + v.shield.toFixed(1) + 'M' : '&mdash;') + '</span><span class="bcell-sub">' + (v.shield ? 'Audit, promo &amp; fine shield' : 'No direct leakage exposure') + '</span></div>' +
-            '<div class="bcell"><span class="bcell-key">Revenue &amp; Salvage</span><span class="bcell-val">' + (v.recov ? '$' + v.recov.toFixed(1) + 'M' : '&mdash;') + '</span><span class="bcell-sub">' + (v.recov ? 'OSA lift &amp; salvage margin' : 'Back-office governance role') + '</span></div>' +
+            '<div class="bcell"><span class="bcell-key">Productivity</span><span class="bcell-val">' + fmtINR(v.prod) + '</span><span class="bcell-sub">' + p.savedHrs + ' hrs/wk redeployed</span></div>' +
+            '<div class="bcell"><span class="bcell-key">Flow &amp; Working Capital</span><span class="bcell-val">' + fmtINR(v.flow) + '</span><span class="bcell-sub">' + (v.flow ? 'MEIO, FEFO &amp; OEE flow' : 'No physical stock held here') + '</span></div>' +
+            '<div class="bcell"><span class="bcell-key">Leakage &amp; Risk Shield</span><span class="bcell-val">' + fmtINR(v.shield) + '</span><span class="bcell-sub">' + (v.shield ? 'Audit, promo &amp; fine shield' : 'No direct leakage exposure') + '</span></div>' +
+            '<div class="bcell"><span class="bcell-key">Revenue &amp; Salvage</span><span class="bcell-val">' + fmtINR(v.recov) + '</span><span class="bcell-sub">' + (v.recov ? 'OSA lift &amp; salvage margin' : 'Back-office governance role') + '</span></div>' +
           '</div>' +
         '</div>' +
 

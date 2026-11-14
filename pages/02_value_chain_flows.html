@@ -103,12 +103,13 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
     circular_enable: '16.9% returns wave, late markdowns & missing pooled pallets'
   };
   var VAL = window.SC_VALUES.computeForPersonas(window.SC_DATA.personas).byDeptId;
+  var fmtINR = window.SC_VALUES.fmtINR;
   document.getElementById('flowGrid').innerHTML = window.SC_DATA.departments.map(function(d){
-    var v = (VAL[d.id] ? VAL[d.id].total.toFixed(1) : '60.0');
+    var v = VAL[d.id] ? fmtINR(VAL[d.id].total, '/yr') : '₹240 Cr/yr';
     return '<a class="flow-card" href="pillar.html?dept=' + d.id + '" style="--pc:' + d.color + '">' +
       '<img src="../assets/media/photos/' + d.photo + '" alt="' + d.title + '">' +
       '<div class="flow-scrim">' +
-        '<div class="fc-top"><span class="fc-num">PILLAR ' + d.num + ' · ' + d.subPillars.length + ' SUB-PILLARS</span><span class="fc-val">$' + v + 'M/yr</span></div>' +
+        '<div class="fc-top"><span class="fc-num">PILLAR ' + d.num + ' · ' + d.subPillars.length + ' SUB-PILLARS</span><span class="fc-val">' + v + '</span></div>' +
         '<div><div class="fc-title">' + d.title + '</div><p class="fc-leak">' + (LEAKS[d.id] || d.shortFor) + '</p></div>' +
       '</div>' +
     '</a>';

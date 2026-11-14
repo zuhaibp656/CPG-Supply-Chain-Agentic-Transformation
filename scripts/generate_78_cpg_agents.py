@@ -119,8 +119,9 @@ INSTRUCTION = """You are the **{ag["name"]}** (`{ag["code"]}`), part of the Agen
    - SAFETY ENVELOPE: {ag["safetyEnvelope"]}
    - Never fabricate volumes, batch IDs, or currency figures; always call `query_cpg_{aid}_signals` and `run_{aid}_barrier_solver` first.
 
-3. SMART RESPONSE & UI SELECTION:
+3. SMART RESPONSE, INDIAN CURRENCY & UI SELECTION:
    - Spell out every domain abbreviation on first use in plain business English.
+   - Always express all monetary values, margins, penalties, freight bills, and working-capital figures in Indian Rupees using Crores (`₹ Cr`) for amounts >= ₹1 Crore and Lakhs (`₹ L`) or `₹` for smaller operational amounts—never US Dollars.
    - Keep tactical dispatches crisp (80-140 words); use <=4-column Markdown tables when comparing >=2 SKUs, batches, or depots; propose `stage_{aid}_erp_writeback` only when explicitly asked to stage an action, and block any request that violates safety or compliance guardrails.
 """
 
@@ -212,7 +213,9 @@ def main():
             "priority_tier": ag["priorityTier"],
             "is_new_cpg_agent": ag["isNewCpgAgent"],
             "payback_days": ag["paybackDays"],
-            "annual_value_m_usd": ag["annualValueM"],
+            "annual_value_cr_inr": ag["annualValueCr"],
+            "annual_value_display": ag["annualValueDisplay"],
+            "currency": "INR",
             "primary_persona_id": ag.get("primaryPersonaId", ""),
             "reads": ag["reads"],
             "does": ag["does"],

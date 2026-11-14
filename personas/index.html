@@ -258,11 +258,11 @@
     <p class="sub">Mapping 60 Supply Chain personas and 480 operational workflows to show where AI agents eliminate firefighting &mdash; and where humans retain sign-off.</p>
 
     <div class="estate" id="estateStrip">
-      <div class="est-cell lv-total"><div class="est-k">Modeled Annual Value</div><div class="est-v is-money" id="estTotal">$507.5M/yr</div><div class="est-sub" id="estPersonas">60 roles &middot; 821 hrs/wk saved</div></div>
-      <div class="est-cell lv-prod"><div class="est-k">Productivity &amp; Toil</div><div class="est-v" id="estProd">$33.9M</div><div class="est-sub">Expert hours redeployed</div></div>
-      <div class="est-cell lv-up"><div class="est-k">Flow &amp; Capital</div><div class="est-v" id="estFlow">$158.6M</div><div class="est-sub">22% carry cost + OEE + miles</div></div>
-      <div class="est-cell lv-integ"><div class="est-k">Leakage &amp; Risk</div><div class="est-v" id="estShield">$203.7M</div><div class="est-sub">Invoice, promo &amp; Tier-2 shield</div></div>
-      <div class="est-cell lv-recov"><div class="est-k">Revenue &amp; Salvage</div><div class="est-v" id="estRecov">$111.3M</div><div class="est-sub">Stockouts &amp; returns margin</div></div>
+      <div class="est-cell lv-total"><div class="est-k">Modeled Annual Value</div><div class="est-v is-money" id="estTotal">&#8377;2,199.3 Cr/yr</div><div class="est-sub" id="estPersonas">60 roles &middot; 1,196 hrs/wk saved</div></div>
+      <div class="est-cell lv-prod"><div class="est-k">Productivity &amp; Toil</div><div class="est-v" id="estProd">&#8377;48.3 Cr</div><div class="est-sub">Expert hours redeployed</div></div>
+      <div class="est-cell lv-up"><div class="est-k">Flow &amp; Capital</div><div class="est-v" id="estFlow">&#8377;683.6 Cr</div><div class="est-sub">22% carry cost + OEE + miles</div></div>
+      <div class="est-cell lv-integ"><div class="est-k">Leakage &amp; Risk</div><div class="est-v" id="estShield">&#8377;953.6 Cr</div><div class="est-sub">Invoice, promo &amp; Tier-2 shield</div></div>
+      <div class="est-cell lv-recov"><div class="est-k">Revenue &amp; Salvage</div><div class="est-v" id="estRecov">&#8377;513.7 Cr</div><div class="est-sub">Stockouts &amp; returns margin</div></div>
     </div>
     <div class="count-note" id="countNote"></div>
   </header>
@@ -277,7 +277,7 @@
       <span class="lg-item"><span class="lg-sw own-human"></span>Human-only safety &amp; contract gate</span>
     </div>
     <div class="legend" id="legendValue" hidden>
-      <span class="lg-item">Log-scaled green tiles represent higher annual EBITDA, carrying-cost &amp; salvage recovery per workflow square ($M/yr).</span>
+      <span class="lg-item">Log-scaled green tiles represent higher annual EBITDA, carrying-cost &amp; salvage recovery per workflow square (&#8377; Crores &amp; &#8377; Lakhs / yr).</span>
     </div>
   </div>
 
@@ -289,7 +289,7 @@
     </div>
     <aside class="drawer" id="drawer" aria-live="polite">
       <div class="dw-hint">
-        <p><b>Click or hover any square</b> to inspect its Today vs. With-Agent workflow and dollar attribution here.</p>
+        <p><b>Click or hover any square</b> to inspect its Today vs. With-Agent workflow and &#8377; Crore / &#8377; Lakh attribution here.</p>
         <p>Each row is one Supply Chain persona sorted left to right: <b>AI Agent prepares</b> (Priority 1 &rarr; Priority 2 &rarr; Enabler), then <b>Incumbent ERP/WMS/TMS</b> keeps the ledger, then <b>Human-only Sign-Off</b> closes the loop.</p>
         <p>Click any persona name on the left to open their full executive dossier.</p>
       </div>
@@ -370,19 +370,21 @@
     });
   }
 
-  function heatStyle(valM) {
-    if (!valM || valM <= 0) return '';
-    if (valM >= 4.5) return '--heat:#046E33;--heat-ink:#FFFFFF;';
-    if (valM >= 2.8) return '--heat:#0B9F4D;--heat-ink:#FFFFFF;';
-    if (valM >= 1.6) return '--heat:#4CC87E;--heat-ink:#092E18;';
-    if (valM >= 0.9) return '--heat:#9CE0B6;--heat-ink:#092E18;';
-    if (valM >= 0.4) return '--heat:#D2F1DE;--heat-ink:#121317;';
+  var fmtINR = window.SC_VALUES.fmtINR;
+
+  function heatStyle(valCr) {
+    if (!valCr || valCr <= 0) return '';
+    if (valCr >= 15.0) return '--heat:#046E33;--heat-ink:#FFFFFF;';
+    if (valCr >= 9.5) return '--heat:#0B9F4D;--heat-ink:#FFFFFF;';
+    if (valCr >= 5.5) return '--heat:#4CC87E;--heat-ink:#092E18;';
+    if (valCr >= 3.0) return '--heat:#9CE0B6;--heat-ink:#092E18;';
+    if (valCr >= 1.2) return '--heat:#D2F1DE;--heat-ink:#121317;';
     return '--heat:#EFFAF3;--heat-ink:#121317;';
   }
 
   function showDrawer(p, a) {
     var dEl = document.getElementById('drawer');
-    var pv = VAL.byPersonaId[p.id] || { tier: 'next', paybackDays: 90, total: 5.0, prod: 0.5, flow: 1.5, shield: 1.5, recov: 1.5, why: '' };
+    var pv = VAL.byPersonaId[p.id] || { tier: 'next', paybackDays: 90, total: 18.0, prod: 0.6, flow: 5.4, shield: 6.5, recov: 5.5, why: '' };
     var ownTag = a.own === 'agentic' ? (a.prio === 'first' ? '<span class="tag prio-first">Priority 1 &middot; Build First</span>' : (a.prio === 'next' ? '<span class="tag prio-next">Priority 2 &middot; Build Next</span>' : '<span class="tag">Enabler &middot; Routine AI</span>'))
       : (a.own === 'system' ? '<span class="tag">System of Record</span>' : '<span class="tag">Human Sign-Off Gate</span>');
     var liveTag = a.liveInGE ? '<span class="tag agent">&#9679; Live in Gemini Enterprise</span>' : '';
@@ -390,20 +392,20 @@
     var ag = DATA.agents.find(function (x) { return x.id === (a.agentId || p.primaryAgentId); }) || {};
     var bodyHtml = a.own === 'agentic'
       ? '<div class="d-block vuln"><div class="d-k">Today (Manual Friction)</div><div class="d-v">' + a.today + '</div></div>' +
-        '<div class="d-block plug"><div class="d-k">With ' + a.agentName + '</div><div class="d-v">' + a.withAgent + '</div></div>'
+        '<div class="d-block plug"><div class="d-k">With ' + a.agentName + ' (' + (a.valueDisplay || fmtINR(a.valueCr, '/yr')) + ')</div><div class="d-v">' + a.withAgent + '</div></div>'
       : '<div class="d-block"><div class="d-k">Retained Owner: ' + a.holder + '</div><div class="d-v">' + a.reason + '</div></div>';
 
     var roleValHtml =
       '<div style="background:var(--surface-sunk);border:1px solid var(--border);border-radius:10px;padding:10px 12px">' +
         '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">' +
-          '<span style="font:700 11px var(--mono);color:var(--green-ink)">ROLE IMPACT: $' + pv.total.toFixed(1) + 'M/yr &middot; ' + pv.paybackDays + 'd payback</span>' +
+          '<span style="font:700 11px var(--mono);color:var(--green-ink)">ROLE IMPACT: ' + fmtINR(pv.total, '/yr') + ' &middot; ' + pv.paybackDays + 'd payback</span>' +
           '<span style="font:600 11px var(--mono);color:var(--dim-ink)">' + p.toilHoursBefore + 'h&rarr;' + p.toilHoursAfter + 'h/wk</span>' +
         '</div>' +
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font:500 11.5px var(--font);color:var(--text-muted)">' +
-          '<span>Productivity: <b>$' + pv.prod.toFixed(1) + 'M</b></span>' +
-          '<span>Flow &amp; Capital: <b>$' + pv.flow.toFixed(1) + 'M</b></span>' +
-          '<span>Leakage &amp; Risk: <b>$' + pv.shield.toFixed(1) + 'M</b></span>' +
-          '<span>Rev &amp; Salvage: <b>$' + pv.recov.toFixed(1) + 'M</b></span>' +
+          '<span>Productivity: <b>' + fmtINR(pv.prod) + '</b></span>' +
+          '<span>Flow &amp; Capital: <b>' + fmtINR(pv.flow) + '</b></span>' +
+          '<span>Leakage &amp; Risk: <b>' + fmtINR(pv.shield) + '</b></span>' +
+          '<span>Rev &amp; Salvage: <b>' + fmtINR(pv.recov) + '</b></span>' +
         '</div>' +
         (pv.why ? '<div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);font-size:11.5px;line-height:1.45;color:var(--text-muted)"><b>Why this priority:</b> ' + pv.why + '</div>' : '') +
       '</div>';
@@ -423,33 +425,32 @@
   function renderBoard() {
     var rows = DATA.personas.filter(function (p) { return deptFilter === 'all' || p.deptId === deptFilter; });
     var subVal = window.SC_VALUES.computeForPersonas(rows).estateTotals;
-    var liveCount = rows.filter(function (p) { return p.liveInGE; }).length;
-    document.getElementById('estTotal').textContent = '$' + subVal.total.toFixed(1) + 'M/yr';
+    document.getElementById('estTotal').textContent = fmtINR(subVal.total, '/yr');
     document.getElementById('estPersonas').textContent = rows.length + ' roles · ' + DATA.agents.length + ' CPG agents · ' + subVal.savedHrsWk + ' hrs/wk';
-    document.getElementById('estProd').textContent = '$' + subVal.prod.toFixed(1) + 'M';
-    document.getElementById('estFlow').textContent = '$' + subVal.flow.toFixed(1) + 'M';
-    document.getElementById('estShield').textContent = '$' + subVal.shield.toFixed(1) + 'M';
-    document.getElementById('estRecov').textContent = '$' + subVal.recov.toFixed(1) + 'M';
-    document.getElementById('countNote').textContent = 'Showing ' + rows.length + ' CPG Supply Chain Leaders (' + DATA.meta.p0Agents + ' Priority-0 GE Candidates across 78 Total Agents: 60 Core + 18 New CPG Use Cases)';
+    document.getElementById('estProd').textContent = fmtINR(subVal.prod);
+    document.getElementById('estFlow').textContent = fmtINR(subVal.flow);
+    document.getElementById('estShield').textContent = fmtINR(subVal.shield);
+    document.getElementById('estRecov').textContent = fmtINR(subVal.recov);
+    document.getElementById('countNote').textContent = 'Showing ' + rows.length + ' CPG Supply Chain Leaders (' + DATA.meta.p0Agents + ' Priority-0 GE Candidates across 78 Total Agents · Values in ₹ Crores & ₹ Lakhs)';
 
     var board = document.getElementById('board');
     board.className = 'board' + (viewMode === 'value' ? ' mode-value' : '');
 
-    var html = '<div class="bhead"><div class="rowlabel"><span>Leader &amp; CPG Role</span><span style="margin-left:auto">$M / yr</span></div><div class="colaxis"><span>Agent Suite Prepares</span><span class="flow"></span><span>ERP / DMS</span><span class="flow"></span><span>Human Gate</span></div></div>';
+    var html = '<div class="bhead"><div class="rowlabel"><span>Leader &amp; CPG Role</span><span style="margin-left:auto">&#8377; Cr / yr</span></div><div class="colaxis"><span>Agent Suite Prepares</span><span class="flow"></span><span>ERP / DMS</span><span class="flow"></span><span>Human Gate</span></div></div>';
     rows.forEach(function (p) {
-      var pv = VAL.byPersonaId[p.id] || { total: p.annualValueM || 5.0 };
+      var pv = VAL.byPersonaId[p.id] || { total: p.annualValueCr || 18.0 };
       var pLabel = p.personName || p.name;
       var initials = pLabel.split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
       html += '<div class="brow" data-pid="' + p.id + '">';
       html += '<a class="rowlabel" href="dossier.html?id=' + encodeURIComponent(p.id) + '">' +
                 '<span class="pavatar" style="background:' + p.deptColor + '">' + initials + '</span>' +
                 '<span class="pmeta"><span class="pname">' + pLabel + '</span><span class="psub"><span class="pcode">' + p.code + '</span> &middot; ' + p.name + '</span></span>' +
-                '<span class="rowval">$' + pv.total.toFixed(1) + 'M</span>' +
+                '<span class="rowval">' + fmtINR(pv.total) + '</span>' +
               '</a>';
       html += '<div class="cells">';
       p.actions.forEach(function (a, idx) {
         var cls = 'bcell own-' + a.own + (a.prio ? ' prio-' + a.prio : '');
-        html += '<button type="button" class="' + cls + '" data-pid="' + p.id + '" data-idx="' + idx + '" title="' + a.code + ': ' + a.title + (a.valueM ? ' ($' + a.valueM.toFixed(2) + 'M/yr)' : '') + '"><i style="' + (viewMode === 'value' ? heatStyle(a.valueM) : '') + '">' + a.code + '</i></button>';
+        html += '<button type="button" class="' + cls + '" data-pid="' + p.id + '" data-idx="' + idx + '" title="' + a.code + ': ' + a.title + (a.valueCr ? ' (' + fmtINR(a.valueCr, '/yr') + ')' : '') + '"><i style="' + (viewMode === 'value' ? heatStyle(a.valueCr) : '') + '">' + a.code + '</i></button>';
       });
       html += '</div></div>';
     });

@@ -27,6 +27,64 @@ GE_CID = "47d2d150-f788-4afc-af12-df8dd05ed34a"
 GE_AUTH = "admin@zuhaibp.altostrat.com"
 GE_WORKSPACE_URL = f"https://vertexaisearch.cloud.google.com/home/cid/{GE_CID}?authuser={GE_AUTH}"
 
+
+def fmt_inr(cr: float) -> str:
+    """Formats a value denominated in Indian Crores (1 Cr = 100 Lakhs) as ₹X,XXX.X Cr or ₹XX L."""
+    n = float(cr or 0.0)
+    if n <= 0:
+        return "—"
+    if n >= 1000:
+        return f"₹{n:,.1f} Cr"
+    if n >= 1.0:
+        return f"₹{n:.1f} Cr"
+    lakhs = max(1, round(n * 100))
+    return f"₹{lakhs} L"
+
+
+def to_inr_prose(text: str) -> str:
+    """Converts any legacy USD / million / billion prose references from base_60_catalog into Indian Rupees (₹ Cr / ₹ L / ₹)."""
+    if not text:
+        return ""
+    s = str(text)
+    s = re.sub(r"multi-million-dollar", "multi-crore", s, flags=re.I)
+    s = re.sub(r"\$1\.77\s*Trillion|\$1\.77T", "₹148 Lakh Cr", s, flags=re.I)
+    s = re.sub(r"\$1\.2T", "₹100 Lakh Cr", s, flags=re.I)
+    s = re.sub(r"\$570B", "₹48 Lakh Cr", s, flags=re.I)
+
+    def _repl_money(m: re.Match) -> str:
+        num = float(m.group(1).replace(",", ""))
+        unit = (m.group(2) or "").strip().lower()
+        if unit in ("t", "trillion"):
+            return f"₹{round(num * 83.5):,} Lakh Cr"
+        if unit in ("b", "bn", "billion"):
+            cr = num * 8350.0
+            if cr >= 100000:
+                return f"₹{cr / 100000.0:.2f} Lakh Cr"
+            return f"₹{round(cr):,} Cr"
+        if unit in ("m", "mn", "million"):
+            cr = num * 8.35
+            return f"₹{cr:.1f} Cr" if cr < 100 else f"₹{round(cr):,} Cr"
+        if unit in ("k", "thousand"):
+            lakhs = (num * 83.5) / 100.0
+            return f"₹{lakhs:.1f} L" if lakhs >= 1.0 else f"₹{round(num * 83.5) * 1000:,}"
+        # Plain unit dollar figure (e.g. $15.20/inv, $110/hr, $14 return ship) -> realistic Indian CPG operational ₹
+        inr_val = num * 45.0 if num >= 20 else num * 35.0
+        if inr_val >= 100000:
+            return f"₹{inr_val / 100000.0:.1f} L"
+        if inr_val >= 100:
+            return f"₹{int(round(inr_val, -1)):,}"
+        return f"₹{int(round(inr_val))}"
+
+    s = re.sub(
+        r"\$([0-9][0-9,]*(?:\.[0-9]+)?)\s*(Trillion|Billion|Million|Thousand|bn|mn|T|B|M|K)?\b",
+        _repl_money,
+        s,
+        flags=re.I,
+    )
+    s = re.sub(r"\bUSD\b", "INR", s)
+    s = re.sub(r"\bdollar(s)?\b", r"rupee\1", s, flags=re.I)
+    return s
+
 # 60 realistic human names (~60% Indian & ~40% International CPG Supply Chain leaders)
 PERSONA_HUMANS = [
     ("Vikram Deshmukh", "Mumbai Corporate S&OP Tower · Western Hub"),
@@ -520,7 +578,7 @@ NOT_OWNED_BY_DEPT = {
     "manufacturing_prod": [
         {"task": "Bypassing HACCP pasteurization or allergen washdown holds", "owner": "Plant Quality & Food Safety Lead"},
         {"task": "Physical lockout/tagout (LOTO) maintenance execution", "owner": "Certified Shift Maintenance Engineer"},
-        {"task": "Approving multi-million-dollar new line CapEx", "owner": "Board Investment Committee"},
+        {"task": "Approving multi-crore new packaging line CapEx", "owner": "Board Investment Committee"},
     ],
     "inventory_warehouse": [
         {"task": "Waiving retailer Minimum Remaining Shelf-Life (MRSL) terms", "owner": "Key Account Commercial Lead"},
@@ -552,6 +610,12 @@ VIDEO_BY_AGENT = {
     "promo_lift_simulator": "promo_lift_simulator_demo.mp4",
 }
 
+# Scale base lever units into Indian Rupees Crores (₹ Cr; 1 Cr = 100 Lakhs) on a ₹42,000 Cr COGS / ₹68,000 Cr Revenue CPG Benchmark:
+#   - Productivity lever scaled × 1.15 -> ₹35 L to ₹1.0 Cr per agent (renders naturally in Lakhs when < ₹1 Cr!)
+#   - Flow, Shield & Recovery levers scaled × 3.6 -> ₹2.9 Cr to ₹53.3 Cr per lever (~₹2,165 Cr/yr total estate value)
+PROD_TO_CR = 1.15
+OPS_TO_CR = 3.60
+
 # Build unified 78-Agent Registry
 all_agents_map = {}
 
@@ -559,12 +623,16 @@ all_agents_map = {}
 for aid, a in cat["agents"].items():
     st = PILLAR_STYLE[a["deptId"]]
     dep_info = deployed_map.get(aid)
-    tier, payback, prod, flow, shield, recov = BASE_60_META.get(aid, ("P1", 100, 0.5, 2.0, 2.0, 1.0))
-    tot_val = round(prod + flow + shield + recov, 1)
+    tier, payback, raw_prod, raw_flow, raw_shield, raw_recov = BASE_60_META.get(aid, ("P1", 100, 0.5, 2.0, 2.0, 1.0))
+    prod = round(raw_prod * PROD_TO_CR, 2)
+    flow = round(raw_flow * OPS_TO_CR, 2)
+    shield = round(raw_shield * OPS_TO_CR, 2)
+    recov = round(raw_recov * OPS_TO_CR, 2)
+    tot_val = round(prod + flow + shield + recov, 2)
     subs = a.get("subAgents", [])
-    reads = subs[0]["role"] if len(subs) > 0 else f"Ingests {SYSTEM_BY_DEPT[a['deptId']]} and BigQuery Cortex v7 tables."
-    does = subs[1]["role"] if len(subs) > 1 else (a.get("solverStack") or "Runs Vertex AI TimesFM & OR-Tools deterministic optimization.")
-    returns = subs[2]["role"] if len(subs) > 2 else (a.get("outcome") or "Produces ranked exception action table and A2UI visual brief.")
+    reads = to_inr_prose(subs[0]["role"]) if len(subs) > 0 else f"Ingests {SYSTEM_BY_DEPT[a['deptId']]} and BigQuery Cortex v7 tables."
+    does = to_inr_prose(subs[1]["role"]) if len(subs) > 1 else to_inr_prose(a.get("solverStack") or "Runs Vertex AI TimesFM & OR-Tools deterministic optimization.")
+    returns = to_inr_prose(subs[2]["role"]) if len(subs) > 2 else to_inr_prose(a.get("outcome") or "Produces ranked exception action table and A2UI visual brief.")
     ge_full = dep_info.get("gemini_enterprise_agent", "") if dep_info else ""
     ge_short = ge_full.split("/")[-1] if ge_full else ""
     ge_url = (
@@ -587,16 +655,17 @@ for aid, a in cat["agents"].items():
         "prioBoard": "first" if tier == "P0" else ("next" if tier == "P1" else "routine"),
         "paybackDays": payback,
         "prod": prod, "flow": flow, "shield": shield, "recov": recov,
-        "annualValueM": tot_val,
-        "oneLine": a.get("shortDesc") or a.get("outcome") or "",
-        "outcome": a.get("outcome") or a.get("shortDesc") or "",
-        "problem": a.get("problem") or "",
+        "annualValueCr": tot_val,
+        "annualValueDisplay": fmt_inr(tot_val),
+        "oneLine": to_inr_prose(a.get("shortDesc") or a.get("outcome") or ""),
+        "outcome": to_inr_prose(a.get("outcome") or a.get("shortDesc") or ""),
+        "problem": to_inr_prose(a.get("problem") or ""),
         "reads": f"{reads} Connected CPG systems: {SYSTEM_BY_DEPT[a['deptId']]}.",
-        "does": f"{does} ({a.get('solverStack', 'BigQuery ML + Google OR-Tools')}).",
-        "returns": f"{returns} Stages policy-checked action via {a.get('apiWriteback', 'Apigee MCP')}.",
+        "does": f"{does} ({to_inr_prose(a.get('solverStack', 'BigQuery ML + Google OR-Tools'))}).",
+        "returns": f"{returns} Stages policy-checked action via {to_inr_prose(a.get('apiWriteback', 'Apigee MCP'))}.",
         "stopsAt": f"Never commits unapproved {SYSTEM_BY_DEPT[a['deptId']].split('·')[0].strip()} ledger mutations or overrides safety/contract policy without human sign-off.",
         "safetyEnvelope": "Flags missing sensor/ERP records for human review rather than extrapolating unverified values.",
-        "samplePrompt": f"Show me our highest-priority {a.get('subPillarName', 'supply chain').lower()} exceptions across our CPG plants and CFA hubs this week, quantify margin at risk, and recommend corrective actions.",
+        "samplePrompt": f"Show me our highest-priority {a.get('subPillarName', 'supply chain').lower()} exceptions across our CPG plants and CFA hubs this week, quantify ₹ Lakhs/Crores margin at risk, and recommend corrective actions.",
         "liveInGE": dep_info is not None,
         "geUrl": ge_url,
         "videoSrc": f"assets/media/video/{vfile}",
@@ -608,7 +677,11 @@ for aid, a in cat["agents"].items():
 for na in NEW_CPG_AGENTS:
     aid = na["id"]
     st = PILLAR_STYLE[na["deptId"]]
-    tot_val = round(na["prod"] + na["flow"] + na["shield"] + na["recov"], 1)
+    prod = round(na["prod"] * PROD_TO_CR, 2)
+    flow = round(na["flow"] * OPS_TO_CR, 2)
+    shield = round(na["shield"] * OPS_TO_CR, 2)
+    recov = round(na["recov"] * OPS_TO_CR, 2)
+    tot_val = round(prod + flow + shield + recov, 2)
     vfile = VIDEO_BY_DEPT.get(na["deptId"], "demand_sensing_demo.mp4")
     all_agents_map[aid] = {
         "id": aid,
@@ -623,17 +696,18 @@ for na in NEW_CPG_AGENTS:
         "priorityTier": na["tier"],
         "prioBoard": "first" if na["tier"] == "P0" else ("next" if na["tier"] == "P1" else "routine"),
         "paybackDays": na["paybackDays"],
-        "prod": na["prod"], "flow": na["flow"], "shield": na["shield"], "recov": na["recov"],
-        "annualValueM": tot_val,
-        "oneLine": na["oneLine"],
-        "outcome": na["returns"],
-        "problem": na["oneLine"],
-        "reads": na["reads"],
-        "does": na["does"],
-        "returns": na["returns"],
-        "stopsAt": na["stopsAt"],
-        "safetyEnvelope": na["safetyEnvelope"],
-        "samplePrompt": f"Run {na['name']} across our active CPG SKUs and CFA depots today—highlight urgent exceptions, margin impact, and what needs sign-off.",
+        "prod": prod, "flow": flow, "shield": shield, "recov": recov,
+        "annualValueCr": tot_val,
+        "annualValueDisplay": fmt_inr(tot_val),
+        "oneLine": to_inr_prose(na["oneLine"]),
+        "outcome": to_inr_prose(na["returns"]),
+        "problem": to_inr_prose(na["oneLine"]),
+        "reads": to_inr_prose(na["reads"]),
+        "does": to_inr_prose(na["does"]),
+        "returns": to_inr_prose(na["returns"]),
+        "stopsAt": to_inr_prose(na["stopsAt"]),
+        "safetyEnvelope": to_inr_prose(na["safetyEnvelope"]),
+        "samplePrompt": f"Run {na['name']} across our active CPG SKUs and CFA depots today—highlight urgent exceptions, ₹ Lakhs/Crores impact, and what needs sign-off.",
         "liveInGE": False,
         "geUrl": GE_WORKSPACE_URL,
         "videoSrc": f"assets/media/video/{vfile}",
@@ -671,11 +745,16 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
             suite_ids.append(peer_id)
     suite_ids = suite_ids[:4]
 
-    raw_before = p.get("toilHoursBefore", 26)
-    raw_after = p.get("toilHoursAfter", 6)
-    b_num = float(re.findall(r"[\d.]+", str(raw_before))[0]) if re.findall(r"[\d.]+", str(raw_before)) else 26.0
-    a_num = float(re.findall(r"[\d.]+", str(raw_after))[0]) if re.findall(r"[\d.]+", str(raw_after)) else 6.0
-    saved_hrs = max(2, round(b_num - a_num))
+    raw_before = str(p.get("toilHoursBefore", "26"))
+    raw_after = str(p.get("toilHoursAfter", "6"))
+    if "$" in raw_before or "/inv" in raw_before or "/hr" in raw_before:
+        b_num, a_num = 26.0, 6.0
+    else:
+        b_num = float(re.findall(r"[\d.]+", raw_before)[0]) if re.findall(r"[\d.]+", raw_before) else 26.0
+        a_num = float(re.findall(r"[\d.]+", raw_after)[0]) if re.findall(r"[\d.]+", raw_after) else 6.0
+        if b_num > 45:
+            b_num, a_num = 28.0, 7.0
+    saved_hrs = max(4, round(b_num - a_num))
 
     # Build rich Agent Suite objects for this persona
     agent_suite = []
@@ -692,7 +771,8 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
             "isNewCpgAgent": ag_obj["isNewCpgAgent"],
             "priorityTier": ag_obj["priorityTier"],
             "paybackDays": ag_obj["paybackDays"],
-            "annualValueM": ag_obj["annualValueM"],
+            "annualValueCr": ag_obj["annualValueCr"],
+            "annualValueDisplay": ag_obj["annualValueDisplay"],
             "roleShareHrs": round(saved_hrs * w, 1),
             "oneLine": ag_obj["oneLine"],
             "reads": ag_obj["reads"],
@@ -705,15 +785,15 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
             "videoSrc": ag_obj["videoSrc"],
         })
 
-    # Non-double-counted Persona Value: Primary Agent + any New CPG Agent owned primarily by this persona
+    # Non-double-counted Persona Value (in ₹ Crores): Primary Agent + any New CPG Agent owned primarily by this persona
     owned_agent_ids = [primary_aid] + [
         na["id"] for na in NEW_CPG_AGENTS if na["linkedPersonas"][0] == pid
     ]
-    p_prod = round(sum(all_agents_map[x]["prod"] for x in owned_agent_ids), 1)
-    p_flow = round(sum(all_agents_map[x]["flow"] for x in owned_agent_ids), 1)
-    p_shield = round(sum(all_agents_map[x]["shield"] for x in owned_agent_ids), 1)
-    p_recov = round(sum(all_agents_map[x]["recov"] for x in owned_agent_ids), 1)
-    p_total = round(p_prod + p_flow + p_shield + p_recov, 1)
+    p_prod = round(sum(all_agents_map[x]["prod"] for x in owned_agent_ids), 2)
+    p_flow = round(sum(all_agents_map[x]["flow"] for x in owned_agent_ids), 2)
+    p_shield = round(sum(all_agents_map[x]["shield"] for x in owned_agent_ids), 2)
+    p_recov = round(sum(all_agents_map[x]["recov"] for x in owned_agent_ids), 2)
+    p_total = round(p_prod + p_flow + p_shield + p_recov, 2)
 
     p_tier = "P0" if any(all_agents_map[x]["priorityTier"] == "P0" for x in owned_agent_ids) else primary_ag["priorityTier"]
     b_prio = "first" if p_tier == "P0" else ("next" if p_tier == "P1" else "routine")
@@ -728,36 +808,36 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
         p1, p2, p3, p4, p5 = "routine", "routine", "routine", "routine", "routine"
         w1, w2, w3, w4, w5 = 0.28, 0.24, 0.20, 0.16, 0.12
 
-    focus = p.get("focusAreas", [])
+    focus = [to_inr_prose(x) for x in p.get("focusAreas", [])]
     sys_name = SYSTEM_BY_DEPT[p["deptId"]]
     s2_ag = agent_suite[1] if len(agent_suite) > 1 else agent_suite[0]
 
     actions = [
-        {"code": f"{pcode}W01", "title": focus[0] if len(focus) > 0 else f"Live {p.get('subPillarName')} Sensing", "own": "agentic", "prio": p1, "valueM": round(p_total * w1, 2),
+        {"code": f"{pcode}W01", "title": focus[0] if len(focus) > 0 else f"Live {p.get('subPillarName')} Sensing", "own": "agentic", "prio": p1, "valueCr": round(p_total * w1, 2), "valueDisplay": fmt_inr(p_total * w1),
          "today": f"Manual CSV & portal checks across {sys_name} ({int(b_num)}h/wk toil).",
          "withAgent": f"{primary_ag['name']} continuously grounds telemetry and flags exceptions early.",
          "agentName": primary_ag["name"], "agentId": primary_aid, "liveInGE": primary_ag["liveInGE"], "cadence": "Continuous"},
-        {"code": f"{pcode}W02", "title": focus[1] if len(focus) > 1 else f"{s2_ag['name']} Optimization", "own": "agentic", "prio": p2, "valueM": round(p_total * w2, 2),
+        {"code": f"{pcode}W02", "title": focus[1] if len(focus) > 1 else f"{s2_ag['name']} Optimization", "own": "agentic", "prio": p2, "valueCr": round(p_total * w2, 2), "valueDisplay": fmt_inr(p_total * w2),
          "today": "Static ERP rules miss shelf-life, Q-Commerce velocity, or tariff constraints.",
          "withAgent": f"{s2_ag['name']} runs deterministic math to rank margin-optimal options.",
          "agentName": s2_ag["name"], "agentId": s2_ag["id"], "liveInGE": s2_ag["liveInGE"], "cadence": "Event-driven"},
-        {"code": f"{pcode}W03", "title": focus[2] if len(focus) > 2 else "Cross-Echelon Trade-Off Sync", "own": "agentic", "prio": p3, "valueM": round(p_total * w3, 2),
+        {"code": f"{pcode}W03", "title": focus[2] if len(focus) > 2 else "Cross-Echelon Trade-Off Sync", "own": "agentic", "prio": p3, "valueCr": round(p_total * w3, 2), "valueDisplay": fmt_inr(p_total * w3),
          "today": "Phone & email escalations across ICML plants, CFA depots, and buyers.",
          "withAgent": "Agent suite reconciles working capital, FEFO shelf-life, and OTIF service.",
          "agentName": primary_ag["name"], "agentId": primary_aid, "liveInGE": primary_ag["liveInGE"], "cadence": "Daily"},
-        {"code": f"{pcode}W04", "title": "Staged MCP Write-Back Proposal", "own": "agentic", "prio": p4, "valueM": round(p_total * w4, 2),
+        {"code": f"{pcode}W04", "title": "Staged MCP Write-Back Proposal", "own": "agentic", "prio": p4, "valueCr": round(p_total * w4, 2), "valueDisplay": fmt_inr(p_total * w4),
          "today": "Manual screen-by-screen transaction entry inside core ERP/WMS.",
          "withAgent": "Stages policy-checked transaction via Apigee MCP awaiting 1-click sign-off.",
          "agentName": primary_ag["name"], "agentId": primary_aid, "liveInGE": primary_ag["liveInGE"], "cadence": "On approval"},
-        {"code": f"{pcode}W05", "title": "Exception & Audit Substantiation", "own": "agentic", "prio": p5, "valueM": round(p_total * w5, 2),
+        {"code": f"{pcode}W05", "title": "Exception & Audit Substantiation", "own": "agentic", "prio": p5, "valueCr": round(p_total * w5, 2), "valueDisplay": fmt_inr(p_total * w5),
          "today": "Hours compiling variance decks and deduction claim proofs.",
          "withAgent": "Auto-generates cited BigQuery Cortex v7 ledger packet.",
          "agentName": s2_ag["name"], "agentId": s2_ag["id"], "liveInGE": s2_ag["liveInGE"], "cadence": "Weekly"},
-        {"code": f"{pcode}W06", "title": f"{sys_name.split('·')[0].strip()} Ledger Commit", "own": "system", "prio": "", "valueM": 0,
+        {"code": f"{pcode}W06", "title": f"{sys_name.split('·')[0].strip()} Ledger Commit", "own": "system", "prio": "", "valueCr": 0, "valueDisplay": "—",
          "holder": sys_name.split("·")[0].strip(), "reason": "Core financial & inventory postings remain in system of record; zero rip-and-replace.", "cadence": "Transactional"},
-        {"code": f"{pcode}W07", "title": "Master Data & Statutory Controls", "own": "system", "prio": "", "valueM": 0,
+        {"code": f"{pcode}W07", "title": "Master Data & Statutory Controls", "own": "system", "prio": "", "valueCr": 0, "valueDisplay": "—",
          "holder": sys_name.split("·")[0].strip(), "reason": "SKU MRP master, tax codes, and role permissions remain locked in core ERP.", "cadence": "Continuous"},
-        {"code": f"{pcode}W08", "title": f"{human_name.split()[0]}'s Final Sign-Off", "own": "human", "prio": "", "valueM": 0,
+        {"code": f"{pcode}W08", "title": f"{human_name.split()[0]}'s Final Sign-Off", "own": "human", "prio": "", "valueCr": 0, "valueDisplay": "—",
          "holder": f"{human_name} ({p['name']})", "reason": "Commercial trade-offs, vendor awards, and safety/QA releases stay strictly human.", "cadence": "Policy gate"},
     ]
 
@@ -774,12 +854,12 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
         "subPillarId": p.get("subPillarId", ""),
         "subPillarName": p.get("subPillarName", ""),
         "name": p["name"],  # Role title preserved
-        "whatTheyDo": p.get("summary") or p.get("mandate") or "",
-        "whyItMatters": f"In high-velocity CPG operations across {human_setting}, delayed visibility directly triggers Modern Trade OTIF penalties, FEFO shelf-life write-offs, or unrecovered trade/freight leakage.",
+        "whatTheyDo": to_inr_prose(p.get("summary") or p.get("mandate") or ""),
+        "whyItMatters": f"In high-velocity CPG operations across {human_setting}, delayed visibility directly triggers Modern Trade OTIF penalties, FEFO shelf-life write-offs, or unrecovered trade/freight leakage measured in ₹ Lakhs and Crores.",
         "systemsTouched": sys_name,
         "notOwned": NOT_OWNED_BY_DEPT[p["deptId"]],
         "honestLimit": f"Agents prepare deterministic scenarios and stage ERP/WMS actions, but {human_name} retains final commercial, safety, and counterparty accountability.",
-        "headlineStat": p.get("headlineStat", ""),
+        "headlineStat": to_inr_prose(p.get("headlineStat", "")),
         "toilHoursBefore": int(b_num),
         "toilHoursAfter": int(a_num),
         "savedHrs": saved_hrs,
@@ -790,7 +870,8 @@ for idx, (pid, p) in enumerate(cat["personas"].items(), start=1):
         "prioBoard": b_prio,
         "paybackDays": primary_ag["paybackDays"],
         "val": {"prod": p_prod, "flow": p_flow, "shield": p_shield, "recov": p_recov, "total": p_total},
-        "annualValueM": p_total,
+        "annualValueCr": p_total,
+        "annualValueDisplay": fmt_inr(p_total),
         "agentSuite": agent_suite,
         "actions": actions,
     })
@@ -816,7 +897,8 @@ for dept_id, d in cat["departments"].items():
                 "agentId": p_obj["primaryAgentId"],
                 "agentName": p_obj["primaryAgentName"],
                 "priorityTier": p_obj["priorityTier"],
-                "annualValueM": p_obj["annualValueM"],
+                "annualValueCr": p_obj["annualValueCr"],
+                "annualValueDisplay": p_obj["annualValueDisplay"],
                 "desc": p_obj["whatTheyDo"],
                 "outcome": all_agents_map[p_obj["primaryAgentId"]]["oneLine"],
                 "liveInGE": p_obj["liveInGE"],
@@ -841,7 +923,7 @@ for dept_id, d in cat["departments"].items():
         "proofLabel": st["proofLabel"],
         "proofUrl": st["proofUrl"],
         "flagshipAgentId": st["flagship"],
-        "coreQuestion": d.get("coreQuestion", "").strip(),
+        "coreQuestion": to_inr_prose(d.get("coreQuestion", "").strip()),
         "systems": SYSTEM_BY_DEPT[dept_id],
         "subPillars": sub_pillars,
         "personaCount": len(d.get("personaIds", [])),
@@ -851,9 +933,56 @@ for dept_id, d in cat["departments"].items():
         "liveCount": sum(1 for x in dept_agents if x["liveInGE"]),
     })
 
+CITATIONS = [
+    {
+        "org": "World Economic Forum",
+        "year": "2026",
+        "stat": "-62% Disruption Response Time",
+        "sub": "Autonomous multi-agent supply chain networks cut disruption detection-to-recovery latency by 62% across plant & logistics corridors.",
+        "url": "https://www.weforum.org/agenda/2026/09/how-agentic-ai-is-reshaping-supply-chain-resilience/",
+    },
+    {
+        "org": "McKinsey Global Institute",
+        "year": "2025",
+        "stat": "45% of 1-Year EBITDA at Risk",
+        "sub": "Supply chain shocks lasting 1+ month strike every 3.7 years, putting nearly half a year's operating profit (~₹3,400 Cr on a ₹68,000 Cr CPG business) at stake.",
+        "url": "https://www.mckinsey.com/capabilities/operations/our-insights/risk-resilience-and-rebalancing-in-global-value-chains",
+    },
+    {
+        "org": "Gartner Supply Chain",
+        "year": "2026",
+        "stat": "₹4.45 Lakh Cr Agentic SCM Spend",
+        "sub": "Supply chain management software embedded with autonomous agentic AI projected to reach ₹4.45 Lakh Crore globally by 2030.",
+        "url": "https://www.gartner.com/en/newsroom/press-releases/2026-04-07-gartner-forecasts-supply-chain-management-software-with-agentic-ai-will-grow-to-53-billion-in-spend-by-2030",
+    },
+    {
+        "org": "Capgemini Research Institute",
+        "year": "2025",
+        "stat": "41% → 53% Last-Mile Cost Share",
+        "sub": "Fulfillment and last-mile dispatch now exceed half of total logistics spend while 5–15% of carrier freight invoices carry billing errors.",
+        "url": "https://www.capgemini.com/insights/research-library/the-last-mile-delivery-challenge/",
+    },
+    {
+        "org": "BCG Consumer Goods Practice",
+        "year": "2025",
+        "stat": "25%–50% Trade Promos Destroy Margin",
+        "sub": "Up to half of CPG trade promotions fail to break even due to unmodeled pack cannibalization, forward-buying, and unverified retailer deductions.",
+        "url": "https://www.bcg.com/publications/2025/ai-powered-revenue-growth-management-in-consumer-goods",
+    },
+    {
+        "org": "Unilever & Google Cloud",
+        "year": "2026",
+        "stat": "104-Week Rolling ML Forecast",
+        "sub": "Production CPG deployment forecasting 5M+ SKU-customer combinations weekly alongside 40+ smart factory digital twins.",
+        "url": "https://www.unilever.com/news/press-and-media/press-releases/2026/google-cloud-partnership-pioneers-next-generation-of-consumer-goods-technologies",
+    },
+]
+
 payload = {
     "meta": {
         "domain": "CPG Multi-Echelon Supply Chain",
+        "currency": "INR",
+        "currencyUnits": "Crores (₹ Cr) & Lakhs (₹ L)",
         "pillars": len(departments),
         "subPillars": sum(len(d["subPillars"]) for d in departments),
         "personas": len(personas),
@@ -866,6 +995,7 @@ payload = {
     "departments": departments,
     "personas": personas,
     "agents": list(all_agents_map.values()),
+    "citations": CITATIONS,
 }
 
 with open(OUT_DATA, "w", encoding="utf-8") as f:
@@ -873,7 +1003,7 @@ with open(OUT_DATA, "w", encoding="utf-8") as f:
     json.dump(payload, f, separators=(",", ":"))
     f.write(";\n")
 
-# Emit matching sc_value_model.js reading seamlessly from p.val + BY_AGENT
+# Emit matching sc_value_model.js reading seamlessly from p.val + BY_AGENT (denominated in ₹ Crores & ₹ Lakhs)
 by_agent_js = {
     aid: {
         "tier": "first" if ag["priorityTier"] == "P0" else ("next" if ag["priorityTier"] == "P1" else "routine"),
@@ -886,25 +1016,33 @@ by_agent_js = {
     for aid, ag in all_agents_map.items()
 }
 
-val_js_code = """/* CPG Supply Chain 4-Lever Value & Priority Model (60 Personas · 78 Agents: 60 Core + 18 New CPG Use Cases) */
+val_js_code = """/* CPG Supply Chain 4-Lever Indian Rupee Value & Priority Model (₹ Crores & ₹ Lakhs · 60 Personas · 78 Agents) */
 window.SC_VALUES = (function () {
   var ESTATE_BASELINE = {
-    label: "$5.0B COGS / $8.0B Revenue Multi-Site CPG Enterprise Benchmark (ICML Plants · CFA Depots · DMS · Modern Trade · Q-Commerce)",
-    loadedRateHr: 105
+    label: "₹42,000 Cr COGS / ₹68,000 Cr Gross Revenue Multi-Site CPG Enterprise Benchmark (ICML Plants · CFA Depots · DMS · Modern Trade · Q-Commerce)",
+    currency: "INR"
   };
   var LEVERS = [
-    { id: "prod", name: "Productivity & Redeployment", color: "#3186FF", unit: "$M/yr", def: "Planner, buyer, QA & dispatcher hours reclaimed from ERP/DMS spreadsheets and redeployed to commercial & supplier negotiations." },
-    { id: "flow", name: "Flow & Working Capital", color: "#00AF57", unit: "$M/yr", def: "22% annual carrying cost saved via Multi-Echelon Inventory Optimization (MEIO) & FEFO, ICML changeover OEE hours, and 3D trailer consolidation." },
-    { id: "shield", name: "Leakage & Risk Shield", color: "#4B31E3", unit: "$M/yr", def: "Hard cash protected across 3-way match, freight & trade-deduction audits, Co-Packer scrap, E-Way bill fines, and Tier-2+/recall containment." },
-    { id: "recov", name: "Revenue & Salvage Recovery", color: "#12B5CB", unit: "$M/yr", def: "Incremental gross margin saved from Quick-Commerce & shelf stockout prevention, DMS secondary balancing, dynamic markdowns & RMA triage." }
+    { id: "prod", name: "Productivity & Redeployment", color: "#3186FF", unit: "₹ Cr / ₹ L", def: "Planner, buyer, QA & dispatcher hours reclaimed from ERP/DMS spreadsheets (₹35 L–₹1.1 Cr per role) and redeployed to commercial & supplier negotiations." },
+    { id: "flow", name: "Flow & Working Capital", color: "#00AF57", unit: "₹ Cr/yr", def: "22% annual carrying cost saved via Multi-Echelon Inventory Optimization (MEIO) & FEFO, ICML changeover OEE hours, and 3D trailer consolidation." },
+    { id: "shield", name: "Leakage & Risk Shield", color: "#4B31E3", unit: "₹ Cr/yr", def: "Hard cash protected across 3-way match, freight & trade-deduction audits, Co-Packer scrap, E-Way bill fines, and Tier-2+/recall containment." },
+    { id: "recov", name: "Revenue & Salvage Recovery", color: "#12B5CB", unit: "₹ Cr/yr", def: "Incremental gross margin saved from Quick-Commerce & shelf stockout prevention, DMS secondary balancing, dynamic markdowns & RMA triage." }
   ];
   var BY_AGENT = """ + json.dumps(by_agent_js, separators=(",", ":")) + """;
-  function r1(n) { return Math.round((n || 0) * 10) / 10; }
+  function r2(n) { return Math.round((n || 0) * 100) / 100; }
+  function fmtINR(cr, suffix) {
+    var sfx = suffix || "";
+    var n = Number(cr) || 0;
+    if (n <= 0) return "—";
+    if (n >= 1000) return "₹" + n.toLocaleString("en-IN", { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + " Cr" + sfx;
+    if (n >= 1) return "₹" + n.toFixed(1) + " Cr" + sfx;
+    return "₹" + Math.max(1, Math.round(n * 100)) + " L" + sfx;
+  }
   function computeForPersonas(personas) {
     var byPersonaId = {}, byDeptId = {};
     var estateTotals = { prod: 0, flow: 0, shield: 0, recov: 0, total: 0, savedHrsWk: 0, personas: 0, firstCount: 0, nextCount: 0, routineCount: 0 };
     (personas || []).forEach(function (p) {
-      var v = p.val || { prod: 0.5, flow: 1.5, shield: 1.5, recov: 1.0, total: 4.5 };
+      var v = p.val || { prod: 0.55, flow: 5.4, shield: 5.4, recov: 3.6, total: 14.95 };
       var tier = p.prioBoard || "next";
       var rec = {
         personaId: p.id, agentId: p.primaryAgentId, deptId: p.deptId,
@@ -915,18 +1053,18 @@ window.SC_VALUES = (function () {
       byPersonaId[p.id] = rec;
       if (!byDeptId[p.deptId]) byDeptId[p.deptId] = { prod: 0, flow: 0, shield: 0, recov: 0, total: 0, savedHrsWk: 0, personas: 0, firstCount: 0, nextCount: 0, routineCount: 0 };
       var d = byDeptId[p.deptId];
-      d.prod = r1(d.prod + v.prod); d.flow = r1(d.flow + v.flow); d.shield = r1(d.shield + v.shield); d.recov = r1(d.recov + v.recov); d.total = r1(d.total + v.total);
+      d.prod = r2(d.prod + v.prod); d.flow = r2(d.flow + v.flow); d.shield = r2(d.shield + v.shield); d.recov = r2(d.recov + v.recov); d.total = r2(d.total + v.total);
       d.savedHrsWk += (p.savedHrs || 0); d.personas += 1;
       if (tier === "first") d.firstCount += 1; else if (tier === "next") d.nextCount += 1; else d.routineCount += 1;
 
-      estateTotals.prod = r1(estateTotals.prod + v.prod); estateTotals.flow = r1(estateTotals.flow + v.flow);
-      estateTotals.shield = r1(estateTotals.shield + v.shield); estateTotals.recov = r1(estateTotals.recov + v.recov);
-      estateTotals.total = r1(estateTotals.total + v.total); estateTotals.savedHrsWk += (p.savedHrs || 0); estateTotals.personas += 1;
+      estateTotals.prod = r2(estateTotals.prod + v.prod); estateTotals.flow = r2(estateTotals.flow + v.flow);
+      estateTotals.shield = r2(estateTotals.shield + v.shield); estateTotals.recov = r2(estateTotals.recov + v.recov);
+      estateTotals.total = r2(estateTotals.total + v.total); estateTotals.savedHrsWk += (p.savedHrs || 0); estateTotals.personas += 1;
       if (tier === "first") estateTotals.firstCount += 1; else if (tier === "next") estateTotals.nextCount += 1; else estateTotals.routineCount += 1;
     });
     return { byPersonaId: byPersonaId, byDeptId: byDeptId, estateTotals: estateTotals };
   }
-  return { ESTATE_BASELINE: ESTATE_BASELINE, LEVERS: LEVERS, BY_AGENT: BY_AGENT, computeForPersonas: computeForPersonas };
+  return { ESTATE_BASELINE: ESTATE_BASELINE, LEVERS: LEVERS, BY_AGENT: BY_AGENT, fmtINR: fmtINR, computeForPersonas: computeForPersonas };
 })();
 """
 

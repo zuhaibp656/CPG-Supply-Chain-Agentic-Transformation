@@ -199,9 +199,10 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
   }).join('');
   aSel.addEventListener('change', function(){ location.search = '?agent=' + encodeURIComponent(aSel.value); });
 
-  var valMeta = window.SC_VALUES.BY_AGENT[ag.id] || { tier: 'next', paybackDays: 90, prod: 0.5, flow: 2, shield: 2, recov: 1 };
-  var totalVal = (valMeta.prod + valMeta.flow + valMeta.shield + valMeta.recov).toFixed(1);
-  var tierLabel = valMeta.tier === 'first' ? 'Priority 1 · Build First' : (valMeta.tier === 'next' ? 'Priority 2 · Build Next' : 'Priority 3 · Enabler');
+  var valMeta = window.SC_VALUES.BY_AGENT[ag.id] || { tier: 'next', paybackDays: 90, prod: 0.6, flow: 7.2, shield: 7.2, recov: 3.6 };
+  var totalVal = valMeta.prod + valMeta.flow + valMeta.shield + valMeta.recov;
+  var fmtINR = window.SC_VALUES.fmtINR;
+  var tierLabel = valMeta.tier === 'first' ? 'Priority 0 · Deploy First' : (valMeta.tier === 'next' ? 'Priority 1 · Build Next' : 'Priority 2 · Enabler');
 
   document.getElementById('stageKicker').textContent = 'LIVE IN GEMINI ENTERPRISE · ' + ag.deptTitle.toUpperCase();
   document.getElementById('agentTitle').textContent = ag.name;
@@ -210,7 +211,7 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
   document.getElementById('starterPrompt').textContent = '"' + ag.samplePrompt + '"';
 
   document.getElementById('telemList').innerHTML = [
-    ['Annual Value', '$' + totalVal + 'M / yr'],
+    ['Annual Value', fmtINR(totalVal, ' / yr')],
     ['Build Priority', tierLabel + ' (' + valMeta.paybackDays + 'd)'],
     ['Model', ag.model || 'gemini-3.1-pro-preview'],
     ['Human Gate', 'Apigee MCP · 1-Click Approval']

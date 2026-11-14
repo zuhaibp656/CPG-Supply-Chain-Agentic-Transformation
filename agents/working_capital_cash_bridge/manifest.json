@@ -7,10 +7,12 @@
   "priority_tier": "P1",
   "is_new_cpg_agent": false,
   "payback_days": 120,
-  "annual_value_m_usd": 8.6,
+  "annual_value_cr_inr": 29.73,
+  "annual_value_display": "\u20b929.7 Cr",
+  "currency": "INR",
   "primary_persona_id": "category_manager_portfolio",
   "reads": "Converts physical volume, scrap, overtime & multi-modal freight into P&L margin impact Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
   "does": "Optimizes inventory buffers (DSI) vs. supplier payment terms (DPO) in Mathematical Optimization Solver (MILP / CP-SAT) (Mathematical Optimization Solver (MILP / CP-SAT) Stochastic Cash-Conversion-Cycle (DSI + DSO - DPO) Optimizer + BigQuery Real-Time Margin & COGS Bridge).",
-  "returns": "Scores ocean-to-air mode shifts vs. customer SLA penalties in net NPV dollars Stages policy-checked action via Joint CSCO\u2013CFO Scenario Sign-Off, Dynamic Discounting Trigger & Working-Capital Budget Lock in Enterprise ERP (MCP / On-Prem DB).",
+  "returns": "Scores ocean-to-air mode shifts vs. customer SLA penalties in net NPV rupees Stages policy-checked action via Joint CSCO\u2013CFO Scenario Sign-Off, Dynamic Discounting Trigger & Working-Capital Budget Lock in Enterprise ERP (MCP / On-Prem DB).",
   "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
 }

@@ -258,7 +258,7 @@
           var suiteNames = (it.suiteNames || [it.agentName]).join(' · ');
           return '<a class="per-card" href="../personas/dossier.html?id=' + encodeURIComponent(it.personaId) + '" style="--tc:' + tileHue.c + ';--ti:' + tileHue.i + '">' +
             '<div class="per-top">' +
-              '<span class="per-code">' + (p.code || 'ROLE') + ' &middot; $' + (it.annualValueM || 5).toFixed(1) + 'M/yr</span>' +
+              '<span class="per-code">' + (p.code || 'ROLE') + ' &middot; ' + (it.annualValueDisplay || '₹18.0 Cr') + '/yr</span>' +
               '<span style="font:700 10px var(--font-mono);padding:3px 8px;border-radius:999px;background:rgba(49,134,255,.12);color:var(--blue-ink)">' + (it.suiteCount || 3) + ' AGENTS IN SUITE</span>' +
             '</div>' +
             '<h3 class="per-role" style="flex-direction:column;align-items:flex-start;gap:2px;"><span>' + (it.personName || it.personaName) + '</span><small style="font-size:12.5px;color:var(--text-muted);font-weight:600">' + it.personaName + '</small></h3>' +

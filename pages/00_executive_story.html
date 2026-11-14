@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
         <div style="font:700 10.5px var(--font-mono);color:#93C5FD;letter-spacing:1.2px;margin-bottom:4px;">25-MINUTE EXECUTIVE BRIEFING</div>
         <div class="vo-row">
           <div style="font:700 17px/1.25 var(--font-display)">End-to-End Plan &rarr; Source &rarr; Make &rarr; Fulfill &rarr; Deliver &rarr; Return</div>
-          <span class="vo-badge">$507.5M / yr Modeled</span>
+          <span class="vo-badge" id="heroEstateBadge">&#8377;2,165 Cr / yr Modeled</span>
         </div>
       </div>
     </div>
@@ -143,6 +143,9 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
 (function(){
   var DATA = window.SC_DATA;
   var VAL = window.SC_VALUES.computeForPersonas(DATA.personas);
+  var fmtINR = window.SC_VALUES.fmtINR;
+  var hb = document.getElementById('heroEstateBadge');
+  if (hb) hb.textContent = fmtINR(VAL.estateTotals.total, ' / yr Modeled');
   var activeId = DATA.departments[0].id;
   var host = document.getElementById('pillarPills');
   function render(){
@@ -156,7 +159,7 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
     document.getElementById('promptDomainTag').textContent = d.num + ' · ' + d.title.toUpperCase() + ' · AGENT: ' + ag.name.toUpperCase();
     document.getElementById('promptText').textContent = '"' + ag.samplePrompt + '"';
     document.getElementById('promptMeta').innerHTML =
-      '<span>Value: $' + dv.total.toFixed(1) + 'M/yr</span>' +
+      '<span>Value: ' + fmtINR(dv.total, '/yr') + '</span>' +
       '<span>Live in GE: ' + d.liveCount + '/' + d.agentCount + '</span>' +
       '<span>Toil Freed: ' + dv.savedHrsWk + ' hrs/wk</span>';
   }

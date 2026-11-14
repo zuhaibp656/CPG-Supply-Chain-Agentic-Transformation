@@ -74,16 +74,16 @@ def sample_domain_records(dept_id: str, filter_term: str = "", limit: int = 25) 
 
 
 def compute_deterministic_kpis(agent_id: str, dept_id: str, records: List[Dict[str, Any]]) -> Dict[str, Any]:
-    """Computes deterministic exception & financial metrics over sampled CPG rows."""
+    """Computes deterministic exception & INR financial metrics over sampled CPG rows."""
     n = len(records)
     if n == 0:
-        return {"agent_id": agent_id, "exceptions_flagged": 0, "modeled_impact_usd": 0.0}
+        return {"agent_id": agent_id, "exceptions_flagged": 0, "modeled_impact_inr": 0.0}
 
     numeric_totals: Dict[str, float] = {}
     exception_rows = 0
     for r in records:
         for k, v in r.items():
-            if any(tag in k for tag in ("usd", "pct", "qty", "units", "mins", "cases", "score")):
+            if any(tag in k for tag in ("inr", "lakh", "cr", "pct", "qty", "units", "mins", "cases", "score")):
                 try:
                     numeric_totals[k] = round(numeric_totals.get(k, 0.0) + float(v), 2)
                 except (ValueError, TypeError):
@@ -93,6 +93,7 @@ def compute_deterministic_kpis(agent_id: str, dept_id: str, records: List[Dict[s
 
     return {
         "agent_id": agent_id,
+        "currency": "INR",
         "department": dept_id,
         "records_evaluated": n,
         "exceptions_flagged": exception_rows,

@@ -34,13 +34,13 @@ FULL_DIR = OUT_DIR / "lake_full"
 SEED_DIR = OUT_DIR / "seeds"
 
 CATEGORIES = [
-    ("Foods & Biscuits", "FDS", 270, True, "Wheat, Sugar, Milk Solids", 14.5, 22.0),
-    ("Snacks & Noodles", "SNK", 180, True, "Wheat, Soy, Spices", 11.0, 18.0),
-    ("Beverages & Juices", "BEV", 240, False, "None", 16.0, 25.0),
-    ("Dairy & Chilled", "DRY", 21, True, "Milk", 24.0, 34.0),
-    ("Personal Care & Soaps", "PRC", 540, False, "Fragrance Allergens", 38.0, 62.0),
-    ("Home Care & Hygiene", "HMC", 720, False, "Surfactants", 29.0, 48.0),
-    ("Agri Staples & Flour", "AGR", 120, True, "Wheat Gluten", 19.0, 26.0),
+    ("Foods & Biscuits", "FDS", 270, True, "Wheat, Sugar, Milk Solids", 28.0, 45.0),
+    ("Snacks & Noodles", "SNK", 180, True, "Wheat, Soy, Spices", 21.0, 35.0),
+    ("Beverages & Juices", "BEV", 240, False, "None", 32.0, 50.0),
+    ("Dairy & Chilled", "DRY", 21, True, "Milk", 48.0, 68.0),
+    ("Personal Care & Soaps", "PRC", 540, False, "Fragrance Allergens", 74.0, 125.0),
+    ("Home Care & Hygiene", "HMC", 720, False, "Surfactants", 58.0, 99.0),
+    ("Agri Staples & Flour", "AGR", 120, True, "Wheat Gluten", 38.0, 52.0),
 ]
 
 PLANTS = [
@@ -133,8 +133,8 @@ def main():
             "mrsl_modern_trade_pct": 75 if shelf_days <= 180 else 60,
             "mrsl_qcommerce_pct": 65 if shelf_days <= 180 else 50,
             "allergen_profile": allergen_str if has_allergen else "Allergen-Free",
-            "unit_cogs_usd": cogs,
-            "unit_mrp_usd": mrp,
+            "unit_cogs_inr": cogs,
+            "unit_mrp_inr": mrp,
             "case_units": rng.choice([12, 24, 36, 48]),
             "case_cube_m3": round(rng.uniform(0.018, 0.065), 4),
             "velocity_tier": "A-Fast" if i % 5 == 0 else ("B-Core" if i % 3 == 0 else "C-Tail"),
@@ -183,16 +183,16 @@ def main():
             yield [
                 f"POS-{i+1:07d}", dt, sk["sku_id"], sk["category"], cfa[0], cfa[2], ch,
                 erp_stat_fcst, pos_sold, stockout_flag, censored_lost_units,
-                promo_active, temp_anom, sk["unit_mrp_usd"],
-                round((pos_sold + censored_lost_units) * (sk["unit_mrp_usd"] - sk["unit_cogs_usd"]), 2),
-                "Monsoon-Surge- Corridor" if i % 19 == 0 else "Normal-Regime"
+                promo_active, temp_anom, sk["unit_mrp_inr"],
+                round((pos_sold + censored_lost_units) * (sk["unit_mrp_inr"] - sk["unit_cogs_inr"]), 2),
+                "Monsoon-Surge-Corridor" if i % 19 == 0 else "Normal-Regime"
             ]
 
     _, n, sz = write_csv_and_seed(
         "01_daily_pos_dms_qcomm_velocity.csv",
         ["record_id", "sale_date", "sku_id", "category", "cfa_depot_id", "region", "channel",
          "sap_ibp_stat_forecast", "actual_pos_units", "oos_censored_flag", "imputed_lost_units",
-         "promo_flag", "weathernext_temp_delta_c", "unit_mrp_usd", "gross_margin_usd", "regime_note"],
+         "promo_flag", "weathernext_temp_delta_c", "unit_mrp_inr", "gross_margin_inr", "regime_note"],
         gen_pos(),
     )
     manifest_tables["01_daily_pos_dms_qcomm_velocity.csv"] = {"rows": n, "bytes": sz}
@@ -200,7 +200,7 @@ def main():
     def gen_trade_promos():
         for i in range(75000):
             sk = skus[i % len(skus)]
-            spend = round(rng.uniform(4500, 68000), 2)
+            spend = round(rng.uniform(185000, 2850000), 2)
             inc_margin = round(spend * rng.uniform(-0.35, 0.62), 2)
             deduction_claimed = round(spend * rng.uniform(0.08, 0.32), 2)
             valid_pop = 0 if i % 6 == 0 else 1
@@ -215,9 +215,9 @@ def main():
 
     _, n, sz = write_csv_and_seed(
         "01_trade_promotions_and_deductions.csv",
-        ["promo_id", "sku_id", "category", "channel", "mechanic", "trade_spend_usd",
-         "cannibalization_rate", "net_incremental_margin_usd", "roi_status",
-         "retailer_deduction_usd", "valid_proof_of_perf", "recoverable_clawback_usd"],
+        ["promo_id", "sku_id", "category", "channel", "mechanic", "trade_spend_inr",
+         "cannibalization_rate", "net_incremental_margin_inr", "roi_status",
+         "retailer_deduction_inr", "valid_proof_of_perf", "recoverable_clawback_inr"],
         gen_trade_promos(),
     )
     manifest_tables["01_trade_promotions_and_deductions.csv"] = {"rows": n, "bytes": sz}
@@ -229,15 +229,15 @@ def main():
             plt = PLANTS[i % len(PLANTS)]
             po_qty = rng.randint(500, 25000)
             grn_qty = po_qty if i % 9 != 0 else int(po_qty * rng.uniform(0.86, 0.97))
-            po_price = round(rng.uniform(0.85, 14.50), 3)
-            inv_price = po_price if i % 11 != 0 else round(po_price * rng.uniform(1.04, 1.14), 3)
-            should_cost = round(po_price * rng.uniform(0.89, 1.01), 3)
-            var_usd = round((inv_price * po_qty) - (po_price * grn_qty), 2)
+            po_price = round(rng.uniform(28.5, 420.0), 2)
+            inv_price = po_price if i % 11 != 0 else round(po_price * rng.uniform(1.04, 1.14), 2)
+            should_cost = round(po_price * rng.uniform(0.89, 1.01), 2)
+            var_inr = round((inv_price * po_qty) - (po_price * grn_qty), 2)
             yield [
                 f"PO-{i+1:07d}", f"VND-T1-{(i%450)+1:04d}", plt[0], comm,
                 po_qty, grn_qty, po_price, inv_price, should_cost,
-                max(0.0, var_usd),
-                "HOLD-3WAY-MISMATCH" if var_usd > 25 else "MATCH-VERIFIED",
+                max(0.0, var_inr),
+                "HOLD-3WAY-MISMATCH" if var_inr > 2000 else "MATCH-VERIFIED",
                 "TIER2-PORT-CONGESTION" if i % 23 == 0 else "CLEAR",
                 "ARTWORK-ALLERGEN-CHECK-PASS" if i % 31 != 0 else "FSSAI-FONT-SIZE-HOLD",
             ]
@@ -245,8 +245,8 @@ def main():
     _, n, sz = write_csv_and_seed(
         "02_po_grn_three_way_match_sourcing.csv",
         ["po_number", "vendor_id", "plant_id", "material_commodity", "po_qty", "grn_received_qty",
-         "contract_unit_price_usd", "invoiced_unit_price_usd", "index_should_cost_usd",
-         "disputed_variance_usd", "match_status", "subtier_risk_flag", "artwork_compliance_gate"],
+         "contract_unit_price_inr", "invoiced_unit_price_inr", "index_should_cost_inr",
+         "disputed_variance_inr", "match_status", "subtier_risk_flag", "artwork_compliance_gate"],
         gen_procurement(),
     )
     manifest_tables["02_po_grn_three_way_match_sourcing.csv"] = {"rows": n, "bytes": sz}
@@ -293,7 +293,7 @@ def main():
                 f"INV-{i+1:07d}", cfa[0], f"DIST-{(i%4500)+1:04d}", sk["sku_id"],
                 f"LOT-FG-{(i%45000)+10000}", on_hand, ss_static, ss_meio,
                 sk["shelf_life_days"], rem_days, rem_pct, mrsl_breach, phantom_flag,
-                round(max(0, ss_static - ss_meio) * sk["unit_cogs_usd"] * 0.22, 2),
+                round(max(0, ss_static - ss_meio) * sk["unit_cogs_inr"] * sk["case_units"] * 0.22, 2),
                 "FEFO-REDIRECT-GENERAL-TRADE" if mrsl_breach else "ELIGIBLE-ALL-CHANNELS",
             ]
 
@@ -303,7 +303,7 @@ def main():
          "on_hand_cases", "static_safety_stock", "meio_optimal_stock",
          "total_shelf_life_days", "remaining_days", "remaining_life_pct",
          "mt_mrsl_breach_flag", "phantom_pos_zero_scan_flag",
-         "annual_carrying_saved_usd", "fefo_allocation_rule"],
+         "annual_carrying_saved_inr", "fefo_allocation_rule"],
         gen_inventory(),
     )
     manifest_tables["04_fefo_inventory_dms_wms_ledger.csv"] = {"rows": n, "bytes": sz}
@@ -315,7 +315,7 @@ def main():
             plt = PLANTS[i % len(PLANTS)]
             car = CARRIERS[i % len(CARRIERS)]
             cube_pct = round(rng.uniform(54.0, 96.5), 1)
-            contract_frt = round(rng.uniform(420.0, 3850.0), 2)
+            contract_frt = round(rng.uniform(18500.0, 145000.0), 2)
             billed_frt = contract_frt if i % 10 != 0 else round(contract_frt * rng.uniform(1.06, 1.19), 2)
             yard_dwell_mins = rng.randint(22, 295)
             reefer_temp_c = round(rng.uniform(1.8, 9.4), 1) if i % 5 == 0 else 24.0
@@ -332,7 +332,7 @@ def main():
         "05_tms_shipments_eway_freight_audit.csv",
         ["shipment_id", "origin_plant", "dest_cfa", "carrier_name", "equipment_mode",
          "trailer_cube_util_pct", "yard_dwell_mins", "reefer_sensor_c", "eway_bill_hrs_remaining",
-         "contract_freight_usd", "invoiced_freight_usd", "overbilled_clawback_usd", "dispatch_alert"],
+         "contract_freight_inr", "invoiced_freight_inr", "overbilled_clawback_inr", "dispatch_alert"],
         gen_logistics(),
     )
     manifest_tables["05_tms_shipments_eway_freight_audit.csv"] = {"rows": n, "bytes": sz}
@@ -347,19 +347,19 @@ def main():
             esl_markdown_pct = rng.choice([0, 10, 20, 35, 50])
             rti_unreturned = rng.randint(0, 42) if i % 8 == 0 else 0
             grey_diversion = 1 if i % 37 == 0 else 0
-            salvage_usd = round(qty * sk["unit_mrp_usd"] * (1.0 - esl_markdown_pct / 100.0) * 0.65, 2)
+            salvage_inr = round(qty * sk["unit_mrp_inr"] * (1.0 - esl_markdown_pct / 100.0) * 0.65, 2)
             yield [
                 f"RMA-{i+1:07d}", cfa[0], sk["sku_id"], CHANNELS[i % len(CHANNELS)],
-                qty, fraud_score, esl_markdown_pct, salvage_usd, rti_unreturned,
-                round(rti_unreturned * 18.5, 2), grey_diversion,
-                "FRAUD-HOLD-INSPECT" if fraud_score > 0.82 else ("KEEP-IT-REFUND" if sk["unit_mrp_usd"] < 6.0 else "RESTOCK-GRADE-A"),
+                qty, fraud_score, esl_markdown_pct, salvage_inr, rti_unreturned,
+                round(rti_unreturned * 1250.0, 2), grey_diversion,
+                "FRAUD-HOLD-INSPECT" if fraud_score > 0.82 else ("KEEP-IT-REFUND" if sk["unit_mrp_inr"] < 140.0 else "RESTOCK-GRADE-A"),
             ]
 
     _, n, sz = write_csv_and_seed(
         "06_returns_markdowns_rti_circular.csv",
         ["rma_event_id", "cfa_depot_id", "sku_id", "channel", "returned_units",
-         "vision_fraud_score", "dynamic_markdown_pct", "recovered_salvage_usd",
-         "unreconciled_chep_pallets", "pallet_demurrage_risk_usd", "grey_market_lot_flag", "disposition_action"],
+         "vision_fraud_score", "dynamic_markdown_pct", "recovered_salvage_inr",
+         "unreconciled_chep_pallets", "pallet_demurrage_risk_inr", "grey_market_lot_flag", "disposition_action"],
         gen_returns(),
     )
     manifest_tables["06_returns_markdowns_rti_circular.csv"] = {"rows": n, "bytes": sz}

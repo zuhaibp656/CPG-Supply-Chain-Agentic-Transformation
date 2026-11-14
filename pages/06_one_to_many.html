@@ -69,13 +69,13 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
   <div class="container">
     <div class="kick">STAGE 07 // SCALING BEYOND ONE FLAGSHIP WORKFLOW</div>
     <h1 class="h1">What you saw was <span class="au-display-grad">"One"</span> example of an agentic workflow.</h1>
-    <p class="sub">Now multiply that pattern across every Supply Chain Operations Reference (SCOR) persona&mdash;prioritized strictly by payback speed and defensible annual dollar value.</p>
+    <p class="sub">Now multiply that pattern across every Supply Chain Operations Reference (SCOR) persona&mdash;prioritized strictly by payback speed and defensible annual value in Crores and Lakhs.</p>
 
     <div class="cards">
       <div class="card" style="--tc:#3186FF;--ti:var(--blue-ink);">
-        <div class="cv" id="valTotal">$507.5M</div>
+        <div class="cv" id="valTotal">&#8377;2,199.3 Cr</div>
         <div class="ck">Modeled Estate / Yr</div>
-        <p class="cs">Non-double-counted EBITDA, carrying cost &amp; salvage recovery on $5B COGS.</p>
+        <p class="cs">Non-double-counted EBITDA, carrying cost &amp; salvage recovery on &#8377;42,000 Cr COGS.</p>
       </div>
       <div class="card" style="--tc:#FC413D;--ti:var(--red-ink);">
         <div class="cv" id="cntFirst">18 Agents</div>
@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.doc
 <script>
 (function(){
   var val = window.SC_VALUES.computeForPersonas(window.SC_DATA.personas).estateTotals;
-  document.getElementById('valTotal').textContent = '$' + val.total.toFixed(1) + 'M/yr';
-  document.getElementById('cntFirst').textContent = val.firstCount + ' Agents';
-  document.getElementById('cntNext').textContent = val.nextCount + ' Agents';
+  document.getElementById('valTotal').textContent = window.SC_VALUES.fmtINR(val.total, '/yr');
+  document.getElementById('cntFirst').textContent = val.firstCount + ' Roles';
+  document.getElementById('cntNext').textContent = val.nextCount + ' Roles';
 })();
 </script>
 </body>

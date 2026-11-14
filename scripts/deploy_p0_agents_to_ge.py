@@ -24,7 +24,8 @@ def main():
     print(f"=== CPG Priority-0 (P0) Gemini Enterprise Deployment Queue ({len(queue)} Agents) ===")
     for i, item in enumerate(queue, 1):
         tag = "[NEW CPG]" if item["is_new_cpg_agent"] else "[CORE 60]"
-        print(f"  {i:02d}. {item['code']} | {tag} {item['name']} ({item['agent_id']}) -> ${item['annual_value_m_usd']}M/yr ({item['payback_days']}d payback)")
+        val_disp = item.get("annual_value_display") or f"₹{item['annual_value_cr_inr']} Cr"
+        print(f"  {i:02d}. {item['code']} | {tag} {item['name']} ({item['agent_id']}) -> {val_disp}/yr ({item['payback_days']}d payback)")
 
     if not args.execute:
         print("\n[DRY-RUN COMPLETE] Folder & manifests verified. Pass `--execute` when ready to push P0 agents to Gemini Enterprise.")

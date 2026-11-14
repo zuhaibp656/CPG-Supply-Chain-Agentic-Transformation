@@ -1,12 +1,12 @@
 {
   "dataset_name": "CPG Multi-Echelon Enterprise Supply Chain Demo Data Lake",
   "total_rows": 1869300,
-  "total_bytes": 244301923,
-  "total_megabytes": 232.98,
+  "total_bytes": 246885467,
+  "total_megabytes": 235.45,
   "tables": {
     "00_master_skus.jsonl": {
       "rows": 2500,
-      "bytes": 843271
+      "bytes": 844744
     },
     "00_multitier_suppliers.jsonl": {
       "rows": 1800,
@@ -14,15 +14,15 @@
     },
     "01_daily_pos_dms_qcomm_velocity.csv": {
       "rows": 440000,
-      "bytes": 61467260
+      "bytes": 61716120
     },
     "01_trade_promotions_and_deductions.csv": {
       "rows": 75000,
-      "bytes": 10115091
+      "bytes": 10508603
     },
     "02_po_grn_three_way_match_sourcing.csv": {
       "rows": 280000,
-      "bytes": 39954842
+      "bytes": 40452178
     },
     "03_plant_mes_oee_copacker_genealogy.csv": {
       "rows": 280000,
@@ -30,15 +30,15 @@
     },
     "04_fefo_inventory_dms_wms_ledger.csv": {
       "rows": 300000,
-      "bytes": 37240178
+      "bytes": 37751511
     },
     "05_tms_shipments_eway_freight_audit.csv": {
       "rows": 290000,
-      "bytes": 35026003
+      "bytes": 35958080
     },
     "06_returns_markdowns_rti_circular.csv": {
       "rows": 200000,
-      "bytes": 20181223
+      "bytes": 20180176
     }
   },
   "network_scope": {
