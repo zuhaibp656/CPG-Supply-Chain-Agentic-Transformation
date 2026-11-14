@@ -3,16 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pillar Journey | Supply Chain Agentic Transformation</title>
+  <title>Pillar &amp; Persona Suites | CPG Supply Chain Agentic Transformation</title>
   <link rel="stylesheet" href="../assets/styles.css">
   <link rel="stylesheet" href="../assets/aurora.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <script>
     (function() { if ((localStorage.getItem('deck-theme') || 'light') === 'dark') document.documentElement.classList.add('theme-dark'); })();
     function toggleTheme() {
       var isDark = document.documentElement.classList.toggle('theme-dark');
       localStorage.setItem('deck-theme', isDark ? 'dark' : 'light');
       paintBtns(!isDark);
+      if (window.__redrawPillarLines) setTimeout(window.__redrawPillarLines, 30);
     }
     function paintBtns(isLight) {
       document.querySelectorAll('.theme-toggle-btn').forEach(function(btn) {
@@ -22,94 +24,325 @@
     document.addEventListener('DOMContentLoaded', function() { paintBtns(!document.documentElement.classList.contains('theme-dark')); });
   </script>
   <style>
-    body { margin: 0; background: var(--canvas); color: var(--text); font-family: var(--font-body); }
-    .wrap { max-width: 1460px; margin: 0 auto; padding: 84px max(24px, 4vw) 106px; }
+    body { margin: 0; background: var(--canvas); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
+    .wrap { max-width: 1460px; margin: 0 auto; padding: 80px max(24px, 4vw) 108px; animation: pageEnter .38s cubic-bezier(.22,1,.36,1); }
+    @keyframes pageEnter { from { opacity: 0; transform: translateY(10px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
     .bc { display: flex; align-items: center; gap: 8px; font: 600 12px var(--font-mono); color: var(--text-dim); margin-bottom: 14px; flex-wrap: wrap; }
     .bc a { color: var(--blue-ink); text-decoration: none; }
 
-    .p-hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items: center; margin-bottom: 24px; }
+    /* Hero */
+    .p-hero { display: grid; grid-template-columns: 1.32fr 1fr; gap: 28px; align-items: center; margin-bottom: 24px; }
     @media (max-width: 980px) { .p-hero { grid-template-columns: 1fr; } }
-
     .kick { display: flex; align-items: center; gap: 10px; font: 700 11.5px var(--font-mono); letter-spacing: 1.4px; text-transform: uppercase; color: var(--pink, var(--blue-ink)); margin-bottom: 8px; }
     .kick i { width: 28px; height: 3.5px; border-radius: 2px; background: var(--pcol, var(--g-blue)); }
-    .p-hero h1 { font: 700 clamp(30px, 3.1vw, 44px)/1.1 var(--font-display); letter-spacing: -0.8px; margin: 0 0 10px; }
-    .p-hero p.q { font-size: 16.5px; line-height: 1.5; color: var(--text-muted); margin: 0 0 16px; max-width: 66ch; }
+    .p-hero h1 { font: 700 clamp(30px, 3vw, 42px)/1.1 var(--font-display); letter-spacing: -0.8px; margin: 0 0 8px; }
+    .p-hero p.q { font-size: 16px; line-height: 1.48; color: var(--text-muted); margin: 0 0 14px; max-width: 64ch; }
 
     .meta-pills { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .m-pill { font: 600 11.5px var(--font-mono); padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border-subtle); color: var(--text); }
-    .proof-pill { font: 600 12px var(--font-display); padding: 6px 14px; border-radius: 999px;
-                  background: linear-gradient(135deg, color-mix(in srgb, var(--pcol, #3186FF) 12%, var(--surface)), color-mix(in srgb, #4B31E3 10%, var(--surface)));
-                  border: 1px solid color-mix(in srgb, var(--pcol, #3186FF) 38%, transparent); color: var(--pink, var(--blue-ink)); text-decoration: none; transition: transform .15s; }
+    .proof-pill {
+      font: 600 12px var(--font-display); padding: 6px 14px; border-radius: 999px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--pcol, #3186FF) 12%, var(--surface)), color-mix(in srgb, #4B31E3 10%, var(--surface)));
+      border: 1px solid color-mix(in srgb, var(--pcol, #3186FF) 38%, transparent); color: var(--pink, var(--blue-ink)); text-decoration: none; transition: transform .15s;
+    }
     .proof-pill:hover { transform: translateY(-1px); }
 
     .anim-stage {
       background: var(--surface); border: 1px solid color-mix(in srgb, var(--pcol, #3186FF) 30%, var(--border-subtle));
-      border-top: 3px solid var(--pcol, #3186FF); border-radius: 20px; padding: 16px;
+      border-top: 3px solid var(--pcol, #3186FF); border-radius: 20px; padding: 14px 16px;
       box-shadow: var(--shadow-md); position: relative; overflow: hidden;
     }
-    .anim-stage svg { width: 100%; height: 210px; display: block; }
-    .anim-cap { display: flex; justify-content: space-between; font: 600 11px var(--font-mono); color: var(--text-dim); margin-top: 8px; }
+    .anim-stage svg { width: 100%; height: 185px; display: block; }
+    .anim-cap { display: flex; justify-content: space-between; font: 600 11px var(--font-mono); color: var(--text-dim); margin-top: 6px; }
 
-    /* Sub-Pillar Colorful Tabs */
-    .sp-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 18px; }
+    /* Interactive Tree Stage: Sub-Pillars -> Dotted SVG Lines -> Persona Cards */
+    .tree-stage { position: relative; margin-top: 6px; }
+    .sp-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; position: relative; z-index: 2; }
     .sp-tab {
-      text-align: left; cursor: pointer; padding: 14px 16px; border-radius: 16px;
-      background: var(--surface); border: 1px solid var(--border-subtle); border-top: 3px solid color-mix(in srgb, var(--sc, var(--pcol)) 45%, transparent);
-      color: var(--text); transition: all .16s ease; box-shadow: var(--shadow-sm);
+      text-align: left; cursor: pointer; padding: 15px 18px; border-radius: 16px; position: relative;
+      background: var(--surface); border: 1.5px solid var(--border-subtle);
+      border-top: 4px solid color-mix(in srgb, var(--sc, var(--pcol)) 50%, transparent);
+      color: var(--text); transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s, border-color .22s, background .22s;
+      box-shadow: var(--shadow-sm);
     }
-    .sp-tab:hover { border-color: var(--sc, var(--pcol)); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .sp-tab:hover { border-color: var(--sc, var(--pcol)); transform: translateY(-3px); box-shadow: var(--shadow-md); }
     .sp-tab[aria-selected="true"] {
       border-color: var(--sc, var(--pcol));
       border-top: 4px solid var(--sc, var(--pcol));
-      background: linear-gradient(180deg, color-mix(in srgb, var(--sc, var(--pcol)) 10%, var(--surface)) 0%, var(--surface) 100%);
-      box-shadow: var(--shadow-md);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--sc, var(--pcol)) 13%, var(--surface)) 0%, var(--surface) 100%);
+      box-shadow: 0 12px 28px color-mix(in srgb, var(--sc, var(--pcol)) 20%, rgba(18,19,23,.08));
+      transform: translateY(-2px);
     }
-    .sp-tab small { display: block; font: 700 10.5px var(--font-mono); color: var(--si, var(--pink)); text-transform: uppercase; margin-bottom: 4px; }
-    .sp-tab b { display: block; font: 700 15.5px var(--font-display); }
-
-    /* Sub-Pillar Expanded Story + Full-Tile Clickable Persona Cards */
-    .sp-panel {
-      background: var(--surface); border: 1px solid var(--border-subtle); border-top: 4px solid var(--sp-active, var(--pcol));
-      border-radius: 20px; padding: 22px 24px; box-shadow: var(--shadow-md);
-      animation: fadeSlide .2s ease;
+    .sp-tab small { display: block; font: 700 10.5px var(--font-mono); color: var(--si, var(--pink)); text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+    .sp-tab b { display: flex; align-items: center; justify-content: space-between; font: 700 16px var(--font-display); }
+    .sp-dot-anchor {
+      position: absolute; left: 50%; bottom: -6px; transform: translateX(-50%);
+      width: 11px; height: 11px; border-radius: 50%; background: var(--surface);
+      border: 2.5px solid var(--border-strong); transition: all .22s;
     }
-    @keyframes fadeSlide { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    .sp-story-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 18px; }
-    .sp-story-head h2 { margin: 0 0 6px; font: 700 22px var(--font-display); }
-    .sp-story-head p { margin: 0; font-size: 14.5px; color: var(--text-muted); max-width: 78ch; line-height: 1.5; }
+    .sp-tab[aria-selected="true"] .sp-dot-anchor {
+      background: var(--sc, var(--pcol)); border-color: #fff;
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--sc, var(--pcol)) 26%, transparent);
+    }
 
-    .per-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    /* Animated Dotted Connector Bridge */
+    .connector-bridge { position: relative; height: 74px; width: 100%; pointer-events: none; z-index: 1; }
+    .connector-bridge svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    @media (max-width: 980px) { .connector-bridge { height: 28px; } .connector-bridge svg { display: none; } }
+
+    .tree-ln-base { fill: none; stroke-width: 2.2; stroke-dasharray: 5 6; opacity: .34; transition: opacity .22s, stroke-width .22s; }
+    .tree-ln-flow { fill: none; stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 13; animation: dashFlow 1.05s linear infinite; transition: opacity .22s; }
+    @keyframes dashFlow { to { stroke-dashoffset: -30; } }
+    .tree-stage.has-hover .conn-grp:not(.is-hl) { opacity: .18; }
+    .tree-stage.has-hover .conn-grp.is-hl .tree-ln-base { opacity: .75; stroke-width: 2.8; }
+
+    /* Clean, Minimal, Colorful Persona Cards (Role First, Suite Pills Middle, Human Name Bottom) */
+    .per-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; position: relative; z-index: 2; }
     @media (max-width: 980px) { .per-grid { grid-template-columns: 1fr; } }
 
     .per-card {
-      text-decoration: none; color: inherit; cursor: pointer;
-      background: linear-gradient(180deg, color-mix(in srgb, var(--tc, var(--pcol)) 5%, var(--surface)) 0%, var(--surface-sunk) 100%);
-      border: 1px solid color-mix(in srgb, var(--tc, var(--pcol)) 22%, var(--border-subtle));
-      border-left: 4px solid var(--tc, var(--pcol));
-      border-radius: 16px; padding: 18px 20px; display: flex; flex-direction: column; gap: 10px;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+      position: relative; text-align: left; font: inherit; color: inherit; cursor: pointer;
+      background: linear-gradient(165deg, color-mix(in srgb, var(--tc) 8%, var(--surface)) 0%, var(--surface) 62%, color-mix(in srgb, var(--tc) 4%, var(--surface)) 100%);
+      border: 1.5px solid color-mix(in srgb, var(--tc) 28%, var(--border-subtle));
+      border-top: 4px solid var(--tc);
+      border-radius: 20px; padding: 20px 22px 18px;
+      display: flex; flex-direction: column; gap: 14px;
       box-shadow: var(--shadow-sm);
+      transition: transform .24s cubic-bezier(.22,1,.36,1), box-shadow .24s cubic-bezier(.22,1,.36,1), border-color .2s;
+      opacity: 0; animation: cardPopIn .42s cubic-bezier(.22,1,.36,1) forwards;
+    }
+    @keyframes cardPopIn {
+      0% { opacity: 0; transform: translateY(16px) scale(.96); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .per-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--tc, var(--pcol));
-      background: linear-gradient(180deg, color-mix(in srgb, var(--tc, var(--pcol)) 11%, var(--surface)) 0%, var(--surface) 100%);
-      box-shadow: 0 12px 26px color-mix(in srgb, var(--tc, var(--pcol)) 16%, rgba(18,19,23,.08));
+      transform: translateY(-6px) scale(1.012);
+      border-color: var(--tc);
+      box-shadow: 0 18px 36px color-mix(in srgb, var(--tc) 20%, rgba(18,19,23,.10));
     }
+    .per-card-dot {
+      position: absolute; left: 50%; top: -7px; transform: translateX(-50%);
+      width: 11px; height: 11px; border-radius: 50%; background: var(--tc); border: 2.5px solid var(--surface);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--tc) 24%, transparent);
+    }
+    @media (max-width: 980px) { .per-card-dot { display: none; } }
+
     .per-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-    .per-code { font: 700 11px var(--font-mono); padding: 3px 8px; border-radius: 6px; background: color-mix(in srgb, var(--tc, var(--pcol)) 14%, transparent); color: var(--ti, var(--pink)); }
-    .per-role { font: 700 17px var(--font-display); display: flex; align-items: center; gap: 8px; margin: 0; color: var(--text); }
-    .per-desc { font-size: 13px; color: var(--text-muted); line-height: 1.48; margin: 0; }
-    .per-ag {
-      padding: 10px 12px; border-radius: 12px;
-      background: linear-gradient(135deg, color-mix(in srgb, var(--tc, var(--pcol)) 10%, var(--surface)), rgba(0,175,87,.07));
-      border: 1px solid color-mix(in srgb, var(--tc, var(--pcol)) 28%, transparent); font-size: 12.5px;
+    .per-val-badge {
+      font: 700 11.5px var(--font-mono); padding: 4px 10px; border-radius: 999px;
+      background: color-mix(in srgb, var(--tc) 14%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--tc) 34%, transparent);
+      color: var(--ti);
     }
-    .per-ag b { display: block; color: var(--ti, var(--blue-ink)); margin-bottom: 2px; }
+    .per-suite-count {
+      font: 700 10.5px var(--font-mono); letter-spacing: .5px; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(49,134,255,.13), rgba(75,49,227,.13));
+      color: #4B31E3; border: 1px solid rgba(75,49,227,.24);
+    }
+    html.theme-dark .per-suite-count { color: #B4A5FF; }
+
+    /* 1. Persona Role FIRST & Bold */
+    .per-role-title {
+      font: 700 20px/1.22 var(--font-display); letter-spacing: -0.3px; margin: 0; color: var(--text);
+    }
+
+    /* 2. Colorful Agent Suite Chips (clean, zero paragraph bloat!) */
+    .suite-pills-box {
+      display: flex; flex-direction: column; gap: 7px; padding: 12px; border-radius: 14px;
+      background: color-mix(in srgb, var(--surface-sunk) 78%, transparent);
+      border: 1px dashed color-mix(in srgb, var(--tc) 32%, var(--border-subtle));
+    }
+    .suite-box-lbl {
+      font: 700 10px var(--font-mono); letter-spacing: 1px; text-transform: uppercase; color: var(--text-dim);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .suite-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ag-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font: 600 12px/1.25 var(--font-display); padding: 5px 10px; border-radius: 9px;
+      background: color-mix(in srgb, var(--ac) 12%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--ac) 34%, transparent);
+      color: var(--ai);
+    }
+    html.theme-dark .ag-chip { color: #ECEEF3; background: color-mix(in srgb, var(--ac) 22%, var(--surface)); }
+    .ag-chip i { width: 6px; height: 6px; border-radius: 50%; background: var(--ac); display: inline-block; flex-shrink: 0; }
+
+    /* 3. Human Name at the Bottom */
     .per-foot {
-      margin-top: auto; padding-top: 6px; display: flex; align-items: center; justify-content: space-between;
-      font: 700 12px var(--font-display); color: var(--ti, var(--blue-ink));
+      margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border-subtle);
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    }
+    .per-human { display: flex; align-items: center; gap: 9px; min-width: 0; }
+    .per-avatar {
+      width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      font: 700 11px var(--font-display); color: #fff; background: var(--tc);
+      box-shadow: 0 3px 8px color-mix(in srgb, var(--tc) 38%, transparent);
+    }
+    .per-human-meta { display: flex; flex-direction: column; min-width: 0; }
+    .per-human-name { font: 600 13.5px/1.2 var(--font-display); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .per-human-loc { font: 500 11px/1.2 var(--font-mono); color: var(--text-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .per-open-cta {
+      font: 700 12px var(--font-display); color: var(--ti);
+      padding: 5px 11px; border-radius: 999px;
+      background: color-mix(in srgb, var(--tc) 11%, transparent);
+      white-space: nowrap; transition: transform .18s, background .18s;
+    }
+    .per-card:hover .per-open-cta { background: var(--tc); color: #fff; transform: translateX(2px); }
+
+    /* ── macOS Genie-Effect Modal Sheet ─────────────────────────────────── */
+    .genie-backdrop {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(15, 20, 32, 0.52); backdrop-filter: blur(10px);
+      display: none; align-items: center; justify-content: center; padding: 22px;
+      opacity: 0; transition: opacity .32s ease;
+    }
+    .genie-backdrop.is-visible { display: flex; opacity: 1; }
+    .genie-sheet {
+      width: min(1160px, 95vw); max-height: 89vh; overflow-y: auto;
+      background: var(--surface); border: 1.5px solid color-mix(in srgb, var(--mc, #3186FF) 42%, var(--border-subtle));
+      border-radius: 26px; box-shadow: 0 32px 80px rgba(10, 14, 26, 0.34);
+      position: relative; transform-origin: var(--gx, 50%) var(--gy, 50%);
+    }
+    .genie-sheet.anim-open {
+      animation: macGenieUnfurl .48s cubic-bezier(.20, 1, .32, 1) forwards;
+    }
+    .genie-sheet.anim-close {
+      animation: macGenieSuckIn .34s cubic-bezier(.4, 0, .2, 1) forwards;
+    }
+    @keyframes macGenieUnfurl {
+      0% {
+        opacity: 0;
+        transform: perspective(1100px) scaleX(0.07) scaleY(0.04) skewX(6deg) rotateX(14deg);
+        filter: blur(8px);
+      }
+      58% {
+        opacity: 1;
+        transform: perspective(1100px) scaleX(1.018) scaleY(1.012) skewX(-0.8deg) rotateX(-1deg);
+        filter: blur(0);
+      }
+      100% {
+        opacity: 1;
+        transform: perspective(1100px) scaleX(1) scaleY(1) skewX(0deg) rotateX(0deg);
+        filter: blur(0);
+      }
+    }
+    @keyframes macGenieSuckIn {
+      0% { opacity: 1; transform: perspective(1100px) scaleX(1) scaleY(1); filter: blur(0); }
+      40% { opacity: .85; transform: perspective(1100px) scaleX(0.42) scaleY(0.62) skewX(5deg) rotateX(8deg); }
+      100% { opacity: 0; transform: perspective(1100px) scaleX(0.04) scaleY(0.02) skewX(10deg) rotateX(18deg); filter: blur(6px); }
+    }
+
+    .gs-top-bar {
+      height: 6px; width: 100%;
+      background: linear-gradient(90deg, #3186FF 0%, #4B31E3 35%, #00AF57 70%, #FEC700 100%);
+    }
+    .gs-body { padding: 24px 28px 28px; }
+    .gs-close-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+    .gs-close-btn {
+      border: 1px solid var(--border-subtle); background: var(--surface-sunk); color: var(--text);
+      font: 700 12.5px var(--font-display); padding: 7px 14px; border-radius: 999px; cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    .gs-close-btn:hover { background: #FC413D; color: #fff; border-color: #FC413D; transform: scale(1.04); }
+
+    /* Clean Colorful Persona Header inside Genie Sheet */
+    .gs-hero {
+      display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center;
+      padding: 20px 22px; border-radius: 20px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--mc, #3186FF) 11%, var(--surface)) 0%, color-mix(in srgb, #4B31E3 7%, var(--surface-sunk)) 100%);
+      border: 1px solid color-mix(in srgb, var(--mc, #3186FF) 28%, var(--border-subtle));
+      margin-bottom: 18px;
+    }
+    @media (max-width: 820px) { .gs-hero { grid-template-columns: 1fr; } }
+    .gs-id-left { display: flex; gap: 16px; align-items: flex-start; }
+    .gs-av {
+      width: 64px; height: 64px; border-radius: 18px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font: 700 22px var(--font-display); color: #fff; background: var(--mc, #3186FF);
+      box-shadow: 0 10px 22px color-mix(in srgb, var(--mc, #3186FF) 35%, transparent);
+    }
+    .gs-role { font: 700 clamp(22px, 2.2vw, 28px)/1.15 var(--font-display); margin: 0 0 4px; color: var(--text); }
+    .gs-person { font: 600 14.5px var(--font-display); color: var(--mc, #3186FF); margin: 0 0 8px; }
+    .gs-what { font-size: 14px; line-height: 1.52; color: var(--text-muted); margin: 0 0 10px; max-width: 68ch; }
+    .gs-sys-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+    .gs-sys-pill { font: 600 11px var(--font-mono); padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border-subtle); color: var(--text); }
+
+    .gs-kpis { display: flex; gap: 10px; flex-wrap: wrap; }
+    .gs-kpi {
+      padding: 12px 16px; border-radius: 16px; background: var(--surface);
+      border: 1px solid var(--border-subtle); text-align: center; min-width: 124px;
+      box-shadow: var(--shadow-sm);
+    }
+    .gs-kpi b { display: block; font: 700 20px/1.15 var(--font-display); }
+    .gs-kpi span { font: 600 10.5px var(--font-mono); text-transform: uppercase; color: var(--text-dim); }
+
+    /* Visual How-Agents-Work Flow Strip */
+    .gs-flow-strip {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 10px;
+      padding: 12px 18px; border-radius: 16px; background: var(--surface-sunk);
+      border: 1px solid var(--border-subtle); margin-bottom: 18px;
+    }
+    @media (max-width: 820px) { .gs-flow-strip { grid-template-columns: 1fr; text-align: center; } .gs-flow-arrow { display: none; } }
+    .gs-fstep { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+    .gs-fnum {
+      width: 28px; height: 28px; border-radius: 9px; flex-shrink: 0;
+      display: inline-flex; align-items: center; justify-content: center;
+      font: 700 11px var(--font-mono); color: #fff;
+    }
+    .gs-flow-arrow { font: 700 16px var(--font-mono); color: var(--blue-ink); letter-spacing: 2px; }
+
+    /* Colorful Highlighted Agent Suite Grid */
+    .gs-suite-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .gs-suite-head h3 { margin: 0; font: 700 18px var(--font-display); }
+    .gs-suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+    .gs-ag-card {
+      border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 11px;
+      background: linear-gradient(170deg, color-mix(in srgb, var(--ac) 11%, var(--surface)) 0%, var(--surface) 65%);
+      border: 1.5px solid color-mix(in srgb, var(--ac) 34%, var(--border-subtle));
+      border-top: 4px solid var(--ac);
+      box-shadow: var(--shadow-sm);
+      opacity: 0; animation: suiteRise .42s cubic-bezier(.22,1,.36,1) forwards;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .gs-ag-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px color-mix(in srgb, var(--ac) 18%, rgba(18,19,23,.10)); }
+    @keyframes suiteRise { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .gs-ag-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .gs-pill { font: 700 10px var(--font-mono); padding: 3px 8px; border-radius: 999px; }
+    .gs-pill.p0 { background: rgba(252,65,61,.14); color: #C62A27; }
+    .gs-pill.p1 { background: rgba(254,199,0,.22); color: #8A6200; }
+    .gs-pill.p2 { background: rgba(49,134,255,.14); color: #286DD1; }
+    .gs-pill.new { background: rgba(75,49,227,.14); color: #4B31E3; }
+    html.theme-dark .gs-pill.p0 { color: #FCA5A5; }
+    html.theme-dark .gs-pill.p1 { color: #FDE68A; }
+    html.theme-dark .gs-pill.new { color: #C4B5FD; }
+    .gs-ag-val { margin-left: auto; font: 700 13px var(--font-mono); color: #007F3F; }
+    html.theme-dark .gs-ag-val { color: #5BB974; }
+
+    .gs-ag-name { font: 700 17px/1.22 var(--font-display); margin: 0; color: var(--text); }
+    .gs-ag-desc { font-size: 13px; line-height: 1.48; color: var(--text-muted); margin: 0; }
+    .gs-mini-points { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
+    .gs-mp {
+      font-size: 12px; line-height: 1.4; padding: 7px 10px; border-radius: 10px;
+      background: var(--surface-sunk); border-left: 3px solid var(--ac); color: var(--text);
+    }
+    .gs-mp b { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; color: var(--ai); margin-right: 4px; }
+    html.theme-dark .gs-mp b { color: #93C5FD; }
+
+    .gs-ag-actions { margin-top: auto; padding-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .gs-btn-demo {
+      flex: 1; text-align: center; text-decoration: none; font: 700 12px var(--font-display);
+      padding: 8px 12px; border-radius: 10px;
+      background: color-mix(in srgb, var(--ac) 13%, var(--surface));
+      border: 1px solid color-mix(in srgb, var(--ac) 38%, transparent); color: var(--ai);
+    }
+    html.theme-dark .gs-btn-demo { color: #fff; }
+    .gs-btn-ge {
+      flex: 1; text-align: center; text-decoration: none; font: 700 12px var(--font-display);
+      padding: 8px 12px; border-radius: 10px; background: var(--ac); color: #fff;
     }
   </style>
 </head>
@@ -124,11 +357,19 @@
     <nav style="display: flex; align-items: center; gap: 14px;">
       <button class="theme-toggle-btn" onclick="toggleTheme()" type="button"></button>
       <a href="../index.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-dim); text-decoration: none; padding: 5px 11px; border-radius: 8px; background: var(--surface-sunk);">&larr; Briefing Map</a>
-      <a href="../personas/index.html" id="navChessLink" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 5px 12px; border-radius: 8px; background: rgba(49, 134, 255, 0.10);">Chessboard Matrix &#8599;</a>
+      <a href="../personas/index.html" id="navChessLink" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 5px 12px; border-radius: 8px; background: rgba(49, 134, 255, 0.10);">Persona Value Board &#8599;</a>
     </nav>
   </header>
 
   <main class="wrap" id="mainWrap"></main>
+
+  <!-- macOS Genie Sheet Container -->
+  <div class="genie-backdrop" id="genieBackdrop" role="dialog" aria-modal="true">
+    <div class="genie-sheet" id="genieSheet">
+      <div class="gs-top-bar"></div>
+      <div class="gs-body" id="genieBody"></div>
+    </div>
+  </div>
 
   <aside class="floating-dock" style="display: flex; align-items: center; gap: 12px; padding: 10px 18px; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 30px; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(18,19,23,.14); position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 1000;">
     <a id="dockPrev" href="../index.html" style="background: var(--surface-sunk); border: 1px solid var(--border-subtle); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none;">&#9664;</a>
@@ -137,9 +378,11 @@
   </aside>
 
 <script src="../data/sc_story_data.js"></script>
+<script src="../data/sc_value_model.js"></script>
 <script>
 (function () {
   var DATA = window.SC_DATA;
+  var fmtINR = window.SC_VALUES.fmtINR;
   var q = new URLSearchParams(location.search);
   var deptId = q.get('dept') || 'demand_sop';
   var dIdx = Math.max(0, DATA.departments.findIndex(function (d) { return d.id === deptId; }));
@@ -148,13 +391,25 @@
   var personaById = Object.fromEntries(DATA.personas.map(function (p) { return [p.id, p]; }));
 
   var PALETTE = [
-    { c: '#3186FF', i: '#286DD1' },
-    { c: '#4B31E3', i: '#4B31E3' },
-    { c: '#0A7684', i: '#0A7684' },
-    { c: '#00AF57', i: '#007F3F' }
+    { c: '#3186FF', i: '#1D5FD6' },
+    { c: '#4B31E3', i: '#4327CC' },
+    { c: '#00AF57', i: '#007F3F' },
+    { c: '#0A7684', i: '#075E6A' }
   ];
 
-  document.title = 'Pillar ' + d.num + ' · ' + d.title + ' | Supply Chain';
+  function esc(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function initials(name) {
+    return String(name || '').split(/\s+/).slice(0, 2).map(function (w) { return w[0] || ''; }).join('').toUpperCase();
+  }
+  function shortSentence(s, maxLen) {
+    var txt = String(s || '').split(/\.\s+/)[0];
+    if (txt.length > maxLen) return txt.slice(0, maxLen - 1) + '…';
+    return txt.endsWith('.') ? txt : txt + '.';
+  }
+
+  document.title = 'Pillar ' + d.num + ' · ' + d.title + ' | CPG Supply Chain';
   document.getElementById('navPillarLabel').textContent = 'PILLAR ' + d.num + ' // ' + d.title;
   document.getElementById('navChessLink').href = '../personas/index.html?dept=' + d.id;
 
@@ -167,32 +422,32 @@
   function renderPillarSvg(dept) {
     var c = dept.color;
     if (dept.svgType === 'demand_wave') {
-      return '<svg viewBox="0 0 460 210">' +
-        '<line x1="28" y1="175" x2="432" y2="175" stroke="var(--border-strong)" stroke-width="1.5"/>' +
-        '<path d="M 30 135 Q 95 60, 165 105 T 300 70 T 430 55" fill="none" stroke="' + c + '" stroke-width="3" stroke-dasharray="6 4"><animate attributeName="stroke-dashoffset" from="0" to="-40" dur="2.2s" repeatCount="indefinite"/></path>' +
-        '<path d="M 30 150 Q 110 115, 180 130 T 315 103 T 430 90" fill="none" stroke="var(--g-green)" stroke-width="2.5" opacity="0.85"/>' +
-        '<circle r="6" fill="' + c + '"><animateMotion dur="3.4s" repeatCount="indefinite" path="M 30 135 Q 95 60, 165 105 T 300 70 T 430 55"/></circle>' +
-        '<rect x="40" y="22" width="136" height="30" rx="8" fill="var(--surface-sunk)" stroke="' + c + '"/><text x="52" y="41" fill="var(--text)" font-family="Roboto Mono" font-size="11">POS + WeatherNext 3</text>' +
-        '<rect x="284" y="22" width="146" height="30" rx="8" fill="var(--surface-sunk)" stroke="var(--g-green)"/><text x="296" y="41" fill="var(--text)" font-family="Roboto Mono" font-size="11">P50 S&amp;OP Consensus</text>' +
+      return '<svg viewBox="0 0 460 185">' +
+        '<line x1="28" y1="158" x2="432" y2="158" stroke="var(--border-strong)" stroke-width="1.5"/>' +
+        '<path d="M 30 122 Q 95 52, 165 95 T 300 62 T 430 48" fill="none" stroke="' + c + '" stroke-width="3" stroke-dasharray="6 4"><animate attributeName="stroke-dashoffset" from="0" to="-40" dur="2.2s" repeatCount="indefinite"/></path>' +
+        '<path d="M 30 138 Q 110 105, 180 118 T 315 92 T 430 80" fill="none" stroke="var(--g-green)" stroke-width="2.5" opacity="0.85"/>' +
+        '<circle r="6" fill="' + c + '"><animateMotion dur="3.4s" repeatCount="indefinite" path="M 30 122 Q 95 52, 165 95 T 300 62 T 430 48"/></circle>' +
+        '<rect x="38" y="16" width="142" height="28" rx="8" fill="var(--surface-sunk)" stroke="' + c + '"/><text x="50" y="34" fill="var(--text)" font-family="Roboto Mono" font-size="11">POS + WeatherNext 3</text>' +
+        '<rect x="282" y="16" width="148" height="28" rx="8" fill="var(--surface-sunk)" stroke="var(--g-green)"/><text x="294" y="34" fill="var(--text)" font-family="Roboto Mono" font-size="11">P50 S&amp;OP Consensus</text>' +
       '</svg>';
     }
     if (dept.svgType === 'circular_loop') {
-      return '<svg viewBox="0 0 460 210">' +
-        '<circle cx="230" cy="105" r="72" fill="none" stroke="var(--border-strong)" stroke-width="10"/>' +
-        '<circle cx="230" cy="105" r="72" fill="none" stroke="' + c + '" stroke-width="4" stroke-dasharray="14 10"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.4s" repeatCount="indefinite"/></circle>' +
-        '<circle r="7" fill="' + c + '"><animateMotion dur="4s" repeatCount="indefinite" path="M 230 33 A 72 72 0 1 1 229.9 33 Z"/></circle>' +
-        '<text x="230" y="102" text-anchor="middle" fill="var(--text)" font-family="Google Sans" font-size="14" font-weight="700">Circular Recovery</text>' +
-        '<text x="230" y="120" text-anchor="middle" fill="var(--text-muted)" font-family="Roboto Mono" font-size="11">RMA &rarr; Markdown &rarr; ESG</text>' +
+      return '<svg viewBox="0 0 460 185">' +
+        '<circle cx="230" cy="94" r="64" fill="none" stroke="var(--border-strong)" stroke-width="9"/>' +
+        '<circle cx="230" cy="94" r="64" fill="none" stroke="' + c + '" stroke-width="4" stroke-dasharray="14 10"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.4s" repeatCount="indefinite"/></circle>' +
+        '<circle r="6.5" fill="' + c + '"><animateMotion dur="4s" repeatCount="indefinite" path="M 230 30 A 64 64 0 1 1 229.9 30 Z"/></circle>' +
+        '<text x="230" y="91" text-anchor="middle" fill="var(--text)" font-family="Google Sans" font-size="14" font-weight="700">Circular Recovery</text>' +
+        '<text x="230" y="109" text-anchor="middle" fill="var(--text-muted)" font-family="Roboto Mono" font-size="11">RMA &rarr; Markdown &rarr; EPR</text>' +
       '</svg>';
     }
-    return '<svg viewBox="0 0 460 210">' +
-      '<path d="M 48 110 C 125 40, 200 40, 230 110 C 260 180, 335 180, 412 110" fill="none" stroke="' + c + '" stroke-width="3" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.2s" repeatCount="indefinite"/></path>' +
-      '<line x1="48" y1="110" x2="412" y2="110" stroke="var(--border-strong)" stroke-width="1.5"/>' +
-      '<circle cx="48" cy="110" r="22" fill="var(--surface-sunk)" stroke="' + c + '" stroke-width="2"/><text x="48" y="114" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">SIGNAL</text>' +
-      '<circle cx="230" cy="110" r="26" fill="var(--surface)" stroke="' + c + '" stroke-width="2.5"/><text x="230" y="114" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">SOLVER</text>' +
-      '<circle cx="412" cy="110" r="22" fill="var(--surface-sunk)" stroke="var(--g-green)" stroke-width="2"/><text x="412" y="114" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">ACTION</text>' +
-      '<circle r="6" fill="' + c + '"><animateMotion dur="3s" repeatCount="indefinite" path="M 48 110 C 125 40, 200 40, 230 110 C 260 180, 335 180, 412 110"/></circle>' +
-      '<circle r="5" fill="var(--g-green)"><animateMotion dur="2.2s" repeatCount="indefinite" path="M 48 110 L 412 110"/></circle>' +
+    return '<svg viewBox="0 0 460 185">' +
+      '<path d="M 48 96 C 125 34, 200 34, 230 96 C 260 158, 335 158, 412 96" fill="none" stroke="' + c + '" stroke-width="3" stroke-dasharray="6 6"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="2.2s" repeatCount="indefinite"/></path>' +
+      '<line x1="48" y1="96" x2="412" y2="96" stroke="var(--border-strong)" stroke-width="1.5"/>' +
+      '<circle cx="48" cy="96" r="21" fill="var(--surface-sunk)" stroke="' + c + '" stroke-width="2"/><text x="48" y="100" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">SIGNAL</text>' +
+      '<circle cx="230" cy="96" r="25" fill="var(--surface)" stroke="' + c + '" stroke-width="2.5"/><text x="230" y="100" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">SOLVER</text>' +
+      '<circle cx="412" cy="96" r="21" fill="var(--surface-sunk)" stroke="var(--g-green)" stroke-width="2"/><text x="412" y="100" text-anchor="middle" fill="var(--text)" font-family="Roboto Mono" font-size="10">ACTION</text>' +
+      '<circle r="6" fill="' + c + '"><animateMotion dur="3s" repeatCount="indefinite" path="M 48 96 C 125 34, 200 34, 230 96 C 260 158, 335 158, 412 96"/></circle>' +
+      '<circle r="5" fill="var(--g-green)"><animateMotion dur="2.2s" repeatCount="indefinite" path="M 48 96 L 412 96"/></circle>' +
     '</svg>';
   }
 
@@ -201,77 +456,286 @@
   wrap.style.setProperty('--pink', d.ink);
 
   wrap.innerHTML =
-    '<div class="bc"><a href="../index.html">Briefing Map</a> <span>/</span> <span>Pillar ' + d.num + ' · ' + d.title + '</span> <span>/</span> <span id="bcSub"></span></div>' +
+    '<div class="bc"><a href="../index.html">Briefing Map</a> <span>/</span> <span>Pillar ' + d.num + ' · ' + esc(d.title) + '</span> <span>/</span> <span id="bcSub" style="color:var(--text)"></span></div>' +
     '<section class="p-hero">' +
       '<div>' +
         '<div class="kick"><i></i>Pillar ' + d.num + ' &middot; ' + d.agentCount + ' CPG Agents (' + (d.newAgentCount || 3) + ' New CPG Use Cases)</div>' +
-        '<h1>' + d.title + '</h1>' +
-        '<p class="q">' + (d.coreQuestion || d.shortFor) + '</p>' +
+        '<h1>' + esc(d.title) + '</h1>' +
+        '<p class="q">' + esc(d.coreQuestion || d.shortFor) + '</p>' +
         '<div class="meta-pills">' +
           '<span class="m-pill">' + d.subPillars.length + ' Sub-Pillars</span>' +
-          '<span class="m-pill">' + d.personaCount + ' Named Leaders</span>' +
+          '<span class="m-pill">' + d.personaCount + ' Personas</span>' +
           '<span class="m-pill" style="color:var(--green-ink);border-color:rgba(0,175,87,.35);background:rgba(0,175,87,.08)">' + (d.p0Count || 4) + ' Priority-0 Agents</span>' +
-          '<a class="proof-pill" target="_blank" rel="noopener" href="' + d.proofUrl + '">' + d.proofLabel + ' &#8599;</a>' +
+          '<a class="proof-pill" target="_blank" rel="noopener" href="' + esc(d.proofUrl) + '">' + esc(d.proofLabel) + ' &#8599;</a>' +
         '</div>' +
       '</div>' +
       '<div class="anim-stage">' +
         renderPillarSvg(d) +
-        '<div class="anim-cap"><span>Live Signal &rarr; Solver &rarr; Approval Telemetry</span><span>Click any leader card to view Agent Suite &rarr;</span></div>' +
+        '<div class="anim-cap"><span>Click a Sub-Pillar to trace its Personas</span><span>Click any Persona for Genie Suite &#10022;</span></div>' +
       '</div>' +
     '</section>' +
-    '<div class="sp-tabs" id="spTabs"></div>' +
-    '<section class="sp-panel" id="spPanel"></section>';
+
+    '<section class="tree-stage" id="treeStage">' +
+      '<div class="sp-tabs" id="spTabs"></div>' +
+      '<div class="connector-bridge" id="connBridge"><svg id="treeSvg"></svg></div>' +
+      '<div class="per-grid" id="perGrid"></div>' +
+    '</section>';
+
+  var NS = 'http://www.w3.org/2000/svg';
+  function svgEl(tag, attrs) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  function drawDottedTreeLines() {
+    var svg = document.getElementById('treeSvg');
+    var bridge = document.getElementById('connBridge');
+    var activeTab = document.querySelector('.sp-tab[aria-selected="true"]');
+    var cards = [].slice.call(document.querySelectorAll('.per-card'));
+    if (!svg || !bridge || !activeTab || !cards.length) return;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (getComputedStyle(svg).display === 'none') return;
+
+    var br = bridge.getBoundingClientRect();
+    var tr = activeTab.getBoundingClientRect();
+    var sx = tr.left + tr.width / 2 - br.left;
+    var sy = tr.bottom - br.top;
+    var activeStroke = activeTab.dataset.color || d.color;
+
+    cards.forEach(function (card, idx) {
+      var cr = card.getBoundingClientRect();
+      var tx = cr.left + cr.width / 2 - br.left;
+      var ty = cr.top - br.top;
+      var midY = sy + (ty - sy) * 0.52;
+      var cardColor = card.dataset.color || activeStroke;
+      var pathStr = 'M ' + sx.toFixed(1) + ',' + sy.toFixed(1) +
+                    ' C ' + sx.toFixed(1) + ',' + midY.toFixed(1) +
+                    ' ' + tx.toFixed(1) + ',' + midY.toFixed(1) +
+                    ' ' + tx.toFixed(1) + ',' + ty.toFixed(1);
+
+      var g = svgEl('g', { 'class': 'conn-grp', 'data-pid': card.dataset.pid });
+      g.appendChild(svgEl('path', { d: pathStr, stroke: cardColor, 'class': 'tree-ln-base' }));
+      g.appendChild(svgEl('path', { d: pathStr, stroke: cardColor, 'class': 'tree-ln-flow' }));
+
+      var pulse = svgEl('circle', { r: '3.8', fill: cardColor });
+      var anim = svgEl('animateMotion', {
+        dur: (1.55 + idx * 0.22).toFixed(2) + 's',
+        repeatCount: 'indefinite',
+        path: pathStr
+      });
+      pulse.appendChild(anim);
+      g.appendChild(pulse);
+      svg.appendChild(g);
+    });
+  }
+  window.__redrawPillarLines = drawDottedTreeLines;
 
   function selectSub(id) {
     subId = id;
     var spIdx = Math.max(0, d.subPillars.findIndex(function (x) { return x.id === id; }));
     var sp = d.subPillars[spIdx];
-    var spHue = PALETTE[spIdx % PALETTE.length];
     document.getElementById('bcSub').textContent = sp.name;
 
     document.getElementById('spTabs').innerHTML = d.subPillars.map(function (x, i) {
       var h = PALETTE[i % PALETTE.length];
-      return '<button type="button" class="sp-tab" data-sub="' + x.id + '" aria-selected="' + (x.id === sp.id) + '" style="--sc:' + h.c + ';--si:' + h.i + '">' +
+      return '<button type="button" class="sp-tab" data-sub="' + esc(x.id) + '" data-color="' + h.c + '" aria-selected="' + (x.id === sp.id) + '" style="--sc:' + h.c + ';--si:' + h.i + '">' +
         '<small>Sub-Pillar 0' + (i + 1) + ' &middot; ' + x.items.length + ' Personas</small>' +
-        '<b>' + x.name + '</b>' +
+        '<b><span>' + esc(x.name) + '</span><span style="font-size:13px;opacity:.75">&#8628;</span></b>' +
+        '<span class="sp-dot-anchor"></span>' +
       '</button>';
     }).join('');
 
     document.querySelectorAll('.sp-tab').forEach(function (b) {
-      b.addEventListener('click', function () { selectSub(b.dataset.sub); });
+      b.addEventListener('click', function () {
+        history.replaceState(null, '', '?dept=' + encodeURIComponent(d.id) + '&sub=' + encodeURIComponent(b.dataset.sub));
+        selectSub(b.dataset.sub);
+      });
     });
 
-    var panel = document.getElementById('spPanel');
-    panel.style.setProperty('--sp-active', spHue.c);
-    panel.innerHTML =
-      '<div class="sp-story-head">' +
-        '<div>' +
-          '<span style="font:700 11px var(--font-mono);color:' + spHue.i + ';text-transform:uppercase">SUB-PILLAR STORY &middot; ' + sp.name + '</span>' +
-          '<h2>' + sp.name + '</h2>' +
-          '<p>' + (sp.story || 'Specialized AI agents coordinate real-time telemetry and optimization for this workflow.') + '</p>' +
+    var grid = document.getElementById('perGrid');
+    grid.innerHTML = sp.items.map(function (it, idx) {
+      var p = personaById[it.personaId] || {};
+      var tileHue = PALETTE[(idx + spIdx) % PALETTE.length];
+      var suite = p.agentSuite || [];
+
+      var chipsHtml = suite.map(function (ag, aIdx) {
+        var chipHue = PALETTE[(aIdx + idx) % PALETTE.length];
+        return '<span class="ag-chip" style="--ac:' + chipHue.c + ';--ai:' + chipHue.i + '">' +
+          '<i></i>' + esc(ag.name) +
+        '</span>';
+      }).join('');
+
+      return '<button type="button" class="per-card" data-pid="' + esc(it.personaId) + '" data-color="' + tileHue.c + '" style="--tc:' + tileHue.c + ';--ti:' + tileHue.i + ';animation-delay:' + (idx * 65) + 'ms">' +
+        '<span class="per-card-dot"></span>' +
+        '<div class="per-top">' +
+          '<span class="per-val-badge">' + esc(p.code || 'ROLE') + ' &middot; ' + esc(it.annualValueDisplay || fmtINR(it.annualValueCr)) + '/yr</span>' +
+          '<span class="per-suite-count">&#10022; ' + suite.length + ' Agents</span>' +
+        '</div>' +
+        '<h3 class="per-role-title">' + esc(it.personaName) + '</h3>' +
+        '<div class="suite-pills-box">' +
+          '<div class="suite-box-lbl"><span>Agentic Suite</span><span>Click to expand</span></div>' +
+          '<div class="suite-chips">' + chipsHtml + '</div>' +
+        '</div>' +
+        '<div class="per-foot">' +
+          '<div class="per-human">' +
+            '<span class="per-avatar">' + initials(it.personName) + '</span>' +
+            '<span class="per-human-meta">' +
+              '<span class="per-human-name">' + esc(it.personName) + '</span>' +
+              '<span class="per-human-loc">' + esc((it.setting || '').split('·')[0].trim()) + '</span>' +
+            '</span>' +
+          '</div>' +
+          '<span class="per-open-cta">Open Suite &#8599;</span>' +
+        '</div>' +
+      '</button>';
+    }).join('');
+
+    var treeStage = document.getElementById('treeStage');
+    grid.querySelectorAll('.per-card').forEach(function (cardEl) {
+      cardEl.addEventListener('mouseenter', function () {
+        treeStage.classList.add('has-hover');
+        document.querySelectorAll('.conn-grp').forEach(function (g) {
+          g.classList.toggle('is-hl', g.getAttribute('data-pid') === cardEl.dataset.pid);
+        });
+      });
+      cardEl.addEventListener('mouseleave', function () {
+        treeStage.classList.remove('has-hover');
+        document.querySelectorAll('.conn-grp.is-hl').forEach(function (g) { g.classList.remove('is-hl'); });
+      });
+      cardEl.addEventListener('click', function () {
+        openPersonaGenie(cardEl.dataset.pid, cardEl);
+      });
+    });
+
+    requestAnimationFrame(function () {
+      drawDottedTreeLines();
+      setTimeout(drawDottedTreeLines, 120);
+    });
+  }
+
+  /* ── macOS Genie Open / Close Logic ───────────────────────────────────── */
+  var backdrop = document.getElementById('genieBackdrop');
+  var sheet = document.getElementById('genieSheet');
+  var bodyEl = document.getElementById('genieBody');
+  var lastOriginCard = null;
+
+  function computeGenieOrigin(cardEl) {
+    if (!cardEl) {
+      sheet.style.setProperty('--gx', '50%');
+      sheet.style.setProperty('--gy', '50%');
+      return;
+    }
+    var cr = cardEl.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    var sheetW = Math.min(1160, vw * 0.95);
+    var sheetLeft = (vw - sheetW) / 2;
+    var sheetTop = vh * 0.06;
+    var ox = Math.round((cr.left + cr.width / 2) - sheetLeft);
+    var oy = Math.round((cr.top + cr.height / 2) - sheetTop);
+    sheet.style.setProperty('--gx', ox + 'px');
+    sheet.style.setProperty('--gy', oy + 'px');
+  }
+
+  function openPersonaGenie(pid, cardEl) {
+    var p = personaById[pid];
+    if (!p) return;
+    lastOriginCard = cardEl || null;
+    sheet.style.setProperty('--mc', p.deptColor || d.color);
+
+    var suite = p.agentSuite || [];
+    var sysList = String(p.systemsTouched || '').split('·').map(function (x) { return x.trim(); }).filter(Boolean);
+    var firstName = (p.personName || 'Leader').split(' ')[0];
+
+    var suiteHtml = suite.map(function (ag, idx) {
+      var hue = PALETTE[idx % PALETTE.length];
+      var pCls = ag.priorityTier === 'P0' ? 'p0' : (ag.priorityTier === 'P1' ? 'p1' : 'p2');
+      var pLbl = ag.priorityTier === 'P0' ? 'P0 · Deploy First' : (ag.priorityTier === 'P1' ? 'P1 · Build Next' : 'P2 · Enabler');
+      return '<article class="gs-ag-card" style="--ac:' + hue.c + ';--ai:' + hue.i + ';animation-delay:' + (90 + idx * 75) + 'ms">' +
+        '<div class="gs-ag-top">' +
+          '<span class="gs-pill ' + pCls + '">' + pLbl + '</span>' +
+          (ag.isNewCpgAgent ? '<span class="gs-pill new">+ NEW CPG</span>' : '') +
+          '<span class="gs-ag-val">' + fmtINR(ag.annualValueCr, '/yr') + '</span>' +
+        '</div>' +
+        '<h4 class="gs-ag-name">' + esc(ag.name) + '</h4>' +
+        '<p class="gs-ag-desc">' + esc(shortSentence(ag.oneLine, 145)) + '</p>' +
+        '<div class="gs-mini-points">' +
+          '<div class="gs-mp"><b>How it works:</b>' + esc(shortSentence(ag.does, 115)) + '</div>' +
+          '<div class="gs-mp"><b>Human sign-off:</b>' + esc(shortSentence(ag.stopsAt, 110)) + '</div>' +
+        '</div>' +
+        '<div class="gs-ag-actions">' +
+          '<a class="gs-btn-demo" href="demo_stage.html?agent=' + encodeURIComponent(ag.id) + '">&#9654; Watch Demo</a>' +
+          '<a class="gs-btn-ge" target="_blank" rel="noopener noreferrer" href="' + esc(ag.geUrl) + '">&#10022; Gemini Enterprise &#8599;</a>' +
+        '</div>' +
+      '</article>';
+    }).join('');
+
+    bodyEl.innerHTML =
+      '<div class="gs-close-row">' +
+        '<span style="font:700 11.5px var(--font-mono);color:var(--text-dim);letter-spacing:1px;text-transform:uppercase">' + esc(p.code) + ' &middot; ' + esc(p.deptTitle) + ' &middot; ' + esc(p.subPillarName) + '</span>' +
+        '<div style="display:flex;gap:8px;align-items:center">' +
+          '<a href="../personas/dossier.html?id=' + encodeURIComponent(p.id) + '&dept=' + encodeURIComponent(p.deptId) + '" style="font:600 12px var(--font-display);color:var(--blue-ink);text-decoration:none;padding:6px 12px;border-radius:999px;background:rgba(49,134,255,.10)">Full Dossier View &#8599;</a>' +
+          '<button type="button" class="gs-close-btn" id="gsCloseBtn">&#10005; Close</button>' +
         '</div>' +
       '</div>' +
-      '<div class="per-grid">' +
-        sp.items.map(function (it, idx) {
-          var p = personaById[it.personaId] || {};
-          var tileHue = PALETTE[(idx + spIdx) % PALETTE.length];
-          var suiteNames = (it.suiteNames || [it.agentName]).join(' · ');
-          return '<a class="per-card" href="../personas/dossier.html?id=' + encodeURIComponent(it.personaId) + '" style="--tc:' + tileHue.c + ';--ti:' + tileHue.i + '">' +
-            '<div class="per-top">' +
-              '<span class="per-code">' + (p.code || 'ROLE') + ' &middot; ' + (it.annualValueDisplay || '₹18.0 Cr') + '/yr</span>' +
-              '<span style="font:700 10px var(--font-mono);padding:3px 8px;border-radius:999px;background:rgba(49,134,255,.12);color:var(--blue-ink)">' + (it.suiteCount || 3) + ' AGENTS IN SUITE</span>' +
+
+      '<div class="gs-hero">' +
+        '<div class="gs-id-left">' +
+          '<div class="gs-av">' + initials(p.personName) + '</div>' +
+          '<div>' +
+            '<h2 class="gs-role">' + esc(p.name) + '</h2>' +
+            '<p class="gs-person">' + esc(p.personName) + ' &middot; <span style="color:var(--text-muted);font-weight:500">' + esc(p.setting) + '</span></p>' +
+            '<p class="gs-what">' + esc(shortSentence(p.whatTheyDo, 200)) + '</p>' +
+            '<div class="gs-sys-pills">' +
+              sysList.map(function (s) { return '<span class="gs-sys-pill">&#9889; ' + esc(s) + '</span>'; }).join('') +
             '</div>' +
-            '<h3 class="per-role" style="flex-direction:column;align-items:flex-start;gap:2px;"><span>' + (it.personName || it.personaName) + '</span><small style="font-size:12.5px;color:var(--text-muted);font-weight:600">' + it.personaName + '</small></h3>' +
-            '<p class="per-desc">' + it.desc + '</p>' +
-            '<div class="per-ag"><b>Suite (' + (it.suiteCount || 3) + '): ' + suiteNames + '</b><span style="color:var(--green-ink);font-weight:600">' + it.outcome + '</span></div>' +
-            '<div class="per-foot">' +
-              '<span style="font:500 11.5px var(--font-mono);color:var(--text-dim)">&#128205; ' + (it.setting || 'CPG Hub') + '</span>' +
-              '<span>Inspect Suite &rarr;</span>' +
-            '</div>' +
-          '</a>';
-        }).join('') +
-      '</div>';
+          '</div>' +
+        '</div>' +
+        '<div class="gs-kpis">' +
+          '<div class="gs-kpi"><b style="color:#00AF57">' + fmtINR(p.val.total, '/yr') + '</b><span>Role Value</span></div>' +
+          '<div class="gs-kpi"><b style="color:#3186FF">' + p.savedHrs + ' hrs/wk</b><span>Toil Saved</span></div>' +
+          '<div class="gs-kpi"><b style="color:#4B31E3">' + suite.length + ' Agents</b><span>Active Suite</span></div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="gs-flow-strip">' +
+        '<div class="gs-fstep"><span class="gs-fnum" style="background:#3186FF">01</span><div><b>Live Signals</b><div style="color:var(--text-muted);font-size:11.5px">' + esc(p.systemsTouched) + '</div></div></div>' +
+        '<span class="gs-flow-arrow">&#10230;</span>' +
+        '<div class="gs-fstep"><span class="gs-fnum" style="background:#4B31E3">02</span><div><b>' + suite.length + '-Agent Suite Coordinates</b><div style="color:var(--text-muted);font-size:11.5px">Senses shifts, runs OR-Tools math &amp; stages ERP drafts</div></div></div>' +
+        '<span class="gs-flow-arrow">&#10230;</span>' +
+        '<div class="gs-fstep"><span class="gs-fnum" style="background:#00AF57">03</span><div><b>' + esc(firstName) + '\'s Sign-Off</b><div style="color:var(--text-muted);font-size:11.5px">1-click human approval via Apigee MCP</div></div></div>' +
+      '</div>' +
+
+      '<div class="gs-suite-head">' +
+        '<h3>' + esc(firstName) + '\'s Colorful Agentic Suite (' + suite.length + ' Agents)</h3>' +
+        '<span style="font:600 12px var(--font-mono);color:var(--text-muted)">Productivity ' + fmtINR(p.val.prod) + ' &middot; Flow ' + fmtINR(p.val.flow) + ' &middot; Shield ' + fmtINR(p.val.shield) + ' &middot; Recovery ' + fmtINR(p.val.recov) + '</span>' +
+      '</div>' +
+      '<div class="gs-suite-grid">' + suiteHtml + '</div>';
+
+    backdrop.classList.add('is-visible');
+    computeGenieOrigin(cardEl);
+    sheet.classList.remove('anim-close');
+    void sheet.offsetWidth;
+    sheet.classList.add('anim-open');
+    document.getElementById('gsCloseBtn').addEventListener('click', closePersonaGenie);
   }
+
+  function closePersonaGenie() {
+    if (!backdrop.classList.contains('is-visible')) return;
+    computeGenieOrigin(lastOriginCard);
+    sheet.classList.remove('anim-open');
+    void sheet.offsetWidth;
+    sheet.classList.add('anim-close');
+    setTimeout(function () {
+      backdrop.classList.remove('is-visible');
+      sheet.classList.remove('anim-close');
+    }, 320);
+  }
+
+  backdrop.addEventListener('click', function (e) { if (e.target === backdrop) closePersonaGenie(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePersonaGenie(); });
+
+  window.addEventListener('resize', drawDottedTreeLines);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawDottedTreeLines);
 
   selectSub(subId);
 })();

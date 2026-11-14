@@ -412,7 +412,7 @@
 
     var suiteLen = (p.agentSuite && p.agentSuite.length) || 2;
     dEl.innerHTML =
-      '<div class="d-head"><span class="d-code">' + a.code + '</span><div class="d-title"><span class="d-action">' + a.title + '</span><span class="d-who"><b>' + (p.personName || p.name) + '</b> &middot; ' + p.name + ' (' + suiteLen + ' Agents)</span></div></div>' +
+      '<div class="d-head"><span class="d-code">' + a.code + '</span><div class="d-title"><span class="d-action">' + a.title + '</span><span class="d-who"><b>' + p.name + '</b> &middot; ' + (p.personName || '') + ' (' + suiteLen + ' Agents)</span></div></div>' +
       '<div class="d-tags">' + ownTag + liveTag + '<span class="tag">' + a.cadence + '</span></div>' +
       '<div class="d-body">' + bodyHtml + roleValHtml + '</div>' +
       '<div class="d-foot">' +
@@ -436,7 +436,7 @@
     var board = document.getElementById('board');
     board.className = 'board' + (viewMode === 'value' ? ' mode-value' : '');
 
-    var html = '<div class="bhead"><div class="rowlabel"><span>Leader &amp; CPG Role</span><span style="margin-left:auto">&#8377; Cr / yr</span></div><div class="colaxis"><span>Agent Suite Prepares</span><span class="flow"></span><span>ERP / DMS</span><span class="flow"></span><span>Human Gate</span></div></div>';
+    var html = '<div class="bhead"><div class="rowlabel"><span>CPG Persona &amp; Leader</span><span style="margin-left:auto">&#8377; Cr / yr</span></div><div class="colaxis"><span>Agent Suite Prepares</span><span class="flow"></span><span>ERP / DMS</span><span class="flow"></span><span>Human Gate</span></div></div>';
     rows.forEach(function (p) {
       var pv = VAL.byPersonaId[p.id] || { total: p.annualValueCr || 18.0 };
       var pLabel = p.personName || p.name;
@@ -444,7 +444,7 @@
       html += '<div class="brow" data-pid="' + p.id + '">';
       html += '<a class="rowlabel" href="dossier.html?id=' + encodeURIComponent(p.id) + '">' +
                 '<span class="pavatar" style="background:' + p.deptColor + '">' + initials + '</span>' +
-                '<span class="pmeta"><span class="pname">' + pLabel + '</span><span class="psub"><span class="pcode">' + p.code + '</span> &middot; ' + p.name + '</span></span>' +
+                '<span class="pmeta"><span class="pname">' + p.name + '</span><span class="psub"><span class="pcode">' + p.code + '</span> &middot; ' + pLabel + '</span></span>' +
                 '<span class="rowval">' + fmtINR(pv.total) + '</span>' +
               '</a>';
       html += '<div class="cells">';
