@@ -357,8 +357,26 @@
     html += '<span class="viewtoggle"><button class="vt-btn" data-vt="priority" aria-pressed="' + (viewMode === 'priority') + '">Build priority</button><button class="vt-btn" data-vt="value" aria-pressed="' + (viewMode === 'value') + '">Value map</button></span>';
     chipsEl.innerHTML = html;
 
-    chipsEl.querySelectorAll('.chip').forEach(function (c) {
-      c.addEventListener('click', function () { deptFilter = c.dataset.dept; renderChips(); renderBoard(); });
+    var allChipList = [].slice.call(chipsEl.querySelectorAll('.chip'));
+    allChipList.forEach(function (c, nextChipIdx) {
+      c.addEventListener('click', function () {
+        var curChipIdx = allChipList.findIndex(function (x) { return x.dataset.dept === deptFilter; });
+        var dir = nextChipIdx > curChipIdx ? 'from-right' : (nextChipIdx < curChipIdx ? 'from-left' : 'from-down');
+        deptFilter = c.dataset.dept;
+        renderChips();
+        renderBoard();
+        var rows = [].slice.call(document.querySelectorAll('#board .brow')).slice(0, 12);
+        rows.forEach(function (rEl, idx) {
+          if (rEl.animate) {
+            var dx = dir === 'from-right' ? 46 : (dir === 'from-left' ? -46 : 0);
+            var dy = dir === 'from-down' ? 28 : 0;
+            rEl.animate([
+              { opacity: 0, transform: 'translate3d(' + dx + 'px, ' + dy + 'px, 0)' },
+              { opacity: 1, transform: 'translate3d(0, 0, 0)' }
+            ], { duration: 290, delay: idx * 20, easing: 'cubic-bezier(0.20, 1, 0.30, 1)', fill: 'backwards' });
+          }
+        });
+      });
     });
     chipsEl.querySelectorAll('.vt-btn').forEach(function (v) {
       v.addEventListener('click', function () {

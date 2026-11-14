@@ -304,7 +304,7 @@ try {
         var filtered = getFiltered();
         if (filtered.length && !filtered.some(function (x) { return x.id === currentId; })) currentId = filtered[0].id;
         renderRoster();
-        renderPersona('50%');
+        renderPersona('from-down');
       });
     });
     document.getElementById('pSearch').addEventListener('input', function (e) {
@@ -325,18 +325,19 @@ try {
     }).join('');
     strip.querySelectorAll('.pchip').forEach(function (b) {
       b.addEventListener('click', function () {
-        var r = b.getBoundingClientRect();
-        var originPct = Math.round(((r.left + r.width / 2) / window.innerWidth) * 100) + '%';
+        var prevIdx = list.findIndex(function (x) { return x.id === currentId; });
+        var nextIdx = list.findIndex(function (x) { return x.id === b.dataset.id; });
+        var dirMode = nextIdx >= prevIdx ? 'from-right' : 'from-left';
         currentId = b.dataset.id;
         focusAgentId = '';
         history.replaceState(null, '', '?id=' + encodeURIComponent(currentId) + (activeDept !== 'all' ? '&dept=' + activeDept : ''));
         renderStripOnly();
-        renderPersona(originPct);
+        renderPersona(dirMode);
       });
     });
   }
 
-  function renderPersona(originX) {
+  function renderPersona(flowMode) {
     var idx = personas.findIndex(function (x) { return x.id === currentId; });
     var p = personas[Math.max(0, idx)];
     var firstName = (p.personName || 'Leader').split(' ')[0];
@@ -377,10 +378,6 @@ try {
 
     var root = document.getElementById('root');
     root.style.setProperty('--pc', p.deptColor);
-    root.style.setProperty('--gx', originX || '50%');
-    root.classList.remove('genie-enter');
-    void root.offsetWidth;
-    root.classList.add('genie-enter');
 
     root.innerHTML =
       '<section class="hero-card">' +
@@ -428,13 +425,13 @@ try {
         '<div class="suite-grid">' + cardsHtml + '</div>' +
       '</section>';
 
-    if (window.triggerIosMatrixEnter) {
-      requestAnimationFrame(function () { window.triggerIosMatrixEnter(root); });
+    if (flowMode && window.triggerDirectionalFlow) {
+      requestAnimationFrame(function () { window.triggerDirectionalFlow(root, flowMode); });
     }
   }
 
   renderRoster();
-  renderPersona('50%');
+  renderPersona('');
 })();
 </script>
 <script src="../assets/ios_transitions.js"></script>

@@ -25,8 +25,7 @@
   </script>
   <style>
     body { margin: 0; background: var(--canvas); color: var(--text); font-family: var(--font-body); overflow-x: hidden; }
-    .wrap { max-width: 1460px; margin: 0 auto; padding: 80px max(24px, 4vw) 108px; animation: pageEnter .38s cubic-bezier(.22,1,.36,1); }
-    @keyframes pageEnter { from { opacity: 0; transform: translateY(10px) scale(.99); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .wrap { max-width: 1460px; margin: 0 auto; padding: 80px max(24px, 4vw) 108px; }
 
     .bc { display: flex; align-items: center; gap: 8px; font: 600 12px var(--font-mono); color: var(--text-dim); margin-bottom: 14px; flex-wrap: wrap; }
     .bc a { color: var(--blue-ink); text-decoration: none; }
@@ -521,7 +520,8 @@
   }
   window.__redrawPillarLines = drawDottedTreeLines;
 
-  function selectSub(id) {
+  var isFirstSubRender = true;
+  function selectSub(id, flowDir) {
     subId = id;
     var spIdx = Math.max(0, d.subPillars.findIndex(function (x) { return x.id === id; }));
     var sp = d.subPillars[spIdx];
@@ -536,10 +536,11 @@
       '</button>';
     }).join('');
 
-    document.querySelectorAll('.sp-tab').forEach(function (b) {
+    document.querySelectorAll('.sp-tab').forEach(function (b, bIdx) {
       b.addEventListener('click', function () {
+        var dir = bIdx > spIdx ? 'from-right' : (bIdx < spIdx ? 'from-left' : 'from-down');
         history.replaceState(null, '', '?dept=' + encodeURIComponent(d.id) + '&sub=' + encodeURIComponent(b.dataset.sub));
-        selectSub(b.dataset.sub);
+        selectSub(b.dataset.sub, dir);
       });
     });
 
@@ -598,7 +599,10 @@
     });
 
     requestAnimationFrame(function () {
-      if (window.triggerIosMatrixEnter) window.triggerIosMatrixEnter(grid);
+      if (!isFirstSubRender && window.triggerDirectionalFlow) {
+        window.triggerDirectionalFlow(grid, flowDir || 'from-down');
+      }
+      isFirstSubRender = false;
       drawDottedTreeLines();
       setTimeout(drawDottedTreeLines, 120);
     });

@@ -87,14 +87,26 @@
       erp: { title: 'Inside SAP S/4HANA, WMS & TMS', sub: 'Zero context switching — staged write-backs via Model Context Protocol (MCP).', body: '<div style="padding:16px;border-radius:12px;background:var(--surface-sunk);border:1px solid var(--border-subtle);font-size:14px;line-height:1.55"><b>SAP ME21N / MD04 Embedded Drawer:</b> Material <code>MAT-40921 (HDPE Resin)</code> faces a 6-day Tier-2 delay. <em>Onboarding &amp; Risk Agent</em> verified alternate vendor <b>VND-882</b> (BRCGS AA+ active).<br><br><span style="font:600 12px var(--font-mono);color:var(--amber-ink)">Staged for Human Sign-Off: Split PO #45009182 (40% to VND-882) &middot; Protects 3 bottling lines</span></div>' },
       auto: { title: 'Autonomous Background Flows (24/7)', sub: 'Pub/Sub event streams monitor cold-chain IoT, yard gates & return fraud around the clock.', body: '<ul style="margin:0;padding-left:18px;font-size:14px;line-height:1.75;color:var(--text-muted)"><li><b style="color:var(--text)">02:14 UTC &middot; Cold-Chain Auditor:</b> Detected +4.2&deg;C excursion on Reefer #TR-918; auto-assembled carrier claim packet.</li><li><b style="color:var(--text)">04:40 UTC &middot; Yard Disruption Agent:</b> Inbound FTL delayed 95 mins; reassigned Dock Door 14 dynamically.</li><li><b style="color:var(--text)">06:00 UTC &middot; Return Fraud Sentinel:</b> Flagged 3 mismatched serial-weight RMAs prior to refund release.</li></ul>' }
     };
+    const SF_KEYS = ['ge', 'ct', 'erp', 'auto'];
+    let lastSfIdx = -1;
     function show(k) {
+      const nextIdx = SF_KEYS.indexOf(k);
       document.querySelectorAll('.sf-btn').forEach(b => {
         const on = b.dataset.sf === k;
         b.style.borderColor = on ? 'var(--g-blue)' : 'var(--border-subtle)';
         b.style.background = on ? 'var(--surface)' : 'var(--surface-sunk)';
       });
       const v = VIEWS[k];
-      document.getElementById('sfStage').innerHTML = `<h2 style="font-family:var(--font-display);font-size:24px;margin:0 0 6px">${v.title}</h2><p style="font-size:14.5px;color:var(--text-muted);margin:0 0 18px">${v.sub}</p>${v.body}`;
+      const stage = document.getElementById('sfStage');
+      stage.innerHTML = `<h2 style="font-family:var(--font-display);font-size:24px;margin:0 0 6px">${v.title}</h2><p style="font-size:14.5px;color:var(--text-muted);margin:0 0 18px">${v.sub}</p>${v.body}`;
+      if (lastSfIdx >= 0 && nextIdx !== lastSfIdx && stage.animate) {
+        const dy = nextIdx > lastSfIdx ? 36 : -36;
+        stage.animate([
+          { opacity: 0, transform: `translate3d(0, ${dy}px, 0)` },
+          { opacity: 1, transform: 'translate3d(0, 0, 0)' }
+        ], { duration: 310, easing: 'cubic-bezier(0.20, 1, 0.30, 1)' });
+      }
+      lastSfIdx = nextIdx;
     }
     document.querySelectorAll('.sf-btn').forEach(b => b.addEventListener('click', () => show(b.dataset.sf)));
     show('ge');

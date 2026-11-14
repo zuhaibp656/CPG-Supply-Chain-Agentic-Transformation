@@ -109,6 +109,7 @@ var SLICES = [
   { layer: 'SLICE 03 · MAKE & INVENTORY', bad: 'Static allergen schedules & siloed safety stock trap capital in slow SKUs.', good: 'Changeover Optimizer & MEIO Safety Stock balance capacity and working capital.' },
   { layer: 'SLICE 04 · DELIVER & RETURNS', bad: 'Empty LTL miles, OTIF fines & 5-15% freight billing errors clear AP unchecked.', good: 'FleetFlow, Freight Bill Audit & Return Fraud agents recover cash pre-settlement.' }
 ];
+var __sliceInit = true;
 function setMode(m) {
   var good = (m === 'agentic');
   document.getElementById('btnLegacy').className = 'pt-btn' + (!good ? ' active bad' : '');
@@ -118,12 +119,17 @@ function setMode(m) {
   document.getElementById('modeLead').textContent = good
     ? 'Autonomous Gemini Enterprise agents continuously monitor and seal each layer before an anomaly compounds—while humans keep final sign-off.'
     : 'It is the quiet alignment of holes across disconnected Plan, Source, Make, and Deliver silos—turning a localized port or heatwave event into enterprise margin loss.';
-  document.getElementById('slicesHost').innerHTML = SLICES.map(function(s){
+  var host = document.getElementById('slicesHost');
+  host.innerHTML = SLICES.map(function(s){
     return '<div class="slice-card' + (good ? ' is-good' : '') + '">' +
       '<div class="sl-k">' + s.layer + (good ? ' · SEALED' : ' · VULNERABLE') + '</div>' +
       '<p class="sl-v">' + (good ? s.good : s.bad) + '</p>' +
     '</div>';
   }).join('');
+  if (!__sliceInit && window.triggerDirectionalFlow) {
+    window.triggerDirectionalFlow(host, good ? 'from-right' : 'from-left');
+  }
+  __sliceInit = false;
 }
 setMode('legacy');
 </script>
