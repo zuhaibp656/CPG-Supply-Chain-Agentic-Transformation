@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agent Architecture &amp; Tech Details — CPG Supply Chain</title>
+<link rel="icon" href="../assets/media/brand/gemini_spark_fullcolor_768.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script>
+try {
+  var saved = localStorage.getItem('deck-theme') || 'light';
+  document.documentElement.className = (saved === 'dark') ? 'theme-dark' : 'theme-light';
+} catch (e) {}
+</script>
+<style>
+  :root {
+    --g-blue: #3186FF; --g-purple: #4B31E3; --g-green: #00AF57; --green-ink: #007F3F;
+    --g-teal: #0A7684; --g-cyan: #12B5CB; --g-yellow: #FEC700; --g-red: #FC413D;
+    --canvas: #F0F5FE; --surface: #FFFFFF; --surface-sunk: #F1F3F9;
+    --border: #E1E5EE; --border-strong: #CBD2E0;
+    --text: #1F2430; --text-muted: #5A6275; --text-dim: #8A92A6;
+    --accent: var(--g-blue); --accent-soft: rgba(49,134,255,.11);
+    --shadow-sm: 0 2px 8px rgba(18,19,23,.05); --shadow-md: 0 10px 28px rgba(18,19,23,.09);
+    --font: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --mono: "Roboto Mono", ui-monospace, monospace;
+    --wrap: 1380px;
+  }
+  html.theme-dark {
+    --canvas: #121317; --surface: #1A1C22; --surface-sunk: #15171C;
+    --border: #2A2D36; --border-strong: #3A3E4A;
+    --text: #ECEEF3; --text-muted: #A8AFC0; --text-dim: #757D91;
+    --accent: #6BA6FF; --green-ink: #5BB974;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--canvas); color: var(--text); font-family: var(--font); font-size: 14px; line-height: 1.52; overflow-x: hidden; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 max(20px, 2.8vw); }
+
+  /* Masthead */
+  .masthead { position: sticky; top: 0; z-index: 60; background: color-mix(in srgb, var(--surface) 90%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
+  .masthead-in { max-width: var(--wrap); margin: 0 auto; padding: 0 max(20px, 2.8vw); height: 56px; display: flex; align-items: center; gap: 14px; }
+  .mast-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+  .mast-logo { height: 26px; width: auto; }
+  .mast-div { width: 1px; height: 18px; background: var(--border-strong); }
+  .mast-kicker { font: 700 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+  .mast-spacer { flex: 1; }
+  .mast-nav { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+  .mast-btn { font: 600 12px var(--font); color: var(--text-muted); text-decoration: none; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; transition: all .15s; }
+  .mast-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .mast-cta { font: 600 12px var(--font); text-decoration: none; color: var(--surface); background: var(--text); padding: 7px 15px; border-radius: 999px; }
+
+  /* Suite Sibling Switcher Bar */
+  .suite-switcher { background: color-mix(in srgb, var(--canvas) 94%, transparent); border-bottom: 1px solid var(--border); padding: 10px 0; }
+  .sw-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .sw-lbl { font: 700 11px var(--mono); color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; margin-right: 4px; }
+  .sw-chip {
+    display: inline-flex; align-items: center; gap: 7px; padding: 5px 13px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface); color: var(--text);
+    text-decoration: none; font: 600 12px var(--font); transition: all .16s;
+  }
+  .sw-chip:hover { border-color: var(--accent); transform: translateY(-1px); }
+  .sw-chip.is-on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .sw-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sc, var(--g-blue)); }
+
+  main.page-body { padding: 24px 0 72px; }
+
+  /* 1. Colorful Agent Hero Card (Same Design Language + Demo & GE Pills) */
+  .ab-hero {
+    position: relative; overflow: hidden; border-radius: 24px; padding: 26px 28px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--ac, #3186FF) 12%, var(--surface)) 0%, var(--surface) 58%, color-mix(in srgb, #4B31E3 8%, var(--surface)) 100%);
+    border: 1.5px solid color-mix(in srgb, var(--ac, #3186FF) 34%, var(--border));
+    box-shadow: var(--shadow-md);
+    display: grid; grid-template-columns: 1.35fr auto; gap: 24px; align-items: center;
+  }
+  .ab-hero::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 5px;
+    background: linear-gradient(90deg, #3186FF 0%, #4B31E3 35%, #00AF57 70%, #FEC700 100%);
+  }
+  @media (max-width: 920px) { .ab-hero { grid-template-columns: 1fr; } }
+
+  .ab-badges { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 10px; align-items: center; }
+  .pill { font: 700 10.5px var(--mono); padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--text-muted); }
+  .pill.p0 { background: rgba(252,65,61,.13); border-color: rgba(252,65,61,.32); color: #C62A27; }
+  .pill.p1 { background: rgba(254,199,0,.22); border-color: rgba(254,199,0,.45); color: #8A6200; }
+  .pill.new { background: rgba(75,49,227,.13); border-color: rgba(75,49,227,.32); color: #4B31E3; }
+  .pill.live { background: rgba(0,175,87,.14); border-color: rgba(0,175,87,.34); color: #007F3F; }
+  html.theme-dark .pill.p0 { color: #FCA5A5; }
+  html.theme-dark .pill.p1 { color: #FDE68A; }
+  html.theme-dark .pill.new { color: #C4B5FD; }
+  html.theme-dark .pill.live { color: #6EE7B7; }
+
+  .ab-title { font-size: clamp(26px, 2.8vw, 36px); font-weight: 700; letter-spacing: -.02em; margin: 0 0 6px; line-height: 1.12; }
+  .ab-owner { font-size: 14.5px; font-weight: 600; color: var(--ac, #3186FF); margin: 0 0 10px; }
+  .ab-owner a { color: inherit; text-decoration: none; }
+  .ab-owner a:hover { text-decoration: underline; }
+  .ab-summary { font-size: 14.5px; line-height: 1.56; color: var(--text); margin: 0 0 16px; max-width: 72ch; }
+
+  /* Cohesive Same-Design-Language Action Links (Demo Video + Gemini Enterprise) */
+  .ab-cta-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .cta-pill {
+    display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+    font: 700 13px var(--font); padding: 10px 18px; border-radius: 999px;
+    transition: transform .18s cubic-bezier(.22,1,.36,1), box-shadow .18s;
+  }
+  .cta-pill:hover { transform: translateY(-2px); }
+  .cta-pill.demo {
+    background: color-mix(in srgb, var(--ac, #3186FF) 13%, var(--surface));
+    border: 1.5px solid color-mix(in srgb, var(--ac, #3186FF) 42%, transparent);
+    color: var(--ac, #3186FF);
+  }
+  html.theme-dark .cta-pill.demo { color: #93C5FD; }
+  .cta-pill.ge {
+    background: linear-gradient(135deg, #3186FF 0%, #4B31E3 100%);
+    color: #fff; border: 1.5px solid transparent;
+    box-shadow: 0 8px 20px rgba(49,134,255,.26);
+  }
+
+  .ab-kpis { display: flex; gap: 12px; flex-wrap: wrap; }
+  .ab-kpi {
+    min-width: 132px; padding: 15px 18px; border-radius: 18px; text-align: center;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  }
+  .ab-kpi b { display: block; font-size: 21px; font-weight: 700; line-height: 1.15; margin-bottom: 3px; }
+  .ab-kpi span { font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); }
+
+  /* 2. Clean 4-Stage End-to-End Runtime Architecture */
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; margin: 26px 0 14px; }
+  .sec-head h2 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.01em; }
+  .sec-tag { font: 600 11.5px var(--mono); color: var(--text-muted); padding: 4px 11px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+
+  .arch-grid {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; position: relative;
+  }
+  @media (max-width: 1060px) { .arch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .arch-grid { grid-template-columns: 1fr; } }
+
+  .arch-stage {
+    border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 11px;
+    background: linear-gradient(170deg, color-mix(in srgb, var(--sc) 10%, var(--surface)) 0%, var(--surface) 66%);
+    border: 1.5px solid color-mix(in srgb, var(--sc) 32%, var(--border));
+    border-top: 4px solid var(--sc);
+    box-shadow: var(--shadow-sm); position: relative;
+    transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s;
+  }
+  .arch-stage:hover { transform: translateY(-4px); box-shadow: 0 14px 28px color-mix(in srgb, var(--sc) 16%, rgba(18,19,23,.08)); }
+  .st-kicker { display: flex; align-items: center; justify-content: space-between; font: 700 10.5px var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--sc); }
+  .st-num {
+    width: 26px; height: 26px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
+    background: var(--sc); color: #fff; font: 700 11px var(--mono);
+  }
+  .arch-stage h3 { margin: 0; font-size: 16.5px; font-weight: 700; line-height: 1.25; }
+  .st-body { font-size: 13px; color: var(--text-muted); line-height: 1.5; margin: 0; }
+  .st-chips { display: flex; flex-direction: column; gap: 6px; margin-top: auto; padding-top: 4px; }
+  .st-chip {
+    padding: 7px 10px; border-radius: 10px; font-size: 12px; line-height: 1.38;
+    background: var(--surface-sunk); border-left: 3px solid var(--sc); color: var(--text);
+  }
+  .st-chip b { font: 700 10px var(--mono); text-transform: uppercase; color: var(--sc); display: block; margin-bottom: 1px; }
+
+  /* 3. Concise Tech Details + Business Starter Prompt */
+  .tech-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 16px; margin-top: 18px; }
+  @media (max-width: 900px) { .tech-grid { grid-template-columns: 1fr; } }
+  .tech-box {
+    border-radius: 20px; padding: 20px 22px; background: var(--surface);
+    border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .tech-box h3 { margin: 0; font-size: 16.5px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
+  .stack-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sp-badge {
+    display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 11px;
+    background: color-mix(in srgb, var(--bc, #3186FF) 10%, var(--surface-sunk));
+    border: 1px solid color-mix(in srgb, var(--bc, #3186FF) 28%, transparent);
+    font: 600 12px var(--font); color: var(--text);
+  }
+  .sp-badge i { width: 7px; height: 7px; border-radius: 50%; background: var(--bc, #3186FF); }
+
+  .prompt-card {
+    padding: 14px 16px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(49,134,255,.08), rgba(75,49,227,.07));
+    border: 1px solid rgba(49,134,255,.26);
+    font-size: 13.5px; line-height: 1.55; color: var(--text); font-style: italic;
+  }
+  .copy-btn {
+    border: 1px solid var(--border); background: var(--surface-sunk); color: var(--text);
+    font: 600 11.5px var(--mono); padding: 5px 11px; border-radius: 999px; cursor: pointer;
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <a class="mast-brand" href="../index.html">
+      <img class="mast-logo" src="../assets/media/wip/image25.png" alt="Google Cloud">
+      <span class="mast-div"></span>
+      <span class="mast-kicker">Agent Architecture &amp; Tech Spec</span>
+    </a>
+    <span class="mast-spacer"></span>
+    <nav class="mast-nav">
+      <button class="mast-btn" id="themeBtn" type="button">Dark</button>
+      <a class="mast-btn" id="backPersonaBtn" href="../personas/dossier.html">&larr; Back to Persona Suite</a>
+      <a class="mast-btn" id="backPillarBtn" href="pillar.html">Pillar</a>
+      <a class="mast-cta" href="09_agent_architecture.html">Platform Topology &#8599;</a>
+    </nav>
+  </div>
+</header>
+
+<div class="suite-switcher">
+  <div class="wrap">
+    <div class="sw-row" id="suiteSwitcher"></div>
+  </div>
+</div>
+
+<main class="wrap page-body" id="root"></main>
+
+<script src="../data/sc_story_data.js"></script>
+<script src="../data/sc_value_model.js"></script>
+<script>
+(function () {
+  var DATA = window.SC_DATA;
+  var fmtINR = window.SC_VALUES.fmtINR;
+  var HUES = ['#3186FF', '#4B31E3', '#00AF57', '#0A7684'];
+
+  var LAKE_BY_DEPT = {
+    demand_sop: '01_daily_pos_dms_qcomm_velocity.csv · 01_trade_promotions_and_deductions.csv',
+    sourcing_procurement: '02_po_grn_three_way_match_sourcing.csv · 00_multitier_suppliers.jsonl',
+    manufacturing_prod: '03_plant_mes_oee_copacker_genealogy.csv · 00_master_skus.jsonl',
+    inventory_warehouse: '04_fefo_inventory_dms_wms_ledger.csv · 00_master_skus.jsonl',
+    logistics_fleet: '05_tms_shipments_eway_freight_audit.csv · 00_master_skus.jsonl',
+    circular_enable: '06_returns_markdowns_rti_circular.csv · 00_master_skus.jsonl'
+  };
+
+  var themeBtn = document.getElementById('themeBtn');
+  function syncThemeBtn() { themeBtn.textContent = document.documentElement.classList.contains('theme-dark') ? 'Light' : 'Dark'; }
+  syncThemeBtn();
+  themeBtn.addEventListener('click', function () {
+    var dark = document.documentElement.classList.toggle('theme-dark');
+    document.documentElement.classList.toggle('theme-light', !dark);
+    try { localStorage.setItem('deck-theme', dark ? 'dark' : 'light'); } catch (e) {}
+    syncThemeBtn();
+  });
+
+  function esc(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function concise(s, maxLen) {
+    var txt = String(s || '').split(/\.\s+/)[0];
+    if (txt.length > maxLen) return txt.slice(0, maxLen - 1) + '…';
+    return txt.endsWith('.') ? txt : txt + '.';
+  }
+
+  var qs = new URLSearchParams(location.search);
+  var agentId = qs.get('agent') || DATA.agents[0].id;
+  var ag = DATA.agents.find(function (a) { return a.id === agentId; }) || DATA.agents[0];
+  var personaId = qs.get('persona') || ag.primaryPersonaId || DATA.personas[0].id;
+  var persona = DATA.personas.find(function (p) { return p.id === personaId; }) ||
+                DATA.personas.find(function (p) { return p.primaryAgentId === ag.id; }) ||
+                DATA.personas[0];
+
+  document.title = ag.name + ' — Agent Architecture | CPG Supply Chain';
+  document.getElementById('backPersonaBtn').href = '../personas/dossier.html?id=' + encodeURIComponent(persona.id) + '&dept=' + encodeURIComponent(persona.deptId);
+  document.getElementById('backPillarBtn').href = 'pillar.html?dept=' + encodeURIComponent(ag.deptId);
+
+  /* Render sibling agents in this Persona's Suite */
+  var suite = (persona && persona.agentSuite && persona.agentSuite.length) ? persona.agentSuite : [ag];
+  document.getElementById('suiteSwitcher').innerHTML =
+    '<span class="sw-lbl">' + esc(persona.name) + ' Suite:</span>' +
+    suite.map(function (s, idx) {
+      var on = s.id === ag.id;
+      return '<a class="sw-chip' + (on ? ' is-on' : '') + '" href="agent_blueprint.html?agent=' + encodeURIComponent(s.id) + '&persona=' + encodeURIComponent(persona.id) + '">' +
+        '<span class="sw-dot" style="--sc:' + HUES[idx % HUES.length] + '"></span>' +
+        '<span>' + esc(s.name) + '</span>' +
+      '</a>';
+    }).join('');
+
+  var pCls = ag.priorityTier === 'P0' ? 'p0' : (ag.priorityTier === 'P1' ? 'p1' : '');
+  var pTxt = ag.priorityTier === 'P0' ? 'P0 · Deploy First (' + ag.paybackDays + 'd Payback)' : (ag.priorityTier === 'P1' ? 'P1 · Build Next (' + ag.paybackDays + 'd)' : 'P2 · Continuous Enabler');
+  var lakeTables = LAKE_BY_DEPT[ag.deptId] || '00_master_skus.jsonl';
+
+  var root = document.getElementById('root');
+  root.style.setProperty('--ac', ag.deptColor || '#3186FF');
+
+  root.innerHTML =
+    '<section class="ab-hero">' +
+      '<div>' +
+        '<div class="ab-badges">' +
+          '<span class="pill">' + esc(ag.code) + '</span>' +
+          '<span class="pill ' + pCls + '">' + esc(pTxt) + '</span>' +
+          (ag.isNewCpgAgent ? '<span class="pill new">+ NEW CPG AGENT</span>' : '') +
+          (ag.liveInGE ? '<span class="pill live">&#9679; Live in Gemini Enterprise</span>' : '') +
+          '<span class="pill">' + esc(ag.deptTitle) + ' &middot; ' + esc(ag.subPillarName) + '</span>' +
+        '</div>' +
+        '<h1 class="ab-title">' + esc(ag.name) + '</h1>' +
+        '<p class="ab-owner">Used by <a href="../personas/dossier.html?id=' + encodeURIComponent(persona.id) + '">' + esc(persona.name) + ' (' + esc(persona.personName) + ')</a></p>' +
+        '<p class="ab-summary">' + esc(concise(ag.oneLine, 220)) + '</p>' +
+        '<div class="ab-cta-row">' +
+          '<a class="cta-pill demo" href="demo_stage.html?agent=' + encodeURIComponent(ag.id) + '">&#9654; Watch Demo Video</a>' +
+          '<a class="cta-pill ge" target="_blank" rel="noopener noreferrer" href="' + esc(ag.geUrl) + '">&#10022; Open in Gemini Enterprise &#8599;</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="ab-kpis">' +
+        '<div class="ab-kpi"><b style="color:#00AF57">' + fmtINR(ag.annualValueCr, '/yr') + '</b><span>Modeled Value</span></div>' +
+        '<div class="ab-kpi"><b style="color:#3186FF">' + ag.paybackDays + ' Days</b><span>Payback Window</span></div>' +
+        '<div class="ab-kpi"><b style="color:#4B31E3">Gemini 3.1 Pro</b><span>ADK + Solver</span></div>' +
+      '</div>' +
+    '</section>' +
+
+    '<div class="sec-head">' +
+      '<h2>How This Agent Works &mdash; 4-Stage Runtime Architecture</h2>' +
+      '<span class="sec-tag">&#9889; Event-Driven + Conversational ADK Flow</span>' +
+    '</div>' +
+
+    '<section class="arch-grid">' +
+      '<article class="arch-stage" style="--sc:#3186FF">' +
+        '<div class="st-kicker"><span>Stage 01 &middot; Inputs</span><span class="st-num">01</span></div>' +
+        '<h3>Signals &amp; Guardrail Check</h3>' +
+        '<p class="st-body">' + esc(concise(ag.reads, 150)) + '</p>' +
+        '<div class="st-chips">' +
+          '<div class="st-chip"><b>BigQuery Cortex Lake</b>' + esc(lakeTables) + '</div>' +
+          '<div class="st-chip"><b>Model Armor</b>Masks vendor rates &amp; PII prior to reasoning</div>' +
+        '</div>' +
+      '</article>' +
+
+      '<article class="arch-stage" style="--sc:#4B31E3">' +
+        '<div class="st-kicker"><span>Stage 02 &middot; Engine</span><span class="st-num">02</span></div>' +
+        '<h3>Reasoning &amp; Deterministic Math</h3>' +
+        '<p class="st-body">' + esc(concise(ag.does, 155)) + '</p>' +
+        '<div class="st-chips">' +
+          '<div class="st-chip"><b>Orchestrator</b>Vertex AI Agent Engine (Google ADK)</div>' +
+          '<div class="st-chip"><b>Zero Guesswork</b>Deterministic Python &amp; OR-Tools KPI math</div>' +
+        '</div>' +
+      '</article>' +
+
+      '<article class="arch-stage" style="--sc:#0A7684">' +
+        '<div class="st-kicker"><span>Stage 03 &middot; Systems</span><span class="st-num">03</span></div>' +
+        '<h3>Reads vs. Staged Write-Back</h3>' +
+        '<p class="st-body">Coexists cleanly with core systems of record—zero rip-and-replace.</p>' +
+        '<div class="st-chips">' +
+          '<div class="st-chip"><b>Reads From (Read-Only)</b>' + esc(persona.systemsTouched) + '</div>' +
+          '<div class="st-chip"><b>Stages Via Apigee MCP</b>Policy-checked draft transaction packet</div>' +
+        '</div>' +
+      '</article>' +
+
+      '<article class="arch-stage" style="--sc:#00AF57">' +
+        '<div class="st-kicker"><span>Stage 04 &middot; Sign-Off</span><span class="st-num">04</span></div>' +
+        '<h3>Output &amp; Human Gate</h3>' +
+        '<p class="st-body">' + esc(concise(ag.returns, 145)) + '</p>' +
+        '<div class="st-chips">' +
+          '<div class="st-chip"><b>Stops At (Human Gate)</b>' + esc(concise(ag.stopsAt, 120)) + '</div>' +
+          '<div class="st-chip"><b>Safety Envelope</b>' + esc(concise(ag.safetyEnvelope, 110)) + '</div>' +
+        '</div>' +
+      '</article>' +
+    '</section>' +
+
+    '<section class="tech-grid">' +
+      '<div class="tech-box">' +
+        '<h3><span>Technical Footprint</span><span style="font:600 11px var(--mono);color:var(--text-dim)">agents/' + esc(ag.id) + '/</span></h3>' +
+        '<div class="stack-pills">' +
+          '<span class="sp-badge" style="--bc:#3186FF"><i></i>Gemini 3.1 Pro</span>' +
+          '<span class="sp-badge" style="--bc:#4B31E3"><i></i>Google ADK (Vertex AI Agent Engine)</span>' +
+          '<span class="sp-badge" style="--bc:#00AF57"><i></i>Google OR-Tools &amp; TimesFM 2.5</span>' +
+          '<span class="sp-badge" style="--bc:#0A7684"><i></i>BigQuery Cortex v7 (235 MB INR Lake)</span>' +
+          '<span class="sp-badge" style="--bc:#D97706"><i></i>Apigee MCP Write-Back Gate</span>' +
+          '<span class="sp-badge" style="--bc:#FC413D"><i></i>Model Armor &amp; VPC-SC</span>' +
+        '</div>' +
+        '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:6px">' +
+          '<a class="cta-pill demo" style="padding:7px 14px;font-size:12px" href="demo_stage.html?agent=' + encodeURIComponent(ag.id) + '">&#9654; Watch Demo Video</a>' +
+          '<a class="cta-pill ge" style="padding:7px 14px;font-size:12px" target="_blank" rel="noopener noreferrer" href="' + esc(ag.geUrl) + '">&#10022; Launch in Gemini Enterprise &#8599;</a>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="tech-box">' +
+        '<h3><span>Sample Business Prompt</span><button type="button" class="copy-btn" id="copyPromptBtn">Copy Prompt</button></h3>' +
+        '<div class="prompt-card" id="promptBox">&ldquo;' + esc(ag.samplePrompt) + '&rdquo;</div>' +
+        '<span style="font-size:12px;color:var(--text-dim)">Plain-English business query &mdash; automatically selects the connected CPG tables and solver tools behind the scenes.</span>' +
+      '</div>' +
+    '</section>';
+
+  document.getElementById('copyPromptBtn').addEventListener('click', function () {
+    var btn = this;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(ag.samplePrompt);
+      btn.textContent = 'Copied ✓';
+      setTimeout(function () { btn.textContent = 'Copy Prompt'; }, 1400);
+    }
+  });
+})();
+</script>
+<script src="../assets/ios_transitions.js"></script>
+</body>
+</html>

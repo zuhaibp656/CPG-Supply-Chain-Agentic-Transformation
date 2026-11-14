@@ -416,9 +416,8 @@
       '<div class="d-tags">' + ownTag + liveTag + '<span class="tag">' + a.cadence + '</span></div>' +
       '<div class="d-body">' + bodyHtml + roleValHtml + '</div>' +
       '<div class="d-foot">' +
-        '<a class="btn-ge" href="dossier.html?id=' + encodeURIComponent(p.id) + '&agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '">Agent Suite (' + suiteLen + ') &rarr;</a>' +
-        '<a class="btn-ge" style="background:var(--g-green);border-color:var(--g-green)" href="../pages/demo_stage.html?agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '">&#9654; Video</a>' +
-        '<a class="mast-btn" target="_blank" rel="noopener noreferrer" href="' + (ag.geUrl || '#') + '">GE &#8599;</a>' +
+        '<a class="btn-ge" href="dossier.html?id=' + encodeURIComponent(p.id) + '&agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '">Open Persona Suite (' + suiteLen + ') &rarr;</a>' +
+        '<a class="mast-btn" href="../pages/agent_blueprint.html?agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '&persona=' + encodeURIComponent(p.id) + '">Agent Architecture &rarr;</a>' +
       '</div>';
   }
 
@@ -481,5 +480,6 @@
   renderBoard();
 })();
 </script>
+<script src="../assets/ios_transitions.js"></script>
 </body>
 </html>

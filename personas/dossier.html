@@ -50,8 +50,8 @@ try {
   .mast-count { font: 700 13px var(--mono); color: var(--accent); }
   .mast-cta { font: 600 12px var(--font); text-decoration: none; color: var(--surface); background: var(--text); padding: 7px 15px; border-radius: 999px; }
 
-  /* Compact Pillar & Persona Switcher */
-  .roster { position: sticky; top: 56px; z-index: 50; background: color-mix(in srgb, var(--canvas) 93%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 10px 0; }
+  /* Compact Pillar & Persona Switcher (clean flow, zero clipping over Hero card) */
+  .roster { position: relative; z-index: 40; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 0 10px; }
   .domain-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
   .fchip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; font: 600 12px var(--font); transition: all .15s; }
   .fchip.is-on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
@@ -165,17 +165,16 @@ try {
 
   .suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; }
   .ag-card {
+    text-decoration: none; color: inherit; cursor: pointer;
     border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px;
     background: linear-gradient(168deg, color-mix(in srgb, var(--ac) 11%, var(--surface)) 0%, var(--surface) 64%);
     border: 1.5px solid color-mix(in srgb, var(--ac) 34%, var(--border));
     border-top: 4.5px solid var(--ac);
     box-shadow: var(--shadow-sm);
-    opacity: 0; animation: cardRise .42s cubic-bezier(.22,1,.36,1) forwards;
-    transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s;
+    transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s, border-color .2s;
   }
-  .ag-card:hover { transform: translateY(-5px); box-shadow: 0 18px 34px color-mix(in srgb, var(--ac) 20%, rgba(18,19,23,.10)); }
+  .ag-card:hover { transform: translateY(-6px) scale(1.01); border-color: var(--ac); box-shadow: 0 18px 34px color-mix(in srgb, var(--ac) 22%, rgba(18,19,23,.10)); }
   .ag-card.is-focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--ac) 35%, transparent), var(--shadow-md); }
-  @keyframes cardRise { from { opacity: 0; transform: translateY(16px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
   .ag-badges { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
   .ab { font: 700 10px var(--mono); padding: 3px 9px; border-radius: 999px; }
@@ -200,21 +199,13 @@ try {
   }
   .ag-hl b { font: 700 10.5px var(--mono); text-transform: uppercase; color: var(--ac); margin-right: 5px; }
 
-  .ag-actions { margin-top: auto; padding-top: 8px; display: flex; gap: 9px; flex-wrap: wrap; }
-  .btn-demo {
-    flex: 1; text-align: center; text-decoration: none; font: 700 12.5px var(--font);
-    padding: 9px 12px; border-radius: 11px;
-    background: color-mix(in srgb, var(--ac) 12%, var(--surface));
-    border: 1px solid color-mix(in srgb, var(--ac) 36%, transparent); color: var(--ac);
-    transition: transform .15s;
+  .ag-foot-link {
+    margin-top: auto; padding-top: 10px; border-top: 1px dashed color-mix(in srgb, var(--ac) 28%, var(--border));
+    display: flex; align-items: center; justify-content: space-between;
+    font: 700 12.5px var(--font); color: var(--ac);
   }
-  html.theme-dark .btn-demo { color: #fff; }
-  .btn-ge {
-    flex: 1; text-align: center; text-decoration: none; font: 700 12.5px var(--font);
-    padding: 9px 12px; border-radius: 11px; background: var(--ac); color: #fff;
-    transition: transform .15s, opacity .15s;
-  }
-  .btn-demo:hover, .btn-ge:hover { transform: translateY(-1px); opacity: .94; }
+  .ag-card:hover .ag-foot-link span:last-child { transform: translateX(3px); }
+  .ag-foot-link span:last-child { transition: transform .18s; }
 </style>
 </head>
 <body>
@@ -364,7 +355,7 @@ try {
       var pTxt = a.priorityTier === 'P0' ? 'P0 · Deploy First (' + a.paybackDays + 'd)' : (a.priorityTier === 'P1' ? 'P1 · Build Next' : 'P2 · Enabler');
       var isFocus = focusAgentId && a.id === focusAgentId;
 
-      return '<article class="ag-card' + (isFocus ? ' is-focus' : '') + '" style="--ac:' + ac + ';animation-delay:' + (80 + i * 75) + 'ms">' +
+      return '<a class="ag-card' + (isFocus ? ' is-focus' : '') + '" href="../pages/agent_blueprint.html?agent=' + encodeURIComponent(a.id) + '&persona=' + encodeURIComponent(p.id) + '" style="--ac:' + ac + ';animation-delay:' + (80 + i * 75) + 'ms">' +
         '<div class="ag-badges">' +
           '<span class="ab ' + pCls + '">' + pTxt + '</span>' +
           (a.isNewCpgAgent ? '<span class="ab ab-new">+ NEW CPG</span>' : '') +
@@ -377,11 +368,11 @@ try {
           '<div class="ag-hl"><b>How It Works:</b>' + esc(concise(a.does, 125)) + '</div>' +
           '<div class="ag-hl"><b>Human Gate:</b>' + esc(concise(a.stopsAt, 120)) + '</div>' +
         '</div>' +
-        '<div class="ag-actions">' +
-          '<a class="btn-demo" href="../pages/demo_stage.html?agent=' + encodeURIComponent(a.id) + '">&#9654; Watch Demo</a>' +
-          '<a class="btn-ge" target="_blank" rel="noopener noreferrer" href="' + esc(a.geUrl) + '">&#10022; Gemini Enterprise &#8599;</a>' +
+        '<div class="ag-foot-link">' +
+          '<span>Agent Architecture &amp; Tech Details</span>' +
+          '<span>&rarr;</span>' +
         '</div>' +
-      '</article>';
+      '</a>';
     }).join('');
 
     var root = document.getElementById('root');
@@ -436,11 +427,16 @@ try {
         '</div>' +
         '<div class="suite-grid">' + cardsHtml + '</div>' +
       '</section>';
+
+    if (window.triggerIosMatrixEnter) {
+      requestAnimationFrame(function () { window.triggerIosMatrixEnter(root); });
+    }
   }
 
   renderRoster();
   renderPersona('50%');
 })();
 </script>
+<script src="../assets/ios_transitions.js"></script>
 </body>
 </html>

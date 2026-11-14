@@ -110,11 +110,6 @@
       display: flex; flex-direction: column; gap: 14px;
       box-shadow: var(--shadow-sm);
       transition: transform .24s cubic-bezier(.22,1,.36,1), box-shadow .24s cubic-bezier(.22,1,.36,1), border-color .2s;
-      opacity: 0; animation: cardPopIn .42s cubic-bezier(.22,1,.36,1) forwards;
-    }
-    @keyframes cardPopIn {
-      0% { opacity: 0; transform: translateY(16px) scale(.96); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .per-card:hover {
       transform: translateY(-6px) scale(1.012);
@@ -299,15 +294,16 @@
     .gs-suite-head h3 { margin: 0; font: 700 18px var(--font-display); }
     .gs-suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
     .gs-ag-card {
+      text-decoration: none; color: inherit; cursor: pointer;
       border-radius: 18px; padding: 18px; display: flex; flex-direction: column; gap: 11px;
       background: linear-gradient(170deg, color-mix(in srgb, var(--ac) 11%, var(--surface)) 0%, var(--surface) 65%);
       border: 1.5px solid color-mix(in srgb, var(--ac) 34%, var(--border-subtle));
       border-top: 4px solid var(--ac);
       box-shadow: var(--shadow-sm);
       opacity: 0; animation: suiteRise .42s cubic-bezier(.22,1,.36,1) forwards;
-      transition: transform .2s, box-shadow .2s;
+      transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s, border-color .2s;
     }
-    .gs-ag-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px color-mix(in srgb, var(--ac) 18%, rgba(18,19,23,.10)); }
+    .gs-ag-card:hover { transform: translateY(-5px) scale(1.01); border-color: var(--ac); box-shadow: 0 14px 28px color-mix(in srgb, var(--ac) 20%, rgba(18,19,23,.10)); }
     @keyframes suiteRise { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
     .gs-ag-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -332,18 +328,12 @@
     .gs-mp b { font-family: var(--font-mono); font-size: 10.5px; text-transform: uppercase; color: var(--ai); margin-right: 4px; }
     html.theme-dark .gs-mp b { color: #93C5FD; }
 
-    .gs-ag-actions { margin-top: auto; padding-top: 8px; display: flex; gap: 8px; flex-wrap: wrap; }
-    .gs-btn-demo {
-      flex: 1; text-align: center; text-decoration: none; font: 700 12px var(--font-display);
-      padding: 8px 12px; border-radius: 10px;
-      background: color-mix(in srgb, var(--ac) 13%, var(--surface));
-      border: 1px solid color-mix(in srgb, var(--ac) 38%, transparent); color: var(--ai);
+    .gs-ag-foot {
+      margin-top: auto; padding-top: 9px; border-top: 1px dashed color-mix(in srgb, var(--ac) 30%, var(--border-subtle));
+      display: flex; align-items: center; justify-content: space-between;
+      font: 700 12px var(--font-display); color: var(--ai);
     }
-    html.theme-dark .gs-btn-demo { color: #fff; }
-    .gs-btn-ge {
-      flex: 1; text-align: center; text-decoration: none; font: 700 12px var(--font-display);
-      padding: 8px 12px; border-radius: 10px; background: var(--ac); color: #fff;
-    }
+    html.theme-dark .gs-ag-foot { color: #93C5FD; }
   </style>
 </head>
 <body>
@@ -608,6 +598,7 @@
     });
 
     requestAnimationFrame(function () {
+      if (window.triggerIosMatrixEnter) window.triggerIosMatrixEnter(grid);
       drawDottedTreeLines();
       setTimeout(drawDottedTreeLines, 120);
     });
@@ -650,7 +641,7 @@
       var hue = PALETTE[idx % PALETTE.length];
       var pCls = ag.priorityTier === 'P0' ? 'p0' : (ag.priorityTier === 'P1' ? 'p1' : 'p2');
       var pLbl = ag.priorityTier === 'P0' ? 'P0 · Deploy First' : (ag.priorityTier === 'P1' ? 'P1 · Build Next' : 'P2 · Enabler');
-      return '<article class="gs-ag-card" style="--ac:' + hue.c + ';--ai:' + hue.i + ';animation-delay:' + (90 + idx * 75) + 'ms">' +
+      return '<a class="gs-ag-card" href="agent_blueprint.html?agent=' + encodeURIComponent(ag.id) + '&persona=' + encodeURIComponent(p.id) + '" style="--ac:' + hue.c + ';--ai:' + hue.i + ';animation-delay:' + (90 + idx * 75) + 'ms">' +
         '<div class="gs-ag-top">' +
           '<span class="gs-pill ' + pCls + '">' + pLbl + '</span>' +
           (ag.isNewCpgAgent ? '<span class="gs-pill new">+ NEW CPG</span>' : '') +
@@ -662,11 +653,11 @@
           '<div class="gs-mp"><b>How it works:</b>' + esc(shortSentence(ag.does, 115)) + '</div>' +
           '<div class="gs-mp"><b>Human sign-off:</b>' + esc(shortSentence(ag.stopsAt, 110)) + '</div>' +
         '</div>' +
-        '<div class="gs-ag-actions">' +
-          '<a class="gs-btn-demo" href="demo_stage.html?agent=' + encodeURIComponent(ag.id) + '">&#9654; Watch Demo</a>' +
-          '<a class="gs-btn-ge" target="_blank" rel="noopener noreferrer" href="' + esc(ag.geUrl) + '">&#10022; Gemini Enterprise &#8599;</a>' +
+        '<div class="gs-ag-foot">' +
+          '<span>Agent Architecture &amp; Tech Details</span>' +
+          '<span>&rarr;</span>' +
         '</div>' +
-      '</article>';
+      '</a>';
     }).join('');
 
     bodyEl.innerHTML =
@@ -740,5 +731,6 @@
   selectSub(subId);
 })();
 </script>
+<script src="../assets/ios_transitions.js"></script>
 </body>
 </html>
