@@ -24,7 +24,7 @@ try {
     --shadow-sm: 0 2px 8px rgba(18,19,23,.05); --shadow-md: 0 8px 24px rgba(18,19,23,.09);
     --font: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --mono: "Roboto Mono", ui-monospace, monospace;
-    --wrap: 1380px;
+    --wrap: 1420px;
   }
   html.theme-dark {
     --canvas: #121317; --surface: #1A1C22; --surface-sunk: #15171C;
@@ -50,7 +50,7 @@ try {
   .mast-count { font: 700 13px var(--mono); color: var(--accent); }
   .mast-cta { font: 600 12px var(--font); text-decoration: none; color: var(--surface); background: var(--text); padding: 7px 15px; border-radius: 999px; }
 
-  /* Compact Pillar & Persona Switcher (clean flow, zero clipping over Hero card) */
+  /* Compact Pillar & Persona Switcher */
   .roster { position: relative; z-index: 40; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 0 10px; }
   .domain-row { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
   .fchip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; font: 600 12px var(--font); transition: all .15s; }
@@ -63,33 +63,9 @@ try {
   .pchip-av { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font: 700 10px var(--font); color: #fff; }
   .pchip-sub { font-weight: 400; font-size: 11px; color: var(--text-dim); }
 
-  /* macOS Genie Container Animation */
-  .genie-stage {
-    padding: 24px 0 64px;
-    transform-origin: var(--gx, 50%) 0%;
-  }
-  .genie-stage.genie-enter {
-    animation: genieUnfurl .48s cubic-bezier(.20, 1, .32, 1) forwards;
-  }
-  @keyframes genieUnfurl {
-    0% {
-      opacity: 0;
-      transform: perspective(1100px) scaleX(0.14) scaleY(0.06) skewX(5deg) rotateX(12deg);
-      filter: blur(7px);
-    }
-    58% {
-      opacity: 1;
-      transform: perspective(1100px) scaleX(1.012) scaleY(1.008) skewX(-0.5deg) rotateX(-1deg);
-      filter: blur(0);
-    }
-    100% {
-      opacity: 1;
-      transform: perspective(1100px) scaleX(1) scaleY(1) skewX(0) rotateX(0);
-      filter: blur(0);
-    }
-  }
+  .genie-stage { padding: 24px 0 64px; transform-origin: var(--gx, 50%) 0%; }
 
-  /* 1. Colorful Hero Card (Persona Role FIRST, Human Name + What They Do, 3 Vibrant KPI Tiles) */
+  /* 1. Colorful Hero Card */
   .hero-card {
     position: relative; overflow: hidden; border-radius: 24px; padding: 26px 28px;
     background: linear-gradient(135deg, color-mix(in srgb, var(--pc, #3186FF) 12%, var(--surface)) 0%, var(--surface) 58%, color-mix(in srgb, #4B31E3 8%, var(--surface)) 100%);
@@ -131,43 +107,49 @@ try {
   .kpi-box b { display: block; font-size: 22px; font-weight: 700; line-height: 1.15; margin-bottom: 2px; }
   .kpi-box span { font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); }
 
-  /* 2. Animated How-Agents-Work Strip */
-  .how-strip {
-    margin-top: 18px; padding: 14px 20px; border-radius: 18px;
-    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
-    display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 14px;
+  /* 2. Amandeep-Style 4-Lever Role Value Strip (Proportional Bar + Load-Bearing Zeros) */
+  .bstrip {
+    margin-top: 18px; padding: 18px 22px;
+    border: 1px solid var(--border); border-radius: 18px;
+    background: var(--surface); box-shadow: var(--shadow-sm);
   }
-  @media (max-width: 860px) { .how-strip { grid-template-columns: 1fr; } .how-conn { display: none; } }
-  .how-step { display: flex; align-items: center; gap: 12px; }
-  .how-num {
-    width: 32px; height: 32px; border-radius: 10px; flex-shrink: 0;
-    display: inline-flex; align-items: center; justify-content: center;
-    font: 700 12px var(--mono); color: #fff;
+  .bstrip-h {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 14px; flex-wrap: wrap; margin-bottom: 11px;
+    font: 700 11px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim);
   }
-  .how-step b { display: block; font-size: 13.5px; }
-  .how-step span { font-size: 12px; color: var(--text-muted); }
-  .how-conn { width: 58px; height: 14px; }
-  .how-conn path { fill: none; stroke: var(--g-blue); stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 2 9; animation: hFlow 1s linear infinite; }
-  @keyframes hFlow { to { stroke-dashoffset: -22; } }
+  .bstrip-total { font: 700 13px var(--mono); color: var(--green-ink); text-transform: none; letter-spacing: 0; }
+  .bstrip-bar {
+    display: flex; height: 8px; border-radius: 4px; overflow: hidden;
+    background: var(--surface-sunk); margin-bottom: 15px; gap: 2px;
+  }
+  .bstrip-seg { display: block; height: 100%; border-radius: 2px; }
+  .bstrip-cells { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 920px) { .bstrip-cells { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 540px) { .bstrip-cells { grid-template-columns: 1fr; } }
+  .bcell-lv {
+    padding: 10px 12px; border-radius: 12px; background: var(--surface-sunk);
+    border: 1px solid var(--border); border-left: 3.5px solid var(--lc);
+  }
+  .bcell-lv.is-zero { opacity: .55; border-left-color: var(--border-strong); }
+  .bcell-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+  .bcell-key { font-size: 12.5px; font-weight: 700; color: var(--text); }
+  .bcell-val { font: 700 15px var(--mono); color: var(--text); }
+  .bcell-lv.is-zero .bcell-val { color: var(--text-dim); font-weight: 500; }
+  .bcell-sub { font-size: 11.5px; line-height: 1.42; color: var(--text-muted); }
+  .bcell-lv.is-zero .bcell-sub { color: var(--text-dim); font-style: italic; }
 
-  /* 3. Colorful Highlighted Agentic Suite Grid */
+  /* 3. Colorful Highlighted Agentic Suite Grid (With Per-Agent 4-Lever Attribution!) */
   .suite-sec { margin-top: 22px; }
-  .suite-bar { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+  .suite-bar { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
   .suite-bar h2 { margin: 0; font-size: 21px; font-weight: 700; }
-  .lever-pills { display: flex; flex-wrap: wrap; gap: 7px; }
-  .lv-pill {
-    font: 700 11px var(--mono); padding: 5px 11px; border-radius: 999px;
-    background: color-mix(in srgb, var(--lc) 12%, var(--surface));
-    border: 1px solid color-mix(in srgb, var(--lc) 32%, transparent);
-    color: var(--text);
-  }
-  .lv-pill b { color: var(--lc); }
+  .suite-note { font: 600 12px var(--mono); color: var(--text-muted); }
 
-  .suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; }
+  .suite-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
   .ag-card {
     text-decoration: none; color: inherit; cursor: pointer;
     border-radius: 20px; padding: 20px 22px; display: flex; flex-direction: column; gap: 12px;
-    background: linear-gradient(168deg, color-mix(in srgb, var(--ac) 11%, var(--surface)) 0%, var(--surface) 64%);
+    background: linear-gradient(168deg, color-mix(in srgb, var(--ac) 10%, var(--surface)) 0%, var(--surface) 62%);
     border: 1.5px solid color-mix(in srgb, var(--ac) 34%, var(--border));
     border-top: 4.5px solid var(--ac);
     box-shadow: var(--shadow-sm);
@@ -192,6 +174,27 @@ try {
   .ag-title { font-size: 19px; font-weight: 700; margin: 0; line-height: 1.22; }
   .ag-desc { font-size: 13.5px; color: var(--text-muted); line-height: 1.5; margin: 0; }
 
+  /* Per-Agent 2×2 Lever Mini-Matrix */
+  .ag-levers {
+    padding: 10px 11px; border-radius: 12px;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .ag-lev-hdr {
+    font: 700 10px var(--mono); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 7px; display: flex; justify-content: space-between;
+  }
+  .ag-lev-hdr b { color: var(--green-ink); }
+  .ag-lev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .ag-lv {
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    padding: 5px 8px; border-radius: 7px; background: var(--surface-sunk);
+    border-left: 3px solid var(--lc); font-size: 11.5px;
+  }
+  .ag-lv span { font-weight: 600; color: var(--text); }
+  .ag-lv b { font: 700 11.5px var(--mono); color: var(--text); white-space: nowrap; }
+  .ag-lv.z { opacity: .48; border-left-color: var(--border-strong); }
+  .ag-lv.z b { color: var(--text-dim); font-weight: 500; }
+
   .ag-highlights { display: flex; flex-direction: column; gap: 7px; }
   .ag-hl {
     padding: 8px 11px; border-radius: 11px; background: var(--surface-sunk);
@@ -208,7 +211,7 @@ try {
   .ag-foot-link span:last-child { transition: transform .18s; }
 </style>
 
-  <script src="../assets/ios_transitions.js"></script>
+<script src="../assets/ios_transitions.js"></script>
 </head>
 <body>
 
@@ -223,8 +226,8 @@ try {
     <nav class="mast-nav">
       <button class="mast-btn" id="themeBtn" type="button">Dark</button>
       <a class="mast-btn" id="backPillar" href="../pages/pillar.html">&larr; Back to Pillar</a>
-      <a class="mast-btn" id="backBoard" href="index.html">Persona Map</a>
-      <span class="mast-count" id="counter">01 / 60</span>
+      <a class="mast-btn" id="backBoard" href="index.html">Persona Chessboard</a>
+      <span class="mast-count" id="counter">P01 / 60</span>
       <a class="mast-cta" href="../index.html">All Slides &#8599;</a>
     </nav>
   </div>
@@ -251,6 +254,12 @@ try {
   var depts = DATA.departments;
 
   var HUES = ['#3186FF', '#4B31E3', '#00AF57', '#0A7684'];
+  var LEVER_META = [
+    { k: 'prod',   label: 'Productivity',     color: '#3186FF' },
+    { k: 'flow',   label: 'Flow & Capital',   color: '#00AF57' },
+    { k: 'shield', label: 'Risk & Leakage',   color: '#4B31E3' },
+    { k: 'recov',  label: 'Revenue Recovery', color: '#12B5CB' }
+  ];
 
   var themeBtn = document.getElementById('themeBtn');
   function syncThemeBtn() { themeBtn.textContent = document.documentElement.classList.contains('theme-dark') ? 'Light' : 'Dark'; }
@@ -263,11 +272,14 @@ try {
   });
 
   var qs = new URLSearchParams(location.search);
-  var currentId = qs.get('id') || personas[0].id;
+  var currentId = qs.get('id') || qs.get('p') || personas[0].id;
   var focusAgentId = qs.get('agent') || '';
   var activeDept = qs.get('dept') || 'all';
   var searchQuery = '';
 
+  /* Allow lookup by code (e.g. P01) or id */
+  var byCode = personas.find(function (p) { return p.code.toLowerCase() === String(currentId).toLowerCase(); });
+  if (byCode) currentId = byCode.id;
   if (!personas.some(function (p) { return p.id === currentId; })) currentId = personas[0].id;
 
   function esc(s) {
@@ -348,17 +360,45 @@ try {
     document.getElementById('backBoard').href = 'index.html' + (activeDept !== 'all' ? '?dept=' + encodeURIComponent(activeDept) : '');
     document.getElementById('backPillar').href = '../pages/pillar.html?dept=' + encodeURIComponent(p.deptId) + '&sub=' + encodeURIComponent(p.subPillarId || '');
 
-    var v = p.val || { prod: 0.6, flow: 7.2, shield: 7.2, recov: 3.6, total: 18.6 };
+    var v = p.val || { prod: 0.7, flow: 0, shield: 14, recov: 0, total: 14.7, leverCount: 2, basis: {} };
+    var vBasis = v.basis || {};
     var suite = p.agentSuite || [];
     var sysList = String(p.systemsTouched || '').split('·').map(function (x) { return x.trim(); }).filter(Boolean);
+
+    /* Proportional 4-lever bar + researched basis strip for this Persona */
+    var totForBar = Math.max(0.01, v.total || 1);
+    var segsHtml = LEVER_META.map(function (L) {
+      var lvVal = Number(v[L.k] || 0);
+      if (lvVal <= 0) return '';
+      var pct = Math.max(3, (lvVal / totForBar) * 100).toFixed(1);
+      return '<span class="bstrip-seg" style="width:' + pct + '%;background:' + L.color + '" title="' + esc(L.label + ': ' + fmtINR(lvVal)) + '"></span>';
+    }).join('');
+
+    var bcellsHtml = LEVER_META.map(function (L) {
+      var lvVal = Number(v[L.k] || 0);
+      var noteTxt = vBasis[L.k] || '';
+      return '<div class="bcell-lv' + (lvVal > 0 ? '' : ' is-zero') + '" style="--lc:' + L.color + '">' +
+        '<div class="bcell-top"><span class="bcell-key">' + esc(L.label) + '</span><span class="bcell-val">' + (lvVal > 0 ? fmtINR(lvVal) : '—') + '</span></div>' +
+        '<div class="bcell-sub">' + esc(noteTxt) + '</div>' +
+      '</div>';
+    }).join('');
 
     var cardsHtml = suite.map(function (a, i) {
       var ac = HUES[i % HUES.length];
       var pCls = a.priorityTier === 'P0' ? 'ab-p0' : (a.priorityTier === 'P1' ? 'ab-p1' : 'ab-p2');
       var pTxt = a.priorityTier === 'P0' ? 'P0 · Deploy First (' + a.paybackDays + 'd)' : (a.priorityTier === 'P1' ? 'P1 · Build Next' : 'P2 · Enabler');
       var isFocus = focusAgentId && a.id === focusAgentId;
+      var agLvCnt = a.leverCount || LEVER_META.filter(function (L) { return (a[L.k] || 0) > 0; }).length;
 
-      return '<a class="ag-card' + (isFocus ? ' is-focus' : '') + '" href="../pages/agent_blueprint.html?agent=' + encodeURIComponent(a.id) + '&persona=' + encodeURIComponent(p.id) + '" style="--ac:' + ac + ';animation-delay:' + (80 + i * 75) + 'ms">' +
+      var miniLevers = LEVER_META.map(function (L) {
+        var val = Number(a[L.k] || 0);
+        return '<div class="ag-lv' + (val > 0 ? '' : ' z') + '" style="--lc:' + L.color + '" title="' + esc((a.leverBasis && a.leverBasis[L.k]) || '') + '">' +
+          '<span>' + esc(L.label) + '</span>' +
+          '<b>' + (val > 0 ? fmtINR(val) : '—') + '</b>' +
+        '</div>';
+      }).join('');
+
+      return '<a class="ag-card' + (isFocus ? ' is-focus' : '') + '" href="../pages/agent_blueprint.html?agent=' + encodeURIComponent(a.id) + '&persona=' + encodeURIComponent(p.id) + '" style="--ac:' + ac + '">' +
         '<div class="ag-badges">' +
           '<span class="ab ' + pCls + '">' + pTxt + '</span>' +
           (a.isNewCpgAgent ? '<span class="ab ab-new">+ NEW CPG</span>' : '') +
@@ -366,13 +406,17 @@ try {
           '<span class="ag-val">' + fmtINR(a.annualValueCr, '/yr') + '</span>' +
         '</div>' +
         '<h3 class="ag-title">' + esc(a.name) + '</h3>' +
-        '<p class="ag-desc">' + esc(concise(a.oneLine, 160)) + '</p>' +
+        '<p class="ag-desc">' + esc(concise(a.oneLine, 155)) + '</p>' +
+        '<div class="ag-levers">' +
+          '<div class="ag-lev-hdr"><span>Levers Improved</span><b>' + agLvCnt + ' of 4 Active</b></div>' +
+          '<div class="ag-lev-grid">' + miniLevers + '</div>' +
+        '</div>' +
         '<div class="ag-highlights">' +
-          '<div class="ag-hl"><b>How It Works:</b>' + esc(concise(a.does, 125)) + '</div>' +
-          '<div class="ag-hl"><b>Human Gate:</b>' + esc(concise(a.stopsAt, 120)) + '</div>' +
+          '<div class="ag-hl"><b>How It Works:</b>' + esc(concise(a.does, 120)) + '</div>' +
+          '<div class="ag-hl"><b>Human Gate:</b>' + esc(concise(a.stopsAt, 115)) + '</div>' +
         '</div>' +
         '<div class="ag-foot-link">' +
-          '<span>Agent Architecture &amp; Tech Details</span>' +
+          '<span>Agent Architecture &amp; 4-Lever Math</span>' +
           '<span>&rarr;</span>' +
         '</div>' +
       '</a>';
@@ -400,29 +444,25 @@ try {
           '</div>' +
         '</div>' +
         '<div class="kpi-stack">' +
-          '<div class="kpi-box"><b style="color:#00AF57">' + fmtINR(v.total, '/yr') + '</b><span>Annual Value</span></div>' +
+          '<div class="kpi-box"><b style="color:#00AF57">' + fmtINR(v.total, '/yr') + '</b><span>Role Owned Value</span></div>' +
           '<div class="kpi-box"><b style="color:#3186FF">' + p.toilHoursBefore + 'h &rarr; ' + p.toilHoursAfter + 'h</b><span>Weekly Toil</span></div>' +
-          '<div class="kpi-box"><b style="color:#4B31E3">' + suite.length + ' Agents</b><span>Agentic Suite</span></div>' +
+          '<div class="kpi-box"><b style="color:#4B31E3">' + (v.leverCount || 2) + ' of 4</b><span>Levers Moved</span></div>' +
         '</div>' +
       '</section>' +
 
-      '<section class="how-strip">' +
-        '<div class="how-step"><span class="how-num" style="background:#3186FF">01</span><div><b>Live CPG Signals</b><span>' + esc(p.systemsTouched) + '</span></div></div>' +
-        '<svg class="how-conn" viewBox="0 0 58 14"><path d="M 2 7 L 56 7"/></svg>' +
-        '<div class="how-step"><span class="how-num" style="background:#4B31E3">02</span><div><b>' + suite.length + ' Specialized Agents Coordinate</b><span>Sense anomalies, run OR-Tools math &amp; prepare drafts</span></div></div>' +
-        '<svg class="how-conn" viewBox="0 0 58 14"><path d="M 2 7 L 56 7"/></svg>' +
-        '<div class="how-step"><span class="how-num" style="background:#00AF57">03</span><div><b>' + esc(firstName) + ' Approves in 1 Click</b><span>System of record stays untouched until human sign-off</span></div></div>' +
+      '<section class="bstrip">' +
+        '<div class="bstrip-h">' +
+          '<span>4-Lever Value Attribution &mdash; ' + esc(p.name) + ' (' + (v.leverCount || 2) + ' of 4 Levers Active · Zero Double-Counting)</span>' +
+          '<span class="bstrip-total">Total Owned Impact: ' + fmtINR(v.total, '/yr') + '</span>' +
+        '</div>' +
+        '<div class="bstrip-bar">' + segsHtml + '</div>' +
+        '<div class="bstrip-cells">' + bcellsHtml + '</div>' +
       '</section>' +
 
       '<section class="suite-sec">' +
         '<div class="suite-bar">' +
           '<h2>' + esc(firstName) + '\'s Agentic Suite (' + suite.length + ' Agents)</h2>' +
-          '<div class="lever-pills">' +
-            '<span class="lv-pill" style="--lc:#3186FF">Productivity <b>' + fmtINR(v.prod) + '</b></span>' +
-            '<span class="lv-pill" style="--lc:#00AF57">Flow <b>' + fmtINR(v.flow) + '</b></span>' +
-            '<span class="lv-pill" style="--lc:#4B31E3">Risk Shield <b>' + fmtINR(v.shield) + '</b></span>' +
-            '<span class="lv-pill" style="--lc:#12B5CB">Recovery <b>' + fmtINR(v.recov) + '</b></span>' +
-          '</div>' +
+          '<span class="suite-note">Each agent shows exact levers improved (&mdash; = untouched lever) &middot; Click any card for Architecture</span>' +
         '</div>' +
         '<div class="suite-grid">' + cardsHtml + '</div>' +
       '</section>';

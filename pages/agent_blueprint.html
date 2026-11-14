@@ -123,6 +123,34 @@ try {
   .ab-kpi b { display: block; font-size: 21px; font-weight: 700; line-height: 1.15; margin-bottom: 3px; }
   .ab-kpi span { font: 700 10px var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--text-dim); }
 
+  /* 1b. Researched 4-Lever Value Attribution Strip (Active vs Load-Bearing Zero) */
+  .lv-strip {
+    margin-top: 18px; padding: 18px 22px; border-radius: 20px;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  }
+  .lv-strip-h {
+    display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px;
+    font: 700 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .lv-strip-h b { color: var(--green-ink); font-size: 13px; text-transform: none; letter-spacing: 0; }
+  .lv-bar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--surface-sunk); gap: 2px; margin-bottom: 14px; }
+  .lv-bar span { display: block; height: 100%; border-radius: 2px; }
+  .lv-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  @media (max-width: 960px) { .lv-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .lv-cards { grid-template-columns: 1fr; } }
+  .lv-card {
+    padding: 11px 13px; border-radius: 12px; background: var(--surface-sunk);
+    border: 1px solid var(--border); border-left: 3.5px solid var(--lc);
+  }
+  .lv-card.is-zero { opacity: .54; border-left-color: var(--border-strong); }
+  .lv-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+  .lv-name { font-size: 12.5px; font-weight: 700; color: var(--text); }
+  .lv-amt { font: 700 15px var(--mono); color: var(--text); white-space: nowrap; }
+  .lv-card.is-zero .lv-amt { color: var(--text-dim); font-weight: 500; }
+  .lv-basis { font-size: 11.5px; line-height: 1.42; color: var(--text-muted); }
+  .lv-card.is-zero .lv-basis { color: var(--text-dim); font-style: italic; }
+
   /* 2. Clean 4-Stage End-to-End Runtime Architecture */
   .sec-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px; margin: 26px 0 14px; }
   .sec-head h2 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.01em; }
@@ -304,10 +332,41 @@ try {
       '</div>' +
       '<div class="ab-kpis">' +
         '<div class="ab-kpi"><b style="color:#00AF57">' + fmtINR(ag.annualValueCr, '/yr') + '</b><span>Modeled Value</span></div>' +
-        '<div class="ab-kpi"><b style="color:#3186FF">' + ag.paybackDays + ' Days</b><span>Payback Window</span></div>' +
-        '<div class="ab-kpi"><b style="color:#4B31E3">Gemini 3.1 Pro</b><span>ADK + Solver</span></div>' +
+        '<div class="ab-kpi"><b style="color:#3186FF">' + (ag.leverCount || 2) + ' of 4</b><span>Levers Moved</span></div>' +
+        '<div class="ab-kpi"><b style="color:#4B31E3">' + ag.paybackDays + ' Days</b><span>Payback Window</span></div>' +
       '</div>' +
     '</section>' +
+
+    (function () {
+      var LDEFS = [
+        { k: 'prod',   name: 'Productivity',     color: '#3186FF' },
+        { k: 'flow',   name: 'Flow & Capital',   color: '#00AF57' },
+        { k: 'shield', name: 'Risk & Leakage',   color: '#4B31E3' },
+        { k: 'recov',  name: 'Revenue Recovery', color: '#12B5CB' }
+      ];
+      var tot = Math.max(0.01, ag.annualValueCr || 1);
+      var basis = ag.leverBasis || {};
+      var segs = LDEFS.map(function (L) {
+        var v = Number(ag[L.k] || 0);
+        if (v <= 0) return '';
+        return '<span style="width:' + Math.max(3, (v / tot) * 100).toFixed(1) + '%;background:' + L.color + '"></span>';
+      }).join('');
+      var cards = LDEFS.map(function (L) {
+        var v = Number(ag[L.k] || 0);
+        return '<div class="lv-card' + (v > 0 ? '' : ' is-zero') + '" style="--lc:' + L.color + '">' +
+          '<div class="lv-top"><span class="lv-name">' + esc(L.name) + '</span><span class="lv-amt">' + (v > 0 ? fmtINR(v) : '—') + '</span></div>' +
+          '<div class="lv-basis">' + esc(basis[L.k] || '') + '</div>' +
+        '</div>';
+      }).join('');
+      return '<section class="lv-strip">' +
+        '<div class="lv-strip-h">' +
+          '<span>Researched 4-Lever Attribution &mdash; ' + (ag.leverCount || 2) + ' of 4 Levers Active (Untouched Levers Stay &mdash;)</span>' +
+          '<b>' + fmtINR(ag.annualValueCr, '/yr') + ' Total Impact</b>' +
+        '</div>' +
+        '<div class="lv-bar">' + segs + '</div>' +
+        '<div class="lv-cards">' + cards + '</div>' +
+      '</section>';
+    })() +
 
     '<div class="sec-head">' +
       '<h2>How This Agent Works &mdash; 4-Stage Runtime Architecture</h2>' +

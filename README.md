@@ -30,7 +30,7 @@ python3 -m http.server 8106
 
 ### Stage 2 · 6 Supply Chain Operations Reference (SCOR) Pillars, 24 Sub-Pillars & 60 Personas (`pages/pillar.html`, `personas/`)
 - **60 Named CPG Leaders & Multi-Agent Suites** (`personas/index.html`, `personas/dossier.html`, `pages/agent_blueprint.html`): Realistic Indian & international CPG leadership roster across Integrated Consumer Goods Manufacturing & Logistics (ICML) plants, Mother Hubs, Carrying & Forwarding Agent (CFA) depots, General Trade Distributor Management System (DMS), Modern Trade & Quick-Commerce dark stores.
-- **4-Lever Indian Rupee (`₹ Crores` & `₹ Lakhs`) Value Model**: **₹2,199.3 Cr/yr** non-double-counted modeled estate impact on a ₹42,000 Cr Cost of Goods Sold (COGS) / ₹68,000 Cr Gross Revenue CPG benchmark.
+- **4-Lever Indian Rupee (`₹ Crores` & `₹ Lakhs`) Value Model**: **₹1,994.5 Cr/yr** non-double-counted modeled estate impact on a ₹42,000 Cr Cost of Goods Sold (COGS) / ₹68,000 Cr Gross Revenue CPG benchmark.
 
 ### Stage 3 · From Personas to Production (`pages/08..15`)
 - **`09` · How Agents Are Built (`pages/08_how_agents_are_built.html`)**: Live interactive **No-code** Gemini Enterprise chat, **Low-code** Agent Designer FEFO workflow, and **High-code** Google ADK Python deploy (`gemini-3.1-pro-preview`).
@@ -40,7 +40,7 @@ python3 -m http.server 8106
 - **`13` · Where People Meet the Agent (`pages/10_surfaces.html`)**: Interactive 4-surface workbench (Gemini Enterprise chat, Cloud Run Cockpit, embedded inside SAP S/4HANA / WMS, and 05:30 scheduled background flow).
 - **`14` · Structural Resilience (`pages/12_structural_resilience.html`)**: Unbraced Point-Solution Silo Stack vs. Fortified 78-Agent CPG Mesh.
 - **`15` · Why Google & Gartner (`pages/14_why_google_gartner.html`)**: Animated 6-layer Google Cloud AI stack (`ai_stack_layers.webm`) + 2026 Gartner® Magic Quadrant™ for Enterprise AI Assistants.
-- **`16` · 100 Days to Proof of Value (`pages/15_100_days_pov.html`)**: Compounding Value-Over-Time SVG Trajectory Curve to ₹2,199.3 Cr/yr + verified Unilever, GE Appliances, and Home Depot citations (`pages/13_proof_and_cases.html`).
+- **`16` · 100 Days to Proof of Value (`pages/15_100_days_pov.html`)**: Compounding Value-Over-Time SVG Trajectory Curve to ₹1,994.5 Cr/yr + verified Unilever, GE Appliances, and Home Depot citations (`pages/13_proof_and_cases.html`).
 
 ---
 

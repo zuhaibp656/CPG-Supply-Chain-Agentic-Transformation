@@ -319,6 +319,16 @@
 
     .gs-ag-name { font: 700 17px/1.22 var(--font-display); margin: 0; color: var(--text); }
     .gs-ag-desc { font-size: 13px; line-height: 1.48; color: var(--text-muted); margin: 0; }
+    .gs-lv-box { padding: 8px 10px; border-radius: 11px; background: var(--surface); border: 1px solid var(--border-subtle); }
+    .gs-lv-hdr { display: flex; justify-content: space-between; font: 700 9.5px var(--font-mono); letter-spacing: .07em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 5px; }
+    .gs-lv-hdr b { color: #007F3F; }
+    html.theme-dark .gs-lv-hdr b { color: #5BB974; }
+    .gs-lv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .gs-lv-cell { display: flex; justify-content: space-between; align-items: center; gap: 5px; padding: 4px 7px; border-radius: 6px; background: var(--surface-sunk); border-left: 2.5px solid var(--lc); font-size: 11px; }
+    .gs-lv-cell span { font-weight: 600; color: var(--text); }
+    .gs-lv-cell b { font: 700 11px var(--font-mono); color: var(--text); white-space: nowrap; }
+    .gs-lv-cell.z { opacity: .48; border-left-color: var(--border-subtle); }
+    .gs-lv-cell.z b { color: var(--text-dim); font-weight: 500; }
     .gs-mini-points { display: flex; flex-direction: column; gap: 6px; margin-top: 2px; }
     .gs-mp {
       font-size: 12px; line-height: 1.4; padding: 7px 10px; border-radius: 10px;
@@ -643,10 +653,23 @@
     var sysList = String(p.systemsTouched || '').split('·').map(function (x) { return x.trim(); }).filter(Boolean);
     var firstName = (p.personName || 'Leader').split(' ')[0];
 
+    var GS_LEVERS = [
+      { k: 'prod',   label: 'Productivity',   color: '#3186FF' },
+      { k: 'flow',   label: 'Flow & Capital', color: '#00AF57' },
+      { k: 'shield', label: 'Risk & Leakage', color: '#4B31E3' },
+      { k: 'recov',  label: 'Rev. Recovery',  color: '#12B5CB' }
+    ];
     var suiteHtml = suite.map(function (ag, idx) {
       var hue = PALETTE[idx % PALETTE.length];
       var pCls = ag.priorityTier === 'P0' ? 'p0' : (ag.priorityTier === 'P1' ? 'p1' : 'p2');
       var pLbl = ag.priorityTier === 'P0' ? 'P0 · Deploy First' : (ag.priorityTier === 'P1' ? 'P1 · Build Next' : 'P2 · Enabler');
+      var agLvCnt = ag.leverCount || GS_LEVERS.filter(function (L) { return (ag[L.k] || 0) > 0; }).length;
+      var lvCells = GS_LEVERS.map(function (L) {
+        var val = Number(ag[L.k] || 0);
+        return '<div class="gs-lv-cell' + (val > 0 ? '' : ' z') + '" style="--lc:' + L.color + '">' +
+          '<span>' + L.label + '</span><b>' + (val > 0 ? fmtINR(val) : '—') + '</b>' +
+        '</div>';
+      }).join('');
       return '<a class="gs-ag-card" href="agent_blueprint.html?agent=' + encodeURIComponent(ag.id) + '&persona=' + encodeURIComponent(p.id) + '" style="--ac:' + hue.c + ';--ai:' + hue.i + ';animation-delay:' + (90 + idx * 75) + 'ms">' +
         '<div class="gs-ag-top">' +
           '<span class="gs-pill ' + pCls + '">' + pLbl + '</span>' +
@@ -655,12 +678,16 @@
         '</div>' +
         '<h4 class="gs-ag-name">' + esc(ag.name) + '</h4>' +
         '<p class="gs-ag-desc">' + esc(shortSentence(ag.oneLine, 145)) + '</p>' +
+        '<div class="gs-lv-box">' +
+          '<div class="gs-lv-hdr"><span>Levers Improved</span><b>' + agLvCnt + ' of 4 Active</b></div>' +
+          '<div class="gs-lv-grid">' + lvCells + '</div>' +
+        '</div>' +
         '<div class="gs-mini-points">' +
           '<div class="gs-mp"><b>How it works:</b>' + esc(shortSentence(ag.does, 115)) + '</div>' +
           '<div class="gs-mp"><b>Human sign-off:</b>' + esc(shortSentence(ag.stopsAt, 110)) + '</div>' +
         '</div>' +
         '<div class="gs-ag-foot">' +
-          '<span>Agent Architecture &amp; Tech Details</span>' +
+          '<span>Agent Architecture &amp; 4-Lever Math</span>' +
           '<span>&rarr;</span>' +
         '</div>' +
       '</a>';
@@ -689,7 +716,7 @@
         '</div>' +
         '<div class="gs-kpis">' +
           '<div class="gs-kpi"><b style="color:#00AF57">' + fmtINR(p.val.total, '/yr') + '</b><span>Role Value</span></div>' +
-          '<div class="gs-kpi"><b style="color:#3186FF">' + p.savedHrs + ' hrs/wk</b><span>Toil Saved</span></div>' +
+          '<div class="gs-kpi"><b style="color:#3186FF">' + (p.val.leverCount || 2) + ' of 4</b><span>Levers Moved</span></div>' +
           '<div class="gs-kpi"><b style="color:#4B31E3">' + suite.length + ' Agents</b><span>Active Suite</span></div>' +
         '</div>' +
       '</div>' +

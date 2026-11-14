@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Persona Map | Supply Chain Agentic Workforce &amp; Workflow Matrix</title>
+<title>Persona Map · Workforce &amp; Workflow Chessboard — CPG Supply Chain Agentic Transformation</title>
+<link rel="icon" href="../assets/media/brand/gemini_spark_fullcolor_768.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<script>
-  (function () {
-    try {
-      if ((localStorage.getItem('deck-theme') || 'light') === 'dark') {
-        document.documentElement.classList.add('theme-dark');
-      }
-    } catch (e) {}
-  })();
-</script>
-<style>
-  :root {
-    --g-blue:   #3186FF;
-    --g-purple: #4B31E3;
-    --g-cyan:   #12B5CB;
-    --g-green:  #00AF57;
-    --g-yellow: #FEC700;
-    --g-red:    #FC413D;
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap">
 
-    --blue-ink:   #286DD1;
-    --green-ink:  #007F3F;
-    --red-ink:    #C62A27;
-    --amber-ink:  #8A6200;
-    --dim-ink:    #686E7E;
+<style>
+  /* ═══ TOKENS — aligned 1:1 with Amandeep's working_deck/persona_map.html ═══ */
+  :root {
+    --g-blue:      #3186FF;
+    --g-purple:    #4B31E3;
+    --g-green:     #00AF57;
+    --g-cyan:      #12B5CB;
+    --g-yellow:    #FEC700;
+    --g-red:       #FC413D;
+    --g-grey-10:   #F8F9FC;
+    --g-grey-1200: #121317;
+
+    --blue-ink:    #286DD1;
+    --green-ink:   #0A6E3C;
+    --purple-ink:  #4B31E3;
+    --cyan-ink:    #0B7B8A;
+    --red-ink:     #C62A27;
+    --amber-ink:   #8A6200;
+    --dim-ink:     #686E7E;
 
     --canvas:        #F0F5FE;
     --surface:       #FFFFFF;
@@ -43,27 +41,44 @@
     --accent-soft:   rgba(49, 134, 255, 0.10);
 
     --crit-bg:   rgba(252, 65, 61, 0.13);
+    --crit-bg-2: rgba(252, 65, 61, 0.24);
     --fric-bg:   rgba(254, 199, 0, 0.20);
-    --hatch:     rgba(90, 98, 117, 0.17);
-    --dotcol:    rgba(90, 98, 117, 0.42);
+    --fric-bg-2: rgba(254, 199, 0, 0.38);
+    --base-bg:   #EDF0F6;
+    --base-bg-2: #DFE4EE;
+
+    --hatch:  rgba(90, 98, 117, 0.17);
+    --dotcol: rgba(90, 98, 117, 0.42);
 
     --shadow-sm: 0 1px 2px rgba(18, 19, 23, 0.06);
     --shadow-md: 0 2px 8px rgba(18, 19, 23, 0.08);
     --shadow-lg: 0 8px 28px rgba(18, 19, 23, 0.12);
     --ring:      0 0 0 3px rgba(49, 134, 255, 0.28);
 
-    --font: "Google Sans", "Google Sans Text", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font: "Google Sans", "Google Sans Text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --mono: "Roboto Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
 
-    --radius:   14px;
-    --radius-s: 10px;
-    --rowlabel-w: 350px;
-    --cell-w:     64px;
-    --cell-h:     42px;
+    --fs-9:  10px;
+    --fs-10: 11.5px;
+    --fs-11: 11.5px;
+    --fs-12: 12.5px;
+    --fs-13: 13.5px;
+    --fs-14: 15px;
+    --fs-16: 16px;
+    --fs-20: 20px;
+    --fs-28: 28px;
+    --fs-40: 40px;
+
+    --radius:     14px;
+    --radius-s:   10px;
+    --wrap:       1680px;
+    --rowlabel-w: 356px;
+    --cell-w:     54px;
+    --cell-h:     40px;
   }
 
   html.theme-dark {
-    --canvas:        #121317;
+    --canvas:        var(--g-grey-1200);
     --surface:       #1A1C22;
     --surface-sunk:  #15171C;
     --border:        #2A2D36;
@@ -73,165 +88,559 @@
     --text-dim:      #757D91;
     --blue-ink:      #7FB0FF;
     --green-ink:     #35D68A;
+    --purple-ink:    #B4A5FF;
+    --cyan-ink:      #5CE1F5;
     --red-ink:       #FF8A87;
     --amber-ink:     #FFD84D;
     --dim-ink:       #9AA2B4;
+    --crit-bg:       rgba(252, 65, 61, 0.18);
+    --crit-bg-2:     rgba(252, 65, 61, 0.32);
+    --fric-bg:       rgba(254, 199, 0, 0.16);
+    --fric-bg-2:     rgba(254, 199, 0, 0.30);
+    --base-bg:       #23262E;
+    --base-bg-2:     #2D313B;
     --hatch:         rgba(168, 175, 192, 0.15);
     --dotcol:        rgba(168, 175, 192, 0.40);
   }
 
   * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; background: var(--canvas); color: var(--text); font-family: var(--font); -webkit-font-smoothing: antialiased; }
-  a { color: inherit; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--canvas);
+    color: var(--text);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+  }
 
-  /* ── masthead ── */
-  .masthead { position: sticky; top: 0; z-index: 50; background: color-mix(in srgb, var(--surface) 90%, transparent);
-              backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); }
-  .masthead-in { max-width: 1680px; margin: 0 auto; padding: 12px clamp(16px, 3vw, 40px); display: flex; align-items: center; gap: 14px; }
-  .mast-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .mast-logo { height: 26px; width: auto; display: block; }
-  .mast-div { width: 1px; height: 18px; background: var(--border-strong); }
-  .mast-kicker { font: 600 11px var(--mono); letter-spacing: 1.3px; text-transform: uppercase; color: var(--dim-ink); }
+  /* ═══ MASTHEAD ═════════════════════════════════════════════════════════ */
+  .masthead {
+    position: sticky; top: 0; z-index: 60;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+  .masthead-in {
+    max-width: var(--wrap); margin: 0 auto;
+    padding: 0 max(20px, 2.5vw);
+    height: 56px;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .mast-brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .mast-logo  { height: 26px; width: auto; display: block; }
+  .mast-div   { width: 1px; height: 18px; background: var(--border-strong); }
+  .mast-kicker {
+    font-family: var(--mono); font-size: var(--fs-11); font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);
+  }
   .mast-spacer { flex: 1; }
-  .mast-nav { display: flex; align-items: center; gap: 10px; }
-  .mast-btn { font: 600 12.5px var(--font); padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); text-decoration: none; cursor: pointer; }
-  .mast-btn:hover { border-color: var(--accent); color: var(--text); }
-  .mast-count { font: 700 12px var(--mono); color: var(--blue-ink); }
-  .mast-cta { font: 700 12.5px var(--font); padding: 8px 15px; border-radius: 999px; background: var(--g-blue); color: #FFF; text-decoration: none; }
+  .mast-nav { display: flex; align-items: center; gap: 12px; }
+  .mast-btn {
+    font-size: var(--fs-12); font-weight: 600;
+    color: var(--text-muted); text-decoration: none;
+    padding: 6px 12px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--surface);
+    cursor: pointer; font-family: inherit;
+    transition: border-color 150ms ease, color 150ms ease;
+  }
+  .mast-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .mast-count { font-family: var(--mono); font-size: var(--fs-13); font-weight: 700; color: var(--accent); }
+  .mast-cta {
+    font-size: var(--fs-12); font-weight: 600; text-decoration: none;
+    color: var(--surface); background: var(--text);
+    padding: 7px 16px; border-radius: 999px;
+  }
+  .mast-cta:hover { opacity: 0.88; }
+  @media (max-width: 900px) { .mast-kicker, .mast-cta { display: none; } }
 
-  .wrap { max-width: 1680px; margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px) 60px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 clamp(16px, 3vw, 40px) 72px; }
 
-  /* ── head & estate ── */
-  .page-head { padding: 20px 0 18px; }
-  .kicker { font: 600 11.5px var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--dim-ink); margin-bottom: 10px; }
-  h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.14; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 10px; }
-  .sub { font-size: 18px; line-height: 1.45; color: var(--text-muted); margin: 0; max-width: 78ch; font-weight: 400; }
+  /* ═══ HEAD & ESTATE STRIP ══════════════════════════════════════════════ */
+  .page-head { padding: 18px 0 18px; }
+  .kicker {
+    font-family: var(--mono); font-size: var(--fs-11);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dim-ink); margin-bottom: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.14; font-weight: 700;
+    letter-spacing: -0.02em; margin: 0 0 10px;
+  }
+  .sub {
+    font-size: var(--fs-20); line-height: 1.45;
+    color: var(--text-muted); margin: 0; max-width: 90ch; font-weight: 400;
+  }
 
-  .estate { margin-top: 20px; display: flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; box-shadow: var(--shadow-sm); }
-  .est-cell { flex: 1 1 165px; padding: 14px 18px; border-right: 1px solid var(--border); border-top: 3px solid transparent; }
+  .estate {
+    margin-top: 22px;
+    display: flex; flex-wrap: wrap; gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .est-cell {
+    flex: 1 1 148px;
+    padding: 14px 20px;
+    border-right: 1px solid var(--border);
+    border-top: 3px solid transparent;
+    min-width: 130px;
+  }
   .est-cell:last-child { border-right: 0; }
-  .est-cell.lv-total { border-top-color: var(--ink); background: var(--surface-sunk); flex: 1.25 1 200px; }
   .est-cell.lv-prod  { border-top-color: var(--g-blue);   background: rgba(49,134,255,.06); }
   .est-cell.lv-up    { border-top-color: var(--g-green);  background: rgba(0,175,87,.06); }
   .est-cell.lv-integ { border-top-color: var(--g-purple); background: rgba(75,49,227,.06); }
   .est-cell.lv-recov { border-top-color: var(--g-cyan);   background: rgba(18,181,203,.07); }
-  .est-k { font: 600 10.5px var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim-ink); margin-bottom: 5px; }
-  .est-v { font-size: 21px; font-weight: 700; color: var(--text); }
+  .est-k {
+    font-family: var(--mono); font-size: var(--fs-10);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--dim-ink); margin-bottom: 5px;
+  }
+  .est-v { font-size: var(--fs-20); font-weight: 600; letter-spacing: -0.01em; color: var(--text); }
   .est-v.is-money { color: var(--green-ink); }
-  .est-sub { font: 500 11.5px var(--font); color: var(--text-muted); margin-top: 3px; }
-  .count-note { font: 500 12px var(--mono); color: var(--dim-ink); margin-top: 10px; }
+  .count-note { font-size: var(--fs-12); color: var(--dim-ink); margin-top: 10px; font-family: var(--mono); }
 
-  /* ── controls ── */
-  .controls { position: sticky; top: 57px; z-index: 40; background: var(--canvas); padding: 14px 0 12px; border-bottom: 1px solid var(--border); }
+  /* ═══ STICKY CONTROLS & LEGEND ═════════════════════════════════════════ */
+  .controls {
+    position: sticky; top: 56px; z-index: 40;
+    background: var(--canvas);
+    padding: 14px 0 12px;
+    border-bottom: 1px solid var(--border);
+  }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .chip { font: 500 13px/1 var(--font); padding: 9px 14px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
-  .chip:hover { border-color: var(--accent); color: var(--text); }
-  .chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--blue-ink); font-weight: 600; }
-  .chip .n { font: 600 11px var(--mono); color: var(--dim-ink); }
-  .chip[aria-pressed="true"] .n { color: var(--blue-ink); }
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; }
+  .domain-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+  .domain-tab {
+    font: 600 13px/1 var(--font);
+    padding: 9px 15px; border-radius: 999px; cursor: pointer; text-decoration: none;
+    border: 1px solid var(--border-strong); color: var(--text-muted); background: var(--surface);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: border-color .14s, color .14s, background .14s;
+  }
+  .domain-tab .n { font-family: var(--mono); font-size: 11px; font-weight: 500; opacity: .75; }
+  .domain-tab[aria-selected="true"] { background: #1A73E8; border-color: #1A73E8; color: #FFF; }
+  .domain-tab[aria-selected="true"] .n { color: #FFF; opacity: .9; }
+  .domain-tab:hover:not([aria-selected="true"]) { border-color: #1A73E8; color: #1A73E8; }
 
-  .viewtoggle { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 8px; overflow: hidden; margin-left: auto; }
-  .vt-btn { font: 600 12px var(--font); padding: 7px 14px; border: 0; background: var(--surface); color: var(--text-muted); cursor: pointer; }
+  .viewtoggle {
+    display: inline-flex; gap: 0;
+    border: 1px solid var(--border-strong);
+    border-radius: 8px; overflow: hidden;
+    margin-left: auto; flex: none;
+  }
+  .vt-btn {
+    font-family: var(--font); font-size: var(--fs-12); font-weight: 600;
+    padding: 7px 15px; border: 0;
+    background: var(--surface); color: var(--text-muted);
+    cursor: pointer; transition: background .15s, color .15s; white-space: nowrap;
+  }
   .vt-btn + .vt-btn { border-left: 1px solid var(--border-strong); }
+  .vt-btn:hover { background: var(--surface-sunk); color: var(--text); }
   .vt-btn[aria-pressed="true"] { background: var(--g-blue); color: #FFF; }
 
-  .legend { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); font-size: 12px; color: var(--text-muted); align-items: center; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 22px;
+    margin-top: 14px; padding-top: 13px;
+    border-top: 1px dashed var(--border);
+    font-size: var(--fs-12); color: var(--text-muted);
+  }
   .legend[hidden] { display: none; }
+  .lg-group { display: flex; align-items: center; gap: 13px; flex-wrap: wrap; }
+  .lg-title {
+    font-family: var(--mono); font-size: var(--fs-10);
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim-ink);
+  }
   .lg-item { display: inline-flex; align-items: center; gap: 7px; }
-  .lg-sw { width: 26px; height: 17px; border-radius: 4px; border: 1px solid var(--border-strong); flex: none; }
-  .lg-sw.own-agentic { background: var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-blue); }
-  .lg-sw.own-system  { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--surface-sunk); }
-  .lg-sw.own-human   { background: radial-gradient(circle at 50% 50%, var(--dotcol) 0 1.5px, transparent 2px); border: 1.5px dashed var(--text-dim); }
-  .lg-sw.prio-first  { background: repeating-linear-gradient(45deg, rgba(252,65,61,0) 0 4px, rgba(252,65,61,.40) 4px 6px), var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-red); }
-  .lg-sw.prio-next   { background: repeating-linear-gradient(45deg, rgba(254,199,0,0) 0 4px, rgba(254,199,0,.40) 4px 6px), var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-yellow); }
+  .lg-note { font-size: var(--fs-11); color: var(--text-dim); font-style: italic; }
+  .lg-sw {
+    width: 26px; height: 17px; border-radius: 4px;
+    border: 1px solid var(--border-strong); flex: none;
+  }
+  .lg-sw.own-agentic {
+    background: var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-blue);
+  }
+  .lg-sw.own-system {
+    background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--surface-sunk);
+    border: 1px solid var(--border-strong);
+  }
+  .lg-sw.own-human {
+    background: radial-gradient(circle at 50% 50%, var(--dotcol) 0 1.5px, transparent 2px);
+    border: 1.5px dashed var(--text-dim);
+  }
+  .lg-sw.prio-first {
+    background: repeating-linear-gradient(45deg, rgba(252, 65, 61, 0) 0 4px, rgba(252, 65, 61, .40) 4px 6px), var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-red);
+  }
+  .lg-sw.prio-next {
+    background: repeating-linear-gradient(45deg, rgba(254, 199, 0, 0) 0 4px, rgba(254, 199, 0, .40) 4px 6px), var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-yellow);
+  }
+  .lg-ramp { display: inline-flex; align-items: center; gap: 9px; }
+  .lg-bar { width: 190px; height: 13px; border-radius: 3px; border: 1px solid var(--border-strong); }
+  .lg-tick { font-family: var(--mono); font-size: var(--fs-10); color: var(--dim-ink); }
 
-  /* ── board + sticky drawer ── */
-  .stage { display: flex; gap: 18px; align-items: flex-start; margin: 20px 0 0; }
-  @media (max-width: 1100px) { .stage { flex-direction: column; } }
-  .board-shell { flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); overflow: hidden; box-shadow: var(--shadow-sm); }
-  .board-scroll { max-height: 620px; overflow: auto; }
-  .board { display: table; min-width: 100%; }
+  /* ═══ BOARD + STICKY 480PX RIGHT-SIDE DRAWER ═══════════════════════════ */
+  .stage { display: flex; gap: 16px; align-items: flex-start; margin: 20px 0 0; }
+  .stage > .board-shell { flex: 1; min-width: 0; margin: 0; }
 
-  .bhead { display: flex; align-items: stretch; position: sticky; top: 0; z-index: 20; background: var(--surface-sunk); border-bottom: 1px solid var(--border-strong); }
-  .bhead .rowlabel { background: var(--surface-sunk); height: 38px; font: 700 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); padding: 0 14px; }
-  .colaxis { flex: 1; display: flex; align-items: center; gap: 10px; padding: 0 14px; height: 38px; font: 700 11px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-  .colaxis .flow { flex: 1; height: 1px; background: var(--border-strong); }
+  .board-shell {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .board-scroll {
+    max-height: 580px;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+  .board { display: table; border-collapse: separate; min-width: 100%; }
 
-  .brow { display: flex; align-items: stretch; border-bottom: 1px solid var(--border); }
-  .brow:last-child { border-bottom: 0; }
+  .brow { display: flex; align-items: stretch; }
+  .brow:not(:last-child) { border-bottom: 1px solid var(--border); }
+  .brow.is-hidden { display: none; }
   .brow.is-active { background: var(--accent-soft); }
 
-  .rowlabel { width: var(--rowlabel-w); flex: none; position: sticky; left: 0; z-index: 10; background: var(--surface); border-right: 1px solid var(--border-strong);
-              padding: 8px 14px; display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
+  .bhead {
+    display: flex; align-items: stretch;
+    position: sticky; top: 0; z-index: 20;
+    background: var(--surface-sunk);
+    border-bottom: 1px solid var(--border-strong);
+  }
+  .bhead .rowlabel {
+    background: var(--surface-sunk);
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    font-family: var(--mono); font-size: var(--fs-10); font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-muted); padding: 0 14px; height: 38px;
+  }
+  .colaxis {
+    flex: 1; min-width: 0;
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 14px; height: 38px;
+    font-family: var(--mono); font-size: var(--fs-10); font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+  }
+  html:not(.theme-dark) .bhead .rowlabel, html:not(.theme-dark) .colaxis { color: #3C4043; }
+  .colaxis .flow { flex: 1; height: 1px; background: #9AA0A6; }
+
+  .rowlabel {
+    width: var(--rowlabel-w); flex: none;
+    position: sticky; left: 0; z-index: 10;
+    background: var(--surface);
+    border-right: 1px solid var(--border-strong);
+    padding: 9px 14px;
+    display: flex; align-items: center; gap: 11px;
+    text-align: left; cursor: pointer;
+    font: inherit; color: inherit; text-decoration: none;
+    transition: background .12s;
+  }
   .rowlabel:hover { background: var(--surface-sunk); }
-  .pavatar { width: 28px; height: 28px; border-radius: 50%; flex: none; display: inline-flex; align-items: center; justify-content: center;
-             font: 700 12px var(--font); color: #FFF; }
-  .pmeta { min-width: 0; flex: 1; }
-  .pname { display: block; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .psub { display: block; font-size: 11px; color: var(--dim-ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
-  .pcode { font: 700 11px var(--mono); color: var(--blue-ink); }
-  .rowval { flex: none; font: 700 11.5px/1 var(--mono); color: var(--green-ink); background: rgba(0,175,87,.10); border: 1px solid rgba(0,175,87,.25); border-radius: 999px; padding: 4px 8px; }
-  .plive { flex: none; display: inline-flex; align-items: center; gap: 5px; font: 700 9.5px/1 var(--mono); color: #FFF; background: var(--g-green); border-radius: 999px; padding: 4px 7px; }
-  .plive::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #FFF; }
+  .brow.is-active .rowlabel { background: var(--accent-soft); }
 
-  .prio-why { margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  @media (max-width: 900px) { .prio-why { grid-template-columns: 1fr; } }
-  .pw-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; border-top: 3px solid transparent; box-shadow: var(--shadow-sm); }
-  .pw-card.p1 { border-top-color: var(--g-red); }
-  .pw-card.p2 { border-top-color: var(--g-yellow); }
-  .pw-card.pu { border-top-color: var(--text-dim); }
-  .pw-k { font: 700 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
-  .pw-t { font: 700 15px var(--font); margin-bottom: 6px; }
-  .pw-d { font-size: 13px; line-height: 1.55; color: var(--text-muted); margin: 0; }
+  .pmono {
+    width: 28px; height: 28px; flex: none;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+    font: 700 11px/1 var(--font); color: #FFF;
+    box-shadow: 0 0 0 1px rgba(18,19,23,.08);
+  }
+  .pmeta { min-width: 0; flex: 1; display: block; }
+  .pname {
+    display: block; font-size: var(--fs-13); font-weight: 600;
+    line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .psub {
+    display: block; font-size: var(--fs-10); color: var(--dim-ink);
+    margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .pcode { font-family: var(--mono); font-weight: 700; color: var(--blue-ink); letter-spacing: 0.02em; }
+  .plive {
+    flex: none; display: inline-flex; align-items: center; gap: 5px;
+    font: 700 9.5px/1 var(--mono); letter-spacing: .06em; text-transform: uppercase;
+    color: #FFF; background: var(--g-green); border-radius: 999px; padding: 4px 8px;
+    box-shadow: 0 0 0 3px rgba(0, 175, 87, .16); cursor: pointer;
+  }
+  .plive::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%; background: #FFF;
+    animation: livePulse 1.6s ease-in-out infinite;
+  }
+  @keyframes livePulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.9); } 50% { box-shadow: 0 0 0 4px rgba(255,255,255,0); } }
+  .pval {
+    display: block; font-family: var(--mono); font-size: var(--fs-11);
+    font-weight: 600; color: var(--green-ink);
+    flex: none; text-align: right; white-space: nowrap;
+  }
 
-  .lever-foot { margin: 22px 0 40px; padding: 20px 22px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
-  .lf-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 12px; }
-  @media (max-width: 980px) { .lf-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px) { .lf-grid { grid-template-columns: 1fr; } }
-  .lf-item { padding: 12px 14px; border-radius: 10px; background: var(--surface-sunk); border-left: 3px solid var(--lc, var(--g-blue)); }
-  .lf-item b { display: block; font-size: 12.5px; margin-bottom: 4px; }
-  .lf-item span { display: block; font-size: 12px; line-height: 1.48; color: var(--text-muted); }
-
+  /* ── Workflow Cells ── */
   .cells { display: flex; flex: 1; min-width: 0; }
-  .bcell { flex: 1 1 0; min-width: var(--cell-w); height: var(--cell-h); border: 0; padding: 0; margin: 0; background: transparent; cursor: pointer; position: relative; }
-  .bcell i { position: absolute; inset: 2px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font: 600 10.5px var(--mono); color: var(--text-muted); text-shadow: 0 0 2px rgba(255,255,255,.85); transition: all .1s; }
-  .bcell.own-agentic i { background: var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-blue); }
-  .bcell.prio-first i { background: repeating-linear-gradient(45deg, rgba(252,65,61,0) 0 4px, rgba(252,65,61,.38) 4px 6px), var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-red); }
-  .bcell.prio-next i  { background: repeating-linear-gradient(45deg, rgba(254,199,0,0) 0 4px, rgba(254,199,0,.40) 4px 6px), var(--surface); border: 1px solid rgba(49,134,255,.38); border-left: 4px solid var(--g-yellow); }
-  .bcell.own-system i { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--surface-sunk); border: 1px solid var(--border-strong); }
-  .bcell.own-human i  { background: transparent; border: 1.5px dashed var(--text-dim); }
-  .bcell.is-open i    { border: 2px solid var(--accent); box-shadow: 0 0 0 2px rgba(49,134,255,.28); }
+  .bcell {
+    flex: 1 1 0; min-width: var(--cell-w); height: var(--cell-h);
+    border: 0; padding: 0; margin: 0;
+    background: transparent; cursor: pointer; position: relative; display: block;
+  }
+  .bcell:focus-visible { outline: none; box-shadow: var(--ring); z-index: 15; }
+  .bcell i {
+    position: absolute; inset: 1.5px; border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); font-size: var(--fs-9); font-style: normal;
+    font-weight: 600; letter-spacing: .01em; white-space: nowrap;
+    color: var(--text-muted);
+    text-shadow: 0 0 2px rgba(255, 255, 255, .9), 0 0 3px rgba(255, 255, 255, .7);
+    transition: background .1s, border-color .1s;
+  }
+  html.theme-dark .bcell i { text-shadow: none; }
+  .bcell i b { font-weight: inherit; opacity: 1; }
 
-  /* Value map mode */
-  .board.mode-value .bcell i { background-image: none; background-color: var(--heat, var(--surface-sunk)); color: var(--heat-ink, var(--text-muted)); border-color: transparent; text-shadow: none; }
-  .board.mode-value .bcell.own-system i, .board.mode-value .bcell.own-human i { background-color: var(--surface-sunk); color: var(--dim-ink); opacity: .55; }
+  .bcell.own-agentic i {
+    background: var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-blue);
+  }
+  .bcell.own-system i {
+    background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--surface-sunk);
+    border: 1px solid var(--border-strong);
+  }
+  .bcell.own-human i {
+    background: transparent;
+    border: 1.5px dashed var(--text-dim);
+  }
+  .bcell.prio-first i {
+    background: repeating-linear-gradient(45deg, rgba(252, 65, 61, 0) 0 4px, rgba(252, 65, 61, .40) 4px 6px), var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-red);
+  }
+  .bcell.prio-next i {
+    background: repeating-linear-gradient(45deg, rgba(254, 199, 0, 0) 0 4px, rgba(254, 199, 0, .40) 4px 6px), var(--surface);
+    border: 1px solid rgba(49, 134, 255, .38);
+    border-left: 4px solid var(--g-yellow);
+  }
 
-  /* Drawer */
-  .drawer { width: 420px; flex: none; position: sticky; top: 185px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
-  @media (max-width: 1100px) { .drawer { width: 100%; position: static; } }
-  .dw-hint { padding: 22px; font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
-  .dw-hint b { color: var(--text); }
-  .d-head { display: flex; align-items: flex-start; gap: 12px; padding: 18px 20px 14px; border-bottom: 1px solid var(--border); background: var(--surface-sunk); }
-  .d-code { font: 700 11px var(--mono); padding: 4px 8px; border-radius: 6px; background: var(--surface); border: 1px solid var(--border-strong); color: var(--dim-ink); }
-  .d-action { font-size: 16px; font-weight: 600; line-height: 1.3; display: block; }
-  .d-who { font-size: 12px; color: var(--text-muted); margin-top: 3px; display: block; }
-  .d-tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 20px 0; }
-  .tag { font: 600 10.5px var(--mono); text-transform: uppercase; padding: 4px 9px; border-radius: 999px; border: 1px solid var(--border-strong); color: var(--text-muted); background: var(--surface-sunk); }
-  .tag.prio-first { color: var(--red-ink); border-color: rgba(252,65,61,.45); background: var(--crit-bg); }
-  .tag.prio-next { color: var(--amber-ink); border-color: rgba(254,199,0,.55); background: var(--fric-bg); }
-  .tag.agent { color: var(--green-ink); border-color: rgba(0,175,87,.45); background: rgba(0,175,87,.10); }
-  .d-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
-  .d-block { border-left: 3px solid var(--border-strong); padding-left: 12px; }
-  .d-block.plug { border-left-color: var(--g-green); }
-  .d-block.vuln { border-left-color: var(--g-red); }
-  .d-k { font: 600 10px var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim-ink); margin-bottom: 4px; }
-  .d-v { font-size: 13.5px; line-height: 1.5; color: var(--text); }
-  .d-foot { padding: 0 20px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .btn-ge { font: 600 13px var(--font); padding: 10px 16px; border-radius: 999px; background: var(--g-blue); color: #FFF; text-decoration: none; }
-  .btn-ge:hover { background: var(--blue-ink); }
+  .bcell:hover i { filter: brightness(0.97); }
+  .bcell.own-agentic:hover i { background: rgba(49, 134, 255, .09); }
+  .bcell.prio-first:hover i {
+    background: repeating-linear-gradient(45deg, rgba(252, 65, 61, 0) 0 4px, rgba(252, 65, 61, .55) 4px 6px), rgba(49, 134, 255, .07);
+  }
+  .bcell.prio-next:hover i {
+    background: repeating-linear-gradient(45deg, rgba(254, 199, 0, 0) 0 4px, rgba(254, 199, 0, .58) 4px 6px), rgba(49, 134, 255, .07);
+  }
+  .bcell.own-system:hover i {
+    background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--base-bg-2);
+  }
+  .bcell.own-human:hover i { background: var(--surface-sunk); }
+  .bcell.is-open i {
+    border: 2px solid var(--accent);
+    box-shadow: 0 0 0 2px rgba(49, 134, 255, .28);
+  }
+
+  /* ── Value Map Mode ── */
+  .board.mode-value .bcell i {
+    background-image: none;
+    background-color: var(--heat, var(--surface));
+    color: var(--heat-ink, var(--text-muted));
+    border-color: transparent;
+    font-weight: 500;
+    text-shadow: none;
+  }
+  .board.mode-value .bcell.own-agentic i,
+  .board.mode-value .bcell.prio-first i,
+  .board.mode-value .bcell.prio-next i {
+    border-color: transparent;
+    border-left-color: transparent;
+  }
+  .board.mode-value .bcell:hover i {
+    background-image: none;
+    background-color: var(--heat, var(--surface));
+    filter: brightness(1.06);
+  }
+  .board.mode-value .bcell.is-open i { box-shadow: inset 0 0 0 2px var(--text); }
+  .board.mode-value .bcell.own-system i,
+  .board.mode-value .bcell.own-human i {
+    background-image: none;
+    background-color: var(--surface-sunk);
+    color: var(--dim-ink);
+    opacity: .55;
+  }
+
+  /* ═══ RIGHT-SIDE INSPECTOR DRAWER (EXACT AMANDEEP DESIGN) ══════════════ */
+  .drawer {
+    flex: none; width: 492px;
+    position: sticky; top: 132px;
+    max-height: calc(100vh - 160px);
+    overflow: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    box-shadow: var(--shadow-sm);
+  }
+  @media (max-width: 1180px) {
+    .stage { flex-direction: column; }
+    .drawer { width: 100%; position: static; max-height: none !important; }
+  }
+
+  .dw-hint { padding: 22px; font-size: var(--fs-13); color: var(--text-muted); line-height: 1.6; }
+  .dw-hint b { color: var(--text); font-weight: 600; }
+
+  .d-head {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-sunk);
+  }
+  .d-title { flex: 1; min-width: 0; }
+  .d-action { display: block; font-size: var(--fs-14); font-weight: 600; line-height: 1.35; color: var(--text); }
+  .d-who { display: block; font-size: var(--fs-12); color: var(--text-muted); margin-top: 4px; }
+  .d-close {
+    flex: none; border: 1px solid var(--border-strong);
+    background: var(--surface); color: var(--text-muted);
+    border-radius: 8px; width: 30px; height: 30px;
+    cursor: pointer; font-size: var(--fs-14); line-height: 1;
+  }
+  .d-close:hover { border-color: var(--accent); color: var(--text); }
+
+  .d-tags { display: flex; flex-wrap: wrap; gap: 7px; padding: 12px 18px 0; }
+  .tag {
+    font-family: var(--mono); font-size: var(--fs-10); letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 4px 9px; border-radius: 999px;
+    border: 1px solid var(--border-strong); color: var(--text-muted); background: var(--surface-sunk);
+  }
+
+  .d-body { padding: 14px 18px 18px; display: grid; grid-template-columns: 1fr; gap: 15px; }
+
+  .d-block { border-left: 3px solid var(--border-strong); padding-left: 14px; }
+  .d-block.today  { border-left-color: var(--border-strong); }
+  .d-block.vuln   { border-left-color: var(--g-red); }
+  .d-block.plug   { border-left-color: var(--g-green); }
+  .d-block.levers { border-left-color: var(--g-cyan); }
+
+  .d-k {
+    font-family: var(--mono); font-size: var(--fs-10);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--dim-ink); margin-bottom: 6px;
+  }
+  .d-v { font-size: var(--fs-13); line-height: 1.55; color: var(--text); }
+  .d-v.muted { color: var(--text-muted); }
+  .d-agent { font-size: var(--fs-13); font-weight: 600; color: var(--green-ink); margin-bottom: 3px; }
+  .d-regid { font-family: var(--mono); font-size: var(--fs-10); color: var(--dim-ink); margin-bottom: 6px; }
+
+  /* ── 2×2 Four-Lever Grid Inside Drawer (Active vs Load-Bearing Zero) ── */
+  .lv-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px; margin-top: 8px;
+  }
+  .lv {
+    display: grid; grid-template-columns: 8px 1fr auto;
+    grid-template-areas: "dot key val" ". sub sub";
+    align-items: center; gap: 3px 7px;
+    padding: 8px 10px; border-radius: 8px;
+    background: var(--surface-sunk); border: 1px solid var(--border);
+  }
+  .lv-dot { grid-area: dot; width: 8px; height: 8px; border-radius: 50%; }
+  .lv-prod  .lv-dot { background: var(--g-blue); }
+  .lv-flow  .lv-dot { background: var(--g-green); }
+  .lv-shield .lv-dot { background: var(--g-purple); }
+  .lv-recov .lv-dot { background: var(--g-cyan); }
+  .lv-k { grid-area: key; font-size: var(--fs-11); font-weight: 600; letter-spacing: .01em; color: var(--text); }
+  .lv-v { grid-area: val; font-size: var(--fs-13); font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text); }
+  .lv-s { grid-area: sub; font-size: 11px; color: var(--text-muted); line-height: 1.35; }
+  .lv-zero { opacity: .54; }
+  .lv-zero .lv-dot { background: var(--border-strong); }
+  .lv-zero .lv-v   { color: var(--text-dim); font-weight: 500; }
+  .lv-zero .lv-s   { color: var(--text-dim); font-style: italic; }
+
+  /* ── Textured Holder Card for System / Human Squares ── */
+  .d-block.holder {
+    border-left: 0; padding: 13px 15px;
+    border-radius: var(--radius-s); border: 1px solid var(--border-strong);
+  }
+  .d-block.holder.system {
+    background: repeating-linear-gradient(135deg, transparent 0 3px, var(--hatch) 3px 4px), var(--surface-sunk);
+  }
+  .d-block.holder.human {
+    background: radial-gradient(circle at 10px 10px, var(--hatch) 0 1.5px, transparent 2px) 0 0 / 14px 14px;
+    border-style: dashed;
+  }
+  .d-holder { font-size: var(--fs-14); font-weight: 600; color: var(--text); margin-bottom: 5px; line-height: 1.35; }
+  .d-spec { margin-top: 11px; padding-top: 10px; border-top: 1px solid var(--border); display: grid; gap: 5px; }
+  .d-spec-row { display: flex; gap: 10px; align-items: baseline; font-size: var(--fs-12); }
+  .d-spec-k { font-family: var(--mono); font-size: var(--fs-10); letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim-ink); flex: none; width: 68px; }
+  .d-spec-v { color: var(--text-muted); }
+
+  .d-foot {
+    display: flex; flex-wrap: wrap; gap: 9px; align-items: center;
+    padding: 0 18px 18px;
+  }
+  .ge-launch {
+    display: inline-flex; align-items: center; gap: 11px;
+    padding: 9px 14px; border: 1px solid transparent; border-radius: 10px;
+    background: var(--g-grey-1200, #121317); text-decoration: none;
+    transition: box-shadow 150ms ease, transform 150ms ease, background 150ms ease;
+  }
+  .ge-launch:hover { background: #1D1F26; box-shadow: 0 6px 18px rgba(18,19,23,.18); transform: translateY(-1px); }
+  .ge-mark  { height: 14px; width: auto; flex: none; display: block; }
+  .ge-cta   { font-size: var(--fs-12); font-weight: 600; color: #FFFFFF; white-space: nowrap; }
+  .ge-arrow { font-size: 14px; color: #FFFFFF; flex: none; }
+  html.theme-dark .ge-launch { background: #1D1F26; border-color: rgba(255, 255, 255, 0.14); }
+
+  .btn-ghost {
+    font: 500 var(--fs-12)/1 var(--font);
+    padding: 10px 14px; border-radius: 999px;
+    background: var(--surface); color: var(--text-muted);
+    border: 1px solid var(--border-strong); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--text); }
+  .d-src { font-family: var(--mono); font-size: var(--fs-10); color: var(--dim-ink); margin-left: auto; }
+
+  /* ═══ WHY A SQUARE IS MARKED ═══════════════════════════════════════════ */
+  .rationale { margin: 22px 0 0; padding-top: 18px; border-top: 1px solid var(--border); }
+  .rt-head { font-family: var(--mono); font-size: var(--fs-10); letter-spacing: 0.1em; text-transform: uppercase; color: var(--dim-ink); margin-bottom: 13px; }
+  .rt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 1100px) { .rt-grid { grid-template-columns: 1fr; } }
+  .rt-card { border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 13px 15px 14px; }
+  .rt-top { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .rationale .lg-sw { width: 40px; height: 26px; border-radius: 3px; }
+  .rt-name { font-size: var(--fs-13); font-weight: 600; color: var(--text); }
+  .rt-n { margin-left: auto; font-family: var(--mono); font-size: var(--fs-13); color: var(--text-muted); }
+  .rt-tags { font-family: var(--mono); font-size: var(--fs-10); color: var(--dim-ink); margin-bottom: 7px; line-height: 1.5; }
+  .rt-why { font-size: var(--fs-12); line-height: 1.55; color: var(--text-muted); margin: 0; }
+  .rt-gate { margin-top: 13px; font-size: var(--fs-12); line-height: 1.55; color: var(--text-muted); }
+  .rt-gate b { color: var(--text); font-family: var(--mono); }
+
+  /* ═══ FOOTER (ONE GEMINI ENTERPRISE LOCKUP + 4-LEVER GLOSS) ════════════ */
+  .page-foot {
+    margin: 32px 0 0; padding: 24px 0 36px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 22px;
+    align-items: center; justify-content: space-between;
+  }
+  .lockup-plate {
+    background: #FFFFFF; border: 1px solid var(--border);
+    border-radius: var(--radius-s); padding: 22px 26px;
+    display: inline-flex; align-items: center;
+  }
+  .lockup-plate img { height: 26px; width: auto; display: block; }
+  .foot-note { font-size: var(--fs-11); color: var(--dim-ink); max-width: 58ch; line-height: 1.6; margin: 0; }
+  .foot-note b { color: var(--text-muted); font-weight: 600; }
+  .est-def {
+    flex-basis: 100%; margin: 4px 0 0; padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: var(--fs-10); line-height: 1.7; color: var(--dim-ink);
+  }
+  .est-def .ld-item { display: block; }
+  .est-def .ld-prod   { color: var(--g-blue); }
+  .est-def .ld-flow   { color: var(--g-green); }
+  .est-def .ld-shield { color: var(--g-purple); }
+  .est-def .ld-recov  { color: var(--g-cyan); }
+  .est-def .ld-sep    { opacity: 0.45; padding: 0 4px; }
 </style>
 
-  <script src="../assets/ios_transitions.js"></script>
+<script src="../assets/ios_transitions.js"></script>
 </head>
 <body>
 
@@ -240,10 +649,10 @@
     <a class="mast-brand" href="../index.html">
       <img class="mast-logo" src="../assets/media/wip/image25.png" alt="Google Cloud">
       <span class="mast-div"></span>
-      <span class="mast-kicker">Persona Map &nbsp;//&nbsp; Workforce &amp; Workflow Chessboard</span>
+      <span class="mast-kicker" id="mastKicker">Full Value Chain &nbsp;//&nbsp; Persona Map</span>
     </a>
     <span class="mast-spacer"></span>
-    <nav class="mast-nav">
+    <nav class="mast-nav" aria-label="Deck navigation">
       <button class="mast-btn" id="themeToggle" type="button">Dark</button>
       <a class="mast-btn" href="../pages/06_one_to_many.html">&larr; Prev Page</a>
       <span class="mast-count">08 / 16</span>
@@ -254,256 +663,597 @@
 </header>
 
 <div class="wrap">
-  <header class="page-head">
-    <div class="kicker">Workforce &amp; workflow map &middot; 60 personas &times; 8 workflow gates</div>
-    <h1>Agentic Transformation Across <span style="background: linear-gradient(90deg, #217BFE 0%, #078EFB 33%, #AC87EB 67%, #EE4D5D 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Supply Chain Roles</span></h1>
-    <p class="sub">Mapping 60 Supply Chain personas and 480 operational workflows to show where AI agents eliminate firefighting &mdash; and where humans retain sign-off.</p>
 
-    <div class="estate" id="estateStrip">
-      <div class="est-cell lv-total"><div class="est-k">Modeled Annual Value</div><div class="est-v is-money" id="estTotal">&#8377;2,199.3 Cr/yr</div><div class="est-sub" id="estPersonas">60 roles &middot; 1,196 hrs/wk saved</div></div>
-      <div class="est-cell lv-prod"><div class="est-k">Productivity &amp; Toil</div><div class="est-v" id="estProd">&#8377;48.3 Cr</div><div class="est-sub">Expert hours redeployed</div></div>
-      <div class="est-cell lv-up"><div class="est-k">Flow &amp; Capital</div><div class="est-v" id="estFlow">&#8377;683.6 Cr</div><div class="est-sub">22% carry cost + OEE + miles</div></div>
-      <div class="est-cell lv-integ"><div class="est-k">Leakage &amp; Risk</div><div class="est-v" id="estShield">&#8377;953.6 Cr</div><div class="est-sub">Invoice, promo &amp; Tier-2 shield</div></div>
-      <div class="est-cell lv-recov"><div class="est-k">Revenue &amp; Salvage</div><div class="est-v" id="estRecov">&#8377;513.7 Cr</div><div class="est-sub">Stockouts &amp; returns margin</div></div>
-    </div>
+  <header class="page-head">
+    <div class="kicker" id="headKicker">Workforce &amp; workflow map</div>
+    <h1>Agentic Transformation Across <span style="background: linear-gradient(90deg, #217BFE 0%, #078EFB 33%, #AC87EB 67%, #EE4D5D 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">Workforce &amp; Workflows</span></h1>
+    <p class="sub">
+      Mapping 60 Consumer Packaged Goods (CPG) Supply Chain roles and 720 operational workflows to show which specific value levers each agent moves &mdash; and where ERP systems and human sign-offs stay in charge.
+    </p>
+    <div class="estate" id="estate"></div>
     <div class="count-note" id="countNote"></div>
   </header>
 
   <div class="controls">
-    <div class="chips" id="chips"></div>
-    <div class="legend" id="legend">
-      <span class="lg-item"><span class="lg-sw prio-first"></span>Priority 1 &middot; Build First (&lt;90d cash/risk)</span>
-      <span class="lg-item"><span class="lg-sw prio-next"></span>Priority 2 &middot; Build Next (flow &amp; math)</span>
-      <span class="lg-item"><span class="lg-sw own-agentic"></span>Priority 3 / Continuous Enabler</span>
-      <span class="lg-item"><span class="lg-sw own-system"></span>Incumbent ERP / WMS / TMS ledger</span>
-      <span class="lg-item"><span class="lg-sw own-human"></span>Human-only safety &amp; contract gate</span>
-    </div>
-    <div class="legend" id="legendValue" hidden>
-      <span class="lg-item">Log-scaled green tiles represent higher annual EBITDA, carrying-cost &amp; salvage recovery per workflow square (&#8377; Crores &amp; &#8377; Lakhs / yr).</span>
-    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by SCOR supply chain pillar"></div>
+    <div class="legend" id="legend"></div>
+    <div class="legend" id="legendValue" hidden></div>
   </div>
 
   <div class="stage">
     <div class="board-shell">
-      <div class="board-scroll">
+      <div class="board-scroll" id="boardScroll">
         <div class="board" id="board"></div>
       </div>
     </div>
+
     <aside class="drawer" id="drawer" aria-live="polite">
       <div class="dw-hint">
-        <p><b>Click or hover any square</b> to inspect its Today vs. With-Agent workflow and &#8377; Crore / &#8377; Lakh attribution here.</p>
-        <p>Each row is one Supply Chain persona sorted left to right: <b>AI Agent prepares</b> (Priority 1 &rarr; Priority 2 &rarr; Enabler), then <b>Incumbent ERP/WMS/TMS</b> keeps the ledger, then <b>Human-only Sign-Off</b> closes the loop.</p>
-        <p>Click any persona name on the left to open their full executive dossier.</p>
+        <p><b>Hover any square</b> to inspect the workflow and its exact 4-lever rupee attribution here. Click any square to pin it while you present.</p>
+        <p>Each row is one CPG role ordered left to right: <b>AI Agent prepares</b> (Critical &rarr; Friction &rarr; Routine), then <b>Incumbent ERP/WMS/TMS runs it</b>, then <b>Human-only Sign-Off</b> holds final authority.</p>
+        <p>Every agent moves <b>only the 2 or 3 levers it genuinely impacts</b> (Productivity, Flow &amp; Capital, Risk &amp; Leakage, or Revenue Recovery); untouched levers stay explicitly marked <b>&mdash;</b> so nothing is double-counted or inflated.</p>
       </div>
     </aside>
   </div>
 
-  <section class="prio-why" aria-label="Priority rationale">
-    <article class="pw-card p1">
-      <div class="pw-k" style="color:var(--red-ink)">Priority 1 &middot; Build First (18 Agents)</div>
-      <div class="pw-t">Immediate hard cash &amp; risk shield (&lt;90-day payback)</div>
-      <p class="pw-d">Direct invoice/freight/rebate clawbacks (5&ndash;15% billing error recovery), stopping 25&ndash;50% negative-ROI trade spend, Multi-Echelon safety-stock release, Tier-2+ shutdown avoidance, and Return Fraud triage.</p>
-    </article>
-    <article class="pw-card p2">
-      <div class="pw-k" style="color:var(--amber-ink)">Priority 2 &middot; Build Next (36 Agents)</div>
-      <div class="pw-t">Cross-functional flow, slotting &amp; orchestration</div>
-      <p class="pw-d">High-leverage planning &amp; execution choreography across Sales &amp; Operations Planning (S&amp;OP), allergen changeovers, dynamic Fulfillment Center (FC) slotting, Ship-from-Store routing, and carrier consolidation.</p>
-    </article>
-    <article class="pw-card pu">
-      <div class="pw-k" style="color:var(--dim-ink)">Productivity Enablers &amp; Unmarked Gates</div>
-      <div class="pw-t">Zero rip-and-replace &amp; strict Human Sign-Off</div>
-      <p class="pw-d">Soft-blue Enablers (6 agents) unify executive storytelling and Environmental, Social &amp; Governance (ESG) ledgers. Grey-hatched ERP/WMS squares and dashed Human Gate squares stay completely unmarked by AI priority.</p>
-    </article>
-  </section>
+  <section class="rationale" id="rationale" aria-label="Why a square is marked"></section>
 
-  <section class="lever-foot" id="leverFoot"></section>
+  <footer class="page-foot">
+    <div class="lockup-plate">
+      <img src="../assets/media/brand/gemini_enterprise_lockup.png" alt="Gemini Enterprise">
+    </div>
+    <p class="foot-note">
+      <b>Google Cloud.</b> Every agent stops at a human decision &mdash; none can commit an unapproved purchase order, release quarantined QA stock, or alter statutory Maximum Retail Price (MRP) records. Row values sum non-double-counted annual impact across the four CPG levers in Indian Crores (&ge; &#8377;1 Cr) and Lakhs (&lt; &#8377;1 Cr).
+    </p>
+    <p class="est-def" id="est-def"></p>
+  </footer>
+
 </div>
+
+<aside class="floating-dock" style="display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:30px;backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(18,19,23,.14);position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:1000;">
+  <a id="dockPrev" href="../pages/06_one_to_many.html" style="background:var(--surface-sunk);border:1px solid var(--border);color:var(--text-muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;">&#9664;</a>
+  <div style="font:700 12.5px var(--mono);color:var(--text-muted);white-space:nowrap;">PAGE 08 // 60-PERSONA VALUE MAP</div>
+  <a id="dockNext" href="../pages/08_how_agents_are_built.html" style="background:var(--g-blue);color:#FFF;padding:6px 15px;border-radius:20px;font:700 13px var(--font);text-decoration:none;white-space:nowrap;">09 &middot; How Agents Are Built &#9654;</a>
+</aside>
 
 <script src="../data/sc_story_data.js"></script>
 <script src="../data/sc_value_model.js"></script>
 <script>
 (function () {
-  var btn = document.getElementById('themeToggle');
-  function paintTheme() { btn.textContent = document.documentElement.classList.contains('theme-dark') ? 'Light' : 'Dark'; }
-  paintTheme();
-  btn.addEventListener('click', function () {
-    var d = document.documentElement.classList.toggle('theme-dark');
-    document.documentElement.classList.toggle('theme-light', !d);
-    try { localStorage.setItem('deck-theme', d ? 'dark' : 'light'); } catch (e) {}
-    paintTheme();
-  });
+  "use strict";
 
-  var DATA = window.SC_DATA;
-  var VAL = window.SC_VALUES.computeForPersonas(DATA.personas);
-  var deptFilter = new URLSearchParams(location.search).get('dept') || 'all';
-  var viewMode = 'priority';
+  var RAW = window.SC_DATA;
+  var VAL_ENGINE = window.SC_VALUES;
+  var fmtINR = VAL_ENGINE.fmtINR;
+
+  var board       = document.getElementById("board");
+  var chipsEl     = document.getElementById("chips");
+  var legend      = document.getElementById("legend");
+  var legendValue = document.getElementById("legendValue");
+  var drawer      = document.getElementById("drawer");
+  var estate      = document.getElementById("estate");
+  var note        = document.getElementById("countNote");
+
+  var qs = new URLSearchParams(location.search);
+  var deptFilter = qs.get("dept") || "all";
+  if (deptFilter !== "all" && !RAW.departments.some(function (d) { return d.id === deptFilter; })) {
+    deptFilter = "all";
+  }
+  var view = (/[?&]view=value(\b|$)/.test(location.search) || location.hash === "#value") ? "value" : "prio";
+  var openCell = null;
   var pinned = null;
 
-  document.getElementById('leverFoot').innerHTML =
-    '<div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px">' +
-      '<b style="font-size:14px">4-Lever Supply Chain Value Methodology (Zero Double-Counting)</b>' +
-      '<span style="font:500 11.5px var(--mono);color:var(--dim-ink)">' + window.SC_VALUES.ESTATE_BASELINE.label + '</span>' +
-    '</div>' +
-    '<div class="lf-grid">' +
-      window.SC_VALUES.LEVERS.map(function (lv) {
-        return '<div class="lf-item" style="--lc:' + lv.color + '"><b>' + lv.name + '</b><span>' + lv.def + '</span></div>';
-      }).join('') +
-    '</div>';
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
 
-  var chipsEl = document.getElementById('chips');
+  function initials(name) {
+    return String(name || "").split(/\s+/).slice(0, 2).map(function (w) { return w[0] || ""; }).join("").toUpperCase();
+  }
+
+  var FRICTION_GLOSS = {
+    judgment:     "commercial or safety call needing experience",
+    traceability: "proving lot, invoice or audit lineage",
+    integrity:    "master or compliance data that must not be wrong",
+    consistency:  "same rule applied identically across 48 CFAs",
+    calculation:  "multi-variable rate, tax or margin math",
+    computation:  "combinatorial OR-Tools / TimesFM solver run",
+    synthesis:    "POS, DMS, WMS & weather pulled into one view",
+    assembly:     "collating exports and formatting review packets",
+    execution:    "deterministic transactional ERP/WMS procedure"
+  };
+
+  /* Render 4-lever footer definitions directly from SC_VALUES.LEVERS */
+  var defEl = document.getElementById("est-def");
+  var HUE_CLS = { prod: "ld-prod", flow: "ld-flow", shield: "ld-shield", recov: "ld-recov" };
+  if (defEl && VAL_ENGINE.LEVERS) {
+    defEl.innerHTML = VAL_ENGINE.LEVERS.map(function (L) {
+      return '<span class="ld-item"><b class="' + (HUE_CLS[L.id] || "") + '">' + esc(L.name) + '</b> ' +
+             esc(L.def) + ' <span class="ld-sep">&middot;</span> ' + esc(L.metric) + '</span>';
+    }).join("");
+  }
+
+  /* Logarithmic WCAG-checked green ramp for Value Map mode (exact Amandeep algorithm) */
+  function heatColor(t) {
+    var stops = [
+      [246, 253, 249], [209, 240, 224], [150, 222, 186],
+      [ 74, 199, 141], [  0, 160,  82], [  8,  86,  53]
+    ];
+    var x = Math.max(0, Math.min(0.9999, t)) * (stops.length - 1);
+    var i = Math.floor(x), f = x - i;
+    var a = stops[i], b = stops[i + 1] || stops[i];
+    return "rgb(" + Math.round(a[0] + (b[0] - a[0]) * f) + "," +
+                    Math.round(a[1] + (b[1] - a[1]) * f) + "," +
+                    Math.round(a[2] + (b[2] - a[2]) * f) + ")";
+  }
+  function relLum(c) {
+    var a = c.map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  }
+  function contrast(c1, c2) {
+    var l1 = relLum(c1), l2 = relLum(c2);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+  function heatInk(t) {
+    var rgb = heatColor(t).match(/\d+/g).map(Number);
+    var dark = [18, 19, 23];
+    if (contrast(rgb, dark) >= 4.5) return "#121317";
+    return contrast(rgb, [255, 255, 255]) > contrast(rgb, dark) ? "#FFFFFF" : "#121317";
+  }
+
+  function lg(cls, label, n, title) {
+    return '<span class="lg-item" title="' + esc(title) + '">' +
+           '<i class="lg-sw ' + cls + '"></i>' + esc(label) +
+           (n != null ? ' <span style="font-family:var(--mono);color:var(--dim-ink)">' + n + '</span>' : '') +
+           '</span>';
+  }
+
+  var VISIBLE_ROWS = 10;
+  function fitBoardRows() {
+    var sc = document.getElementById("boardScroll");
+    if (!sc) return;
+    var rows = [].slice.call(sc.querySelectorAll(".brow"));
+    var h;
+    if (rows.length <= VISIBLE_ROWS) {
+      sc.style.maxHeight = "none";
+      h = sc.scrollHeight;
+    } else {
+      var prev = sc.scrollTop; sc.scrollTop = 0;
+      h = Math.ceil(rows[VISIBLE_ROWS - 1].getBoundingClientRect().bottom - sc.getBoundingClientRect().top) + 1;
+      sc.style.maxHeight = h + "px";
+      sc.scrollTop = prev;
+    }
+    var dr = document.querySelector(".drawer"), frame = sc.parentElement;
+    if (dr && frame && window.innerWidth > 1180) {
+      dr.style.maxHeight = Math.max(520, frame.getBoundingClientRect().height) + "px";
+    }
+  }
+  window.addEventListener("resize", fitBoardRows);
+  window.addEventListener("load", fitBoardRows);
+
+  var currentRows = [];
+  var cellCr = [];
+  var heatLo = 0.5, heatHi = 20;
+
   function renderChips() {
-    var html = '<button class="chip" data-dept="all" aria-pressed="' + (deptFilter === 'all') + '">Full Value Chain <span class="n">' + DATA.personas.length + '</span></button>';
-    DATA.departments.forEach(function (d) {
-      html += '<button class="chip" data-dept="' + d.id + '" aria-pressed="' + (deptFilter === d.id) + '">' + d.num + ' &middot; ' + d.scor + ' <span class="n">' + d.personaCount + '</span></button>';
-    });
-    html += '<span class="viewtoggle"><button class="vt-btn" data-vt="priority" aria-pressed="' + (viewMode === 'priority') + '">Build priority</button><button class="vt-btn" data-vt="value" aria-pressed="' + (viewMode === 'value') + '">Value map</button></span>';
-    chipsEl.innerHTML = html;
+    var tabsHtml = '<span class="domain-tabs" role="tablist">' +
+      '<button type="button" class="domain-tab" data-dept="all" aria-selected="' + (deptFilter === "all") + '">Full value chain <span class="n">' + RAW.personas.length + '</span></button>' +
+      RAW.departments.map(function (d) {
+        return '<button type="button" class="domain-tab" data-dept="' + esc(d.id) + '" aria-selected="' + (deptFilter === d.id) + '">' +
+               esc(d.num + " · " + d.title) + ' <span class="n">' + d.personaCount + '</span></button>';
+      }).join("") +
+      '</span>';
 
-    var allChipList = [].slice.call(chipsEl.querySelectorAll('.chip'));
-    allChipList.forEach(function (c, nextChipIdx) {
-      c.addEventListener('click', function () {
-        var curChipIdx = allChipList.findIndex(function (x) { return x.dataset.dept === deptFilter; });
-        var dir = nextChipIdx > curChipIdx ? 'from-right' : (nextChipIdx < curChipIdx ? 'from-left' : 'from-down');
-        deptFilter = c.dataset.dept;
-        renderChips();
-        renderBoard();
-        var rows = [].slice.call(document.querySelectorAll('#board .brow')).slice(0, 12);
-        rows.forEach(function (rEl, idx) {
-          if (rEl.animate) {
-            var dx = dir === 'from-right' ? 46 : (dir === 'from-left' ? -46 : 0);
-            var dy = dir === 'from-down' ? 28 : 0;
-            rEl.animate([
-              { opacity: 0, transform: 'translate3d(' + dx + 'px, ' + dy + 'px, 0)' },
-              { opacity: 1, transform: 'translate3d(0, 0, 0)' }
-            ], { duration: 290, delay: idx * 20, easing: 'cubic-bezier(0.20, 1, 0.30, 1)', fill: 'backwards' });
-          }
-        });
-      });
-    });
-    chipsEl.querySelectorAll('.vt-btn').forEach(function (v) {
-      v.addEventListener('click', function () {
-        viewMode = v.dataset.vt;
-        document.getElementById('legend').hidden = (viewMode === 'value');
-        document.getElementById('legendValue').hidden = (viewMode !== 'value');
-        renderChips(); renderBoard();
-      });
-    });
-  }
-
-  var fmtINR = window.SC_VALUES.fmtINR;
-
-  function heatStyle(valCr) {
-    if (!valCr || valCr <= 0) return '';
-    if (valCr >= 15.0) return '--heat:#046E33;--heat-ink:#FFFFFF;';
-    if (valCr >= 9.5) return '--heat:#0B9F4D;--heat-ink:#FFFFFF;';
-    if (valCr >= 5.5) return '--heat:#4CC87E;--heat-ink:#092E18;';
-    if (valCr >= 3.0) return '--heat:#9CE0B6;--heat-ink:#092E18;';
-    if (valCr >= 1.2) return '--heat:#D2F1DE;--heat-ink:#121317;';
-    return '--heat:#EFFAF3;--heat-ink:#121317;';
-  }
-
-  function showDrawer(p, a) {
-    var dEl = document.getElementById('drawer');
-    var pv = VAL.byPersonaId[p.id] || { tier: 'next', paybackDays: 90, total: 18.0, prod: 0.6, flow: 5.4, shield: 6.5, recov: 5.5, why: '' };
-    var ownTag = a.own === 'agentic' ? (a.prio === 'first' ? '<span class="tag prio-first">Priority 1 &middot; Build First</span>' : (a.prio === 'next' ? '<span class="tag prio-next">Priority 2 &middot; Build Next</span>' : '<span class="tag">Enabler &middot; Routine AI</span>'))
-      : (a.own === 'system' ? '<span class="tag">System of Record</span>' : '<span class="tag">Human Sign-Off Gate</span>');
-    var liveTag = a.liveInGE ? '<span class="tag agent">&#9679; Live in Gemini Enterprise</span>' : '';
-
-    var ag = DATA.agents.find(function (x) { return x.id === (a.agentId || p.primaryAgentId); }) || {};
-    var bodyHtml = a.own === 'agentic'
-      ? '<div class="d-block vuln"><div class="d-k">Today (Manual Friction)</div><div class="d-v">' + a.today + '</div></div>' +
-        '<div class="d-block plug"><div class="d-k">With ' + a.agentName + ' (' + (a.valueDisplay || fmtINR(a.valueCr, '/yr')) + ')</div><div class="d-v">' + a.withAgent + '</div></div>'
-      : '<div class="d-block"><div class="d-k">Retained Owner: ' + a.holder + '</div><div class="d-v">' + a.reason + '</div></div>';
-
-    var roleValHtml =
-      '<div style="background:var(--surface-sunk);border:1px solid var(--border);border-radius:10px;padding:10px 12px">' +
-        '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">' +
-          '<span style="font:700 11px var(--mono);color:var(--green-ink)">ROLE IMPACT: ' + fmtINR(pv.total, '/yr') + ' &middot; ' + pv.paybackDays + 'd payback</span>' +
-          '<span style="font:600 11px var(--mono);color:var(--dim-ink)">' + p.toilHoursBefore + 'h&rarr;' + p.toilHoursAfter + 'h/wk</span>' +
-        '</div>' +
-        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 10px;font:500 11.5px var(--font);color:var(--text-muted)">' +
-          '<span>Productivity: <b>' + fmtINR(pv.prod) + '</b></span>' +
-          '<span>Flow &amp; Capital: <b>' + fmtINR(pv.flow) + '</b></span>' +
-          '<span>Leakage &amp; Risk: <b>' + fmtINR(pv.shield) + '</b></span>' +
-          '<span>Rev &amp; Salvage: <b>' + fmtINR(pv.recov) + '</b></span>' +
-        '</div>' +
-        (pv.why ? '<div style="margin-top:6px;padding-top:6px;border-top:1px dashed var(--border);font-size:11.5px;line-height:1.45;color:var(--text-muted)"><b>Why this priority:</b> ' + pv.why + '</div>' : '') +
+    chipsEl.innerHTML =
+      '<div class="chip-row">' + tabsHtml +
+        '<span class="viewtoggle" role="group" aria-label="Board view">' +
+          '<button class="vt-btn" type="button" data-view="prio" aria-pressed="' + (view === "prio") + '">Build priority</button>' +
+          '<button class="vt-btn" type="button" data-view="value" aria-pressed="' + (view === "value") + '">Value map</button>' +
+        '</span>' +
       '</div>';
+  }
 
-    var suiteLen = (p.agentSuite && p.agentSuite.length) || 2;
-    dEl.innerHTML =
-      '<div class="d-head"><span class="d-code">' + a.code + '</span><div class="d-title"><span class="d-action">' + a.title + '</span><span class="d-who"><b>' + p.name + '</b> &middot; ' + (p.personName || '') + ' (' + suiteLen + ' Agents)</span></div></div>' +
-      '<div class="d-tags">' + ownTag + liveTag + '<span class="tag">' + a.cadence + '</span></div>' +
-      '<div class="d-body">' + bodyHtml + roleValHtml + '</div>' +
+  /* Build the 2×2 Four-Lever Grid inside the Right-Side Drawer (showing exact Agent levers + load-bearing zeros!) */
+  var LEVER_DEFS = [
+    { k: "prod",   cls: "lv-prod",   label: "Productivity" },
+    { k: "flow",   cls: "lv-flow",   label: "Flow & Capital" },
+    { k: "shield", cls: "lv-shield", label: "Risk & Leakage" },
+    { k: "recov",  cls: "lv-recov",  label: "Revenue Recovery" }
+  ];
+
+  function leverStrip(r, a) {
+    var av = a.agentVal || r.val;
+    var ab = a.agentBasis || (r.val && r.val.basis) || {};
+    if (!av) return "";
+
+    var activeCnt = av.leverCount || LEVER_DEFS.filter(function (L) { return (av[L.k] || 0) > 0; }).length;
+    var cells = LEVER_DEFS.map(function (L) {
+      var val = Number(av[L.k] || 0);
+      var sub = ab[L.k] || "";
+      return '<div class="lv ' + L.cls + (val > 0 ? "" : " lv-zero") + '">' +
+               '<span class="lv-dot"></span>' +
+               '<span class="lv-k">' + esc(L.label) + '</span>' +
+               '<span class="lv-v">' + (val > 0 ? fmtINR(val) : "\u2014") + '</span>' +
+               '<span class="lv-s">' + esc(sub) + '</span>' +
+             '</div>';
+    }).join("");
+
+    return '<div class="d-block levers">' +
+             '<div class="d-k">Which levers ' + esc(a.agentName || "this agent") + ' moves (' + activeCnt + ' of 4)</div>' +
+             '<div class="lv-grid">' + cells + '</div>' +
+             '<div class="d-v muted" style="margin-top:8px;font-size:12px">' +
+               '<b>' + esc(a.agentName) + ': ' + fmtINR(av.total, '/yr') + '</b> (' + activeCnt + ' active levers; untouched levers stay \u2014). ' +
+               'Full <b>' + esc(r.name) + '</b> suite (' + r.agentSuite.length + ' agents): <b>' + fmtINR(r.val.total, '/yr') + '</b>.' +
+             '</div>' +
+           '</div>';
+  }
+
+  function specStrip(a) {
+    var bits = [];
+    if (a.cadence)  bits.push(["Cadence", a.cadence]);
+    if (a.scope)    bits.push(["Acts on", a.scope]);
+    if (a.friction) bits.push(["Friction", FRICTION_GLOSS[a.friction] || a.friction]);
+    if (!bits.length) return "";
+    return '<div class="d-spec">' + bits.map(function (b) {
+      return '<div class="d-spec-row"><span class="d-spec-k">' + esc(b[0]) + '</span><span class="d-spec-v">' + esc(b[1]) + '</span></div>';
+    }).join("") + '</div>';
+  }
+
+  function blk(cls, label, value, muted) {
+    if (!value) return "";
+    return '<div class="d-block ' + cls + '"><div class="d-k">' + esc(label) + '</div>' +
+           '<div class="d-v' + (muted ? ' muted' : '') + '">' + esc(value) + '</div></div>';
+  }
+
+  function showCell(ri, ci, btn, pin) {
+    var r = currentRows[ri];
+    if (!r) return;
+    var a = r.actions[ci];
+    if (!a) return;
+
+    if (openCell) openCell.classList.remove("is-open");
+    [].forEach.call(board.querySelectorAll(".brow.is-active"), function (x) { x.classList.remove("is-active"); });
+    if (btn) {
+      btn.classList.add("is-open");
+      var rowEl = btn.closest(".brow");
+      if (rowEl) rowEl.classList.add("is-active");
+      openCell = btn;
+      if (pin) pinned = btn;
+    }
+
+    var rightHtml;
+    if (a.own !== "agentic") {
+      var holder = a.holder || (a.own === "system" ? r.systemsTouched : (r.personName + ", " + r.name));
+      rightHtml =
+        '<div class="d-block holder ' + a.own + '">' +
+          '<div class="d-k">' + (a.own === "system" ? "Held by" : "Stays with") + '</div>' +
+          '<div class="d-holder">' + esc(holder) + '</div>' +
+          '<div class="d-v muted">' + esc(a.because || a.reason) + '</div>' +
+          specStrip(a) +
+        '</div>';
+    } else {
+      var prioBadge = a.agentPrio === "P0"
+        ? "Priority P0 \u00b7 Deploy First (" + a.agentPaybackDays + "d payback)"
+        : (a.agentPrio === "P1" ? "Priority P1 \u00b7 Build Next (" + a.agentPaybackDays + "d payback)" : "Priority P2 \u00b7 Continuous Enabler");
+      rightHtml =
+        '<div class="d-block plug">' +
+          '<div class="d-k">What the agent does</div>' +
+          '<div class="d-agent">' + esc(a.agentName) + (a.liveInGE ? ' \u00b7 \u25CF Live in GE' : '') + '</div>' +
+          '<div class="d-regid">' + esc(a.agentCode) + ' \u00b7 ' + esc(prioBadge) + '</div>' +
+          '<div class="d-v muted">' + esc(a.plug) + '</div>' +
+        '</div>';
+    }
+
+    var agentLinkUrl = "../pages/agent_blueprint.html?agent=" + encodeURIComponent(a.agentId || r.primaryAgentId) + "&persona=" + encodeURIComponent(r.id);
+
+    drawer.innerHTML =
+      '<div class="d-head">' +
+        '<span class="d-title">' +
+          '<span class="d-action">' + esc(a.name || a.title) + '</span>' +
+          '<span class="d-who">' + esc(r.code) + ' \u00b7 ' + esc(r.name) + ' \u2014 ' + esc(r.personName) + ' \u00b7 ' + esc(r.subPillarName) + '</span>' +
+        '</span>' +
+        '<button class="d-close" type="button" aria-label="Unpin">\u2715</button>' +
+      '</div>' +
+
+      (view === "value" && a.own === "agentic" && cellCr[ri] != null
+        ? '<div class="d-tags"><span class="tag" title="Share of this role\'s annual value apportioned across its workflows by criticality.">' +
+          fmtINR(cellCr[ri][ci]) + ' \u00b7 modelled workflow share</span></div>'
+        : '') +
+
+      '<div class="d-body">' +
+        (a.own === "agentic" ? leverStrip(r, a) : "") +
+        blk("today", "How it runs today", a.today, true) +
+        blk("vuln",  "What goes wrong",   a.vuln,  false) +
+        rightHtml +
+        (a.own === "system" ? "" : blk("", "System of record", r.systemsTouched, true)) +
+      '</div>' +
+
       '<div class="d-foot">' +
-        '<a class="btn-ge" href="dossier.html?id=' + encodeURIComponent(p.id) + '&agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '">Open Persona Suite (' + suiteLen + ') &rarr;</a>' +
-        '<a class="mast-btn" href="../pages/agent_blueprint.html?agent=' + encodeURIComponent(ag.id || p.primaryAgentId) + '&persona=' + encodeURIComponent(p.id) + '">Agent Architecture &rarr;</a>' +
+        '<a class="ge-launch" href="' + esc(agentLinkUrl) + '" title="Inspect 4-stage runtime architecture, Demo Video & Gemini Enterprise launch">' +
+          '<img class="ge-mark" src="../assets/media/gemini_enterprise_logo.svg" alt="Gemini Enterprise">' +
+          '<span class="ge-cta">' + (a.own === "agentic" ? "Open agent architecture" : "Inspect primary agent") + '</span>' +
+          '<span class="ge-arrow" aria-hidden="true">&#8599;</span>' +
+        '</a>' +
+        '<a class="btn-ghost" href="dossier.html?id=' + encodeURIComponent(r.id) + (a.agentId ? '&agent=' + encodeURIComponent(a.agentId) : '') + '">Full persona dossier &rarr;</a>' +
+        (a.source ? '<span class="d-src">' + esc(a.source) + '</span>' : '') +
       '</div>';
+
+    drawer.scrollTop = 0;
+  }
+
+  function unpin() {
+    pinned = null;
+    if (openCell) openCell.classList.remove("is-open");
+    openCell = null;
+    [].forEach.call(board.querySelectorAll(".brow.is-active"), function (x) { x.classList.remove("is-active"); });
   }
 
   function renderBoard() {
-    var rows = DATA.personas.filter(function (p) { return deptFilter === 'all' || p.deptId === deptFilter; });
-    var subVal = window.SC_VALUES.computeForPersonas(rows).estateTotals;
-    document.getElementById('estTotal').textContent = fmtINR(subVal.total, '/yr');
-    document.getElementById('estPersonas').textContent = rows.length + ' roles · ' + DATA.agents.length + ' CPG agents · ' + subVal.savedHrsWk + ' hrs/wk';
-    document.getElementById('estProd').textContent = fmtINR(subVal.prod);
-    document.getElementById('estFlow').textContent = fmtINR(subVal.flow);
-    document.getElementById('estShield').textContent = fmtINR(subVal.shield);
-    document.getElementById('estRecov').textContent = fmtINR(subVal.recov);
-    document.getElementById('countNote').textContent = 'Showing ' + rows.length + ' CPG Supply Chain Leaders (' + DATA.meta.p0Agents + ' Priority-0 GE Candidates across 78 Total Agents · Values in ₹ Crores & ₹ Lakhs)';
+    currentRows = RAW.personas.filter(function (p) { return deptFilter === "all" || p.deptId === deptFilter; });
+    var deptObj = RAW.departments.find(function (d) { return d.id === deptFilter; });
 
-    var board = document.getElementById('board');
-    board.className = 'board' + (viewMode === 'value' ? ' mode-value' : '');
+    document.getElementById("mastKicker").innerHTML = (deptObj ? esc(deptObj.title) : "Full Value Chain") + " &nbsp;//&nbsp; Persona Map";
 
-    var html = '<div class="bhead"><div class="rowlabel"><span>CPG Persona &amp; Leader</span><span style="margin-left:auto">&#8377; Cr / yr</span></div><div class="colaxis"><span>Agent Suite Prepares</span><span class="flow"></span><span>ERP / DMS</span><span class="flow"></span><span>Human Gate</span></div></div>';
-    rows.forEach(function (p) {
-      var pv = VAL.byPersonaId[p.id] || { total: p.annualValueCr || 18.0 };
-      var pLabel = p.personName || p.name;
-      var initials = pLabel.split(/\s+/).slice(0, 2).map(function (w) { return w[0]; }).join('').toUpperCase();
-      html += '<div class="brow" data-pid="' + p.id + '">';
-      html += '<a class="rowlabel" href="dossier.html?id=' + encodeURIComponent(p.id) + '">' +
-                '<span class="pavatar" style="background:' + p.deptColor + '">' + initials + '</span>' +
-                '<span class="pmeta"><span class="pname">' + p.name + '</span><span class="psub"><span class="pcode">' + p.code + '</span> &middot; ' + pLabel + '</span></span>' +
-                '<span class="rowval">' + fmtINR(pv.total) + '</span>' +
-              '</a>';
-      html += '<div class="cells">';
-      p.actions.forEach(function (a, idx) {
-        var cls = 'bcell own-' + a.own + (a.prio ? ' prio-' + a.prio : '');
-        html += '<button type="button" class="' + cls + '" data-pid="' + p.id + '" data-idx="' + idx + '" title="' + a.code + ': ' + a.title + (a.valueCr ? ' (' + fmtINR(a.valueCr, '/yr') + ')' : '') + '"><i style="' + (viewMode === 'value' ? heatStyle(a.valueCr) : '') + '">' + a.code + '</i></button>';
-      });
-      html += '</div></div>';
-    });
-    board.innerHTML = html;
+    /* Aggregate exact non-double-counted numbers for the visible rows */
+    var sub = VAL_ENGINE.computeForPersonas(currentRows).estateTotals;
+    var tot = sub.total || 1;
+    var pct = function (v) { return Math.round((v / tot) * 100) + "%"; };
 
-    var personaById = Object.fromEntries(DATA.personas.map(function (p) { return [p.id, p]; }));
-    board.querySelectorAll('.bcell').forEach(function (btnEl) {
-      btnEl.addEventListener('mouseenter', function () {
-        if (pinned) return;
-        var p = personaById[btnEl.dataset.pid];
-        showDrawer(p, p.actions[Number(btnEl.dataset.idx)]);
-      });
-      btnEl.addEventListener('click', function () {
-        board.querySelectorAll('.bcell.is-open').forEach(function (x) { x.classList.remove('is-open'); });
-        board.querySelectorAll('.brow.is-active').forEach(function (x) { x.classList.remove('is-active'); });
-        btnEl.classList.add('is-open');
-        btnEl.closest('.brow').classList.add('is-active');
-        var p = personaById[btnEl.dataset.pid];
-        pinned = true;
-        showDrawer(p, p.actions[Number(btnEl.dataset.idx)]);
+    var ow = { agentic: 0, system: 0, human: 0 };
+    var pr = { first: 0, next: 0, routine: 0 };
+    var cellTotal = 0, crit = 0, critNotOurs = 0;
+
+    heatLo = Infinity; heatHi = 0;
+    cellCr = currentRows.map(function (r) {
+      return r.actions.map(function (a) {
+        cellTotal++;
+        ow[a.own] = (ow[a.own] || 0) + 1;
+        if (a.own === "agentic" && a.prio) pr[a.prio] = (pr[a.prio] || 0) + 1;
+        if (a.status === "critical") { crit++; if (a.own !== "agentic") critNotOurs++; }
+        var cr = Number(a.valueCr || 0);
+        if (a.own === "agentic" && cr > 0) {
+          if (cr < heatLo) heatLo = cr;
+          if (cr > heatHi) heatHi = cr;
+        }
+        return cr;
       });
     });
+    if (!isFinite(heatLo)) heatLo = 0.2;
+    if (heatHi <= heatLo) heatHi = heatLo + 5;
 
-    if (rows[0]) showDrawer(rows[0], rows[0].actions[0]);
+    var agentCnt = deptObj ? deptObj.agentCount : RAW.meta.agents;
+    document.getElementById("headKicker").textContent =
+      "Workforce & workflow map \u00b7 " + currentRows.length + " roles \u00b7 " + cellTotal + " workflows \u00b7 " + agentCnt + " CPG agents";
+
+    estate.innerHTML = [
+      ["Annual value",     fmtINR(sub.total), "is-money", ""],
+      ["Productivity",     fmtINR(sub.prod)   + " \u00b7 " + pct(sub.prod),   "", "lv-prod"],
+      ["Flow & Capital",   fmtINR(sub.flow)   + " \u00b7 " + pct(sub.flow),   "", "lv-up"],
+      ["Risk & Leakage",   fmtINR(sub.shield) + " \u00b7 " + pct(sub.shield), "", "lv-integ"],
+      ["Revenue Recovery", fmtINR(sub.recov)  + " \u00b7 " + pct(sub.recov),  "", "lv-recov"],
+      ["Agents",           String(agentCnt) + " (" + RAW.meta.twoLeverAgents + " move 2 levers)", "", ""],
+      ["Agent prepares",   String(ow.agentic) + " of " + cellTotal + " workflows", "", ""]
+    ].map(function (c) {
+      return '<div class="est-cell ' + (c[3] || "") + '"><div class="est-k">' + esc(c[0]) +
+             '</div><div class="est-v ' + c[2] + '">' + esc(c[1]) + '</div></div>';
+    }).join("");
+
+    note.textContent = currentRows.length + " CPG personas \u00b7 " + cellTotal + " operational workflows \u00b7 " +
+                       fmtINR(sub.total, "/yr") + " (" + RAW.meta.p0Agents + " Priority-0 GE candidates \u00b7 zero 4-lever inflation)";
+
+    /* Legend: Build Priority vs Value Map */
+    legend.innerHTML =
+      '<div class="lg-group"><span class="lg-title">Who implements it</span>' +
+        lg("own-agentic", "Agent prepares, human decides", ow.agentic, "an agent prepares the analysis & staged draft; every agent stops at a human gate") +
+        lg("own-system",  "Existing system runs it", ow.system, "SAP, WMS or TMS already executes this transaction properly") +
+        lg("own-human",   "Human, end to end", ow.human, "commercial contract authority, food-safety release or LOTO physical safety") +
+      '</div>' +
+      '<div class="lg-group"><span class="lg-title">Build queue</span>' +
+        lg("prio-first", "Critical (<60d payback)", pr.first, "immediate cash leakage, OTIF penalty, FEFO expiry or recall exposure") +
+        lg("prio-next",  "Friction (flow & math)", pr.next, "combinatorial S&OP, line changeover, slotting or routing variance") +
+        '<span class="lg-note">only work that is ours to build is marked</span>' +
+      '</div>';
+
+    var ticks = [0, 0.25, 0.5, 0.75, 1].map(function (t) {
+      return Math.exp(Math.log(heatLo) + (Math.log(heatHi) - Math.log(heatLo)) * t);
+    });
+    var ramp = [0, .2, .4, .6, .8, 1].map(function (t) {
+      return heatColor(t) + " " + Math.round(t * 100) + "%";
+    }).join(", ");
+    legendValue.innerHTML =
+      '<div class="lg-group"><span class="lg-title">Value per workflow</span>' +
+        '<span class="lg-ramp">' +
+          '<span class="lg-tick">' + fmtINR(ticks[0]) + '</span>' +
+          '<span class="lg-bar" style="background: linear-gradient(90deg, ' + ramp + ')"></span>' +
+          '<span class="lg-tick">' + fmtINR(ticks[4]) + '</span>' +
+        '</span>' +
+        '<span class="lg-note">log scale &middot; midpoint ' + fmtINR(ticks[2]) + '</span>' +
+      '</div>' +
+      '<div class="lg-group"><span class="lg-title">Not coloured</span>' +
+        lg("own-system", "Existing ERP/WMS or human holds it", ow.system + ow.human, "carries operational responsibility, not claimed as AI build value") +
+      '</div>' +
+      '<div class="lg-group"><span class="lg-note">Role &amp; agent totals are exact from researched CPG formulas; individual workflow squares show criticality-weighted shares.</span></div>';
+
+    legend.hidden = (view === "value");
+    legendValue.hidden = (view !== "value");
+    board.classList.toggle("mode-value", view === "value");
+
+    /* Board Grid */
+    var heatT = function (cr) {
+      if (!(cr > 0) || heatHi <= heatLo) return 0;
+      return (Math.log(cr) - Math.log(heatLo)) / (Math.log(heatHi) - Math.log(heatLo));
+    };
+
+    var out = [];
+    out.push(
+      '<div class="bhead">' +
+        '<div class="rowlabel"><span>Workforce (' + currentRows.length + ')</span><span>Value / yr</span></div>' +
+        '<div class="colaxis">' +
+          '<span>12 workflows per role</span>' +
+          '<span class="flow"></span>' +
+          '<span>agent prepares &middot; ERP/WMS runs &middot; human holds</span>' +
+        '</div>' +
+      '</div>'
+    );
+
+    currentRows.forEach(function (r, ri) {
+      out.push('<div class="brow" data-row="' + ri + '" id="row-' + esc(r.code) + '">');
+      out.push(
+        '<a class="rowlabel" href="dossier.html?id=' + encodeURIComponent(r.id) + (deptFilter !== "all" ? '&dept=' + encodeURIComponent(deptFilter) : '') + '" ' +
+        'title="' + esc(r.name + ' — ' + r.personName + ' · ' + r.subPillarName) + '">' +
+          '<span class="pmono" style="background:' + esc(r.deptColor) + '">' + esc(initials(r.personName)) + '</span>' +
+          '<span class="pmeta">' +
+            '<span class="pname">' + esc(r.name) + '</span>' +
+            '<span class="psub"><span class="pcode">' + esc(r.code) + '</span> &middot; ' + esc(r.personName) + ' &middot; ' + r.agentSuite.length + ' agents (' + r.val.leverCount + '/4 levers)</span>' +
+          '</span>' +
+          (r.liveInGE ? '<span class="plive" data-live="' + esc(r.id) + '" title="Live agent deployed on Vertex AI & Gemini Enterprise">Live</span>' : '') +
+          '<span class="pval">' + fmtINR(r.val.total) + '</span>' +
+        '</a>'
+      );
+
+      out.push('<div class="cells">');
+      r.actions.forEach(function (a, ci) {
+        var cr = cellCr[ri][ci];
+        var t = heatT(cr);
+        var heat = (a.own === "agentic") ? ' style="--heat:' + heatColor(t) + ';--heat-ink:' + heatInk(t) + '"' : '';
+        var prioCls = (a.own === "agentic" && a.prio && a.prio !== "routine") ? (" prio-" + a.prio) : "";
+        out.push(
+          '<button class="bcell own-' + esc(a.own) + prioCls + '" type="button" ' +
+          'data-r="' + ri + '" data-c="' + ci + '"' + heat + ' ' +
+          'title="' + esc(r.code + a.code + ' · ' + (a.name || a.title)) + '">' +
+            '<i><b>' + esc(r.code) + '</b>' + esc(a.code) + '</i>' +
+          '</button>'
+        );
+      });
+      out.push('</div></div>');
+    });
+
+    board.innerHTML = out.join("");
+
+    /* Rationale block below board */
+    var rt = document.getElementById("rationale");
+    if (rt) {
+      var CARDS = [
+        ["own-agentic prio-first", "Critical · Build First", pr.first,
+         "leakage · traceability · OTIF & FEFO barriers (<60d payback)",
+         "Direct cash leakage, Modern Trade OTIF penalty, GST E-Way seizure, or batch recall exposure. High information share and immediate payback without waiting on physical CapEx."],
+        ["own-agentic prio-next", "Friction · Build Next", pr.next,
+         "combinatorial math · S&OP consensus · slotting · changeover",
+         "Well-defined CPG planning, allergen sequencing, and multi-stop routing done inconsistently on spreadsheets today. Agents pair Gemini 3.1 Pro with OR-Tools to remove variance."],
+        ["own-agentic", "Routine · Enabler", pr.routine,
+         "collation · variance packets · EPR & Scope 3 ledgers",
+         "Ours to automate — assembling S&OP pre-reads, audit dossiers, and statutory plastic/ESG ledgers so specialists spend mornings deciding rather than formatting."]
+      ];
+      rt.innerHTML =
+        '<div class="rt-head">Why a square is marked &mdash; and why untouched levers stay zero</div><div class="rt-grid">' +
+        CARDS.map(function (c) {
+          return '<div class="rt-card">' +
+                   '<div class="rt-top">' +
+                     '<span class="lg-sw ' + c[0] + '" aria-hidden="true"></span>' +
+                     '<span class="rt-name">' + esc(c[1]) + '</span>' +
+                     '<span class="rt-n">' + (c[2] || 0) + '</span>' +
+                   '</div>' +
+                   '<div class="rt-tags">' + esc(c[3]) + '</div>' +
+                   '<p class="rt-why">' + esc(c[4]) + '</p>' +
+                 '</div>';
+        }).join("") +
+        '</div><div class="rt-gate">Marked only where the work is ours to build, and priced only on the levers an agent actually moves: <b>' +
+        RAW.meta.twoLeverAgents + ' of ' + RAW.meta.agents + ' agents</b> move strictly <b>2 levers</b> (Productivity + 1 operational/risk/revenue lever) and <b>0 agents</b> claim all 4 levers. ' +
+        '<b>' + critNotOurs + '</b> critical safety &amp; commercial sign-off gates stay unmarked because they belong permanently to named human leaders.</div>';
+    }
+
+    pinned = null; openCell = null;
+    if (currentRows.length) {
+      var firstBtn = board.querySelector('.bcell[data-r="0"][data-c="0"]');
+      showCell(0, 0, firstBtn, false);
+    }
+    requestAnimationFrame(fitBoardRows);
   }
+
+  /* Interactions: Hover sweeps, Click pins, Esc/Close unpins */
+  board.addEventListener("mouseover", function (e) {
+    var b = e.target.closest(".bcell");
+    if (!b || pinned) return;
+    showCell(Number(b.dataset.r), Number(b.dataset.c), b, false);
+  });
+
+  board.addEventListener("click", function (e) {
+    var pill = e.target.closest(".plive");
+    if (pill) {
+      e.preventDefault(); e.stopPropagation();
+      window.location.href = "dossier.html?id=" + encodeURIComponent(pill.getAttribute("data-live"));
+      return;
+    }
+    var b = e.target.closest(".bcell");
+    if (!b) return;
+    if (pinned === b) { unpin(); return; }
+    showCell(Number(b.dataset.r), Number(b.dataset.c), b, true);
+  });
+
+  drawer.addEventListener("click", function (e) {
+    if (e.target.closest(".d-close")) unpin();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") unpin();
+  });
+
+  chipsEl.addEventListener("click", function (e) {
+    var tab = e.target.closest(".domain-tab");
+    if (tab) {
+      var allTabs = [].slice.call(chipsEl.querySelectorAll(".domain-tab"));
+      var prevIdx = allTabs.findIndex(function (x) { return x.dataset.dept === deptFilter; });
+      var nextIdx = allTabs.indexOf(tab);
+      var dir = nextIdx >= prevIdx ? "from-right" : "from-left";
+      deptFilter = tab.dataset.dept;
+      history.replaceState(null, "", deptFilter === "all" ? location.pathname : ("?dept=" + encodeURIComponent(deptFilter)));
+      renderChips();
+      renderBoard();
+      var visRows = [].slice.call(board.querySelectorAll(".brow")).slice(0, 11);
+      visRows.forEach(function (rEl, idx) {
+        if (rEl.animate) {
+          var dx = dir === "from-right" ? 40 : -40;
+          rEl.animate([
+            { opacity: 0, transform: "translate3d(" + dx + "px, 0, 0)" },
+            { opacity: 1, transform: "translate3d(0, 0, 0)" }
+          ], { duration: 260, delay: idx * 18, easing: "cubic-bezier(0.22, 1, 0.36, 1)", fill: "backwards" });
+        }
+      });
+      return;
+    }
+    var vt = e.target.closest(".vt-btn");
+    if (vt) {
+      view = vt.dataset.view === "value" ? "value" : "prio";
+      board.classList.toggle("mode-value", view === "value");
+      [].forEach.call(chipsEl.querySelectorAll(".vt-btn"), function (x) {
+        x.setAttribute("aria-pressed", String(x.dataset.view === view));
+      });
+      legend.hidden = (view === "value");
+      legendValue.hidden = (view !== "value");
+      if (openCell) {
+        showCell(Number(openCell.dataset.r), Number(openCell.dataset.c), openCell, !!pinned);
+      }
+    }
+  });
+
+  /* Theme toggle */
+  var toggle = document.getElementById("themeToggle");
+  function paintTheme() {
+    toggle.textContent = document.documentElement.classList.contains("theme-dark") ? "Light" : "Dark";
+  }
+  paintTheme();
+  toggle.addEventListener("click", function () {
+    var d = document.documentElement.classList.toggle("theme-dark");
+    document.documentElement.classList.toggle("theme-light", !d);
+    try { localStorage.setItem("deck-theme", d ? "dark" : "light"); } catch (err) {}
+    paintTheme();
+  });
 
   renderChips();
   renderBoard();
 })();
 </script>
-<aside class="floating-dock" style="display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:30px;backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(18,19,23,.14);position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:1000;">
-  <a id="dockPrev" href="../pages/06_one_to_many.html" style="background:var(--sunk);border:1px solid var(--border);color:var(--muted-ink);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;">&#9664;</a>
-  <div style="font:700 12.5px var(--mono);color:var(--muted-ink);white-space:nowrap;">PAGE 08 // 60-PERSONA VALUE MAP</div>
-  <a id="dockNext" href="../pages/08_how_agents_are_built.html" style="background:var(--g-blue);color:#FFF;padding:6px 15px;border-radius:20px;font:700 13px var(--font);text-decoration:none;white-space:nowrap;">09 &middot; How Agents Are Built &#9654;</a>
-</aside>
 </body>
 </html>
