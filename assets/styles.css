@@ -87,14 +87,28 @@ html.theme-light {
   padding: 0;
 }
 
+html:not(.theme-dark) {
+  --bg-canvas: var(--canvas, #F0F5FE);
+  --bg-obsidian: #FFFFFF;
+  --bg-surface: #FFFFFF;
+  --bg-surface-elevated: #F1F5F9;
+  --bg-glass-panel: rgba(255, 255, 255, 0.90);
+  --border-hairline: #E2E8F0;
+  --border-subtle: #E2E6F0;
+  --text-primary: #121317;
+  --text-body: #1F2430;
+  --text-muted: #5A6275;
+  --text-dim: #8A92A6;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y proximity;
-  background-color: var(--bg-canvas);
+  background-color: var(--canvas, var(--bg-canvas));
 }
 
 body {
-  background-color: var(--bg-canvas);
+  background-color: var(--canvas, var(--bg-canvas));
   color: var(--text-body);
   font-family: var(--font-body);
   width: 100%;

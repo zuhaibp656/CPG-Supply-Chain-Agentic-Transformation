@@ -21,6 +21,8 @@
     }
     document.addEventListener('DOMContentLoaded', () => updateThemeButtons(!document.documentElement.classList.contains('theme-dark')));
   </script>
+
+  <script src="../assets/ios_transitions.js"></script>
 </head>
 <body style="background: var(--canvas); color: var(--text); font-family: var(--font-body); margin: 0;">
 
@@ -111,6 +113,5 @@
     document.querySelectorAll('.sf-btn').forEach(b => b.addEventListener('click', () => show(b.dataset.sf)));
     show('ge');
   </script>
-<script src="../assets/ios_transitions.js"></script>
 </body>
 </html>
