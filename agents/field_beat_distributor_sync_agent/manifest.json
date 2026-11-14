@@ -1,0 +1,16 @@
+{
+  "agent_id": "field_beat_distributor_sync_agent",
+  "code": "CPG-01-05",
+  "name": "JBP Negotiation Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Trade Promotion",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 110,
+  "annual_value_m_usd": 7.3,
+  "primary_persona_id": "key_account_manager",
+  "reads": "Reconciles SKU catalog against real-time distributor warehouse inventory before each store call Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Dynamically swaps out-of-stock items with high-margin, in-stock promotional sister pack sizes (Geospatial Routing & Traffic API CVRPTW Beat Sequencer + Real-Time DMS Inventory Reconciliation Broker + Smart Variant Recommender).",
+  "returns": "Re-sequences daily retail store calls with Geospatial Routing & Traffic Telemetry API to maximize productive strike rate Stages policy-checked action via Live Handheld SKU Catalog Override, Secondary Order Booking in DMS & Optimized Daily Route Sheet.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

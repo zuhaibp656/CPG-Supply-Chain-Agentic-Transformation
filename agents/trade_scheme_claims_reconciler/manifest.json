@@ -1,0 +1,16 @@
+{
+  "agent_id": "trade_scheme_claims_reconciler",
+  "code": "CPG-01-06",
+  "name": "Deduction Audit Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Trade Promotion",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 30,
+  "annual_value_m_usd": 9.1,
+  "primary_persona_id": "revenue_trade_finance_lead",
+  "reads": "Verifies retailer tax invoices against distributor opening/closing stock to detect phantom billing Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Computes exact volume-based discounts and special promotional scheme credits per trade contract (Deterministic Secondary Sales Volume Slab Engine + BigQuery Phantom Invoice Anomaly Classifier + ERP Credit Note Broker).",
+  "returns": "Drafts validated credit memos in Enterprise ERP (MCP / On-Prem DB) and posts instant settlement notifications to distributor portals Stages policy-checked action via Enterprise ERP (MCP / On-Prem DB) Credit Memo (FB01/VF01), Distributor Statement Reconciliation & Instant Settlement Notice.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "rgm_pack_price_architecture_agent",
+  "code": "CPG-01-N03",
+  "name": "RGM Price-Pack Architecture Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Trade Promotion",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 90,
+  "annual_value_m_usd": 7.1,
+  "primary_persona_id": "trade_marketing_manager",
+  "reads": "SKU grammage/MRP master (`00_master_skus.jsonl`), cross-pack elasticity matrices, competitor pack trackers, and raw-material COGS drift.",
+  "does": "Computes cross-SKU cannibalization and net Revenue Growth Management (RGM) margin contribution across General Trade and Modern Trade.",
+  "returns": "Pack-price elasticity waterfall and recommended grammage/slab adjustments by channel.",
+  "stops_at": "Changing printed Maximum Retail Price (MRP) master records or statutory Legal Metrology declarations."
+}

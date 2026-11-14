@@ -1,0 +1,16 @@
+{
+  "agent_id": "disruption_war_room_orchestrator",
+  "code": "CPG-01-08",
+  "name": "Digital War-Room Agent",
+  "department": "demand_sop",
+  "sub_pillar": "S&OP / IBP",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 95,
+  "annual_value_m_usd": 12.2,
+  "primary_persona_id": "supply_chain_vp_coo",
+  "reads": "Maps probabilistic storm/strike footprints onto supplier, plant, port, airport & rail nodes Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Quantifies revenue, margin & SLA exposure across all 6 SCOR verticals in Multi-Hop Graph Database (Weather & Climate Ensemble Feed Ensemble Probabilistic Impact Model + Multi-Hop Graph Database (Cloud / On-Prem) + Mathematical Optimization Solver (MILP / CP-SAT) Multi-Modal War-Room MILP Solver).",
+  "returns": "Executes coordinated demand, sourcing, plant, WMS & ship/air/rail/truck mitigations Stages policy-checked action via Coordinated Pre-Positioning STOs, Backup Supplier POs, Sea/Air/Rail/Road Mode Reroutes & Plant Shift Re-Slotting.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

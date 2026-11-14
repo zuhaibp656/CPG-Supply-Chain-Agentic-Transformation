@@ -1,0 +1,16 @@
+{
+  "agent_id": "copacker_allocation_agent",
+  "code": "CPG-03-05",
+  "name": "Co-Packer Allocation",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Capacity Planning",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 120,
+  "annual_value_m_usd": 7.8,
+  "primary_persona_id": "external_sourcing_cmo_lead",
+  "reads": "Maps finite plant line rates, labor shifts, supplier MOQs & ocean/air lead times Connected CPG systems: SAP PP \u00b7 Siemens Opcenter MES \u00b7 LIMS.",
+  "does": "Solves 50+ overtime vs. pre-build vs. alt-plant trade-offs in Mathematical Optimization Solver (MILP / CP-SAT) (Gemini 3.1 Pro + Multi-Hop Constraint Graph DB + Mathematical Optimization Solver (MILP / CP-SAT) Multi-Objective MILP Capacity & Margin Solver).",
+  "returns": "Computes gross margin, COGS & cash-flow bridge live in BigQuery Cortex Stages policy-checked action via Enterprise Planning & ERP (MCP / On-Prem / API) Master Production Schedule (MPS) & Financial P&L Bridge Commit.",
+  "stops_at": "Never commits unapproved SAP PP ledger mutations or overrides safety/contract policy without human sign-off."
+}

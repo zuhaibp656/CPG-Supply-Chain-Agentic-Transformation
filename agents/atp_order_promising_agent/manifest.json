@@ -1,0 +1,16 @@
+{
+  "agent_id": "atp_order_promising_agent",
+  "code": "CPG-04-08",
+  "name": "SFS / BOPIS Sourcing",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Omnichannel Visibility",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 110,
+  "annual_value_m_usd": 7.8,
+  "primary_persona_id": "omnichannel_fulfillment_dir",
+  "reads": "Evaluates on-hand, ocean/air/rail in-transit ASN & safety stock across all nodes Connected CPG systems: Manhattan WMS \u00b7 SAP EWM \u00b7 DMS Stock.",
+  "does": "Trades off Google Maps lane distance, parcel/LTL/FTL split cost vs. SLA penalty (Low-Latency Transactional State DB Global Inventory Ledger + Mathematical Optimization Solver (MILP / CP-SAT) Sub-50ms Margin-Aware Multi-Node Sourcing MILP).",
+  "returns": "Protects priority customer allocations in Operational SQL & Vector DB (On-Prem / Cloud) during tight supply Stages policy-checked action via OMS Order Node Allocation & Enterprise ERP (MCP / On-Prem DB) Sales Order Schedule Line Lock (BAPI_SALESORDER_CHANGE).",
+  "stops_at": "Never commits unapproved Manhattan WMS ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "demand_sensing_agent",
+  "code": "CPG-01-01",
+  "name": "Demand Sensing Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Demand Forecasting",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 45,
+  "annual_value_m_usd": 18.3,
+  "primary_persona_id": "demand_planner_forecaster",
+  "reads": "Normalizes store/hub sell-through in BigQuery & imputes stockout censorship Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Generates zero-shot & fine-tuned P10/P50/P90 horizon fans on Vertex AI (Time-Series Forecasting Foundation Model + BigQuery ML Hierarchical Bayesian Censored-Demand Imputation).",
+  "returns": "Scores commercial sales overrides & strips systematic bias in Operational SQL & Vector DB (On-Prem / Cloud) Stages policy-checked action via Supply Planning System (MCP / API) Key Figure & BAPI_PIR_CHANGE Write-Back (P10/P50/P90) via MCP / REST / On-Prem Gateway.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

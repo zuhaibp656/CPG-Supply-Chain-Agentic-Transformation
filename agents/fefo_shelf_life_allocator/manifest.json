@@ -1,0 +1,16 @@
+{
+  "agent_id": "fefo_shelf_life_allocator",
+  "code": "CPG-04-N01",
+  "name": "Dynamic FEFO & Shelf-Life Allocator",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Positioning & Optimization",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 35,
+  "annual_value_m_usd": 12.6,
+  "primary_persona_id": "inventory_controller_buyer",
+  "reads": "Batch expiry ledger (`04_fefo_inventory_dms_wms_ledger.csv`), customer MRSL contract rules, and transit days by lane.",
+  "does": "Overrides naive FIFO picking with channel-aware First-Expired-First-Out (FEFO) optimization so mid-life lots flow immediately to high-turn General Trade beats.",
+  "returns": "Batch-to-order allocation table eliminating Modern Trade MRSL rejections and DC expiry write-offs.",
+  "stops_at": "Shipping any lot past statutory expiry or waiving customer MRSL contract clauses."
+}

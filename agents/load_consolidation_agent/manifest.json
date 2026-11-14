@@ -1,0 +1,16 @@
+{
+  "agent_id": "load_consolidation_agent",
+  "code": "CPG-05-01",
+  "name": "Load Consolidation",
+  "department": "logistics_fleet",
+  "sub_pillar": "First & Mid-Mile",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 45,
+  "annual_value_m_usd": 11.9,
+  "primary_persona_id": "transport_planner_inbound_mgr",
+  "reads": "Places cartons/pallets in (X,Y,Z) respecting orientation, stacking & crush limits Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Enforces reverse-stop unloading zones (Stop 1 at rear doors, Stop N at nose) (Mathematical Optimization Solver (MILP / CP-SAT) 3D Guillotine Bin-Packing + Reverse-Stop LIFO Zoning + Longitudinal Axle Torque & CoG Solver).",
+  "returns": "Verifies front steering & rear drive axle load limits and center-of-gravity envelope Stages policy-checked action via Step-by-Step 3D Dock Loading Plan, Warehouse Management System (WMS / MCP) HU Packing Instruction & Certified Axle Weight Manifest.",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

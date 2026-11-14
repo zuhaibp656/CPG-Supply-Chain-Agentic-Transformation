@@ -1,0 +1,16 @@
+{
+  "agent_id": "lot_genealogy_recall_tracer",
+  "code": "CPG-03-N03",
+  "name": "2-Hour Lot Genealogy & Recall Tracer",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Quality & Compliance",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 50,
+  "annual_value_m_usd": 7.9,
+  "primary_persona_id": "qa_manager_line_inspector",
+  "reads": "Raw-material COA lot logs, MES batch genealogy (`03_plant_mes_oee_copacker_genealogy.csv`), WMS pallet SSCC scans, and DMS stockist dispatch invoices.",
+  "does": "Builds bidirectional lot containment graphs isolating only affected sub-batches instead of blanket multi-week plant recalls.",
+  "returns": "Surgical lot hold list (exact pallets, CFAs, and distributors) + pre-filled FSSAI/FDA mock-recall trace report.",
+  "stops_at": "Issuing public consumer recall notices or releasing quarantined QA stock."
+}

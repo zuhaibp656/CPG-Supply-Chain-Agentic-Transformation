@@ -1,0 +1,16 @@
+{
+  "agent_id": "eway_bill_gst_transit_auditor",
+  "code": "CPG-05-N01",
+  "name": "E-Way Bill & Transit Tax Compliance Shield",
+  "department": "logistics_fleet",
+  "sub_pillar": "Route & Carrier",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 30,
+  "annual_value_m_usd": 8.1,
+  "primary_persona_id": "freight_controller_claims",
+  "reads": "NIC E-Way Bill API validity timestamps, Samsara/GPS truck telemetry, SAP GST invoice HSN codes (`05_tms_shipments_eway_freight_audit.csv`).",
+  "does": "Flags trucks within 4 hours of E-Way Bill expiry due to highway congestion or breakdown and prepares Part-B extension drafts.",
+  "returns": "Live expiring-waybill alert queue + pre-validated Part-B vehicle/extension payload.",
+  "stops_at": "Submitting statutory tax declarations with unverified vehicle numbers."
+}

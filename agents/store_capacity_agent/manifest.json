@@ -1,0 +1,16 @@
+{
+  "agent_id": "store_capacity_agent",
+  "code": "CPG-05-05",
+  "name": "Store Capacity Agent",
+  "department": "logistics_fleet",
+  "sub_pillar": "Store Replenishment",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 120,
+  "annual_value_m_usd": 5.8,
+  "primary_persona_id": "store_replenishment_lead",
+  "reads": "Fits empirical supplier & ocean/air/rail/truck lead-time tails in BigQuery Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Optimizes coupled upstream/downstream safety buffers across Multi-Hop Graph Database (Low-Latency Transactional State DB Echelon Graph + Coupled Stochastic Guaranteed-Service MEIO + Mathematical Optimization Solver (MILP / CP-SAT) Lateral Flow MILP).",
+  "returns": "Issues hub-to-hub STOs using Google Maps Distance Matrix before rush production Stages policy-checked action via SAP BAPI_MATERIAL_SAVEDATA Safety Stock / ROP Update & STO Lateral Transfer Creation (BAPI_PO_CREATE1).",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "labor_line_balancing_agent",
+  "code": "CPG-03-03",
+  "name": "Labor & Line Balancing",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Production Scheduling",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 105,
+  "annual_value_m_usd": 5.9,
+  "primary_persona_id": "plant_operations_manager",
+  "reads": "Clusters compatible color, allergen, coil & mold families on each line in Mathematical Optimization Solver (MILP / CP-SAT) CP-SAT Connected CPG systems: SAP PP \u00b7 Siemens Opcenter MES \u00b7 LIMS.",
+  "does": "Verifies 100% material pegging & aligns batch completion with vessel/air/rail/truck departures (Mathematical Optimization Solver (MILP / CP-SAT) CP-SAT Sequence-Dependent Setup & Finite Capacity Job-Shop Solver + Multi-Modal Outbound Cutoff Sync).",
+  "returns": "Computes exact OTIF, changeover & overtime trade-offs for commercial rush orders Stages policy-checked action via SAP PP/DS Production Order Dispatch Sequence (BAPI_PRODORD_CHANGE) & Siemens MES Line Recipe Queue.",
+  "stops_at": "Never commits unapproved SAP PP ledger mutations or overrides safety/contract policy without human sign-off."
+}

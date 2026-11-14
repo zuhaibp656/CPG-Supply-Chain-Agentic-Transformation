@@ -1,0 +1,16 @@
+{
+  "agent_id": "rti_balance_reconciler",
+  "code": "CPG-06-07",
+  "name": "RTI Balance Reconciler",
+  "department": "circular_enable",
+  "sub_pillar": "Pallet & Tote Reclamation",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 60,
+  "annual_value_m_usd": 9.7,
+  "primary_persona_id": "asset_recovery_rti_manager",
+  "reads": "Compares actual supplier & ocean/air/rail/road P50 & P90 durations vs. static SAP fields Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Reconciles CubiScan/weighbridge telemetry against WMS, TMS & Air ULD item masters (BigQuery ML Empirical Bayesian Lead-Time Estimator + Isolation-Forest Master Anomaly Detector + Enterprise API & MCP Gateway SAP BAPI Steward).",
+  "returns": "Pushes verified parameter updates to Enterprise ERP (MCP / On-Prem DB) via MCP / REST / On-Prem Gateway with full audit trail Stages policy-checked action via SAP BAPI_MATERIAL_SAVEDATA & Purchasing Info-Record Lead-Time / Route / 3D Dimension Auto-Update.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

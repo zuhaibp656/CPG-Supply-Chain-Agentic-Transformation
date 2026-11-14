@@ -1,0 +1,16 @@
+{
+  "agent_id": "dock_to_stock_agent",
+  "code": "CPG-04-05",
+  "name": "Dock-to-Stock Agent",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Warehouse Operations",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 95,
+  "annual_value_m_usd": 5.9,
+  "primary_persona_id": "inbound_receiving_supervisor",
+  "reads": "Links live Google Maps truck arrival & gate camera OCR to dynamic dock slots Connected CPG systems: Manhattan WMS \u00b7 SAP EWM \u00b7 DMS Stock.",
+  "does": "Minimizes interior forklift travel from inbound rail/port door to outbound truck door (Google Maps Live ETA + Mathematical Optimization Solver (MILP / CP-SAT) Bipartite Dock-Door Matching + Shortest-Path Hostler Task Interleaving).",
+  "returns": "Escalates unloading priority in Operational SQL & Vector DB (On-Prem / Cloud) before 2-hr free dwell expires Stages policy-checked action via YMS / Warehouse Management System (WMS / MCP) Dock Door Assignment, Driver SMS Gate Pass & Hostler Tablet Dispatch.",
+  "stops_at": "Never commits unapproved Manhattan WMS ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "carbon_scope3_ledger",
+  "code": "CPG-02-03",
+  "name": "ESG & Scope 3 Auditor",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Supplier Network",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": false,
+  "payback_days": 170,
+  "annual_value_m_usd": 2.7,
+  "primary_persona_id": "chief_sustainability_officer",
+  "reads": "Computes primary CO2e per SKU-shipment across ocean, air, rail & road from actual fuel & load Connected CPG systems: SAP Ariba \u00b7 S/4HANA MM \u00b7 Mandi Feeds.",
+  "does": "Validates plot geolocation canopy history in Satellite & Geospatial Remote Sensing API & mill emission certs (BigQuery ISO-14083 Primary Telemetry Carbon Calculator + Earth Engine Canopy Verifier + Mathematical Optimization Solver (MILP / CP-SAT) Cost/Carbon Mode-Shift MILP).",
+  "returns": "Identifies cost-neutral Air-to-Sea, OTR-to-Rail & Diesel-to-EV swaps in Mathematical Optimization Solver (MILP / CP-SAT) Stages policy-checked action via EU CBAM / EUDR XML Customs Filing & Transportation Management System (TMS / MCP) / Supply Chain Execution Platform (MCP / API) Low-Carbon Rail/EV/Ocean Lane Allocation.",
+  "stops_at": "Never commits unapproved SAP Ariba ledger mutations or overrides safety/contract policy without human sign-off."
+}

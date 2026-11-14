@@ -1,0 +1,16 @@
+{
+  "agent_id": "three_way_match_dispute",
+  "code": "CPG-02-09",
+  "name": "Three-Way Match Dispute",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Contract & PO Mgmt",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 30,
+  "annual_value_m_usd": 8.7,
+  "primary_persona_id": "accounts_payable_lead",
+  "reads": "Extracts volume tiers, index caps & SLA rebates from PDFs via Document AI & Operational SQL & Vector DB (On-Prem / Cloud) Connected CPG systems: SAP Ariba \u00b7 S/4HANA MM \u00b7 Mandi Feeds.",
+  "does": "Maps engineering specs to 10-digit HS codes & FTA rules with legal citations (Document AI + Vector Search & Semantic Index (DB / MCP) Legal Contract RAG + Gemini 3.1 Pro Hierarchical HS Code Legal-Ruling Classifier).",
+  "returns": "Validates UFLPA/CBAM origin chains & Scope-3 emissions with Satellite & Geospatial Remote Sensing API Stages policy-checked action via Global Trade & Tariff System (MCP / API) 10-Digit HS Code Lock, FTA Certificate Filing & SAP AP Supplier Rebate Debit Memo.",
+  "stops_at": "Never commits unapproved SAP Ariba ledger mutations or overrides safety/contract policy without human sign-off."
+}

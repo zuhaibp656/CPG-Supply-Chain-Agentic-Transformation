@@ -1,0 +1,16 @@
+{
+  "agent_id": "geocoding_intelligence_agent",
+  "code": "CPG-05-07",
+  "name": "Geocoding Intelligence",
+  "department": "logistics_fleet",
+  "sub_pillar": "Last-Mile Delivery",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 105,
+  "annual_value_m_usd": 5.8,
+  "primary_persona_id": "last_mile_operations_lead",
+  "reads": "Partitions stops into non-overlapping radial delivery corridors using Google Maps geocodes Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Selects optimal mix of 0.75t EV vans, 3.5t, 7.5t, 12t & 24t 40ft trucks in Mathematical Optimization Solver (MILP / CP-SAT) (Google Maps Distance Matrix + Angular Sector Corridor Clustering + Mathematical Optimization Solver (MILP / CP-SAT) Heterogeneous CVRPTW).",
+  "returns": "Re-solves remaining stop order upon live Google Maps traffic or dock delay Stages policy-checked action via Transportation Management System (TMS / MCP) / Transportation Management System (TMS / API) Load Tender (EDI 204), Google Maps Driver Route Manifest & Live ETA Broadcast.",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

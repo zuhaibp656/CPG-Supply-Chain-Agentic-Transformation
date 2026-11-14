@@ -1,0 +1,16 @@
+{
+  "agent_id": "capex_simulator_agent",
+  "code": "CPG-03-06",
+  "name": "CapEx Simulator",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Capacity Planning",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": false,
+  "payback_days": 180,
+  "annual_value_m_usd": 4.6,
+  "primary_persona_id": "vp_manufacturing_engineering",
+  "reads": "Attributes exact ocean, air, rail, drayage, pick, pack, cube & detention cost per order line Connected CPG systems: SAP PP \u00b7 Siemens Opcenter MES \u00b7 LIMS.",
+  "does": "Optimizes DC territories, factory-to-customer bypass & 3PL overflow capacity in Mathematical Optimization Solver (MILP / CP-SAT) (BigQuery Activity-Based Landed Cost-to-Serve Attribution + Mathematical Optimization Solver (MILP / CP-SAT) Capacitated Facility Location & Multi-Modal Flow MILP).",
+  "returns": "Designs pallet-layer MOQ & bracket incentives to fix margin-dilutive small orders Stages policy-checked action via ERP Order Management (SD / MCP) Customer MOQ / Bracket Pricing Policy Update & Enterprise ERP (MCP / On-Prem DB) Sourcing Assignment Split.",
+  "stops_at": "Never commits unapproved SAP PP ledger mutations or overrides safety/contract policy without human sign-off."
+}

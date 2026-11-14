@@ -1,0 +1,16 @@
+{
+  "agent_id": "modern_trade_dock_slot_booker",
+  "code": "CPG-05-N02",
+  "name": "Modern Trade Appointment & Fill-Rate Agent",
+  "department": "logistics_fleet",
+  "sub_pillar": "Store Replenishment",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 75,
+  "annual_value_m_usd": 7.9,
+  "primary_persona_id": "retail_logistics_dispatcher",
+  "reads": "Retailer ASN appointment calendars, WMS wave completion %, and live route traffic ETA.",
+  "does": "Matches ready-to-ship loads against open retailer receiving slots and flags threatened PO cancellation cutoffs.",
+  "returns": "Prioritized dock-load sequence + retailer portal slot-reschedule recommendation.",
+  "stops_at": "Canceling committed Modern Trade purchase orders."
+}

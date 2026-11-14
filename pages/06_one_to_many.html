@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>07 · One Agent to Many | Agentic Supply Chain Transformation</title>
+<link rel="icon" href="../assets/media/brand/gemini_spark_fullcolor_768.png" type="image/png">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../assets/aurora.css">
+<link rel="stylesheet" href="../assets/story_extra.css">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Google+Sans+Text:wght@400;500;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<script>
+(function(){var s=localStorage.getItem('deck-theme')||'light';if(s==='dark')document.documentElement.classList.add('theme-dark');})();
+function toggleTheme(){var d=document.documentElement.classList.toggle('theme-dark');localStorage.setItem('deck-theme',d?'dark':'light');paintTheme(!d);}
+function paintTheme(isLight){document.querySelectorAll('.theme-toggle-btn').forEach(function(b){b.innerHTML=isLight?'<span>&#127769;</span><span>Dark Mode</span>':'<span>&#9728;&#65039;</span><span>Light Mode</span>';});}
+document.addEventListener('DOMContentLoaded',function(){paintTheme(!document.documentElement.classList.contains('theme-dark'));});
+</script>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--canvas); color: var(--text); font-family: var(--font-display); }
+  @media (min-width: 1024px) and (min-height: 700px) { body { overflow: hidden; } }
+  .slide-viewport {
+    height: 100vh; box-sizing: border-box; padding: 66px max(28px, 4vw) 74px;
+    display: flex; align-items: center; justify-content: center; background: var(--canvas);
+  }
+  .container { max-width: 1240px; width: 100%; text-align: center; }
+  .kick { font: 700 12px var(--font-mono); letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue-ink); margin-bottom: 12px; }
+  .h1 { font: 800 clamp(32px, 4.1vw, 56px)/1.08 var(--font-display); letter-spacing: -1.4px; margin: 0 auto 14px; max-width: 17ch; color: var(--text); }
+  .sub { font: 400 clamp(15px, 1.3vw, 18px)/1.5 var(--font-body); color: var(--text-dim); max-width: 60ch; margin: 0 auto 22px; }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; text-align: left; margin-bottom: 24px; }
+  @media (max-width: 900px) { .slide-viewport { height: auto; min-height: 100vh; } .cards { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--border-subtle); border-top: 3px solid var(--tc);
+    border-radius: 14px; padding: 18px; box-shadow: var(--shadow-sm);
+  }
+  .cv { font: 800 30px/1.1 var(--font-display); color: var(--ti); margin-bottom: 5px; }
+  .ck { font: 700 13.5px var(--font-display); color: var(--text); margin-bottom: 4px; }
+  .cs { font: 400 12.5px/1.45 var(--font-body); color: var(--text-dim); margin: 0; }
+  .cta-row { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .cta-main {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 999px;
+    background: var(--gemini-spark); color: #fff; font: 700 15px var(--font-display); text-decoration: none;
+    box-shadow: 0 10px 26px rgba(49,134,255,.26);
+  }
+  .cta-sec {
+    display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border-strong); color: var(--text);
+    font: 700 14px var(--font-display); text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<header class="executive-top-nav" style="backdrop-filter:blur(20px);background:color-mix(in srgb,var(--surface) 88%,transparent);border-bottom:1px solid var(--border-subtle);padding:12px max(24px,4vw);position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;justify-content:space-between;align-items:center;">
+  <a href="../index.html" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+    <img src="../assets/media/wip/image25.png" alt="Google Cloud" style="height:28px;width:auto;">
+    <div style="width:1px;height:18px;background:var(--border-strong);"></div>
+    <span style="font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--text);letter-spacing:1.4px;text-transform:uppercase;">STAGE 07 // ONE AGENT TO MANY</span>
+  </a>
+  <nav style="display:flex;align-items:center;gap:12px;">
+    <button class="theme-toggle-btn" onclick="toggleTheme()" type="button"></button>
+    <a href="demo_stage.html" style="font:700 12.5px var(--font-display);color:var(--text-dim);text-decoration:none;padding:5px 11px;border-radius:6px;background:var(--surface-sunk);">&larr; Prev Page</a>
+    <span style="font:700 12.5px var(--font-mono);color:var(--g-blue);">07 / 15</span>
+    <a href="../personas/index.html" style="font:700 12.5px var(--font-display);color:var(--blue-ink);text-decoration:none;padding:5px 12px;border-radius:6px;background:rgba(49,134,255,.11);">Next Page &rarr;</a>
+    <a href="../index.html" style="font:700 12px var(--font-display);color:#000;background:#FFF;padding:5px 13px;border-radius:20px;text-decoration:none;border:1px solid var(--border-subtle);">All Slides &#8599;</a>
+  </nav>
+</header>
+
+<main class="slide-viewport">
+  <div class="container">
+    <div class="kick">STAGE 07 // SCALING BEYOND ONE FLAGSHIP WORKFLOW</div>
+    <h1 class="h1">What you saw was <span class="au-display-grad">"One"</span> example of an agentic workflow.</h1>
+    <p class="sub">Now multiply that pattern across every Supply Chain Operations Reference (SCOR) persona&mdash;prioritized strictly by payback speed and defensible annual dollar value.</p>
+
+    <div class="cards">
+      <div class="card" style="--tc:#3186FF;--ti:var(--blue-ink);">
+        <div class="cv" id="valTotal">$507.5M</div>
+        <div class="ck">Modeled Estate / Yr</div>
+        <p class="cs">Non-double-counted EBITDA, carrying cost &amp; salvage recovery on $5B COGS.</p>
+      </div>
+      <div class="card" style="--tc:#FC413D;--ti:var(--red-ink);">
+        <div class="cv" id="cntFirst">18 Agents</div>
+        <div class="ck">Priority 1 · Build First</div>
+        <p class="cs">&lt;90-day payback invoice audits, promo guardrails, MEIO &amp; OTIF defense.</p>
+      </div>
+      <div class="card" style="--tc:#FEC700;--ti:var(--amber-ink);">
+        <div class="cv" id="cntNext">36 Agents</div>
+        <div class="ck">Priority 2 · Build Next</div>
+        <p class="cs">Cross-pillar S&amp;OP consensus, allergen scheduling &amp; warehouse slotting.</p>
+      </div>
+      <div class="card" style="--tc:#00AF57;--ti:var(--green-ink);">
+        <div class="cv">60 &times; 8 = 480</div>
+        <div class="ck">Roles &amp; Governed Gates</div>
+        <p class="cs">Clean boundary between AI preparation, ERP ledgers &amp; Human sign-offs.</p>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="cta-main" href="../personas/index.html">Meet the 60-Persona Agentic Workforce &rarr;</a>
+      <a class="cta-sec" href="09_agent_architecture.html">Jump to Google Cloud Architecture</a>
+    </div>
+  </div>
+</main>
+
+<aside class="floating-dock" style="display:flex;align-items:center;gap:12px;padding:8px 16px;background:var(--surface);border:1px solid var(--border-strong);border-radius:30px;backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(18,19,23,.14);position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:1000;">
+  <a href="demo_stage.html" style="background:var(--surface-sunk);border:1px solid var(--border-subtle);color:var(--text-muted);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;text-decoration:none;">&#9664;</a>
+  <div style="font:700 12.5px var(--font-mono);color:var(--text-muted);white-space:nowrap;">PAGE 07 // ONE AGENT TO MANY</div>
+  <a href="../personas/index.html" style="background:var(--g-blue);color:#FFF;padding:6px 15px;border-radius:20px;font:700 13px var(--font-display);text-decoration:none;white-space:nowrap;">08 · Persona Value Map &#9654;</a>
+</aside>
+
+<script src="../data/sc_story_data.js"></script>
+<script src="../data/sc_value_model.js"></script>
+<script>
+(function(){
+  var val = window.SC_VALUES.computeForPersonas(window.SC_DATA.personas).estateTotals;
+  document.getElementById('valTotal').textContent = '$' + val.total.toFixed(1) + 'M/yr';
+  document.getElementById('cntFirst').textContent = val.firstCount + ' Agents';
+  document.getElementById('cntNext').textContent = val.nextCount + ' Agents';
+})();
+</script>
+</body>
+</html>

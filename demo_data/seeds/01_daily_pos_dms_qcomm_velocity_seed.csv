@@ -1,0 +1,351 @@
+record_id,sale_date,sku_id,category,cfa_depot_id,region,channel,sap_ibp_stat_forecast,actual_pos_units,oos_censored_flag,imputed_lost_units,promo_flag,weathernext_temp_delta_c,unit_mrp_usd,gross_margin_usd,regime_note
+POS-0000001,2026-08-01,SKU-SNK-0001,Snacks & Noodles,CFA-BHW-W1,West,General Trade (DMS),47,84,1,23,1,-1.0,7.24,357.38,Monsoon-Surge- Corridor
+POS-0000002,2026-08-02,SKU-BEV-0002,Beverages & Juices,CFA-GUR-N1,North,Modern Trade Chain,94,90,0,0,0,4.7,12.92,432.9,Normal-Regime
+POS-0000003,2026-08-03,SKU-DRY-0003,Dairy & Chilled,CFA-HOS-S1,South,Quick-Commerce (10-Min),7,6,0,0,0,2.2,17.5,41.1,Normal-Regime
+POS-0000004,2026-08-04,SKU-PRC-0004,Personal Care & Soaps,CFA-HAR-E1,East,E-Commerce Marketplace,7,9,0,0,0,-1.8,64.38,258.12,Normal-Regime
+POS-0000005,2026-08-05,SKU-HMC-0005,Home Care & Hygiene,CFA-HYD-S2,South,Institutional HoReCa,61,60,0,0,0,1.6,37.62,969.6,Normal-Regime
+POS-0000006,2026-08-06,SKU-AGR-0006,Agri Staples & Flour,CFA-AMD-W2,West,General Trade (DMS),64,69,0,0,0,0.0,34.56,578.22,Normal-Regime
+POS-0000007,2026-08-07,SKU-FDS-0007,Foods & Biscuits,CFA-LKO-N2,North,Modern Trade Chain,14,14,0,0,0,-0.6,12.56,69.86,Normal-Regime
+POS-0000008,2026-08-08,SKU-SNK-0008,Snacks & Noodles,CFA-CHN-S3,South,Quick-Commerce (10-Min),107,122,0,0,1,-1.5,195.53,11397.24,Normal-Regime
+POS-0000009,2026-08-09,SKU-BEV-0009,Beverages & Juices,CFA-NGP-C1,Central,E-Commerce Marketplace,89,88,0,0,0,3.0,119.85,3816.56,Normal-Regime
+POS-0000010,2026-08-10,SKU-DRY-0010,Dairy & Chilled,CFA-DAL-G1,Global-NA,Institutional HoReCa,61,78,0,0,0,0.8,24.46,604.5,Normal-Regime
+POS-0000011,2026-08-11,SKU-PRC-0011,Personal Care & Soaps,CFA-ANT-G2,Global-EU,General Trade (DMS),90,69,0,0,0,2.3,90.59,3020.82,Normal-Regime
+POS-0000012,2026-08-12,SKU-HMC-0012,Home Care & Hygiene,CFA-SGP-G3,Global-APAC,Modern Trade Chain,31,29,0,0,0,-2.2,60.85,667.58,Normal-Regime
+POS-0000013,2026-08-13,SKU-AGR-0013,Agri Staples & Flour,CFA-BHW-W1,West,Quick-Commerce (10-Min),67,48,0,0,0,0.9,141.81,1650.24,Normal-Regime
+POS-0000014,2026-08-14,SKU-FDS-0014,Foods & Biscuits,CFA-GUR-N1,North,E-Commerce Marketplace,12,15,0,0,0,3.9,245.17,1390.5,Normal-Regime
+POS-0000015,2026-08-15,SKU-SNK-0015,Snacks & Noodles,CFA-HOS-S1,South,Institutional HoReCa,268,267,0,0,1,1.8,88.75,8717.55,Normal-Regime
+POS-0000016,2026-08-16,SKU-BEV-0016,Beverages & Juices,CFA-HAR-E1,East,General Trade (DMS),20,20,0,0,0,3.7,21.27,171.2,Normal-Regime
+POS-0000017,2026-08-17,SKU-DRY-0017,Dairy & Chilled,CFA-HYD-S2,South,Modern Trade Chain,100,88,0,0,0,2.1,99.47,3142.48,Normal-Regime
+POS-0000018,2026-08-18,SKU-PRC-0018,Personal Care & Soaps,CFA-AMD-W2,West,Quick-Commerce (10-Min),81,97,0,0,0,5.1,701.89,33085.73,Normal-Regime
+POS-0000019,2026-08-19,SKU-HMC-0019,Home Care & Hygiene,CFA-LKO-N2,North,E-Commerce Marketplace,36,35,0,0,0,-1.7,12.66,235.2,Normal-Regime
+POS-0000020,2026-08-20,SKU-AGR-0020,Agri Staples & Flour,CFA-CHN-S3,South,Institutional HoReCa,381,325,0,0,0,5.1,71.96,9314.5,Monsoon-Surge- Corridor
+POS-0000021,2026-08-21,SKU-FDS-0021,Foods & Biscuits,CFA-NGP-C1,Central,General Trade (DMS),101,91,0,0,0,-2.4,212.06,6951.49,Normal-Regime
+POS-0000022,2026-08-22,SKU-SNK-0022,Snacks & Noodles,CFA-DAL-G1,Global-NA,Modern Trade Chain,26,36,0,0,1,4.0,20.87,354.6,Normal-Regime
+POS-0000023,2026-08-23,SKU-BEV-0023,Beverages & Juices,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),107,78,0,0,0,0.7,31.38,1029.6,Normal-Regime
+POS-0000024,2026-08-24,SKU-DRY-0024,Dairy & Chilled,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,54,72,0,0,0,-1.9,17.62,307.44,Normal-Regime
+POS-0000025,2026-08-25,SKU-PRC-0025,Personal Care & Soaps,CFA-BHW-W1,West,Institutional HoReCa,94,91,0,0,0,4.6,323.98,12839.19,Normal-Regime
+POS-0000026,2026-08-26,SKU-HMC-0026,Home Care & Hygiene,CFA-GUR-N1,North,General Trade (DMS),72,52,0,0,0,-2.3,18.26,385.84,Normal-Regime
+POS-0000027,2026-08-27,SKU-AGR-0027,Agri Staples & Flour,CFA-HOS-S1,South,Modern Trade Chain,73,92,0,0,0,5.8,28.33,754.4,Normal-Regime
+POS-0000028,2026-08-28,SKU-FDS-0028,Foods & Biscuits,CFA-HAR-E1,East,Quick-Commerce (10-Min),9,14,0,0,0,5.7,211.76,1030.4,Normal-Regime
+POS-0000029,2026-09-01,SKU-SNK-0029,Snacks & Noodles,CFA-HYD-S2,South,E-Commerce Marketplace,19,25,0,0,1,1.6,8.83,77.5,Normal-Regime
+POS-0000030,2026-09-02,SKU-BEV-0030,Beverages & Juices,CFA-AMD-W2,West,Institutional HoReCa,305,301,1,84,0,2.9,6.02,858.55,Normal-Regime
+POS-0000031,2026-09-03,SKU-DRY-0031,Dairy & Chilled,CFA-LKO-N2,North,General Trade (DMS),66,74,0,0,0,2.1,35.96,967.18,Normal-Regime
+POS-0000032,2026-09-04,SKU-PRC-0032,Personal Care & Soaps,CFA-CHN-S3,South,Modern Trade Chain,9,7,0,0,0,2.8,16.0,53.27,Normal-Regime
+POS-0000033,2026-09-05,SKU-HMC-0033,Home Care & Hygiene,CFA-NGP-C1,Central,Quick-Commerce (10-Min),21,25,0,0,0,5.9,53.55,621.25,Normal-Regime
+POS-0000034,2026-09-06,SKU-AGR-0034,Agri Staples & Flour,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,87,100,0,0,0,3.1,14.18,344.0,Normal-Regime
+POS-0000035,2026-09-07,SKU-FDS-0035,Foods & Biscuits,CFA-ANT-G2,Global-EU,Institutional HoReCa,279,284,0,0,0,-0.7,11.33,911.64,Normal-Regime
+POS-0000036,2026-09-08,SKU-SNK-0036,Snacks & Noodles,CFA-SGP-G3,Global-APAC,General Trade (DMS),62,96,0,0,1,2.5,14.79,514.56,Normal-Regime
+POS-0000037,2026-09-09,SKU-BEV-0037,Beverages & Juices,CFA-BHW-W1,West,Modern Trade Chain,115,118,0,0,0,5.9,6.0,264.32,Normal-Regime
+POS-0000038,2026-09-10,SKU-DRY-0038,Dairy & Chilled,CFA-GUR-N1,North,Quick-Commerce (10-Min),25,37,0,0,0,3.6,13.65,122.47,Normal-Regime
+POS-0000039,2026-09-11,SKU-PRC-0039,Personal Care & Soaps,CFA-HOS-S1,South,E-Commerce Marketplace,33,33,0,0,0,-0.9,44.29,608.52,Monsoon-Surge- Corridor
+POS-0000040,2026-09-12,SKU-HMC-0040,Home Care & Hygiene,CFA-HAR-E1,East,Institutional HoReCa,303,262,0,0,0,4.0,53.85,6885.36,Normal-Regime
+POS-0000041,2026-09-13,SKU-AGR-0041,Agri Staples & Flour,CFA-HYD-S2,South,General Trade (DMS),23,31,0,0,0,-1.5,125.98,946.74,Normal-Regime
+POS-0000042,2026-09-14,SKU-FDS-0042,Foods & Biscuits,CFA-AMD-W2,West,Modern Trade Chain,67,62,0,0,0,-1.0,9.16,231.26,Normal-Regime
+POS-0000043,2026-09-15,SKU-SNK-0043,Snacks & Noodles,CFA-LKO-N2,North,Quick-Commerce (10-Min),8,13,0,0,1,6.0,93.59,409.63,Normal-Regime
+POS-0000044,2026-09-16,SKU-BEV-0044,Beverages & Juices,CFA-CHN-S3,South,E-Commerce Marketplace,62,107,0,0,0,4.3,21.74,1154.53,Normal-Regime
+POS-0000045,2026-09-17,SKU-DRY-0045,Dairy & Chilled,CFA-NGP-C1,Central,Institutional HoReCa,76,74,0,0,0,5.1,13.01,284.9,Normal-Regime
+POS-0000046,2026-09-18,SKU-PRC-0046,Personal Care & Soaps,CFA-DAL-G1,Global-NA,General Trade (DMS),96,89,0,0,0,0.5,26.8,1200.61,Normal-Regime
+POS-0000047,2026-09-19,SKU-HMC-0047,Home Care & Hygiene,CFA-ANT-G2,Global-EU,Modern Trade Chain,71,73,0,0,0,1.6,122.42,3549.99,Normal-Regime
+POS-0000048,2026-09-20,SKU-AGR-0048,Agri Staples & Flour,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),65,76,0,0,0,0.3,5.51,110.96,Normal-Regime
+POS-0000049,2026-09-21,SKU-FDS-0049,Foods & Biscuits,CFA-BHW-W1,West,E-Commerce Marketplace,69,79,0,0,0,-1.2,57.12,1931.55,Normal-Regime
+POS-0000050,2026-09-22,SKU-SNK-0050,Snacks & Noodles,CFA-GUR-N1,North,Institutional HoReCa,47,94,0,0,1,0.1,12.96,371.3,Normal-Regime
+POS-0000051,2026-09-23,SKU-BEV-0051,Beverages & Juices,CFA-HOS-S1,South,General Trade (DMS),17,19,0,0,0,-1.7,13.18,94.43,Normal-Regime
+POS-0000052,2026-09-24,SKU-DRY-0052,Dairy & Chilled,CFA-HAR-E1,East,Modern Trade Chain,88,92,0,0,0,-0.3,44.19,1134.36,Normal-Regime
+POS-0000053,2026-09-25,SKU-PRC-0053,Personal Care & Soaps,CFA-HYD-S2,South,Quick-Commerce (10-Min),62,53,1,14,0,1.5,90.42,2923.21,Normal-Regime
+POS-0000054,2026-09-26,SKU-HMC-0054,Home Care & Hygiene,CFA-AMD-W2,West,E-Commerce Marketplace,53,48,0,0,0,3.4,20.39,503.52,Normal-Regime
+POS-0000055,2026-09-27,SKU-AGR-0055,Agri Staples & Flour,CFA-LKO-N2,North,Institutional HoReCa,151,159,0,0,0,-2.1,74.88,4762.05,Normal-Regime
+POS-0000056,2026-09-28,SKU-FDS-0056,Foods & Biscuits,CFA-CHN-S3,South,General Trade (DMS),17,18,0,0,0,-2.3,4.89,24.84,Normal-Regime
+POS-0000057,2026-10-01,SKU-SNK-0057,Snacks & Noodles,CFA-NGP-C1,Central,Modern Trade Chain,86,102,0,0,1,5.3,209.34,10474.38,Normal-Regime
+POS-0000058,2026-10-02,SKU-BEV-0058,Beverages & Juices,CFA-DAL-G1,Global-NA,Quick-Commerce (10-Min),18,26,0,0,0,6.0,5.4,36.92,Monsoon-Surge- Corridor
+POS-0000059,2026-10-03,SKU-DRY-0059,Dairy & Chilled,CFA-ANT-G2,Global-EU,E-Commerce Marketplace,43,45,1,12,0,3.8,36.76,733.02,Normal-Regime
+POS-0000060,2026-10-04,SKU-PRC-0060,Personal Care & Soaps,CFA-SGP-G3,Global-APAC,Institutional HoReCa,40,39,0,0,0,0.0,294.45,4681.56,Normal-Regime
+POS-0000061,2026-10-05,SKU-HMC-0061,Home Care & Hygiene,CFA-BHW-W1,West,General Trade (DMS),17,14,0,0,0,0.5,134.13,947.94,Normal-Regime
+POS-0000062,2026-10-06,SKU-AGR-0062,Agri Staples & Flour,CFA-GUR-N1,North,Modern Trade Chain,51,56,0,0,0,3.9,286.57,3890.32,Normal-Regime
+POS-0000063,2026-10-07,SKU-FDS-0063,Foods & Biscuits,CFA-HOS-S1,South,Quick-Commerce (10-Min),29,32,0,0,0,3.3,16.9,172.48,Normal-Regime
+POS-0000064,2026-10-08,SKU-SNK-0064,Snacks & Noodles,CFA-HAR-E1,East,E-Commerce Marketplace,77,97,0,0,1,5.9,183.94,6587.27,Normal-Regime
+POS-0000065,2026-10-09,SKU-BEV-0065,Beverages & Juices,CFA-HYD-S2,South,Institutional HoReCa,200,181,0,0,0,-0.8,70.04,4782.02,Normal-Regime
+POS-0000066,2026-10-10,SKU-DRY-0066,Dairy & Chilled,CFA-AMD-W2,West,General Trade (DMS),89,79,0,0,0,-1.9,17.86,342.07,Normal-Regime
+POS-0000067,2026-10-11,SKU-PRC-0067,Personal Care & Soaps,CFA-LKO-N2,North,Modern Trade Chain,48,66,0,0,0,-1.6,85.66,2808.96,Normal-Regime
+POS-0000068,2026-10-12,SKU-HMC-0068,Home Care & Hygiene,CFA-CHN-S3,South,Quick-Commerce (10-Min),116,107,0,0,0,5.1,49.17,1841.47,Normal-Regime
+POS-0000069,2026-10-13,SKU-AGR-0069,Agri Staples & Flour,CFA-NGP-C1,Central,E-Commerce Marketplace,51,36,0,0,0,0.4,143.84,1411.2,Normal-Regime
+POS-0000070,2026-10-14,SKU-FDS-0070,Foods & Biscuits,CFA-DAL-G1,Global-NA,Institutional HoReCa,255,273,0,0,0,-1.6,9.42,1070.16,Normal-Regime
+POS-0000071,2026-10-15,SKU-SNK-0071,Snacks & Noodles,CFA-ANT-G2,Global-EU,General Trade (DMS),51,74,0,0,1,5.3,42.61,1255.04,Normal-Regime
+POS-0000072,2026-10-16,SKU-BEV-0072,Beverages & Juices,CFA-SGP-G3,Global-APAC,Modern Trade Chain,53,45,0,0,0,0.4,12.85,203.4,Normal-Regime
+POS-0000073,2026-10-17,SKU-DRY-0073,Dairy & Chilled,CFA-BHW-W1,West,Quick-Commerce (10-Min),9,9,0,0,0,1.6,343.8,938.16,Normal-Regime
+POS-0000074,2026-10-18,SKU-PRC-0074,Personal Care & Soaps,CFA-GUR-N1,North,E-Commerce Marketplace,104,114,0,0,0,3.2,13.21,590.52,Normal-Regime
+POS-0000075,2026-10-19,SKU-HMC-0075,Home Care & Hygiene,CFA-HOS-S1,South,Institutional HoReCa,24,33,0,0,0,-1.4,11.67,154.11,Normal-Regime
+POS-0000076,2026-10-20,SKU-AGR-0076,Agri Staples & Flour,CFA-HAR-E1,East,General Trade (DMS),34,36,0,0,0,-1.0,6.44,56.16,Normal-Regime
+POS-0000077,2026-10-21,SKU-FDS-0077,Foods & Biscuits,CFA-HYD-S2,South,Modern Trade Chain,76,73,0,0,0,0.5,27.79,778.18,Monsoon-Surge- Corridor
+POS-0000078,2026-10-22,SKU-SNK-0078,Snacks & Noodles,CFA-AMD-W2,West,Quick-Commerce (10-Min),44,67,0,0,1,5.6,10.28,348.4,Normal-Regime
+POS-0000079,2026-10-23,SKU-BEV-0079,Beverages & Juices,CFA-LKO-N2,North,E-Commerce Marketplace,10,10,0,0,0,2.8,5.84,23.7,Normal-Regime
+POS-0000080,2026-10-24,SKU-DRY-0080,Dairy & Chilled,CFA-CHN-S3,South,Institutional HoReCa,70,68,0,0,0,-0.8,162.27,2675.12,Normal-Regime
+POS-0000081,2026-10-25,SKU-PRC-0081,Personal Care & Soaps,CFA-NGP-C1,Central,General Trade (DMS),20,17,0,0,0,2.7,705.71,5596.4,Normal-Regime
+POS-0000082,2026-10-26,SKU-HMC-0082,Home Care & Hygiene,CFA-DAL-G1,Global-NA,Modern Trade Chain,26,27,0,0,0,5.6,38.04,421.2,Normal-Regime
+POS-0000083,2026-10-27,SKU-AGR-0083,Agri Staples & Flour,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),26,26,0,0,0,4.8,28.18,183.3,Normal-Regime
+POS-0000084,2026-10-28,SKU-FDS-0084,Foods & Biscuits,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,25,21,0,0,0,2.5,52.22,346.5,Normal-Regime
+POS-0000085,2026-08-01,SKU-SNK-0085,Snacks & Noodles,CFA-BHW-W1,West,Institutional HoReCa,373,501,0,0,1,5.5,44.57,9924.81,Normal-Regime
+POS-0000086,2026-08-02,SKU-BEV-0086,Beverages & Juices,CFA-GUR-N1,North,General Trade (DMS),71,67,0,0,0,-2.4,9.46,241.87,Normal-Regime
+POS-0000087,2026-08-03,SKU-DRY-0087,Dairy & Chilled,CFA-HOS-S1,South,Modern Trade Chain,35,27,0,0,0,3.2,7.82,81.81,Normal-Regime
+POS-0000088,2026-08-04,SKU-PRC-0088,Personal Care & Soaps,CFA-HAR-E1,East,Quick-Commerce (10-Min),77,68,1,19,0,2.6,293.35,7641.21,Normal-Regime
+POS-0000089,2026-08-05,SKU-HMC-0089,Home Care & Hygiene,CFA-HYD-S2,South,E-Commerce Marketplace,55,50,0,0,0,-1.5,125.66,2183.0,Normal-Regime
+POS-0000090,2026-08-06,SKU-AGR-0090,Agri Staples & Flour,CFA-AMD-W2,West,Institutional HoReCa,184,183,0,0,0,2.7,32.62,1447.53,Normal-Regime
+POS-0000091,2026-08-07,SKU-FDS-0091,Foods & Biscuits,CFA-LKO-N2,North,General Trade (DMS),72,68,0,0,0,-1.1,27.27,449.48,Normal-Regime
+POS-0000092,2026-08-08,SKU-SNK-0092,Snacks & Noodles,CFA-CHN-S3,South,Modern Trade Chain,69,110,0,0,1,5.9,96.36,5140.3,Normal-Regime
+POS-0000093,2026-08-09,SKU-BEV-0093,Beverages & Juices,CFA-NGP-C1,Central,Quick-Commerce (10-Min),87,118,0,0,0,4.5,66.28,2564.14,Normal-Regime
+POS-0000094,2026-08-10,SKU-DRY-0094,Dairy & Chilled,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,12,23,0,0,0,4.8,19.85,186.53,Normal-Regime
+POS-0000095,2026-08-11,SKU-PRC-0095,Personal Care & Soaps,CFA-ANT-G2,Global-EU,Institutional HoReCa,309,267,0,0,0,-2.0,335.59,33252.18,Normal-Regime
+POS-0000096,2026-08-12,SKU-HMC-0096,Home Care & Hygiene,CFA-SGP-G3,Global-APAC,General Trade (DMS),98,92,0,0,0,-1.9,49.82,2160.16,Monsoon-Surge- Corridor
+POS-0000097,2026-08-13,SKU-AGR-0097,Agri Staples & Flour,CFA-BHW-W1,West,Modern Trade Chain,8,13,0,0,0,0.3,36.4,152.1,Normal-Regime
+POS-0000098,2026-08-14,SKU-FDS-0098,Foods & Biscuits,CFA-GUR-N1,North,Quick-Commerce (10-Min),60,67,0,0,0,5.5,256.7,6966.66,Normal-Regime
+POS-0000099,2026-08-15,SKU-SNK-0099,Snacks & Noodles,CFA-HOS-S1,South,E-Commerce Marketplace,54,56,0,0,1,2.2,98.65,2027.2,Normal-Regime
+POS-0000100,2026-08-16,SKU-BEV-0100,Beverages & Juices,CFA-HAR-E1,East,Institutional HoReCa,350,440,0,0,0,0.9,13.2,1782.0,Normal-Regime
+POS-0000101,2026-08-17,SKU-DRY-0101,Dairy & Chilled,CFA-HYD-S2,South,General Trade (DMS),37,46,0,0,0,2.5,29.05,406.64,Normal-Regime
+POS-0000102,2026-08-18,SKU-PRC-0102,Personal Care & Soaps,CFA-AMD-W2,West,Modern Trade Chain,6,6,0,0,0,-2.5,15.68,44.88,Normal-Regime
+POS-0000103,2026-08-19,SKU-HMC-0103,Home Care & Hygiene,CFA-LKO-N2,North,Quick-Commerce (10-Min),77,97,0,0,0,-2.4,50.31,2135.94,Normal-Regime
+POS-0000104,2026-08-20,SKU-AGR-0104,Agri Staples & Flour,CFA-CHN-S3,South,E-Commerce Marketplace,48,46,0,0,0,-2.2,19.83,221.26,Normal-Regime
+POS-0000105,2026-08-21,SKU-FDS-0105,Foods & Biscuits,CFA-NGP-C1,Central,Institutional HoReCa,391,321,0,0,0,0.6,221.32,18447.87,Normal-Regime
+POS-0000106,2026-08-22,SKU-SNK-0106,Snacks & Noodles,CFA-DAL-G1,Global-NA,General Trade (DMS),75,90,0,0,1,4.4,22.04,593.1,Normal-Regime
+POS-0000107,2026-08-23,SKU-BEV-0107,Beverages & Juices,CFA-ANT-G2,Global-EU,Modern Trade Chain,31,37,0,0,0,4.8,5.34,48.47,Normal-Regime
+POS-0000108,2026-08-24,SKU-DRY-0108,Dairy & Chilled,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),74,78,0,0,0,0.8,36.12,736.32,Normal-Regime
+POS-0000109,2026-08-25,SKU-PRC-0109,Personal Care & Soaps,CFA-BHW-W1,West,E-Commerce Marketplace,27,20,0,0,0,2.2,74.56,591.8,Normal-Regime
+POS-0000110,2026-08-26,SKU-HMC-0110,Home Care & Hygiene,CFA-GUR-N1,North,Institutional HoReCa,373,440,0,0,0,4.7,52.73,10216.8,Normal-Regime
+POS-0000111,2026-08-27,SKU-AGR-0111,Agri Staples & Flour,CFA-HOS-S1,South,General Trade (DMS),52,82,0,0,0,3.6,5.75,155.8,Normal-Regime
+POS-0000112,2026-08-28,SKU-FDS-0112,Foods & Biscuits,CFA-HAR-E1,East,Modern Trade Chain,37,45,0,0,0,-0.7,32.27,591.3,Normal-Regime
+POS-0000113,2026-09-01,SKU-SNK-0113,Snacks & Noodles,CFA-HYD-S2,South,Quick-Commerce (10-Min),72,122,0,0,1,1.9,99.23,4609.16,Normal-Regime
+POS-0000114,2026-09-02,SKU-BEV-0114,Beverages & Juices,CFA-AMD-W2,West,E-Commerce Marketplace,44,62,0,0,0,5.4,61.07,1479.94,Normal-Regime
+POS-0000115,2026-09-03,SKU-DRY-0115,Dairy & Chilled,CFA-LKO-N2,North,Institutional HoReCa,133,139,0,0,0,-1.8,25.66,864.58,Monsoon-Surge- Corridor
+POS-0000116,2026-09-04,SKU-PRC-0116,Personal Care & Soaps,CFA-CHN-S3,South,General Trade (DMS),60,53,0,0,0,4.0,83.45,2051.1,Normal-Regime
+POS-0000117,2026-09-05,SKU-HMC-0117,Home Care & Hygiene,CFA-NGP-C1,Central,Modern Trade Chain,99,91,1,25,0,-1.6,17.5,602.04,Normal-Regime
+POS-0000118,2026-09-06,SKU-AGR-0118,Agri Staples & Flour,CFA-DAL-G1,Global-NA,Quick-Commerce (10-Min),24,34,1,9,0,-0.1,14.36,149.64,Normal-Regime
+POS-0000119,2026-09-07,SKU-FDS-0119,Foods & Biscuits,CFA-ANT-G2,Global-EU,E-Commerce Marketplace,74,81,0,0,0,-1.6,223.08,7207.38,Normal-Regime
+POS-0000120,2026-09-08,SKU-SNK-0120,Snacks & Noodles,CFA-SGP-G3,Global-APAC,Institutional HoReCa,298,383,0,0,1,-0.5,10.16,1823.08,Normal-Regime
+POS-0000121,2026-09-09,SKU-BEV-0121,Beverages & Juices,CFA-BHW-W1,West,General Trade (DMS),60,77,0,0,0,0.8,33.5,1201.97,Normal-Regime
+POS-0000122,2026-09-10,SKU-DRY-0122,Dairy & Chilled,CFA-GUR-N1,North,Modern Trade Chain,51,49,0,0,0,-0.3,35.55,422.38,Normal-Regime
+POS-0000123,2026-09-11,SKU-PRC-0123,Personal Care & Soaps,CFA-HOS-S1,South,Quick-Commerce (10-Min),93,87,0,0,0,4.3,15.32,611.61,Normal-Regime
+POS-0000124,2026-09-12,SKU-HMC-0124,Home Care & Hygiene,CFA-HAR-E1,East,E-Commerce Marketplace,89,66,0,0,0,0.2,27.09,910.8,Normal-Regime
+POS-0000125,2026-09-13,SKU-AGR-0125,Agri Staples & Flour,CFA-HYD-S2,South,Institutional HoReCa,213,216,0,0,0,-1.9,29.39,1931.04,Normal-Regime
+POS-0000126,2026-09-14,SKU-FDS-0126,Foods & Biscuits,CFA-AMD-W2,West,General Trade (DMS),42,45,0,0,0,1.5,52.69,574.65,Normal-Regime
+POS-0000127,2026-09-15,SKU-SNK-0127,Snacks & Noodles,CFA-LKO-N2,North,Modern Trade Chain,51,76,0,0,1,3.0,7.33,268.28,Normal-Regime
+POS-0000128,2026-09-16,SKU-BEV-0128,Beverages & Juices,CFA-CHN-S3,South,Quick-Commerce (10-Min),68,68,0,0,0,-1.5,145.93,4168.4,Normal-Regime
+POS-0000129,2026-09-17,SKU-DRY-0129,Dairy & Chilled,CFA-NGP-C1,Central,E-Commerce Marketplace,26,31,0,0,0,-1.3,36.41,390.91,Normal-Regime
+POS-0000130,2026-09-18,SKU-PRC-0130,Personal Care & Soaps,CFA-DAL-G1,Global-NA,Institutional HoReCa,397,600,0,0,0,4.4,52.84,14790.0,Normal-Regime
+POS-0000131,2026-09-19,SKU-HMC-0131,Home Care & Hygiene,CFA-ANT-G2,Global-EU,General Trade (DMS),13,14,0,0,0,-0.2,23.05,128.66,Normal-Regime
+POS-0000132,2026-09-20,SKU-AGR-0132,Agri Staples & Flour,CFA-SGP-G3,Global-APAC,Modern Trade Chain,6,8,0,0,0,6.0,29.49,88.48,Normal-Regime
+POS-0000133,2026-09-21,SKU-FDS-0133,Foods & Biscuits,CFA-BHW-W1,West,Quick-Commerce (10-Min),61,46,0,0,0,2.2,11.1,197.34,Normal-Regime
+POS-0000134,2026-09-22,SKU-SNK-0134,Snacks & Noodles,CFA-GUR-N1,North,E-Commerce Marketplace,90,150,0,0,1,5.2,173.89,11547.0,Monsoon-Surge- Corridor
+POS-0000135,2026-09-23,SKU-BEV-0135,Beverages & Juices,CFA-HOS-S1,South,Institutional HoReCa,261,345,0,0,0,5.1,10.8,1673.25,Normal-Regime
+POS-0000136,2026-09-24,SKU-DRY-0136,Dairy & Chilled,CFA-HAR-E1,East,General Trade (DMS),38,56,0,0,0,6.0,90.36,1792.0,Normal-Regime
+POS-0000137,2026-09-25,SKU-PRC-0137,Personal Care & Soaps,CFA-HYD-S2,South,Modern Trade Chain,52,59,0,0,0,3.5,150.94,3903.44,Normal-Regime
+POS-0000138,2026-09-26,SKU-HMC-0138,Home Care & Hygiene,CFA-AMD-W2,West,Quick-Commerce (10-Min),15,19,0,0,0,4.3,127.59,1048.04,Normal-Regime
+POS-0000139,2026-09-27,SKU-AGR-0139,Agri Staples & Flour,CFA-LKO-N2,North,E-Commerce Marketplace,26,21,0,0,0,0.2,6.71,57.33,Normal-Regime
+POS-0000140,2026-09-28,SKU-FDS-0140,Foods & Biscuits,CFA-CHN-S3,South,Institutional HoReCa,189,196,0,0,0,3.1,7.79,378.28,Normal-Regime
+POS-0000141,2026-10-01,SKU-SNK-0141,Snacks & Noodles,CFA-NGP-C1,Central,General Trade (DMS),54,76,0,0,1,2.1,4.39,159.6,Normal-Regime
+POS-0000142,2026-10-02,SKU-BEV-0142,Beverages & Juices,CFA-DAL-G1,Global-NA,Modern Trade Chain,99,91,0,0,0,5.8,122.66,3035.76,Normal-Regime
+POS-0000143,2026-10-03,SKU-DRY-0143,Dairy & Chilled,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),109,90,0,0,0,4.8,17.78,471.6,Normal-Regime
+POS-0000144,2026-10-04,SKU-PRC-0144,Personal Care & Soaps,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,63,98,0,0,0,4.0,77.33,2863.56,Normal-Regime
+POS-0000145,2026-10-05,SKU-HMC-0145,Home Care & Hygiene,CFA-BHW-W1,West,Institutional HoReCa,180,234,0,0,0,-0.6,11.99,1137.24,Normal-Regime
+POS-0000146,2026-10-06,SKU-AGR-0146,Agri Staples & Flour,CFA-GUR-N1,North,General Trade (DMS),87,72,1,20,0,2.8,19.1,445.28,Normal-Regime
+POS-0000147,2026-10-07,SKU-FDS-0147,Foods & Biscuits,CFA-HOS-S1,South,Modern Trade Chain,19,21,0,0,0,3.3,11.59,98.49,Normal-Regime
+POS-0000148,2026-10-08,SKU-SNK-0148,Snacks & Noodles,CFA-HAR-E1,East,Quick-Commerce (10-Min),31,38,0,0,1,-2.0,49.6,705.66,Normal-Regime
+POS-0000149,2026-10-09,SKU-BEV-0149,Beverages & Juices,CFA-HYD-S2,South,E-Commerce Marketplace,38,40,0,0,0,3.8,30.07,291.6,Normal-Regime
+POS-0000150,2026-10-10,SKU-DRY-0150,Dairy & Chilled,CFA-AMD-W2,West,Institutional HoReCa,70,94,0,0,0,-1.3,374.42,13331.08,Normal-Regime
+POS-0000151,2026-10-11,SKU-PRC-0151,Personal Care & Soaps,CFA-LKO-N2,North,General Trade (DMS),93,79,0,0,0,0.5,25.98,1019.89,Normal-Regime
+POS-0000152,2026-10-12,SKU-HMC-0152,Home Care & Hygiene,CFA-CHN-S3,South,Modern Trade Chain,76,73,0,0,0,0.7,18.68,522.68,Normal-Regime
+POS-0000153,2026-10-13,SKU-AGR-0153,Agri Staples & Flour,CFA-NGP-C1,Central,Quick-Commerce (10-Min),72,60,0,0,0,1.1,13.94,216.6,Monsoon-Surge- Corridor
+POS-0000154,2026-10-14,SKU-FDS-0154,Foods & Biscuits,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,66,82,0,0,0,1.6,256.69,9099.54,Normal-Regime
+POS-0000155,2026-10-15,SKU-SNK-0155,Snacks & Noodles,CFA-ANT-G2,Global-EU,Institutional HoReCa,69,85,0,0,1,0.7,21.37,765.0,Normal-Regime
+POS-0000156,2026-10-16,SKU-BEV-0156,Beverages & Juices,CFA-SGP-G3,Global-APAC,General Trade (DMS),15,23,0,0,0,-0.9,6.35,64.4,Normal-Regime
+POS-0000157,2026-10-17,SKU-DRY-0157,Dairy & Chilled,CFA-BHW-W1,West,Modern Trade Chain,27,33,0,0,0,3.8,169.83,1549.68,Normal-Regime
+POS-0000158,2026-10-18,SKU-PRC-0158,Personal Care & Soaps,CFA-GUR-N1,North,Quick-Commerce (10-Min),50,46,0,0,0,0.6,75.28,1139.88,Normal-Regime
+POS-0000159,2026-10-19,SKU-HMC-0159,Home Care & Hygiene,CFA-HOS-S1,South,E-Commerce Marketplace,58,49,0,0,0,1.1,37.83,680.61,Normal-Regime
+POS-0000160,2026-10-20,SKU-AGR-0160,Agri Staples & Flour,CFA-HAR-E1,East,Institutional HoReCa,300,404,0,0,0,-1.2,293.24,35463.12,Normal-Regime
+POS-0000161,2026-10-21,SKU-FDS-0161,Foods & Biscuits,CFA-HYD-S2,South,General Trade (DMS),29,26,0,0,0,-2.0,25.37,311.74,Normal-Regime
+POS-0000162,2026-10-22,SKU-SNK-0162,Snacks & Noodles,CFA-AMD-W2,West,Modern Trade Chain,44,49,0,0,1,2.8,4.66,112.7,Normal-Regime
+POS-0000163,2026-10-23,SKU-BEV-0163,Beverages & Juices,CFA-LKO-N2,North,Quick-Commerce (10-Min),6,6,0,0,0,0.3,121.41,221.28,Normal-Regime
+POS-0000164,2026-10-24,SKU-DRY-0164,Dairy & Chilled,CFA-CHN-S3,South,E-Commerce Marketplace,45,52,0,0,0,2.5,347.36,4378.92,Normal-Regime
+POS-0000165,2026-10-25,SKU-PRC-0165,Personal Care & Soaps,CFA-NGP-C1,Central,Institutional HoReCa,220,203,0,0,0,2.6,44.46,2484.72,Normal-Regime
+POS-0000166,2026-10-26,SKU-HMC-0166,Home Care & Hygiene,CFA-DAL-G1,Global-NA,General Trade (DMS),36,42,0,0,0,5.9,33.86,396.06,Normal-Regime
+POS-0000167,2026-10-27,SKU-AGR-0167,Agri Staples & Flour,CFA-ANT-G2,Global-EU,Modern Trade Chain,37,52,0,0,0,4.7,120.3,1641.64,Normal-Regime
+POS-0000168,2026-10-28,SKU-FDS-0168,Foods & Biscuits,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),116,128,0,0,0,3.6,103.53,4723.2,Normal-Regime
+POS-0000169,2026-08-01,SKU-SNK-0169,Snacks & Noodles,CFA-BHW-W1,West,E-Commerce Marketplace,87,108,0,0,1,2.0,4.71,236.52,Normal-Regime
+POS-0000170,2026-08-02,SKU-BEV-0170,Beverages & Juices,CFA-GUR-N1,North,Institutional HoReCa,70,54,0,0,0,3.0,10.11,187.38,Normal-Regime
+POS-0000171,2026-08-03,SKU-DRY-0171,Dairy & Chilled,CFA-HOS-S1,South,General Trade (DMS),65,65,0,0,0,2.9,17.58,393.9,Normal-Regime
+POS-0000172,2026-08-04,SKU-PRC-0172,Personal Care & Soaps,CFA-HAR-E1,East,Modern Trade Chain,68,57,0,0,0,1.8,23.37,487.92,Monsoon-Surge- Corridor
+POS-0000173,2026-08-05,SKU-HMC-0173,Home Care & Hygiene,CFA-HYD-S2,South,Quick-Commerce (10-Min),38,43,0,0,0,1.6,20.7,390.01,Normal-Regime
+POS-0000174,2026-08-06,SKU-AGR-0174,Agri Staples & Flour,CFA-AMD-W2,West,E-Commerce Marketplace,45,54,0,0,0,4.5,137.26,2552.04,Normal-Regime
+POS-0000175,2026-08-07,SKU-FDS-0175,Foods & Biscuits,CFA-LKO-N2,North,Institutional HoReCa,124,115,1,32,0,-1.9,32.14,1899.24,Normal-Regime
+POS-0000176,2026-08-08,SKU-SNK-0176,Snacks & Noodles,CFA-CHN-S3,South,General Trade (DMS),26,33,0,0,1,1.0,8.7,102.96,Normal-Regime
+POS-0000177,2026-08-09,SKU-BEV-0177,Beverages & Juices,CFA-NGP-C1,Central,Modern Trade Chain,68,69,0,0,0,3.0,72.59,2129.34,Normal-Regime
+POS-0000178,2026-08-10,SKU-DRY-0178,Dairy & Chilled,CFA-DAL-G1,Global-NA,Quick-Commerce (10-Min),3,3,0,0,0,2.0,47.97,57.72,Normal-Regime
+POS-0000179,2026-08-11,SKU-PRC-0179,Personal Care & Soaps,CFA-ANT-G2,Global-EU,E-Commerce Marketplace,80,95,0,0,0,-1.4,145.59,3717.35,Normal-Regime
+POS-0000180,2026-08-12,SKU-HMC-0180,Home Care & Hygiene,CFA-SGP-G3,Global-APAC,Institutional HoReCa,119,128,0,0,0,1.9,520.6,29736.96,Normal-Regime
+POS-0000181,2026-08-13,SKU-AGR-0181,Agri Staples & Flour,CFA-BHW-W1,West,General Trade (DMS),69,94,0,0,0,-2.5,67.96,1979.64,Normal-Regime
+POS-0000182,2026-08-14,SKU-FDS-0182,Foods & Biscuits,CFA-GUR-N1,North,Modern Trade Chain,42,49,0,0,0,0.1,126.24,2345.14,Normal-Regime
+POS-0000183,2026-08-15,SKU-SNK-0183,Snacks & Noodles,CFA-HOS-S1,South,Quick-Commerce (10-Min),27,52,1,14,1,-0.6,10.41,331.98,Normal-Regime
+POS-0000184,2026-08-16,SKU-BEV-0184,Beverages & Juices,CFA-HAR-E1,East,E-Commerce Marketplace,9,7,0,0,0,1.1,17.9,44.94,Normal-Regime
+POS-0000185,2026-08-17,SKU-DRY-0185,Dairy & Chilled,CFA-HYD-S2,South,Institutional HoReCa,71,106,0,0,0,4.2,374.39,14017.44,Normal-Regime
+POS-0000186,2026-08-18,SKU-PRC-0186,Personal Care & Soaps,CFA-AMD-W2,West,General Trade (DMS),27,44,0,0,0,6.0,169.13,2823.48,Normal-Regime
+POS-0000187,2026-08-19,SKU-HMC-0187,Home Care & Hygiene,CFA-LKO-N2,North,Modern Trade Chain,63,76,0,0,0,0.6,266.54,9110.88,Normal-Regime
+POS-0000188,2026-08-20,SKU-AGR-0188,Agri Staples & Flour,CFA-CHN-S3,South,Quick-Commerce (10-Min),40,40,0,0,0,-0.4,11.47,193.2,Normal-Regime
+POS-0000189,2026-08-21,SKU-FDS-0189,Foods & Biscuits,CFA-NGP-C1,Central,E-Commerce Marketplace,33,24,0,0,0,-0.1,102.57,815.76,Normal-Regime
+POS-0000190,2026-08-22,SKU-SNK-0190,Snacks & Noodles,CFA-DAL-G1,Global-NA,Institutional HoReCa,141,242,0,0,1,4.1,26.18,3390.42,Normal-Regime
+POS-0000191,2026-08-23,SKU-BEV-0191,Beverages & Juices,CFA-ANT-G2,Global-EU,General Trade (DMS),34,29,0,0,0,2.1,20.1,222.43,Monsoon-Surge- Corridor
+POS-0000192,2026-08-24,SKU-DRY-0192,Dairy & Chilled,CFA-SGP-G3,Global-APAC,Modern Trade Chain,22,34,0,0,0,5.4,12.88,106.08,Normal-Regime
+POS-0000193,2026-08-25,SKU-PRC-0193,Personal Care & Soaps,CFA-BHW-W1,West,Quick-Commerce (10-Min),109,127,0,0,0,4.4,60.65,2207.26,Normal-Regime
+POS-0000194,2026-08-26,SKU-HMC-0194,Home Care & Hygiene,CFA-GUR-N1,North,E-Commerce Marketplace,30,33,0,0,0,5.2,11.24,143.55,Normal-Regime
+POS-0000195,2026-08-27,SKU-AGR-0195,Agri Staples & Flour,CFA-HOS-S1,South,Institutional HoReCa,27,26,0,0,0,-0.4,133.41,840.84,Normal-Regime
+POS-0000196,2026-08-28,SKU-FDS-0196,Foods & Biscuits,CFA-HAR-E1,East,General Trade (DMS),36,24,0,0,0,0.2,208.62,1701.36,Normal-Regime
+POS-0000197,2026-09-01,SKU-SNK-0197,Snacks & Noodles,CFA-HYD-S2,South,Modern Trade Chain,6,10,0,0,1,-0.2,7.76,34.4,Normal-Regime
+POS-0000198,2026-09-02,SKU-BEV-0198,Beverages & Juices,CFA-AMD-W2,West,Quick-Commerce (10-Min),30,30,0,0,0,0.6,9.18,84.3,Normal-Regime
+POS-0000199,2026-09-03,SKU-DRY-0199,Dairy & Chilled,CFA-LKO-N2,North,E-Commerce Marketplace,83,94,0,0,0,1.8,338.54,9285.32,Normal-Regime
+POS-0000200,2026-09-04,SKU-PRC-0200,Personal Care & Soaps,CFA-CHN-S3,South,Institutional HoReCa,314,318,0,0,0,-1.4,688.07,106603.14,Normal-Regime
+POS-0000201,2026-09-05,SKU-HMC-0201,Home Care & Hygiene,CFA-NGP-C1,Central,General Trade (DMS),30,45,0,0,0,1.7,17.52,285.75,Normal-Regime
+POS-0000202,2026-09-06,SKU-AGR-0202,Agri Staples & Flour,CFA-DAL-G1,Global-NA,Modern Trade Chain,29,33,0,0,0,-0.1,69.08,552.75,Normal-Regime
+POS-0000203,2026-09-07,SKU-FDS-0203,Foods & Biscuits,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),74,82,0,0,0,3.6,26.58,528.08,Normal-Regime
+POS-0000204,2026-09-08,SKU-SNK-0204,Snacks & Noodles,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,78,78,1,21,1,2.1,4.76,234.63,Normal-Regime
+POS-0000205,2026-09-09,SKU-BEV-0205,Beverages & Juices,CFA-BHW-W1,West,Institutional HoReCa,195,229,0,0,0,5.0,25.26,1593.84,Normal-Regime
+POS-0000206,2026-09-10,SKU-DRY-0206,Dairy & Chilled,CFA-GUR-N1,North,General Trade (DMS),51,38,0,0,0,-0.9,17.47,169.48,Normal-Regime
+POS-0000207,2026-09-11,SKU-PRC-0207,Personal Care & Soaps,CFA-HOS-S1,South,Modern Trade Chain,27,26,0,0,0,-1.4,602.05,5072.86,Normal-Regime
+POS-0000208,2026-09-12,SKU-HMC-0208,Home Care & Hygiene,CFA-HAR-E1,East,Quick-Commerce (10-Min),54,41,0,0,0,-1.0,24.98,346.04,Normal-Regime
+POS-0000209,2026-09-13,SKU-AGR-0209,Agri Staples & Flour,CFA-HYD-S2,South,E-Commerce Marketplace,83,91,0,0,0,3.1,143.89,3735.55,Normal-Regime
+POS-0000210,2026-09-14,SKU-FDS-0210,Foods & Biscuits,CFA-AMD-W2,West,Institutional HoReCa,248,213,0,0,0,0.3,10.6,687.99,Monsoon-Surge- Corridor
+POS-0000211,2026-09-15,SKU-SNK-0211,Snacks & Noodles,CFA-LKO-N2,North,General Trade (DMS),94,115,0,0,1,-0.6,21.02,1085.6,Normal-Regime
+POS-0000212,2026-09-16,SKU-BEV-0212,Beverages & Juices,CFA-CHN-S3,South,Modern Trade Chain,26,33,0,0,0,5.4,66.91,727.98,Normal-Regime
+POS-0000213,2026-09-17,SKU-DRY-0213,Dairy & Chilled,CFA-NGP-C1,Central,Quick-Commerce (10-Min),6,8,0,0,0,2.7,29.39,79.92,Normal-Regime
+POS-0000214,2026-09-18,SKU-PRC-0214,Personal Care & Soaps,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,42,46,0,0,0,4.2,613.27,12762.7,Normal-Regime
+POS-0000215,2026-09-19,SKU-HMC-0215,Home Care & Hygiene,CFA-ANT-G2,Global-EU,Institutional HoReCa,280,334,0,0,0,-2.1,47.94,5878.4,Normal-Regime
+POS-0000216,2026-09-20,SKU-AGR-0216,Agri Staples & Flour,CFA-SGP-G3,Global-APAC,General Trade (DMS),23,33,0,0,0,3.2,70.36,562.98,Normal-Regime
+POS-0000217,2026-09-21,SKU-FDS-0217,Foods & Biscuits,CFA-BHW-W1,West,Modern Trade Chain,3,4,0,0,0,2.0,233.96,278.0,Normal-Regime
+POS-0000218,2026-09-22,SKU-SNK-0218,Snacks & Noodles,CFA-GUR-N1,North,Quick-Commerce (10-Min),75,76,0,0,1,2.1,86.06,1817.16,Normal-Regime
+POS-0000219,2026-09-23,SKU-BEV-0219,Beverages & Juices,CFA-HOS-S1,South,E-Commerce Marketplace,81,73,0,0,0,5.4,9.33,178.12,Normal-Regime
+POS-0000220,2026-09-24,SKU-DRY-0220,Dairy & Chilled,CFA-HAR-E1,East,Institutional HoReCa,116,125,0,0,0,-2.0,19.92,973.75,Normal-Regime
+POS-0000221,2026-09-25,SKU-PRC-0221,Personal Care & Soaps,CFA-HYD-S2,South,General Trade (DMS),41,36,0,0,0,-0.9,575.4,6159.96,Normal-Regime
+POS-0000222,2026-09-26,SKU-HMC-0222,Home Care & Hygiene,CFA-AMD-W2,West,Modern Trade Chain,63,49,0,0,0,0.6,279.96,5591.39,Normal-Regime
+POS-0000223,2026-09-27,SKU-AGR-0223,Agri Staples & Flour,CFA-LKO-N2,North,Quick-Commerce (10-Min),75,93,0,0,0,4.6,61.46,1635.87,Normal-Regime
+POS-0000224,2026-09-28,SKU-FDS-0224,Foods & Biscuits,CFA-CHN-S3,South,E-Commerce Marketplace,25,28,0,0,0,-0.6,18.15,235.48,Normal-Regime
+POS-0000225,2026-10-01,SKU-SNK-0225,Snacks & Noodles,CFA-NGP-C1,Central,Institutional HoReCa,172,228,0,0,1,0.1,24.5,2065.68,Normal-Regime
+POS-0000226,2026-10-02,SKU-BEV-0226,Beverages & Juices,CFA-DAL-G1,Global-NA,General Trade (DMS),5,6,0,0,0,2.4,17.53,39.9,Normal-Regime
+POS-0000227,2026-10-03,SKU-DRY-0227,Dairy & Chilled,CFA-ANT-G2,Global-EU,Modern Trade Chain,40,54,0,0,0,5.2,47.35,969.84,Normal-Regime
+POS-0000228,2026-10-04,SKU-PRC-0228,Personal Care & Soaps,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),37,36,0,0,0,4.0,53.96,1004.4,Normal-Regime
+POS-0000229,2026-10-05,SKU-HMC-0229,Home Care & Hygiene,CFA-BHW-W1,West,E-Commerce Marketplace,78,114,0,0,0,4.2,131.5,6304.2,Monsoon-Surge- Corridor
+POS-0000230,2026-10-06,SKU-AGR-0230,Agri Staples & Flour,CFA-GUR-N1,North,Institutional HoReCa,335,306,0,0,0,-0.5,35.78,3399.66,Normal-Regime
+POS-0000231,2026-10-07,SKU-FDS-0231,Foods & Biscuits,CFA-HOS-S1,South,General Trade (DMS),23,25,0,0,0,0.2,112.22,1116.75,Normal-Regime
+POS-0000232,2026-10-08,SKU-SNK-0232,Snacks & Noodles,CFA-HAR-E1,East,Modern Trade Chain,55,88,0,0,1,6.1,7.59,283.36,Normal-Regime
+POS-0000233,2026-10-09,SKU-BEV-0233,Beverages & Juices,CFA-HYD-S2,South,Quick-Commerce (10-Min),104,101,1,28,0,0.9,21.02,1149.39,Normal-Regime
+POS-0000234,2026-10-10,SKU-DRY-0234,Dairy & Chilled,CFA-AMD-W2,West,E-Commerce Marketplace,75,100,0,0,0,0.3,19.12,766.0,Normal-Regime
+POS-0000235,2026-10-11,SKU-PRC-0235,Personal Care & Soaps,CFA-LKO-N2,North,Institutional HoReCa,171,171,0,0,0,1.1,295.43,18739.89,Normal-Regime
+POS-0000236,2026-10-12,SKU-HMC-0236,Home Care & Hygiene,CFA-CHN-S3,South,General Trade (DMS),6,8,0,0,0,-1.3,19.27,64.32,Normal-Regime
+POS-0000237,2026-10-13,SKU-AGR-0237,Agri Staples & Flour,CFA-NGP-C1,Central,Modern Trade Chain,13,13,0,0,0,-2.1,27.22,130.52,Normal-Regime
+POS-0000238,2026-10-14,SKU-FDS-0238,Foods & Biscuits,CFA-DAL-G1,Global-NA,Quick-Commerce (10-Min),17,17,0,0,0,3.5,10.67,44.03,Normal-Regime
+POS-0000239,2026-10-15,SKU-SNK-0239,Snacks & Noodles,CFA-ANT-G2,Global-EU,E-Commerce Marketplace,16,17,0,0,1,6.0,17.97,100.3,Normal-Regime
+POS-0000240,2026-10-16,SKU-BEV-0240,Beverages & Juices,CFA-SGP-G3,Global-APAC,Institutional HoReCa,471,478,0,0,0,-2.0,67.74,14287.42,Normal-Regime
+POS-0000241,2026-10-17,SKU-DRY-0241,Dairy & Chilled,CFA-BHW-W1,West,General Trade (DMS),52,62,0,0,0,5.8,36.79,608.22,Normal-Regime
+POS-0000242,2026-10-18,SKU-PRC-0242,Personal Care & Soaps,CFA-GUR-N1,North,Modern Trade Chain,64,94,0,0,0,4.8,26.02,1170.3,Normal-Regime
+POS-0000243,2026-10-19,SKU-HMC-0243,Home Care & Hygiene,CFA-HOS-S1,South,Quick-Commerce (10-Min),14,21,0,0,0,3.7,274.11,2425.71,Normal-Regime
+POS-0000244,2026-10-20,SKU-AGR-0244,Agri Staples & Flour,CFA-HAR-E1,East,E-Commerce Marketplace,99,81,0,0,0,5.7,37.86,928.26,Normal-Regime
+POS-0000245,2026-10-21,SKU-FDS-0245,Foods & Biscuits,CFA-HYD-S2,South,Institutional HoReCa,411,374,0,0,0,-0.9,12.83,2307.58,Normal-Regime
+POS-0000246,2026-10-22,SKU-SNK-0246,Snacks & Noodles,CFA-AMD-W2,West,General Trade (DMS),77,73,0,0,1,-0.3,45.57,1307.43,Normal-Regime
+POS-0000247,2026-10-23,SKU-BEV-0247,Beverages & Juices,CFA-LKO-N2,North,Modern Trade Chain,25,26,0,0,0,1.3,31.8,229.84,Normal-Regime
+POS-0000248,2026-10-24,SKU-DRY-0248,Dairy & Chilled,CFA-CHN-S3,South,Quick-Commerce (10-Min),60,69,1,19,0,5.8,18.86,632.72,Monsoon-Surge- Corridor
+POS-0000249,2026-10-25,SKU-PRC-0249,Personal Care & Soaps,CFA-NGP-C1,Central,E-Commerce Marketplace,114,103,0,0,0,1.1,50.17,2572.94,Normal-Regime
+POS-0000250,2026-10-26,SKU-HMC-0250,Home Care & Hygiene,CFA-DAL-G1,Global-NA,Institutional HoReCa,36,33,0,0,0,3.5,35.72,469.92,Normal-Regime
+POS-0000251,2026-10-27,SKU-AGR-0251,Agri Staples & Flour,CFA-ANT-G2,Global-EU,General Trade (DMS),61,80,0,0,0,2.2,123.02,2984.8,Normal-Regime
+POS-0000252,2026-10-28,SKU-FDS-0252,Foods & Biscuits,CFA-SGP-G3,Global-APAC,Modern Trade Chain,23,15,0,0,0,-0.6,50.87,257.55,Normal-Regime
+POS-0000253,2026-08-01,SKU-SNK-0253,Snacks & Noodles,CFA-BHW-W1,West,Quick-Commerce (10-Min),87,112,0,0,1,1.1,4.34,182.56,Normal-Regime
+POS-0000254,2026-08-02,SKU-BEV-0254,Beverages & Juices,CFA-GUR-N1,North,E-Commerce Marketplace,39,51,0,0,0,1.8,31.14,443.7,Normal-Regime
+POS-0000255,2026-08-03,SKU-DRY-0255,Dairy & Chilled,CFA-HOS-S1,South,Institutional HoReCa,219,154,0,0,0,1.7,182.59,10647.56,Normal-Regime
+POS-0000256,2026-08-04,SKU-PRC-0256,Personal Care & Soaps,CFA-HAR-E1,East,General Trade (DMS),81,58,0,0,0,2.6,71.33,2130.34,Normal-Regime
+POS-0000257,2026-08-05,SKU-HMC-0257,Home Care & Hygiene,CFA-HYD-S2,South,Modern Trade Chain,54,43,0,0,0,2.5,50.95,1053.07,Normal-Regime
+POS-0000258,2026-08-06,SKU-AGR-0258,Agri Staples & Flour,CFA-AMD-W2,West,Quick-Commerce (10-Min),53,79,0,0,0,5.5,128.51,2686.0,Normal-Regime
+POS-0000259,2026-08-07,SKU-FDS-0259,Foods & Biscuits,CFA-LKO-N2,North,E-Commerce Marketplace,48,35,0,0,0,-0.7,17.81,224.0,Normal-Regime
+POS-0000260,2026-08-08,SKU-SNK-0260,Snacks & Noodles,CFA-CHN-S3,South,Institutional HoReCa,51,78,0,0,1,-0.9,194.95,5885.88,Normal-Regime
+POS-0000261,2026-08-09,SKU-BEV-0261,Beverages & Juices,CFA-NGP-C1,Central,General Trade (DMS),23,19,0,0,0,3.4,31.48,202.54,Normal-Regime
+POS-0000262,2026-08-10,SKU-DRY-0262,Dairy & Chilled,CFA-DAL-G1,Global-NA,Modern Trade Chain,71,65,1,18,0,-0.5,32.27,649.06,Normal-Regime
+POS-0000263,2026-08-11,SKU-PRC-0263,Personal Care & Soaps,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),5,7,0,0,0,-0.6,708.38,2494.94,Normal-Regime
+POS-0000264,2026-08-12,SKU-HMC-0264,Home Care & Hygiene,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,15,14,0,0,0,1.1,131.13,759.64,Normal-Regime
+POS-0000265,2026-08-13,SKU-AGR-0265,Agri Staples & Flour,CFA-BHW-W1,West,Institutional HoReCa,39,45,0,0,0,4.4,36.62,648.9,Normal-Regime
+POS-0000266,2026-08-14,SKU-FDS-0266,Foods & Biscuits,CFA-GUR-N1,North,General Trade (DMS),99,74,0,0,0,2.7,5.66,196.1,Normal-Regime
+POS-0000267,2026-08-15,SKU-SNK-0267,Snacks & Noodles,CFA-HOS-S1,South,Modern Trade Chain,74,107,0,0,1,2.9,211.96,9567.94,Monsoon-Surge- Corridor
+POS-0000268,2026-08-16,SKU-BEV-0268,Beverages & Juices,CFA-HAR-E1,East,Quick-Commerce (10-Min),51,46,0,0,0,2.2,71.57,1265.0,Normal-Regime
+POS-0000269,2026-08-17,SKU-DRY-0269,Dairy & Chilled,CFA-HYD-S2,South,E-Commerce Marketplace,25,25,0,0,0,-1.7,30.04,295.25,Normal-Regime
+POS-0000270,2026-08-18,SKU-PRC-0270,Personal Care & Soaps,CFA-AMD-W2,West,Institutional HoReCa,197,178,0,0,0,3.5,44.55,2403.0,Normal-Regime
+POS-0000271,2026-08-19,SKU-HMC-0271,Home Care & Hygiene,CFA-LKO-N2,North,General Trade (DMS),64,77,0,0,0,1.3,55.4,1783.32,Normal-Regime
+POS-0000272,2026-08-20,SKU-AGR-0272,Agri Staples & Flour,CFA-CHN-S3,South,Modern Trade Chain,15,19,0,0,0,-1.1,306.67,2114.51,Normal-Regime
+POS-0000273,2026-08-21,SKU-FDS-0273,Foods & Biscuits,CFA-NGP-C1,Central,Quick-Commerce (10-Min),57,64,0,0,0,0.2,17.85,397.44,Normal-Regime
+POS-0000274,2026-08-22,SKU-SNK-0274,Snacks & Noodles,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,38,60,0,0,1,4.7,4.2,106.2,Normal-Regime
+POS-0000275,2026-08-23,SKU-BEV-0275,Beverages & Juices,CFA-ANT-G2,Global-EU,Institutional HoReCa,444,427,0,0,0,3.7,23.82,3813.11,Normal-Regime
+POS-0000276,2026-08-24,SKU-DRY-0276,Dairy & Chilled,CFA-SGP-G3,Global-APAC,General Trade (DMS),51,77,0,0,0,4.2,18.84,507.43,Normal-Regime
+POS-0000277,2026-08-25,SKU-PRC-0277,Personal Care & Soaps,CFA-BHW-W1,West,Modern Trade Chain,44,50,0,0,0,1.3,170.94,4079.0,Normal-Regime
+POS-0000278,2026-08-26,SKU-HMC-0278,Home Care & Hygiene,CFA-GUR-N1,North,Quick-Commerce (10-Min),44,64,0,0,0,3.8,37.86,1139.2,Normal-Regime
+POS-0000279,2026-08-27,SKU-AGR-0279,Agri Staples & Flour,CFA-HOS-S1,South,E-Commerce Marketplace,10,12,0,0,0,-1.1,25.51,97.56,Normal-Regime
+POS-0000280,2026-08-28,SKU-FDS-0280,Foods & Biscuits,CFA-HAR-E1,East,Institutional HoReCa,159,167,0,0,0,3.7,105.35,4858.03,Normal-Regime
+POS-0000281,2026-09-01,SKU-SNK-0281,Snacks & Noodles,CFA-HYD-S2,South,General Trade (DMS),51,98,0,0,1,4.7,20.12,783.02,Normal-Regime
+POS-0000282,2026-09-02,SKU-BEV-0282,Beverages & Juices,CFA-AMD-W2,West,Modern Trade Chain,12,13,0,0,0,-1.7,5.37,26.91,Normal-Regime
+POS-0000283,2026-09-03,SKU-DRY-0283,Dairy & Chilled,CFA-LKO-N2,North,Quick-Commerce (10-Min),54,52,0,0,0,-1.3,385.54,9000.68,Normal-Regime
+POS-0000284,2026-09-04,SKU-PRC-0284,Personal Care & Soaps,CFA-CHN-S3,South,E-Commerce Marketplace,44,36,0,0,0,-1.7,15.87,291.6,Normal-Regime
+POS-0000285,2026-09-05,SKU-HMC-0285,Home Care & Hygiene,CFA-NGP-C1,Central,Institutional HoReCa,180,205,0,0,0,2.0,25.54,2240.65,Normal-Regime
+POS-0000286,2026-09-06,SKU-AGR-0286,Agri Staples & Flour,CFA-DAL-G1,Global-NA,General Trade (DMS),60,64,0,0,0,2.3,5.61,87.04,Monsoon-Surge- Corridor
+POS-0000287,2026-09-07,SKU-FDS-0287,Foods & Biscuits,CFA-ANT-G2,Global-EU,Modern Trade Chain,52,48,0,0,0,-0.7,30.68,511.68,Normal-Regime
+POS-0000288,2026-09-08,SKU-SNK-0288,Snacks & Noodles,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),47,63,0,0,1,0.8,7.11,194.67,Normal-Regime
+POS-0000289,2026-09-09,SKU-BEV-0289,Beverages & Juices,CFA-BHW-W1,West,E-Commerce Marketplace,60,59,0,0,0,-0.8,9.11,145.73,Normal-Regime
+POS-0000290,2026-09-10,SKU-DRY-0290,Dairy & Chilled,CFA-GUR-N1,North,Institutional HoReCa,176,240,0,0,0,5.6,39.48,3225.6,Normal-Regime
+POS-0000291,2026-09-11,SKU-PRC-0291,Personal Care & Soaps,CFA-HOS-S1,South,General Trade (DMS),46,60,1,16,0,1.4,22.42,526.68,Normal-Regime
+POS-0000292,2026-09-12,SKU-HMC-0292,Home Care & Hygiene,CFA-HAR-E1,East,Modern Trade Chain,40,49,0,0,0,-1.4,50.58,936.88,Normal-Regime
+POS-0000293,2026-09-13,SKU-AGR-0293,Agri Staples & Flour,CFA-HYD-S2,South,Quick-Commerce (10-Min),13,13,0,0,0,3.7,151.38,629.85,Normal-Regime
+POS-0000294,2026-09-14,SKU-FDS-0294,Foods & Biscuits,CFA-AMD-W2,West,E-Commerce Marketplace,87,85,0,0,0,2.2,8.42,207.4,Normal-Regime
+POS-0000295,2026-09-15,SKU-SNK-0295,Snacks & Noodles,CFA-LKO-N2,North,Institutional HoReCa,54,70,0,0,1,3.9,93.85,2151.1,Normal-Regime
+POS-0000296,2026-09-16,SKU-BEV-0296,Beverages & Juices,CFA-CHN-S3,South,General Trade (DMS),78,63,0,0,0,1.1,60.68,1512.63,Normal-Regime
+POS-0000297,2026-09-17,SKU-DRY-0297,Dairy & Chilled,CFA-NGP-C1,Central,Modern Trade Chain,89,81,0,0,0,-2.0,90.01,2122.2,Normal-Regime
+POS-0000298,2026-09-18,SKU-PRC-0298,Personal Care & Soaps,CFA-DAL-G1,Global-NA,Quick-Commerce (10-Min),101,74,0,0,0,2.3,73.57,1720.5,Normal-Regime
+POS-0000299,2026-09-19,SKU-HMC-0299,Home Care & Hygiene,CFA-ANT-G2,Global-EU,E-Commerce Marketplace,35,49,0,0,0,-1.9,281.41,7129.5,Normal-Regime
+POS-0000300,2026-09-20,SKU-AGR-0300,Agri Staples & Flour,CFA-SGP-G3,Global-APAC,Institutional HoReCa,67,77,0,0,0,5.7,10.91,295.68,Normal-Regime
+POS-0000301,2026-09-21,SKU-FDS-0301,Foods & Biscuits,CFA-BHW-W1,West,General Trade (DMS),94,90,0,0,0,-0.2,30.76,897.3,Normal-Regime
+POS-0000302,2026-09-22,SKU-SNK-0302,Snacks & Noodles,CFA-GUR-N1,North,Modern Trade Chain,39,62,0,0,1,1.0,6.65,178.56,Normal-Regime
+POS-0000303,2026-09-23,SKU-BEV-0303,Beverages & Juices,CFA-HOS-S1,South,Quick-Commerce (10-Min),86,70,0,0,0,2.5,138.34,3427.9,Normal-Regime
+POS-0000304,2026-09-24,SKU-DRY-0304,Dairy & Chilled,CFA-HAR-E1,East,E-Commerce Marketplace,13,14,0,0,0,0.7,200.56,1233.4,Normal-Regime
+POS-0000305,2026-09-25,SKU-PRC-0305,Personal Care & Soaps,CFA-HYD-S2,South,Institutional HoReCa,150,166,0,0,0,1.9,49.35,3666.94,Monsoon-Surge- Corridor
+POS-0000306,2026-09-26,SKU-HMC-0306,Home Care & Hygiene,CFA-AMD-W2,West,General Trade (DMS),64,59,0,0,0,0.2,25.41,601.8,Normal-Regime
+POS-0000307,2026-09-27,SKU-AGR-0307,Agri Staples & Flour,CFA-LKO-N2,North,Modern Trade Chain,97,78,0,0,0,3.3,5.8,110.76,Normal-Regime
+POS-0000308,2026-09-28,SKU-FDS-0308,Foods & Biscuits,CFA-CHN-S3,South,Quick-Commerce (10-Min),37,29,0,0,0,-1.5,8.04,88.45,Normal-Regime
+POS-0000309,2026-10-01,SKU-SNK-0309,Snacks & Noodles,CFA-NGP-C1,Central,E-Commerce Marketplace,110,109,0,0,1,3.0,3.91,174.4,Normal-Regime
+POS-0000310,2026-10-02,SKU-BEV-0310,Beverages & Juices,CFA-DAL-G1,Global-NA,Institutional HoReCa,242,344,0,0,0,4.1,272.33,33137.52,Normal-Regime
+POS-0000311,2026-10-03,SKU-DRY-0311,Dairy & Chilled,CFA-ANT-G2,Global-EU,General Trade (DMS),70,55,0,0,0,3.4,173.88,3048.1,Normal-Regime
+POS-0000312,2026-10-04,SKU-PRC-0312,Personal Care & Soaps,CFA-SGP-G3,Global-APAC,Modern Trade Chain,4,4,0,0,0,1.5,29.0,43.88,Normal-Regime
+POS-0000313,2026-10-05,SKU-HMC-0313,Home Care & Hygiene,CFA-BHW-W1,West,Quick-Commerce (10-Min),33,32,1,8,0,1.3,61.03,870.8,Normal-Regime
+POS-0000314,2026-10-06,SKU-AGR-0314,Agri Staples & Flour,CFA-GUR-N1,North,E-Commerce Marketplace,79,66,0,0,0,0.1,70.44,1127.28,Normal-Regime
+POS-0000315,2026-10-07,SKU-FDS-0315,Foods & Biscuits,CFA-HOS-S1,South,Institutional HoReCa,89,100,0,0,0,-0.2,28.78,1160.0,Normal-Regime
+POS-0000316,2026-10-08,SKU-SNK-0316,Snacks & Noodles,CFA-HAR-E1,East,General Trade (DMS),38,44,0,0,1,0.4,13.33,261.8,Normal-Regime
+POS-0000317,2026-10-09,SKU-BEV-0317,Beverages & Juices,CFA-HYD-S2,South,Modern Trade Chain,36,37,0,0,0,1.9,12.35,179.08,Normal-Regime
+POS-0000318,2026-10-10,SKU-DRY-0318,Dairy & Chilled,CFA-AMD-W2,West,Quick-Commerce (10-Min),67,114,0,0,0,6.0,13.66,544.92,Normal-Regime
+POS-0000319,2026-10-11,SKU-PRC-0319,Personal Care & Soaps,CFA-LKO-N2,North,E-Commerce Marketplace,80,68,0,0,0,2.2,313.86,7436.48,Normal-Regime
+POS-0000320,2026-10-12,SKU-HMC-0320,Home Care & Hygiene,CFA-CHN-S3,South,Institutional HoReCa,461,399,1,111,0,2.0,20.51,5375.4,Normal-Regime
+POS-0000321,2026-10-13,SKU-AGR-0321,Agri Staples & Flour,CFA-NGP-C1,Central,General Trade (DMS),69,67,0,0,0,4.3,14.11,368.5,Normal-Regime
+POS-0000322,2026-10-14,SKU-FDS-0322,Foods & Biscuits,CFA-DAL-G1,Global-NA,Modern Trade Chain,48,55,0,0,0,5.8,30.99,760.1,Normal-Regime
+POS-0000323,2026-10-15,SKU-SNK-0323,Snacks & Noodles,CFA-ANT-G2,Global-EU,Quick-Commerce (10-Min),39,73,0,0,1,-2.2,7.81,231.41,Normal-Regime
+POS-0000324,2026-10-16,SKU-BEV-0324,Beverages & Juices,CFA-SGP-G3,Global-APAC,E-Commerce Marketplace,80,75,0,0,0,0.3,14.47,409.5,Monsoon-Surge- Corridor
+POS-0000325,2026-10-17,SKU-DRY-0325,Dairy & Chilled,CFA-BHW-W1,West,Institutional HoReCa,501,446,0,0,0,2.6,42.04,5209.28,Normal-Regime
+POS-0000326,2026-10-18,SKU-PRC-0326,Personal Care & Soaps,CFA-GUR-N1,North,General Trade (DMS),89,106,0,0,0,3.7,79.2,3007.22,Normal-Regime
+POS-0000327,2026-10-19,SKU-HMC-0327,Home Care & Hygiene,CFA-HOS-S1,South,Modern Trade Chain,32,24,0,0,0,0.7,140.45,1777.2,Normal-Regime
+POS-0000328,2026-10-20,SKU-AGR-0328,Agri Staples & Flour,CFA-HAR-E1,East,Quick-Commerce (10-Min),58,62,0,0,0,5.3,33.75,507.16,Normal-Regime
+POS-0000329,2026-10-21,SKU-FDS-0329,Foods & Biscuits,CFA-HYD-S2,South,E-Commerce Marketplace,61,72,0,0,0,0.9,17.5,547.2,Normal-Regime
+POS-0000330,2026-10-22,SKU-SNK-0330,Snacks & Noodles,CFA-AMD-W2,West,Institutional HoReCa,257,328,0,0,1,2.0,181.72,23373.28,Normal-Regime
+POS-0000331,2026-10-23,SKU-BEV-0331,Beverages & Juices,CFA-LKO-N2,North,General Trade (DMS),40,35,0,0,0,2.5,6.53,88.2,Normal-Regime
+POS-0000332,2026-10-24,SKU-DRY-0332,Dairy & Chilled,CFA-CHN-S3,South,Modern Trade Chain,12,21,0,0,0,5.0,14.29,109.2,Normal-Regime
+POS-0000333,2026-10-25,SKU-PRC-0333,Personal Care & Soaps,CFA-NGP-C1,Central,Quick-Commerce (10-Min),9,9,0,0,0,-0.8,47.52,138.78,Normal-Regime
+POS-0000334,2026-10-26,SKU-HMC-0334,Home Care & Hygiene,CFA-DAL-G1,Global-NA,E-Commerce Marketplace,11,15,0,0,0,-1.6,10.93,71.25,Normal-Regime
+POS-0000335,2026-10-27,SKU-AGR-0335,Agri Staples & Flour,CFA-ANT-G2,Global-EU,Institutional HoReCa,207,249,0,0,0,3.5,68.6,5811.66,Normal-Regime
+POS-0000336,2026-10-28,SKU-FDS-0336,Foods & Biscuits,CFA-SGP-G3,Global-APAC,General Trade (DMS),72,100,0,0,0,4.6,15.82,623.0,Normal-Regime
+POS-0000337,2026-08-01,SKU-SNK-0337,Snacks & Noodles,CFA-BHW-W1,West,Modern Trade Chain,57,92,0,0,1,1.4,202.11,8418.92,Normal-Regime
+POS-0000338,2026-08-02,SKU-BEV-0338,Beverages & Juices,CFA-GUR-N1,North,Quick-Commerce (10-Min),34,34,0,0,0,4.3,72.51,1208.02,Normal-Regime
+POS-0000339,2026-08-03,SKU-DRY-0339,Dairy & Chilled,CFA-HOS-S1,South,E-Commerce Marketplace,54,68,0,0,0,-1.7,24.82,520.2,Normal-Regime
+POS-0000340,2026-08-04,SKU-PRC-0340,Personal Care & Soaps,CFA-HAR-E1,East,Institutional HoReCa,340,317,0,0,0,-2.4,719.99,120757.98,Normal-Regime
+POS-0000341,2026-08-05,SKU-HMC-0341,Home Care & Hygiene,CFA-HYD-S2,South,General Trade (DMS),35,42,0,0,0,-0.2,19.94,323.82,Normal-Regime
+POS-0000342,2026-08-06,SKU-AGR-0342,Agri Staples & Flour,CFA-AMD-W2,West,Modern Trade Chain,85,59,0,0,0,-1.4,28.64,667.88,Normal-Regime
+POS-0000343,2026-08-07,SKU-FDS-0343,Foods & Biscuits,CFA-LKO-N2,North,Quick-Commerce (10-Min),45,50,0,0,0,2.2,7.9,114.0,Monsoon-Surge- Corridor
+POS-0000344,2026-08-08,SKU-SNK-0344,Snacks & Noodles,CFA-CHN-S3,South,E-Commerce Marketplace,20,40,0,0,1,3.0,45.09,627.2,Normal-Regime
+POS-0000345,2026-08-09,SKU-BEV-0345,Beverages & Juices,CFA-NGP-C1,Central,Institutional HoReCa,264,376,0,0,0,-0.5,69.52,10347.52,Normal-Regime
+POS-0000346,2026-08-10,SKU-DRY-0346,Dairy & Chilled,CFA-DAL-G1,Global-NA,General Trade (DMS),7,5,0,0,0,-0.7,39.58,89.05,Normal-Regime
+POS-0000347,2026-08-11,SKU-PRC-0347,Personal Care & Soaps,CFA-ANT-G2,Global-EU,Modern Trade Chain,68,62,0,0,0,4.1,314.98,6534.18,Normal-Regime
+POS-0000348,2026-08-12,SKU-HMC-0348,Home Care & Hygiene,CFA-SGP-G3,Global-APAC,Quick-Commerce (10-Min),35,44,0,0,0,-2.2,131.94,2823.04,Normal-Regime
+POS-0000349,2026-08-13,SKU-AGR-0349,Agri Staples & Flour,CFA-BHW-W1,West,E-Commerce Marketplace,66,102,1,28,0,5.8,66.69,2727.4,Normal-Regime
+POS-0000350,2026-08-14,SKU-FDS-0350,Foods & Biscuits,CFA-GUR-N1,North,Institutional HoReCa,238,201,0,0,0,4.3,229.65,14084.07,Normal-Regime

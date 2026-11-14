@@ -1,0 +1,16 @@
+{
+  "agent_id": "predictive_oee_sentinel",
+  "code": "CPG-03-04",
+  "name": "Bottleneck Diagnostic",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Capacity Planning",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 115,
+  "annual_value_m_usd": 8.4,
+  "primary_persona_id": "supply_chain_ops_director",
+  "reads": "Streams high-frequency vibration & current via Pub/Sub & Dataflow to detect degradation 48h ahead Connected CPG systems: SAP PP \u00b7 Siemens Opcenter MES \u00b7 LIMS.",
+  "does": "Aligns 45-min repair inside planned ChronosMake line changeovers for zero OEE loss (Vertex AI Multimodal Vibration/Acoustic Spectral Anomaly Model + Mathematical Optimization Solver (MILP / CP-SAT) Joint PM-Production Window MILP).",
+  "returns": "Reserves SAP MM crib parts & guides technicians with Gemini 3D schematics Stages policy-checked action via Plant Maintenance System (EAM / ERP) Preventive Work Order (BAPI_ALM_ORDER_MAINTAIN), MRO Spare Reservation & Siemens MES Window Lock.",
+  "stops_at": "Never commits unapproved SAP PP ledger mutations or overrides safety/contract policy without human sign-off."
+}

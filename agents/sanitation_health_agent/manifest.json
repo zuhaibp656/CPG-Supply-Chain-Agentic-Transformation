@@ -1,0 +1,16 @@
+{
+  "agent_id": "sanitation_health_agent",
+  "code": "CPG-06-09",
+  "name": "Sanitation & Health Agent",
+  "department": "circular_enable",
+  "sub_pillar": "Pallet & Tote Reclamation",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 120,
+  "annual_value_m_usd": 4.5,
+  "primary_persona_id": "packaging_qa_food_safety",
+  "reads": "Detects micro-surface, weld, seal & dimensional defects at line speed via Vertex AI Vision Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Computes temperature/pressure/torque offsets when raw material lots vary (Vertex AI Edge Multimodal Vision Defect Classifier + BigQuery ML Bayesian Closed-Loop SPC Parameter Controller).",
+  "returns": "Verifies 100% of inline quality gates in Operational SQL & Vector DB (On-Prem / Cloud) for instant finished-goods release to outbound docks Stages policy-checked action via Bounded PLC Recipe Offset Recommendation & Automated Quality Management System (QMS / ERP) Usage Decision (BAPI_INSPLOT_SETUSAGEDECISION).",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

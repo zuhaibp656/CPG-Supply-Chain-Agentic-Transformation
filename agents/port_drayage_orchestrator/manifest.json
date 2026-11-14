@@ -1,0 +1,16 @@
+{
+  "agent_id": "port_drayage_orchestrator",
+  "code": "CPG-05-06",
+  "name": "Curfew Orchestrator",
+  "department": "logistics_fleet",
+  "sub_pillar": "Store Replenishment",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 110,
+  "annual_value_m_usd": 7.0,
+  "primary_persona_id": "retail_logistics_dispatcher",
+  "reads": "Forecasts vessel berth & container discharge timestamp 5+ days before port arrival Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Prioritizes drayage pickup & empty container return before terminal free-time expires (Weather & Climate Ensemble Feed Marine ETA Ensemble + Mathematical Optimization Solver (MILP / CP-SAT) Port Free-Time Demurrage Optimizer + Coastal Transload Split MILP).",
+  "returns": "Splits stockout-critical SKUs from 40ft ocean FEUs onto fast team trucks or intermodal rail Stages policy-checked action via INTTRA / CargoWise Ocean Booking, Terminal Gate Appointment, Chassis Dispatch & SAP STO Transload Split.",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

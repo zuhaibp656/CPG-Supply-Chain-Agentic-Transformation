@@ -1,0 +1,16 @@
+{
+  "agent_id": "food_waste_esg_copilot",
+  "code": "CPG-06-06",
+  "name": "Food Waste & ESG Copilot",
+  "department": "circular_enable",
+  "sub_pillar": "Expiry & Markdowns",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": false,
+  "payback_days": 165,
+  "annual_value_m_usd": 3.3,
+  "primary_persona_id": "cso_circular_lead",
+  "reads": "Computes primary CO2e per SKU-shipment across ocean, air, rail & road from actual fuel & load Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Validates plot geolocation canopy history in Satellite & Geospatial Remote Sensing API & mill emission certs (BigQuery ISO-14083 Primary Telemetry Carbon Calculator + Earth Engine Canopy Verifier + Mathematical Optimization Solver (MILP / CP-SAT) Cost/Carbon Mode-Shift MILP).",
+  "returns": "Identifies cost-neutral Air-to-Sea, OTR-to-Rail & Diesel-to-EV swaps in Mathematical Optimization Solver (MILP / CP-SAT) Stages policy-checked action via EU CBAM / EUDR XML Customs Filing & Transportation Management System (TMS / MCP) / Supply Chain Execution Platform (MCP / API) Low-Carbon Rail/EV/Ocean Lane Allocation.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

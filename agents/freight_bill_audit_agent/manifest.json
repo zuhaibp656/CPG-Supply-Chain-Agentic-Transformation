@@ -1,0 +1,16 @@
+{
+  "agent_id": "freight_bill_audit_agent",
+  "code": "CPG-05-12",
+  "name": "Freight Bill Audit Agent",
+  "department": "logistics_fleet",
+  "sub_pillar": "Route & Carrier",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 30,
+  "annual_value_m_usd": 11.2,
+  "primary_persona_id": "freight_controller_claims",
+  "reads": "Detects vessel, air, rail & truck ETA or reefer thermal drift 45+ mins before breach Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Matches carrier dwell/demurrage claims against exact Google Maps polygon timestamps (Pub/Sub + Dataflow Spatiotemporal ETA/Thermal Drift Predictor + Google Maps Geofence & Document AI Rate-Card Audit Engine).",
+  "returns": "Audits 100% of multi-modal freight invoices against contracted lane tables in Operational SQL & Vector DB (On-Prem / Cloud) Stages policy-checked action via Automated Carrier Claim Dispute Packet & Approved Enterprise ERP (MCP / On-Prem DB) AP Freight Voucher (BAPI_INCOMINGINVOICE_CREATE).",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

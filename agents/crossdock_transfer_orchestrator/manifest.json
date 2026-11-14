@@ -1,0 +1,16 @@
+{
+  "agent_id": "crossdock_transfer_orchestrator",
+  "code": "CPG-04-03",
+  "name": "Inter-Facility Rebalancer",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Positioning & Optimization",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 95,
+  "annual_value_m_usd": 10.2,
+  "primary_persona_id": "replenishment_planner",
+  "reads": "Maps incoming ocean container, air ULD & rail car contents to urgent outbound orders Connected CPG systems: Manhattan WMS \u00b7 SAP EWM \u00b7 DMS Stock.",
+  "does": "Bypasses high-bay storage by routing pallets straight from inbound strip door to outbound bay (Mathematical Optimization Solver (MILP / CP-SAT) CP-SAT Inbound-to-Outbound Door Coupling + Flow-Through Pallet De-Consolidation MILP).",
+  "returns": "Aligns cross-dock sortation completion with FleetFlow & CubeMaster 3D truck departure slots Stages policy-checked action via Warehouse Management System (WMS / MCP) / Manhattan Cross-Dock Flow-Through Directive, Conveyor Sortation Route & Outbound Staging Lock.",
+  "stops_at": "Never commits unapproved Manhattan WMS ledger mutations or overrides safety/contract policy without human sign-off."
+}

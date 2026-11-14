@@ -1,0 +1,16 @@
+{
+  "agent_id": "tier_n_risk_sentinel",
+  "code": "CPG-02-01",
+  "name": "Disruption Sensing Agent",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Supplier Network",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 60,
+  "annual_value_m_usd": 18.9,
+  "primary_persona_id": "procurement_dir_risk_mgr",
+  "reads": "Infers Tier-2 to Tier-4 nodes from customs BOL, ocean AIS & filings in Multi-Hop Graph Database (Cloud / On-Prem) Connected CPG systems: SAP Ariba \u00b7 S/4HANA MM \u00b7 Mandi Feeds.",
+  "does": "Maps disrupted sub-tier site on Google Maps to exact finished SKUs & customer orders (Low-Latency Transactional State DB Multi-Tier Knowledge Graph + Vertex AI GNN + Mathematical Optimization Solver (MILP / CP-SAT) Revenue-at-Risk BOM Mitigation Solver).",
+  "returns": "Drafts backup supplier PO splits & raises MEIO safety buffers via Vertex AI A2A Stages policy-checked action via e-Procurement & Sourcing Portal (MCP / API) / S/4HANA Dual-Source PO Split (BAPI_PO_CREATE1), MEIO Buffer Surge & ModalShift Expedite Booking.",
+  "stops_at": "Never commits unapproved SAP Ariba ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "supplier_dynamic_discounting_agent",
+  "code": "CPG-02-N03",
+  "name": "Supplier Dynamic Discounting Optimizer",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Contract & PO Mgmt",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 70,
+  "annual_value_m_usd": 5.8,
+  "primary_persona_id": "accounts_payable_lead",
+  "reads": "Approved AP invoice ledger, vendor cash-need APR offers (`00_multitier_suppliers.jsonl`), and daily treasury hurdle rates.",
+  "does": "Solves knapsack allocation of surplus working capital across early-payment discount offers exceeding corporate hurdle APR.",
+  "returns": "Ranked early-pay settlement proposal showing exact annualized yield and net cash discount captured.",
+  "stops_at": "Releasing bank wire transfers or altering contracted net payment terms."
+}

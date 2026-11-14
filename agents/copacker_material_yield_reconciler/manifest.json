@@ -1,0 +1,16 @@
+{
+  "agent_id": "copacker_material_yield_reconciler",
+  "code": "CPG-03-N02",
+  "name": "Co-Packer BOM & Laminate Scrap Auditor",
+  "department": "manufacturing_prod",
+  "sub_pillar": "Capacity Planning",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 40,
+  "annual_value_m_usd": 7.7,
+  "primary_persona_id": "external_sourcing_cmo_lead",
+  "reads": "SAP subcontracting challans (541/543), co-packer batch consumption reports, BOM scrap tolerances, and finished GRNs.",
+  "does": "Flags excess film/ingredient usage beyond contractual 1.2% tolerance and computes exact debit-note clawbacks.",
+  "returns": "Co-packer mass-balance variance ledger + draft debit-note substantiation packet.",
+  "stops_at": "Posting financial debit memos or terminating CMO tolling allocations."
+}

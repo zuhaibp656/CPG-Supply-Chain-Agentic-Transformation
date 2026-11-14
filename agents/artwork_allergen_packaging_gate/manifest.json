@@ -1,0 +1,16 @@
+{
+  "agent_id": "artwork_allergen_packaging_gate",
+  "code": "CPG-02-N02",
+  "name": "Packaging Artwork & Allergen Gate",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Material & Packaging",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 80,
+  "annual_value_m_usd": 4.9,
+  "primary_persona_id": "packaging_rd_engineer",
+  "reads": "PDF/vector laminate proofs, active recipe BOM allergen lists, Legal Metrology font-height rules, and barcode GS1 specs.",
+  "does": "Cross-verifies ingredient order, bold allergen callouts, nutritional math, and statutory license numbers pixel-by-pixel.",
+  "returns": "Annotated pre-press compliance checklist flagging exact label discrepancies prior to print run.",
+  "stops_at": "Granting final regulatory artwork release or signing print-cylinder purchase orders."
+}

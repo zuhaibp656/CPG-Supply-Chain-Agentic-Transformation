@@ -1,0 +1,16 @@
+{
+  "agent_id": "rfq_should_cost_agent",
+  "code": "CPG-02-05",
+  "name": "Dynamic Should-Cost Agent",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Material & Packaging",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 90,
+  "annual_value_m_usd": 7.3,
+  "primary_persona_id": "strategic_sourcing_lead",
+  "reads": "Computes raw material, cycle time, labor, SG&A & inbound ocean/air freight should-cost Connected CPG systems: SAP Ariba \u00b7 S/4HANA MM \u00b7 Mandi Feeds.",
+  "does": "Extracts & aligns 40+ heterogeneous PDF/Excel supplier quotes onto one Operational SQL & Vector DB (On-Prem / Cloud) matrix (BigQuery Parametric BOM Cost Tear-Down + Document AI Quote Parser + Mathematical Optimization Solver (MILP / CP-SAT) Combinatorial MILP Award Split Solver).",
+  "returns": "Solves optimal dual-source split under MOQ, capacity & risk constraints in Mathematical Optimization Solver (MILP / CP-SAT) Stages policy-checked action via e-Procurement & Sourcing Portal (MCP / API) Award Allocation, Redlined Negotiation Fact-Pack & SAP Purchasing Info-Record Update (ME12).",
+  "stops_at": "Never commits unapproved SAP Ariba ledger mutations or overrides safety/contract policy without human sign-off."
+}

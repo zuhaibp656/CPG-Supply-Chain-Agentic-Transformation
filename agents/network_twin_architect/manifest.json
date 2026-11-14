@@ -1,0 +1,16 @@
+{
+  "agent_id": "network_twin_architect",
+  "code": "CPG-01-12",
+  "name": "Cost-to-Serve Diagnostic",
+  "department": "demand_sop",
+  "sub_pillar": "Portfolio & SKU",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": false,
+  "payback_days": 180,
+  "annual_value_m_usd": 4.5,
+  "primary_persona_id": "commercial_finance_director",
+  "reads": "Attributes exact ocean, air, rail, drayage, pick, pack, cube & detention cost per order line Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Optimizes DC territories, factory-to-customer bypass & 3PL overflow capacity in Mathematical Optimization Solver (MILP / CP-SAT) (BigQuery Activity-Based Landed Cost-to-Serve Attribution + Mathematical Optimization Solver (MILP / CP-SAT) Capacitated Facility Location & Multi-Modal Flow MILP).",
+  "returns": "Designs pallet-layer MOQ & bracket incentives to fix margin-dilutive small orders Stages policy-checked action via ERP Order Management (SD / MCP) Customer MOQ / Bracket Pricing Policy Update & Enterprise ERP (MCP / On-Prem DB) Sourcing Assignment Split.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

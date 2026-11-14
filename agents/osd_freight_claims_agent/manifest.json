@@ -1,0 +1,16 @@
+{
+  "agent_id": "osd_freight_claims_agent",
+  "code": "CPG-06-03",
+  "name": "OS&D Freight Claims",
+  "department": "circular_enable",
+  "sub_pillar": "Returns & Claims Mgmt",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 95,
+  "annual_value_m_usd": 6.0,
+  "primary_persona_id": "claims_specialist_controller",
+  "reads": "Scores every open retail order against WMS wave & Google Maps lane delay risk Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Triggers alternate-DC ship or ModalShift team-truck upgrade when penalty > cost (BigQuery ML 72-Hr MABD Breach Predictor + Mathematical Optimization Solver (MILP / CP-SAT) Penalty-vs-Expedite NPV Solver + Document AI Dispute Assembler).",
+  "returns": "Compiles Google Maps geofence, EDI 214 & Document AI signed BOL proof to recover fines Stages policy-checked action via ERP Order Management (SD / MCP) Alternate-DC Order Re-Allocation & Automated Retailer Portal Dispute Submission via MCP / REST / On-Prem Gateway.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

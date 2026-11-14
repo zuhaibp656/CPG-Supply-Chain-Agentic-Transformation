@@ -1,0 +1,16 @@
+{
+  "agent_id": "qcommerce_assortment_micro_slotter",
+  "code": "CPG-04-N03",
+  "name": "Urban Hub & Dark-Store Micro-Slotter",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Warehouse Operations",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 90,
+  "annual_value_m_usd": 5.0,
+  "primary_persona_id": "dc_operations_mgr",
+  "reads": "WMS pick-path logs, basket co-affinity pairs, case dimensions, and next-day promo calendar.",
+  "does": "Solves ergonomic golden-zone bin assignment minimizing picker walk meters and aisle congestion.",
+  "returns": "20-move nightly putaway/re-slot task list for morning shift handoff.",
+  "stops_at": "Co-locating chemical home-care SKUs beside Odor-sensitive food items."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "intermodal_rail_linehaul_agent",
+  "code": "CPG-06-08",
+  "name": "Milk-Run Consolidation",
+  "department": "circular_enable",
+  "sub_pillar": "Pallet & Tote Reclamation",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 110,
+  "annual_value_m_usd": 5.4,
+  "primary_persona_id": "reverse_transport_planner",
+  "reads": "Identifies 500+ mile factory-to-DC lanes eligible for COFC/TOFC rail or inland barge conversion Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Ingests Railinc CLM & yard telemetry to forecast train arrival and prevent ramp storage fees (Mathematical Optimization Solver (MILP / CP-SAT) Multi-Corridor Rail/Truck Linehaul MILP + Rail Ramp Cutoff & Chassis Pool Synchronizer).",
+  "returns": "Couples origin factory drayage and destination DC cross-dock appointments on Google Maps Stages policy-checked action via Railinc EDI 404 Rail Bill Tender, EDI 322 Ramp Gate Slot & Coupled Origin/Destination Drayage Dispatch.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

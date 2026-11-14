@@ -1,0 +1,16 @@
+{
+  "agent_id": "aisle_aligned_pallet_agent",
+  "code": "CPG-05-04",
+  "name": "Aisle-Aligned Pallet",
+  "department": "logistics_fleet",
+  "sub_pillar": "Store Replenishment",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 115,
+  "annual_value_m_usd": 5.6,
+  "primary_persona_id": "outbound_lead_industrial_eng",
+  "reads": "Eliminates volumetric chargeable-weight penalties via 3D fuselage contour & CoG packing Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Optimizes BSA forwarder commitments, passenger belly consolidations & spot charters (Mathematical Optimization Solver (MILP / CP-SAT) 3D Contoured ULD (LD3/PMC) Weight-Balance Packer + Belly-vs-Charter Allotment MILP + ADS-B Flight Connection Guard).",
+  "returns": "Tracks live aircraft ADS-B flight paths & triggers tarmac recovery before missed connections Stages policy-checked action via IATA e-AWB (FWB/FHL) Execution, 3D ULD Build-Up Manifest & Airport Ramp Transfer Dispatch.",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

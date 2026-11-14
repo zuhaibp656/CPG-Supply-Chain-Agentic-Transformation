@@ -1,0 +1,16 @@
+{
+  "agent_id": "keep_it_routing_advisor",
+  "code": "CPG-06-02",
+  "name": "Keep-It & Routing Advisor",
+  "department": "circular_enable",
+  "sub_pillar": "Returns & Claims Mgmt",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 90,
+  "annual_value_m_usd": 7.3,
+  "primary_persona_id": "customer_experience_cx_lead",
+  "reads": "Injects RMA, pallet & empty container pickups into returning FleetFlow vehicles via Google Maps Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Classifies returns into Grade-A Restock, Refurb, Vendor Claim or Scrap via Gemini Vision (Gemini Multimodal Vision Defect Grader + Google Maps & Mathematical Optimization Solver (MILP / CP-SAT) Dynamic Backhaul Insertion CVRPTW).",
+  "returns": "Links defect spikes in Operational SQL & Vector DB (On-Prem / Cloud) to supplier lots & posts SAP debit claims Stages policy-checked action via TMS Fleet Backhaul Pickup Stop, Warehouse Management System (WMS / MCP) Direct-to-Hub Restock & Vendor Warranty Debit Memo.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

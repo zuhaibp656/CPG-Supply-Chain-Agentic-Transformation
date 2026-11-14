@@ -1,0 +1,16 @@
+{
+  "agent_id": "eco_cutover_orchestrator",
+  "code": "CPG-01-11",
+  "name": "PIPO Run-Out Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Portfolio & SKU",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 130,
+  "annual_value_m_usd": 5.6,
+  "primary_persona_id": "lifecycle_materials_mgr",
+  "reads": "Finds the exact cutover date in Mathematical Optimization Solver (MILP / CP-SAT) that exhausts Rev-A stock and open ocean/air POs Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Reconciles Teamcenter PLM CAD redlines against SAP plant routings & work instructions (Low-Latency Transactional State DB eBOM-to-mBOM Graph Verifier + Mathematical Optimization Solver (MILP / CP-SAT) Multi-Plant BOM Burn-Down & Effectivity Date MILP).",
+  "returns": "Verifies tooling, PPAP & line trial gates before mass production launch Stages policy-checked action via SAP Engineering Change Master (CC02) Effectivity Lock & e-Procurement & Sourcing Portal (MCP / API) Supplier PO Revision Swap.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

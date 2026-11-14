@@ -1,0 +1,16 @@
+{
+  "agent_id": "epr_plastic_credit_ledger_agent",
+  "code": "CPG-06-N03",
+  "name": "EPR Multi-Layer Plastic Credit Ledger",
+  "department": "circular_enable",
+  "sub_pillar": "Pallet & Tote Reclamation",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": true,
+  "payback_days": 145,
+  "annual_value_m_usd": 3.4,
+  "primary_persona_id": "cso_circular_lead",
+  "reads": "SKU packaging polymer weights (`00_master_skus.jsonl`), state-wise CFA sales tonnage, and CPCB/EU registered recycler credit ledgers.",
+  "does": "Calculates exact quarterly Category I/II/III plastic obligations by state and flags certificate shortfalls ahead of filing.",
+  "returns": "Audit-ready EPR plastic mass-balance ledger and recycler credit purchase plan.",
+  "stops_at": "Filing statutory CPCB/EU portal declarations or purchasing unverified offset credits."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "slob_disposition_agent",
+  "code": "CPG-04-02",
+  "name": "SLOB Disposition Agent",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Positioning & Optimization",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 45,
+  "annual_value_m_usd": 13.2,
+  "primary_persona_id": "inventory_controller_buyer",
+  "reads": "Fits empirical supplier & ocean/air/rail/truck lead-time tails in BigQuery Connected CPG systems: Manhattan WMS \u00b7 SAP EWM \u00b7 DMS Stock.",
+  "does": "Optimizes coupled upstream/downstream safety buffers across Multi-Hop Graph Database (Low-Latency Transactional State DB Echelon Graph + Coupled Stochastic Guaranteed-Service MEIO + Mathematical Optimization Solver (MILP / CP-SAT) Lateral Flow MILP).",
+  "returns": "Issues hub-to-hub STOs using Google Maps Distance Matrix before rush production Stages policy-checked action via SAP BAPI_MATERIAL_SAVEDATA Safety Stock / ROP Update & STO Lateral Transfer Creation (BAPI_PO_CREATE1).",
+  "stops_at": "Never commits unapproved Manhattan WMS ledger mutations or overrides safety/contract policy without human sign-off."
+}

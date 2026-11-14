@@ -1,0 +1,16 @@
+{
+  "agent_id": "dms_distributor_stock_balancer",
+  "code": "CPG-04-N02",
+  "name": "DMS Secondary Stock & Credit Balancer",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Omnichannel Visibility",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 45,
+  "annual_value_m_usd": 10.5,
+  "primary_persona_id": "key_account_manager",
+  "reads": "DMS daily stockist closing inventory, tertiary kirana beat billings, distributor credit-limit aging, and CFA stock (`04_fefo_inventory_dms_wms_ledger.csv`).",
+  "does": "Computes stockist-level Days-of-Inventory (DOI) norms and auto-drafts credit-compliant primary replenishment orders.",
+  "returns": "Territory stock-imbalance map + auto-drafted DMS primary order queue.",
+  "stops_at": "Releasing orders to credit-blocked distributors or forcing stockist inter-transfers without consent."
+}

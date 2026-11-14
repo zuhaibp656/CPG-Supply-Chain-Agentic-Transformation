@@ -1,0 +1,16 @@
+{
+  "agent_id": "qcommerce_darkstore_sensing_agent",
+  "code": "CPG-01-N01",
+  "name": "Q-Commerce Dark-Store Velocity Agent",
+  "department": "demand_sop",
+  "sub_pillar": "Demand Forecasting",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": true,
+  "payback_days": 35,
+  "annual_value_m_usd": 9.3,
+  "primary_persona_id": "demand_planner_forecaster",
+  "reads": "15-min Q-Commerce partner dark-store inventory feeds, hyper-local PIN-code search trends, WeatherNext 3 rain/heat bursts, and urban Mother-Hub stock (`01_daily_pos_dms_qcomm_velocity.csv`).",
+  "does": "Imputes censored dark-store stockout velocity using BigQuery ML TimesFM 2.5 and ranks urgent milk-run top-up totes across 420 urban dark stores.",
+  "returns": "PIN-code-ranked micro-replenishment wave table + A2UI velocity surge card ready for 1-click urban dispatch.",
+  "stops_at": "Overriding contractual Quick-Commerce margin terms or committing emergency 3PL rider surge fees without Commercial Lead sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "cpfr_sync_agent",
+  "code": "CPG-01-02",
+  "name": "Forecast Reconciliation",
+  "department": "demand_sop",
+  "sub_pillar": "Demand Forecasting",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 90,
+  "annual_value_m_usd": 7.9,
+  "primary_persona_id": "commercial_planning_lead",
+  "reads": "Normalizes daily store scan & retailer DC withdrawal feeds into BigQuery Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Flags zero-scan shelf stockouts masked by phantom ERP stock (BigQuery ML Zero-Scan Poisson Anomaly Detector + Vertex AI ADK CPFR Consensus Reconciler).",
+  "returns": "Reconciles retailer order forecast vs. internal sell-through & Google Maps store catchments Stages policy-checked action via EDI 855 / VMI Replenishment Order & Retail Store Audit Trigger via MCP / REST / On-Prem Gateway.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

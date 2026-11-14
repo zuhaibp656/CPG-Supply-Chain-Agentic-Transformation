@@ -1,0 +1,16 @@
+{
+  "agent_id": "supplier_quality_sentinel",
+  "code": "CPG-02-02",
+  "name": "Onboarding & Qual. Agent",
+  "department": "sourcing_procurement",
+  "sub_pillar": "Supplier Network",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": false,
+  "payback_days": 110,
+  "annual_value_m_usd": 5.9,
+  "primary_persona_id": "procurement_operations_lead",
+  "reads": "Verifies supplier test certificates against CAD/BOM tolerances via Document AI Connected CPG systems: SAP Ariba \u00b7 S/4HANA MM \u00b7 Mandi Feeds.",
+  "does": "Detects subtle process capability degradation across lots in BigQuery ML (Document AI & Gemini Multimodal COA Spec Verifier + BigQuery ML Bayesian SPC/Cpk Drift Predictor).",
+  "returns": "Validates root-cause evidence & posts poor-quality chargebacks in Quality Management System (QMS / ERP)/AP Stages policy-checked action via Quality Management System (QMS / ERP) Inspection Lot Quarantine (BAPI_INSPLOT_SETUSAGEDECISION), 8D CAPA Workflow & COPQ Debit Note.",
+  "stops_at": "Never commits unapproved SAP Ariba ledger mutations or overrides safety/contract policy without human sign-off."
+}

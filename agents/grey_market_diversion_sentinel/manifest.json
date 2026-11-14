@@ -1,0 +1,16 @@
+{
+  "agent_id": "grey_market_diversion_sentinel",
+  "code": "CPG-06-N02",
+  "name": "Channel Price-Erosion & Grey-Market Sentinel",
+  "department": "circular_enable",
+  "sub_pillar": "Returns & Claims Mgmt",
+  "priority_tier": "P1",
+  "is_new_cpg_agent": true,
+  "payback_days": 90,
+  "annual_value_m_usd": 7.0,
+  "primary_persona_id": "reverse_logistics_fraud_lead",
+  "reads": "Marketplace price monitors, RMA lot-code scans (`06_returns_markdowns_rti_circular.csv`), and regional wholesale trade-scheme allocations.",
+  "does": "Traces diverted lot prefixes back to originating bulk wholesale/institutional accounts eroding retail price integrity.",
+  "returns": "Diversion trace dossier linking unauthorized listings to originating trade-scheme lots.",
+  "stops_at": "Terminating distributor agreements or withholding earned trade rebates unilaterally."
+}

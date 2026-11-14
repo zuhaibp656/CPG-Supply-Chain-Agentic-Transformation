@@ -1,0 +1,16 @@
+{
+  "agent_id": "dynamic_markdown_agent",
+  "code": "CPG-06-04",
+  "name": "Dynamic Markdown Agent",
+  "department": "circular_enable",
+  "sub_pillar": "Expiry & Markdowns",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 50,
+  "annual_value_m_usd": 10.8,
+  "primary_persona_id": "merchandising_store_ops_mgr",
+  "reads": "Separates net incremental lift from pull-forward & halo in BigQuery ML Connected CPG systems: SAP CRM \u00b7 Returns Ledger \u00b7 CPCB EPR.",
+  "does": "Quantifies sister-SKU volume diversion across price tiers (BigQuery ML Causal Double-ML Uplift + Cross-SKU Cannibalization Matrix + Mathematical Optimization Solver (MILP / CP-SAT) Supply-Aware Price Shaper).",
+  "returns": "Redirects promo spend toward surplus high-margin inventory via Mathematical Optimization Solver (MILP / CP-SAT) Stages policy-checked action via Salesforce / SAP Trade Promo Calendar Lock & Shaped Regional SKU Curve Update.",
+  "stops_at": "Never commits unapproved SAP CRM ledger mutations or overrides safety/contract policy without human sign-off."
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "otif_penalty_shield",
+  "code": "CPG-05-09",
+  "name": "Delivery Exception Copilot",
+  "department": "logistics_fleet",
+  "sub_pillar": "Last-Mile Delivery",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 40,
+  "annual_value_m_usd": 10.8,
+  "primary_persona_id": "customer_support_ops_lead",
+  "reads": "Scores every open retail order against WMS wave & Google Maps lane delay risk Connected CPG systems: Oracle OTM \u00b7 SAP TM \u00b7 NIC E-Way API.",
+  "does": "Triggers alternate-DC ship or ModalShift team-truck upgrade when penalty > cost (BigQuery ML 72-Hr MABD Breach Predictor + Mathematical Optimization Solver (MILP / CP-SAT) Penalty-vs-Expedite NPV Solver + Document AI Dispute Assembler).",
+  "returns": "Compiles Google Maps geofence, EDI 214 & Document AI signed BOL proof to recover fines Stages policy-checked action via ERP Order Management (SD / MCP) Alternate-DC Order Re-Allocation & Automated Retailer Portal Dispute Submission via MCP / REST / On-Prem Gateway.",
+  "stops_at": "Never commits unapproved Oracle OTM ledger mutations or overrides safety/contract policy without human sign-off."
+}

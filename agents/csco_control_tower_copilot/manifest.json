@@ -1,0 +1,16 @@
+{
+  "agent_id": "csco_control_tower_copilot",
+  "code": "CPG-01-09",
+  "name": "Executive Copilot",
+  "department": "demand_sop",
+  "sub_pillar": "S&OP / IBP",
+  "priority_tier": "P2",
+  "is_new_cpg_agent": false,
+  "payback_days": 160,
+  "annual_value_m_usd": 2.1,
+  "primary_persona_id": "ibp_lead_chief_planning_off",
+  "reads": "Translates executive questions into governed BigQuery, Multi-Hop Graph Database & Looker queries Connected CPG systems: SAP IBP \u00b7 DMS \u00b7 Retail POS.",
+  "does": "Traces KPI misses across Demand, Sourcing, Plant, WMS & Ocean/Air/Rail/Road Fleet (Gemini 3.1 Pro Conversational Analytics + Looker Governed Semantic Layer + Multi-Hop Graph Database (Cloud / On-Prem) + A2A Cross-Domain Action Router).",
+  "returns": "Routes recommended fixes to domain solvers via Vertex AI A2A with 1-click sign-off Stages policy-checked action via Signed Role-Based Action Dispatch across Enterprise ERP (MCP / On-Prem DB), IBP, WMS, TMS, CargoWise & Ariba via MCP / REST / On-Prem Gateway.",
+  "stops_at": "Never commits unapproved SAP IBP ledger mutations or overrides safety/contract policy without human sign-off."
+}

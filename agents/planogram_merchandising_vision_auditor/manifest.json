@@ -1,0 +1,16 @@
+{
+  "agent_id": "planogram_merchandising_vision_auditor",
+  "code": "CPG-04-07",
+  "name": "Phantom Inventory Sensor",
+  "department": "inventory_warehouse",
+  "sub_pillar": "Omnichannel Visibility",
+  "priority_tier": "P0",
+  "is_new_cpg_agent": false,
+  "payback_days": 60,
+  "annual_value_m_usd": 11.2,
+  "primary_persona_id": "store_operations_omni_lead",
+  "reads": "Automatically cleans, de-skews, and aligns wide-angle shelf photos uploaded by field reps Connected CPG systems: Manhattan WMS \u00b7 SAP EWM \u00b7 DMS Stock.",
+  "does": "Counts brand facings, detects eye-level placements, and calculates exact Share-of-Shelf vs. competitors (Vertex AI Multimodal Vision Object & Facing Detection + Share-of-Shelf Planogram Compliance Classifier).",
+  "returns": "Compares detected facings against contractual retailer planogram terms and computes approved visibility payouts Stages policy-checked action via Store Planogram Audit Scorecard, Retailer Visibility Incentive Approval & Penalty Dispute Memo.",
+  "stops_at": "Never commits unapproved Manhattan WMS ledger mutations or overrides safety/contract policy without human sign-off."
+}
