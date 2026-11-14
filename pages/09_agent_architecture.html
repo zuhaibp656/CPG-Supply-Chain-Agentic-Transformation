@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,16 +57,16 @@
     <a href="../index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none;">
       <img src="../assets/media/wip/image25.png" alt="Google Cloud" style="height: 32px; width: auto;">
       <div style="width: 1px; height: 20px; background: var(--border-subtle);"></div>
-      <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--text); letter-spacing: 1.5px; text-transform: uppercase;">BUILD 09 // SUPPLY CHAIN ARCHITECTURE</span>
+      <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--text); letter-spacing: 1.5px; text-transform: uppercase;">BUILD 02 // SUPPLY CHAIN ARCHITECTURE</span>
     </a>
     <nav style="display: flex; align-items: center; gap: 16px;">
       <button class="theme-toggle-btn" onclick="toggleTheme()" type="button">
         <span style="font-size: 13px; line-height: 1;">🌙</span>
         <span>Dark Mode</span>
       </button>
-      <a href="../personas/index.html" style="font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--text-dim); text-decoration: none; padding: 4px 10px; border-radius: 6px; background: var(--surface-sunk);">&larr; Prev Page</a>
-      <span style="font-family: var(--font-mono); font-size: 13px; color: var(--g-blue); font-weight: 700;">09 / 15</span>
-      <a href="10_surfaces.html" style="font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 4px 10px; border-radius: 6px; background: rgba(49, 134, 255, 0.10);">Next Page &rarr;</a>
+      <a href="08_how_agents_are_built.html" style="font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--text-dim); text-decoration: none; padding: 4px 10px; border-radius: 6px; background: var(--surface-sunk);">&larr; Prev Page</a>
+      <span style="font-family: var(--font-mono); font-size: 13px; color: var(--g-blue); font-weight: 700;">10 / 16</span>
+      <a href="10_model_choice.html" style="font-family: var(--font-display); font-size: 13.5px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 4px 10px; border-radius: 6px; background: rgba(49, 134, 255, 0.10);">Next Page &rarr;</a>
       <a href="../index.html" style="font-family: var(--font-display); font-size: 12.5px; font-weight: 700; color: #000; background: #FFF; padding: 6px 14px; border-radius: 20px; text-decoration: none; border: 1px solid var(--border-subtle); margin-left: 8px;">
         All Slides &#8599;
       </a>
@@ -161,7 +161,7 @@
           </div>
         </div>
         <div class="ar-lane" style="--lc: var(--purple-ink)">
-          <div><div class="ar-ln">02 · AGENTS</div><div class="ar-lt">60 SCOR specialists</div><div class="ar-ls">37 live on Vertex AI Agent Engine</div></div>
+          <div><div class="ar-ln">02 · AGENTS</div><div class="ar-lt">78 CPG SCOR specialists</div><div class="ar-ls">37 live + 25 P0 on Vertex AI Agent Engine</div></div>
           <div class="ar-nodes">
             <button class="ar-node" data-k="orch"><img src="../assets/media/gcp/Agents.svg" alt=""><span><b>Orchestrator</b><small>Plans, routes, ranks</small></span></button>
             <button class="ar-node" data-k="agentA"><span class="ar-monos"><span class="ar-mono">P</span><span class="ar-mono">M</span><span class="ar-mono">D</span></span><span><b>SCOR Specialists</b><small>Plan &middot; Make &middot; Deliver</small></span></button>
@@ -227,8 +227,8 @@
       apps: { img: G + "CloudRun.svg", t: "Control Tower Workbench", p: "Purpose-built cross-pillar screens for Sales & Operations Planning (S&OP) consensus and disruption war-rooms.", why: "Keeps full multi-echelon context visible in one place.", prod: "Cloud Run" },
       systems: { img: G + "IntegrationServices.svg", t: "Inside SAP, WMS & TMS", p: "Agents embedded directly inside SAP S/4HANA, Manhattan/Blue Yonder WMS, and Oracle OTM.", why: "Planners stay in their system of record with 1-click staged approvals.", prod: "Application Integration · Apigee" },
       orch: { img: G + "Agents.svg", t: "Orchestrator", p: "Breaks a disruption or S&OP query into parallel tasks, routes to SCOR specialists, and ranks margin-optimal plans.", why: "Prevents local optimization that breaks downstream plants or warehouses.", prod: "Agent Development Kit · A2A" },
-      agentA: { img: G + "Agents.svg", t: "SCOR Specialist Fleet (60)", p: "Focused agents across Plan, Source, Make, Fulfill, Deliver, and Return & Enable — each bound to clear KPIs.", why: "Clear scope makes every agent testable, evaluable, and auditable.", prod: "Vertex AI Agent Engine" },
-      model: { img: M + "brand/gemini_spark_fullcolor_768.png", t: "Model Garden", p: "Gemini 3.1 Pro for complex multi-constraint planning, Gemini Flash for high-throughput EDI/IoT triage, plus partner models.", why: "Right-sizing models per task keeps a 60-agent fleet economical.", prod: "Gemini on Vertex AI · Model Garden" },
+      agentA: { img: G + "Agents.svg", t: "CPG SCOR Specialist Fleet (78)", p: "Focused agents across Plan, Source, Make, Fulfill, Deliver, and Return & Enable — each bound to clear KPIs in Crores and Lakhs.", why: "Clear scope makes every agent testable, evaluable, and auditable.", prod: "Vertex AI Agent Engine" },
+      model: { img: M + "brand/gemini_spark_fullcolor_768.png", t: "Model Garden", p: "Gemini 3.1 Pro for complex multi-constraint planning, Gemini 3.8 Flash for high-throughput EDI/IoT triage, plus partner models.", why: "Right-sizing models per task keeps a 78-agent CPG fleet economical.", prod: "Gemini on Vertex AI · Model Garden" },
       memory: { img: G + "VertexAI.svg", t: "Memory Bank", p: "Retains active disruption context, plant constraints, and prior executive decisions across S&OP cycles.", why: "Agents remember yesterday's carrier bottleneck instead of starting cold.", prod: "Agent Engine Sessions · Memory Bank" },
       mcp: { img: G + "IntegrationServices.svg", t: "MCP Toolbox & A2A", p: "Model Context Protocol connects agents to SAP BAPIs and WMS APIs; Agent2Agent coordinates across pillars.", why: "Open protocols keep every integration modular and vendor-neutral.", prod: "MCP · A2A" },
       physics: { img: G + "AIMachineLearning.svg", t: "TimesFM & BigQuery ML", p: "Time-series forecasting and hierarchical Bayesian stockout imputation cut short-term WAPE by 20%–35%.", why: "No LLM guesses demand numbers — certified ML pipelines compute them.", prod: "Vertex AI · BigQuery ML" },
@@ -236,8 +236,8 @@
       apis: { img: G + "Apigee.svg", t: "Enterprise APIs", p: "Rate-limited, OAuth-scoped API gateway governing every ERP, carrier EDI, and customs call.", why: "Single policy enforcement point for all external write-backs.", prod: "Apigee" },
       plant: { img: G + "Databases.svg", t: "SAP S/4HANA / WMS / TMS", p: "Transactional systems of record remain authoritative; agents read deltas and propose staged updates.", why: "Zero rip-and-replace of core enterprise systems.", prod: "Cortex Framework v7 · MCP" },
       gcs: { img: G + "Cloud_Storage.svg", t: "Cloud Storage", p: "Hosts supplier quality evidence, carrier POD photos, and signed interactive HTML What-If cockpits.", why: "Unified object floor for multimodal inspection and reporting.", prod: "Cloud Storage" },
-      bq: { img: G + "BigQuery.svg", t: "BigQuery & Cortex v7", p: "Harmonizes SAP tables, EDI 852 POS sell-through, EDI 214 transit status, and inventory snapshots.", why: "Single governed source of truth for all 60 agents.", prod: "BigQuery · Cortex v7" },
-      rag: { img: G + "VertexAI.svg", t: "Grounding & Citations", p: "BRC/ISO audits, carrier rate cards, and CBAM compliance rules retrieved with exact clause citations.", why: "Every compliance recommendation points to its exact document.", prod: "Vertex AI RAG Engine" },
+      bq: { img: G + "BigQuery.svg", t: "BigQuery & Cortex v7", p: "Harmonizes SAP tables, EDI 852 POS sell-through, EDI 214 transit status, and inventory snapshots.", why: "Single governed source of truth for all 78 CPG agents.", prod: "BigQuery · Cortex v7" },
+      rag: { img: G + "VertexAI.svg", t: "Grounding & Citations", p: "BRC/ISO audits, carrier rate cards, and Carbon Border Adjustment Mechanism (CBAM) compliance rules retrieved with exact clause citations.", why: "Every compliance recommendation points to its exact document.", prod: "Vertex AI RAG Engine" },
       plant_op: { img: G + "Databases.svg", t: "MES / PLC / Yard Gate", p: "High-frequency line telemetry and gate cameras processed locally on site.", why: "Keeps plant-floor control loops resilient even if WAN drops.", prod: "GDC Edge Connectors" },
       objstore: { img: G + "Cloud_Storage.svg", t: "GDC Object Storage", p: "Stores high-speed inline quality frames and packaging audit logs locally.", why: "Same lakehouse interface inside the factory.", prod: "GDC Object Storage" },
       alloy: { img: G + "AlloyDB.svg", t: "AlloyDB Omni", p: "Sub-millisecond relational + pgvector lookup for allergen changeover matrices and SOPs.", why: "Line reallocation finishes in under 3 minutes.", prod: "AlloyDB Omni" },
@@ -315,9 +315,9 @@
   </main>
 
   <aside class="floating-dock" style="display: flex; align-items: center; gap: 12px; padding: 10px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 30px; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(18,19,23,.14); position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 1000;">
-    <a href="../personas/index.html" style="background: var(--surface-sunk); border: 1px solid var(--border); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none;">&#9664;</a>
-    <div style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--text-muted); white-space: nowrap;">BUILD 09 // ARCHITECTURE</div>
-    <a href="10_surfaces.html" style="background: var(--g-blue); border: none; color: #FFF; padding: 7px 16px; border-radius: 20px; font-family: var(--font-display); font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;"><span>Next Page</span><span>&#9654;</span></a>
+    <a id="dockPrev" href="08_how_agents_are_built.html" style="background: var(--surface-sunk); border: 1px solid var(--border); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none;">&#9664;</a>
+    <div style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--text-muted); white-space: nowrap;">PAGE 10 // ARCHITECTURE</div>
+    <a id="dockNext" href="10_model_choice.html" style="background: var(--g-blue); border: none; color: #FFF; padding: 7px 16px; border-radius: 20px; font-family: var(--font-display); font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;"><span>11 &middot; Model Choice</span><span>&#9654;</span></a>
   </aside>
 </body>
 </html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Model Choice | CPG Supply Chain Agentic Transformation</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/aurora.css">
+  <link rel="stylesheet" href="../assets/build.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+  <script>
+    function toggleTheme() {
+      var isDark = document.documentElement.classList.toggle('theme-dark');
+      document.documentElement.classList.toggle('theme-light', !isDark);
+      localStorage.setItem('deck-theme', isDark ? 'dark' : 'light');
+      updateThemeButtons(!isDark);
+    }
+    function updateThemeButtons(isLight) {
+      document.querySelectorAll('.theme-toggle-btn').forEach(function (btn) {
+        btn.innerHTML = isLight
+          ? '<span style="font-size:13px;line-height:1">🌙</span><span>Dark Mode</span>'
+          : '<span style="font-size:13px;line-height:1">☀️</span><span>Light Mode</span>';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateThemeButtons(!document.documentElement.classList.contains('theme-dark'));
+    });
+  </script>
+  <script src="../assets/ios_transitions.js"></script>
+</head>
+<body style="background: var(--canvas); color: var(--text-muted); font-family: var(--font-display); margin: 0; padding: 0; overflow-x: hidden;">
+
+  <header class="executive-top-nav" style="backdrop-filter: blur(20px); background: color-mix(in srgb, var(--surface) 88%, transparent); border-bottom: 1px solid var(--border-subtle); padding: 14px max(24px, 4vw); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none;">
+      <img src="../assets/media/wip/image25.png" alt="Google Cloud" style="height: 32px; width: auto;">
+      <div style="width: 1px; height: 20px; background: var(--border-subtle);"></div>
+      <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--text); letter-spacing: 1.5px; text-transform: uppercase;">BUILD 03 // MODEL CHOICE</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 14px;">
+      <button class="theme-toggle-btn" onclick="toggleTheme()" type="button"></button>
+      <a href="09_agent_architecture.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-dim); text-decoration: none; padding: 5px 11px; border-radius: 6px; background: var(--surface-sunk);">&larr; Prev Page</a>
+      <span style="font-family: var(--font-mono); font-size: 13px; color: var(--g-blue); font-weight: 700;">11 / 16</span>
+      <a href="11_governance.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 5px 12px; border-radius: 6px; background: rgba(49, 134, 255, 0.10);">Next Page &rarr;</a>
+      <a href="../index.html" style="font-family: var(--font-display); font-size: 12.5px; font-weight: 700; color: #000; background: #FFF; padding: 6px 14px; border-radius: 20px; text-decoration: none; border: 1px solid var(--border-subtle);">All Slides &#8599;</a>
+    </nav>
+  </header>
+
+  <main id="viewport-scaler" style="padding-top: 60px;">
+    <section class="bx mc">
+      <style>
+        .mc-grid { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 22px; align-items: stretch; }
+        .mc-tasks { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+        .mc-plot { position: relative; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 20px; box-shadow: var(--shadow-sm); height: 505px; overflow: hidden; }
+        .mc-axis { position: absolute; font: 500 11px var(--font-mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-dim); }
+        .mc-ax-x { left: 64px; right: 24px; bottom: 14px; display: flex; justify-content: space-between; }
+        .mc-ax-y { left: 18px; top: 24px; bottom: 44px; writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: space-between; }
+        .mc-area { position: absolute; left: 56px; right: 20px; top: 18px; bottom: 40px; border-left: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+        .mc-zone { position: absolute; border: 1.5px dashed var(--border-strong); border-radius: 18px; padding: 12px 14px; background: var(--surface); transition: opacity .35s, box-shadow .35s, border-color .35s, transform .35s; }
+        .mc-zone h4 { margin: 0 0 8px; font: 600 16px var(--font-display); color: var(--zt); display: flex; align-items: baseline; gap: 8px; }
+        .mc-zone h4 small { font: 400 12px var(--font-body); color: var(--text-muted); }
+        .mc-m { display: flex; align-items: center; gap: 8px; padding: 4px 0; font: 500 13.5px var(--font-display); color: var(--text); }
+        .mc-m img { width: 22px; height: 22px; } .mc-m small { font: 400 11.5px var(--font-body); color: var(--text-muted); }
+        .mc-m.star { font-weight: 600; }
+        .mc-zone.dim { opacity: .78; }
+        .mc-zone.pass { border-color: var(--zc); border-width: 2px; }
+        .mc-zone.pick { border-color: var(--zc); border-style: solid; border-width: 2.5px; box-shadow: 0 10px 30px rgba(18,19,23,.12); transform: scale(1.03); z-index: 3; }
+        .mc-side { display: flex; flex-direction: column; gap: 16px; }
+        .mc-rec .k { font: 500 11.5px var(--font-mono); letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-dim); }
+        .mc-rec h2 { margin: 6px 0 2px; font: 600 25px/1.15 var(--font-display); color: var(--text); display: flex; align-items: center; gap: 10px; }
+        .mc-rec h2 img { width: 30px; height: 30px; }
+        .mc-rec .tier { font: 500 14px var(--font-display); }
+        .mc-rec p { margin: 10px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--text-muted); }
+        .mc-meter { margin-top: 14px; }
+        .mc-meter .row { display: grid; grid-template-columns: 115px 1fr 70px; gap: 10px; align-items: center; font-size: 12.5px; color: var(--text-muted); margin-top: 6px; }
+        .mc-meter .tr { height: 8px; border-radius: 4px; background: var(--surface-sunk); overflow: hidden; } .mc-meter .tr i { display: block; height: 100%; border-radius: 4px; transition: width .5s; }
+        .mc-meter b { font: 500 12px var(--font-mono); color: var(--text); text-align: right; }
+        .mc-src { margin-top: 8px; font-size: 11px; color: var(--text-dim); }
+        .mc-how { margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 14.5px; color: var(--text-muted); }
+        .mc-how b { color: var(--text); font-weight: 500; }
+        .mc-how .s { display: inline-flex; align-items: center; gap: 8px; } .mc-how .s i { font: 500 11px var(--font-mono); font-style: normal; width: 22px; height: 22px; border-radius: 50%; border: 1px solid var(--g-blue); color: var(--blue-ink); display: inline-flex; align-items: center; justify-content: center; }
+        .mc-how .arr { color: var(--text-dim); }
+        .mc-how .garden { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font: 500 13px var(--font-display); color: var(--text); }
+        .mc-how .garden img { width: 24px; height: 24px; }
+        @media (max-width: 1150px) { .mc-grid { grid-template-columns: 1fr; } }
+      </style>
+
+      <div class="bx-in">
+        <div class="bx-kick"><i></i>From personas to production &middot; Model choice</div>
+        <h1>The right model for the right supply chain task cost-optimises the entire 78-agent fleet.</h1>
+        <p class="bx-sub">One size does not fit all across 2,500 SKUs and 4,500 distributors. <b>Set the accuracy bar for the supply chain step, then route to the smallest model that clears it.</b> Pick a CPG task to see where it lands.</p>
+
+        <div class="mc-tasks">
+          <span class="bx-lbl">Pick a CPG task</span>
+          <div class="bx-seg" role="group" aria-label="Task" id="mcSeg"></div>
+        </div>
+
+        <div class="mc-grid">
+          <div class="mc-plot">
+            <div class="mc-axis mc-ax-y"><span>Reasoning &amp; multi-echelon depth needed &rarr;</span></div>
+            <div class="mc-axis mc-ax-x"><span>Lower cost per 1,000 runs</span><span>Higher cost per task &rarr;</span></div>
+            <div class="mc-area" id="mcArea"></div>
+          </div>
+          <div class="mc-side">
+            <div class="bx-card mc-rec" id="mcRec"></div>
+            <div class="bx-card">
+              <h3>Why model routing matters across CPG</h3>
+              <p>Scanning 50,000 daily E-Way Bills and Dark-Store stock pings runs continuously every 15 minutes. Routing high-frequency telemetry checks to <b>Scale</b> and <b>Workhorse</b> models, while reserving <b>Gemini 3.1 Pro</b> for multi-plant Sales &amp; Operations Planning (S&amp;OP) and Tier-N risk trade-offs, keeps fleet inference costs fractional.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mc-how">
+          <span class="s"><i>1</i><b>Set the bar</b> per workflow gate</span><span class="arr">&rarr;</span>
+          <span class="s"><i>2</i><b>Evaluate</b> on golden CPG data</span><span class="arr">&rarr;</span>
+          <span class="s"><i>3</i><b>Pick the smallest</b> model that passes</span><span class="arr">&rarr;</span>
+          <span class="s"><i>4</i><b>Swap seamlessly</b> as models advance</span>
+          <span class="garden"><img src="../assets/media/gcp/VertexAI.svg" alt="">Every tier in Vertex AI Model Garden &mdash; swapped without rebuilding the agent</span>
+        </div>
+      </div>
+
+      <script>
+      (function () {
+        var M = "../assets/media/models/";
+        var Z = {
+          frontier: { n: "Frontier", s: "deep multi-echelon reasoning", c: "var(--g-blue)", t: "var(--blue-ink)", pos: [59, 2, 39], lv: 3,
+                      m: [["gemini-color.svg", "Gemini 3.1 Pro", "Google · flagship reasoning", 1], ["claude-color.svg", "Claude Opus", "Anthropic · Model Garden"]], cost: 92, depth: 96 },
+          workhorse: { n: "Workhorse", s: "fast multimodal & tabular", c: "var(--g-purple)", t: "var(--purple-ink)", pos: [34, 36, 31], lv: 2,
+                      m: [["gemini-color.svg", "Gemini 3.8 Flash", "Google · multimodal speed", 1], ["claude-color.svg", "Claude Sonnet", "Anthropic"]], cost: 42, depth: 68 },
+          scale: { n: "Scale", s: "high-frequency telemetry", c: "var(--g-green)", t: "var(--green-ink)", pos: [8, 70, 31], lv: 1,
+                      m: [["gemini-color.svg", "Gemini Flash-Lite", "Google · 15-min streams", 1], ["claude-color.svg", "Claude Haiku", "Anthropic"]], cost: 14, depth: 36 },
+          open: { n: "Open weight", s: "factory edge & air-gapped", c: "var(--g-yellow)", t: "var(--amber-ink)", pos: [3, 34, 28], lv: 2, zo: 1,
+                      m: [["gemma-color.svg", "Gemma", "Google · on-site edge", 1], ["openai.svg", "Open-Weight Models", "Vertex Model Garden"]], cost: 24, depth: 58 }
+        };
+        var TASKS = [
+          { k: "eway", l: "Check 50,000 E-Way Bills & ASN pings/day", need: 1, pick: "scale", model: 0, onsite: 0,
+            why: "High-volume, structured timestamp & HSN validation every 15 minutes. Gemini Flash-Lite clears the bar at minimal cost for the Fleet Dispatcher's E-Way Bill Shield." },
+          { k: "dms", l: "Reconcile DMS stock & retailer deductions", need: 2, pick: "workhorse", model: 0, onsite: 0,
+            why: "Multimodal invoice PDF parsing + structured distributor ledger rules across 4,500 stockists. Gemini 3.8 Flash delivers sub-second accuracy on every claim." },
+          { k: "tiern", l: "Root-cause a Tier-2 palm/resin disruption", need: 3, pick: "frontier", model: 0, onsite: 0,
+            why: "Synthesizing multi-hop supplier graphs, port AIS congestion, BOM margin-at-risk (₹ Cr), and dual-source PO splits requires Frontier reasoning: Gemini 3.1 Pro." },
+          { k: "sop", l: "Re-balance 12-plant S&OP & allergen cutovers", need: 3, pick: "frontier", model: 0, onsite: 0,
+            why: "Long-horizon trade-offs across plant Clean-in-Place (CIP) hours, FEFO shelf-life, and Modern Trade OTIF penalties — built for Gemini 3.1 Pro + OR-Tools." },
+          { k: "edge", l: "Run high-speed vision QA inside offline ICML plant", need: 2, pick: "open", model: 0, onsite: 1,
+            why: "Line-side laminate seal inspection must run at <25ms inside the factory LAN even if WAN drops. Open-weight Gemma on Google Distributed Cloud runs right on the plant floor." }
+        ];
+
+        var area = document.getElementById("mcArea");
+        Object.keys(Z).forEach(function (k) {
+          var z = Z[k], d = document.createElement("div");
+          d.className = "mc-zone" + (z.zo ? " zo" : ""); d.id = "mcZ_" + k;
+          d.style.cssText = "left:" + z.pos[0] + "%;top:" + z.pos[1] + "%;width:" + z.pos[2] + "%;--zc:" + z.c + ";--zt:" + z.t;
+          d.innerHTML = '<h4>' + z.n + '<small>' + z.s + '</small></h4>' +
+            z.m.map(function (m, i) { return '<div class="mc-m' + (m[3] ? ' star' : '') + '" data-i="' + i + '"><img src="' + M + m[0] + '" alt=""><span>' + m[1] + ' <small>' + m[2] + '</small></span></div>'; }).join("");
+          area.appendChild(d);
+        });
+
+        var seg = document.getElementById("mcSeg");
+        seg.innerHTML = TASKS.map(function (t) { return '<button type="button" data-k="' + t.k + '" aria-pressed="false">' + t.l + '</button>'; }).join("");
+        function pick(k) {
+          var T = TASKS.filter(function (t) { return t.k === k; })[0], P = Z[T.pick];
+          seg.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.k === k)); });
+          Object.keys(Z).forEach(function (zk) {
+            var el = document.getElementById("mcZ_" + zk), z = Z[zk];
+            var clears = z.lv >= T.need && (!T.onsite || zk === "open");
+            el.classList.remove("dim", "pass", "pick");
+            if (zk === T.pick) el.classList.add("pick"); else el.classList.add(clears ? "pass" : "dim");
+          });
+          var m = P.m[T.model];
+          var depth = '<span class="tr"><i style="width:' + P.depth + '%;background:' + P.c + '"></i></span><b>' + (P.depth > 80 ? "high" : P.depth > 50 ? "medium" : "light") + '</b>';
+          document.getElementById("mcRec").innerHTML = '<div class="k">Recommended for this CPG task</div><h2><img src="' + M + m[0] + '" alt="">' + m[1] + '</h2>' +
+            '<div class="tier" style="color:' + P.t + '">' + P.n + ' tier &middot; ' + P.s + '</div><p>' + T.why + '</p>' +
+            '<div class="mc-meter"><div class="row"><span>Reasoning depth</span>' + depth + '</div>' +
+            '<div class="row"><span>Cost per 1k runs</span><span class="tr"><i style="width:' + P.cost + '%;background:' + P.c + '"></i></span><b>' + (P.cost > 80 ? "high" : P.cost > 35 ? "medium" : "low") + '</b></div></div>' +
+            '<div class="mc-src">Deterministic math stays in BigQuery ML &amp; Google OR-Tools across all tiers.</div>';
+        }
+        seg.querySelectorAll("button").forEach(function (b) { b.addEventListener("click", function () { pick(b.dataset.k); }); });
+        pick("dms");
+      })();
+      </script>
+    </section>
+  </main>
+
+  <aside class="floating-dock" style="display: flex; align-items: center; gap: 12px; padding: 10px 18px; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 30px; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(18,19,23,.14); position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+    <a id="dockPrev" href="09_agent_architecture.html" style="background: var(--surface-sunk); border: 1px solid var(--border-subtle); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none;">&#9664;</a>
+    <div style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--text-muted); white-space: nowrap;">BUILD 03 // MODEL CHOICE</div>
+    <a id="dockNext" href="11_governance.html" style="background: var(--g-blue); border: none; color: #FFF; padding: 7px 16px; border-radius: 20px; font-family: var(--font-display); font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;"><span>Governance</span><span>&#9654;</span></a>
+  </aside>
+</body>
+</html>

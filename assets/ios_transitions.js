@@ -53,8 +53,12 @@
     '.est-cell', '.board-shell', '.drawer', '.pw-card',
     '.hero-card', '.how-strip', '.ag-card',
     '.ab-hero', '.arch-stage', '.tech-box',
-    '.ar-lane', '.ar-card', '.sf-btn', '#sfStage',
-    '#citeGrid > article', 'main > section > article', '#plan100 > div > div'
+    '.hb-pane', '.hb-base',
+    '.ar-lane', '.ar-card',
+    '.mc-plot', '.mc-side > *',
+    '.gv-lane', '.gv-low > *',
+    '.sf-core', '.sf-list > *', '.sf-stage',
+    '#citeGrid > article', 'main > section > article', '#plan100 > div'
   ];
 
   function scopedSelector(dir) {
@@ -150,9 +154,15 @@
     'demo_stage.html',
     '06_one_to_many.html',
     'personas/index.html',
+    '08_how_agents_are_built.html',
     '09_agent_architecture.html',
+    '10_model_choice.html',
+    '11_governance.html',
     '10_surfaces.html',
-    '13_proof_and_cases.html'
+    '12_structural_resilience.html',
+    '13_proof_and_cases.html',
+    '14_why_google_gartner.html',
+    '15_100_days_pov.html'
   ];
 
   function slideIndexOf(urlPath) {

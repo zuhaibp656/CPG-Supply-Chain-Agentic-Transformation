@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 Days to Proof of Value | CPG Supply Chain Agentic Transformation</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/aurora.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600;700;800&family=Google+Sans+Text:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap">
+  <script>
+    function toggleTheme() {
+      var isDark = document.documentElement.classList.toggle('theme-dark');
+      document.documentElement.classList.toggle('theme-light', !isDark);
+      localStorage.setItem('deck-theme', isDark ? 'dark' : 'light');
+      updateThemeButtons(!isDark);
+    }
+    function updateThemeButtons(isLight) {
+      document.querySelectorAll('.theme-toggle-btn').forEach(function (btn) {
+        btn.innerHTML = isLight
+          ? '<span style="font-size:13px;line-height:1">🌙</span><span>Dark Mode</span>'
+          : '<span style="font-size:13px;line-height:1">☀️</span><span>Light Mode</span>';
+      });
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+      updateThemeButtons(!document.documentElement.classList.contains('theme-dark'));
+    });
+  </script>
+  <script src="../assets/ios_transitions.js"></script>
+</head>
+<body style="background: var(--canvas); color: var(--text-muted); font-family: var(--font-display); margin: 0; padding: 0; overflow-x: hidden;">
+
+  <header class="executive-top-nav" style="backdrop-filter: blur(20px); background: color-mix(in srgb, var(--surface) 88%, transparent); border-bottom: 1px solid var(--border-subtle); padding: 14px max(24px, 4vw); position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center;">
+    <a href="../index.html" style="display: flex; align-items: center; gap: 14px; text-decoration: none;">
+      <img src="../assets/media/wip/image25.png" alt="Google Cloud" style="height: 32px; width: auto;">
+      <div style="width: 1px; height: 20px; background: var(--border-subtle);"></div>
+      <span style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 700; color: var(--text); letter-spacing: 1.5px; text-transform: uppercase;">BUILD 08 // 100 DAYS TO PROOF OF VALUE</span>
+    </a>
+    <nav style="display: flex; align-items: center; gap: 14px;">
+      <button class="theme-toggle-btn" onclick="toggleTheme()" type="button"></button>
+      <a href="13_proof_and_cases.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--green-ink); text-decoration: none; padding: 5px 11px; border-radius: 6px; background: rgba(0,175,87,.10);">Unilever &amp; CPG Proof &#8599;</a>
+      <a href="14_why_google_gartner.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--text-dim); text-decoration: none; padding: 5px 11px; border-radius: 6px; background: var(--surface-sunk);">&larr; Prev Page</a>
+      <span style="font-family: var(--font-mono); font-size: 13px; color: var(--g-blue); font-weight: 700;">16 / 16</span>
+      <a href="00_executive_story.html" style="font-family: var(--font-display); font-size: 13px; font-weight: 700; color: var(--blue-ink); text-decoration: none; padding: 5px 12px; border-radius: 6px; background: rgba(49, 134, 255, 0.10);">Overview (Slide 00) &#8634;</a>
+      <a href="../index.html" style="font-family: var(--font-display); font-size: 12.5px; font-weight: 700; color: #000; background: #FFF; padding: 6px 14px; border-radius: 20px; text-decoration: none; border: 1px solid var(--border-subtle);">All Slides &#8599;</a>
+    </nav>
+  </header>
+
+  <main id="viewport-scaler" style="padding-top: 60px;">
+    <section style="min-height: calc(100vh - 60px); display: flex; flex-direction: column; justify-content: flex-start; padding: 24px max(24px, 4vw) 98px; background: var(--canvas); box-sizing: border-box;">
+      <div style="max-width: 1440px; margin: 0 auto; width: 100%;">
+
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+          <span style="font-family: var(--font-mono); font-size: 12.5px; font-weight: 800; color: var(--blue-ink); letter-spacing: 2px; text-transform: uppercase;">THE ROADMAP // 100-DAY PROOF OF VALUE</span>
+          <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-ink);"></span>
+          <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">CPG LIGHTHOUSE EXECUTION CHARTER</span>
+        </div>
+
+        <h1 style="font-family: var(--font-display); font-size: clamp(28px, 2.5vw, 38px); font-weight: 800; line-height: 1.1; letter-spacing: -1.2px; color: var(--text); margin: 0 0 6px 0;">
+          100 Days to <span class="au-display-grad">Proof of Value.</span>
+        </h1>
+        <p style="font-size: clamp(15.5px, 1.15vw, 18px); line-height: 1.48; color: var(--text-muted); max-width: 1120px; margin: 0 0 16px 0;">
+          Start with 3&ndash;5 Priority-0 (&lt;60-day payback) agents on your historical SAP, DMS, and POS data &mdash; proving audited &#8377; Crore &amp; Lakh impact in 100 days before scaling across all 6 SCOR pillars.
+        </p>
+
+        <!-- Compounding Value-Over-Time Trajectory Graph -->
+        <div class="chart-card" style="background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px 26px 12px; margin-bottom: 18px; box-shadow: var(--shadow-md);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border-subtle); padding-bottom: 10px; flex-wrap: wrap; gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--g-purple); box-shadow: 0 0 8px var(--g-purple);"></span>
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--text); letter-spacing: 1px; text-transform: uppercase;">
+                CPG VALUE REALIZATION TRAJECTORY // LIGHTHOUSE TO &#8377;2,199.3 CR/YR FLEET
+              </span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 18px; font-family: var(--font-mono); font-size: 11px; color: var(--text-dim);">
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 2px; background: var(--g-blue); display: inline-block;"></span> Weeks 1&ndash;6 Ground &amp; Baseline</span>
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 2px; background: var(--g-purple); display: inline-block;"></span> Day 100 Audited PoV</span>
+              <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 12px; height: 2px; background: #00AF57; display: inline-block;"></span> 78-Agent Enterprise Scale</span>
+            </div>
+          </div>
+
+          <svg viewBox="0 0 1200 295" style="width: 100%; height: 275px; display: block; overflow: visible;">
+            <defs>
+              <linearGradient id="valueAreaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#4B31E3" stop-opacity="0.16" />
+                <stop offset="60%" stop-color="#3186FF" stop-opacity="0.08" />
+                <stop offset="100%" stop-color="#3186FF" stop-opacity="0.0" />
+              </linearGradient>
+              <linearGradient id="valueStrokeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#3186FF" />
+                <stop offset="45%" stop-color="#4B31E3" />
+                <stop offset="100%" stop-color="#00AF57" />
+              </linearGradient>
+            </defs>
+
+            <line x1="110" y1="46" x2="1140" y2="46" stroke="var(--border-strong)" stroke-dasharray="4,4" />
+            <text x="98" y="50" fill="var(--green-ink)" font-size="10.5" font-family="var(--font-mono)" text-anchor="end" font-weight="700">&#8377;2,199 CR POOL</text>
+
+            <line x1="110" y1="116" x2="1140" y2="116" stroke="var(--border-strong)" stroke-dasharray="4,4" />
+            <text x="98" y="120" fill="var(--purple-ink)" font-size="10.5" font-family="var(--font-mono)" text-anchor="end" font-weight="700">PILOT PROOF</text>
+
+            <line x1="110" y1="188" x2="1140" y2="188" stroke="var(--border-strong)" stroke-dasharray="4,4" />
+            <text x="98" y="192" fill="var(--blue-ink)" font-size="10.5" font-family="var(--font-mono)" text-anchor="end" font-weight="600">SHADOW MODE</text>
+
+            <line x1="110" y1="250" x2="1140" y2="250" stroke="var(--border-strong)" />
+            <text x="98" y="254" fill="var(--text-dim)" font-size="10.5" font-family="var(--font-mono)" text-anchor="end" font-weight="600">BASELINE</text>
+
+            <line x1="390" y1="28" x2="390" y2="250" stroke="rgba(49, 134, 255, 0.28)" stroke-dasharray="3,3" />
+            <line x1="720" y1="28" x2="720" y2="250" stroke="rgba(75, 49, 227, 0.28)" stroke-dasharray="3,3" />
+
+            <path d="M 110,242 C 225,238 305,222 390,202 C 510,176 610,144 720,116 C 840,82 980,48 1130,34 L 1130,250 L 110,250 Z" fill="url(#valueAreaGrad)" />
+            <path d="M 110,242 C 225,238 305,222 390,202 C 510,176 610,144 720,116 C 840,82 980,48 1130,34" fill="none" stroke="url(#valueStrokeGrad)" stroke-width="4.5" />
+
+            <circle cx="390" cy="202" r="6" fill="var(--g-blue)" />
+            <circle cx="390" cy="202" r="11" fill="none" stroke="rgba(49, 134, 255, 0.45)" stroke-width="1.5" />
+            <rect x="262" y="144" width="256" height="42" rx="8" fill="var(--surface)" stroke="rgba(49, 134, 255, 0.55)" stroke-width="1.2" />
+            <text x="390" y="162" fill="var(--blue-ink)" font-family="var(--font-mono)" font-size="11" font-weight="700" text-anchor="middle">WEEK 6: P0 LIGHTHOUSE LOCKED</text>
+            <text x="390" y="177" fill="var(--text-muted)" font-family="var(--font-display)" font-size="10.5" text-anchor="middle">Cortex v7 grounded &middot; 3&ndash;5 P0 agents</text>
+
+            <circle cx="720" cy="116" r="20" fill="rgba(75, 49, 227, 0.14)" />
+            <circle cx="720" cy="116" r="10" fill="none" stroke="var(--g-purple)" stroke-width="2" />
+            <circle cx="720" cy="116" r="5" fill="var(--g-purple)" />
+            <g transform="translate(575, 38)">
+              <rect x="0" y="0" width="290" height="56" rx="8" fill="var(--surface)" stroke="var(--g-purple)" stroke-width="1.5" />
+              <text x="145" y="23" fill="var(--g-purple)" font-family="var(--font-mono)" font-size="12" font-weight="800" text-anchor="middle">&#9733; DAY 100: AUDITED PROOF OF VALUE</text>
+              <text x="145" y="42" fill="var(--text-muted)" font-family="var(--font-display)" font-size="11.5" font-weight="600" text-anchor="middle">Verified &#8377; Cr savings across S&amp;OP, FEFO &amp; Freight</text>
+            </g>
+
+            <circle cx="1130" cy="34" r="7" fill="var(--g-green)" />
+            <circle cx="1130" cy="34" r="13" fill="none" stroke="rgba(0, 175, 87, 0.45)" stroke-width="1.5" />
+            <g transform="translate(916, 6)">
+              <rect x="0" y="0" width="208" height="42" rx="8" fill="var(--surface)" stroke="var(--g-green)" stroke-width="1.5" />
+              <text x="104" y="19" fill="var(--green-ink)" font-family="var(--font-mono)" font-size="11" font-weight="800" text-anchor="middle">60-ROLE ENTERPRISE SCALE</text>
+              <text x="104" y="34" fill="var(--text-muted)" font-family="var(--font-display)" font-size="10.5" text-anchor="middle">25 P0 &rarr; 78 CPG Agents 24/7</text>
+            </g>
+
+            <text x="245" y="280" fill="var(--blue-ink)" font-family="var(--font-mono)" font-size="11.5" font-weight="700" text-anchor="middle">WEEKS 01&ndash;06: GROUND &amp; PRIORITIZE</text>
+            <text x="555" y="280" fill="var(--blue-ink)" font-family="var(--font-mono)" font-size="11.5" font-weight="700" text-anchor="middle">WEEKS 07&ndash;14: SHADOW &amp; CO-DEVELOP</text>
+            <text x="720" y="280" fill="var(--g-purple)" font-family="var(--font-mono)" font-size="12.5" font-weight="800" text-anchor="middle">&#9733; DAY 100</text>
+            <text x="935" y="280" fill="var(--green-ink)" font-family="var(--font-mono)" font-size="11.5" font-weight="700" text-anchor="middle">BEYOND DAY 100: SCALE ACROSS PLANTS &amp; CFAs</text>
+          </svg>
+        </div>
+
+        <!-- 3-Column Milestone Cards -->
+        <div id="plan100" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+          <div>
+            <div style="background: linear-gradient(rgba(49,134,255,.06), rgba(49,134,255,.06)), var(--surface); border: 1px solid var(--border-subtle); border-top: 3px solid var(--g-blue); border-radius: 14px; padding: 18px 20px; height: 100%; box-shadow: var(--shadow-sm);">
+              <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; color: var(--blue-ink); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 6px;">PHASE 01 // WEEKS 01&ndash;06</div>
+              <div style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 10px;">Ground Data &amp; Lock Lighthouse</div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.58; color: var(--text-muted);">
+                <li>Select 1&ndash;2 high-leakage pillars (e.g., Demand/Promo ROI, Dynamic FEFO, or Freight Bill Audit)</li>
+                <li>Connect SAP S/4HANA, DMS &amp; WMS slices into BigQuery Cortex v7</li>
+                <li>Baseline historical forecast error, expiry write-offs &amp; billing leakage in &#8377; Lakhs/Crores</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div style="background: linear-gradient(rgba(75,49,227,.07), rgba(75,49,227,.07)), var(--surface); border: 1px solid var(--border-subtle); border-top: 3px solid var(--g-purple); border-radius: 14px; padding: 18px 20px; height: 100%; box-shadow: var(--shadow-sm);">
+              <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; color: var(--purple-ink); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 6px;">PHASE 02 // DAY 100 MILESTONE</div>
+              <div style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 10px;">Shadow Run &amp; Prove &#8377; Cr Value</div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.58; color: var(--text-muted);">
+                <li>Co-develop 3&ndash;5 Priority-0 agents alongside your named CPG planners &amp; CFA leads</li>
+                <li>Run 4 weekly S&amp;OP / dispatch shadow cycles validating OR-Tools &amp; TimesFM math</li>
+                <li>Turn on 1-click Apigee MCP sign-offs and sign off audited Day-100 ROI</li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <div style="background: linear-gradient(rgba(0,175,87,.06), rgba(0,175,87,.06)), var(--surface); border: 1px solid var(--border-subtle); border-top: 3px solid var(--g-green); border-radius: 14px; padding: 18px 20px; height: 100%; box-shadow: var(--shadow-sm);">
+              <div style="font-family: var(--font-mono); font-size: 11.5px; font-weight: 800; color: var(--green-ink); letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 6px;">PHASE 03 // BEYOND DAY 100</div>
+              <div style="font-family: var(--font-display); font-size: 19px; font-weight: 700; color: var(--text); margin-bottom: 10px;">Scale the 78-Agent CPG Workforce</div>
+              <ul style="margin: 0; padding-left: 18px; font-size: 13.5px; line-height: 1.58; color: var(--text-muted);">
+                <li>Roll out all 25 Priority-0 agents across ICML plants, Mother Hubs &amp; regional CFAs</li>
+                <li>Empower domain teams to self-author no-code &amp; workflow agents in Gemini Enterprise</li>
+                <li>Operate a governed, auditable 24/7 agentic supply chain</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <aside class="floating-dock" style="display: flex; align-items: center; gap: 12px; padding: 10px 18px; background: var(--surface); border: 1px solid var(--border-subtle); border-radius: 30px; backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(18,19,23,.14); position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+    <a id="dockPrev" href="14_why_google_gartner.html" style="background: var(--surface-sunk); border: 1px solid var(--border-subtle); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; text-decoration: none;">&#9664;</a>
+    <div style="font-family: var(--font-mono); font-size: 13.5px; font-weight: 700; color: var(--text-muted); white-space: nowrap;">BUILD 08 // 100-DAY PROOF OF VALUE</div>
+    <a id="dockNext" href="../index.html" style="background: var(--g-blue); border: none; color: #FFF; padding: 7px 16px; border-radius: 20px; font-family: var(--font-display); font-size: 14px; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px;"><span>Briefing Map</span><span>&#8634;</span></a>
+  </aside>
+</body>
+</html>
