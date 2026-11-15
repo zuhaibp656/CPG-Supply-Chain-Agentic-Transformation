@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_dynamic_rerouter
+  slug: 10_dynamic_rerouter
+  display_name: "Dynamic Rerouter"
+  build_mode: "Low-Code + Maps Platform"
+  functional_area: "Fleet, Carrier & Freight Governance"
+  itc_pillar: "Pillar 06 · Green Logistics, Fleet & Live Route Governance"
+  persona_owner: "Fleet & Route Dispatch Lead"
+  named_leader: "Vikramaditya Menon (Central Zenith Fleet Control Tower Lead — Mumbai, Bengaluru & Kolkata)"
+  priority_tier: "P0"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.1-pro-preview
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/10_zenith_fleet_gps_traffic_and_ev_routes.csv"
+  target_system_of_record: "Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API"
+  human_signoff_boundary: "Never routes heavy multi-axle trucks onto weight-restricted bridges/no-entry police zones or files statutory NIC E-Way Bill extensions without Fleet Lead confirmation."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - evaluate_maps_routes_ev_soc_and_eway_clock
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "Which in-transit primary trucks and urban Green Logistics EV vans are delayed by highway blockages, waterlogging, or city no-entry curfews right now, and what is the fastest safe reroute?"
+    - "Are any delayed trucks within 4 hours of their NIC E-Way Bill expiring, or do any commercial EV vans need a fast-charging stop added to finish their beat?"
+    - "Chart the transit minutes saved across all active fleet reroutes."
+    - "Stage the updated Google Maps route diversions, EV charger stop, and E-Way Bill extension alert in Zenith."

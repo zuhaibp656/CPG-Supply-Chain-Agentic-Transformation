@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_mt_qcomm_slot_otif_copilot
+  slug: 07_mt_qcomm_slot_otif_copilot
+  display_name: "MT / Q-Comm Slot & OTIF Copilot"
+  build_mode: "Low-Code Agent Studio"
+  functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
+  itc_pillar: "Pillar 05 · Modern Trade & Quick-Commerce Fulfillment"
+  persona_owner: "Modern Trade & Q-Comm Logistics Lead"
+  named_leader: "Neha Kapoor (National MT & Quick-Commerce Supply Lead — Gurugram & Mumbai)"
+  priority_tier: "P0"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.1-pro-preview
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/07_mt_qcomm_asn_dock_slots_and_otif.csv"
+  target_system_of_record: "Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)"
+  human_signoff_boundary: "Never accepts contractual penalty waivers that alter commercial trade terms or commits premium dedicated air/express recovery above Rs 25,000 without MT Logistics Lead approval."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - scan_retailer_portal_open_appointment_windows
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "Which of today's Blinkit, Zepto, Instamart, and DMart dispatches are at risk of missing their dock appointment slot or failing the 75% shelf-life check?"
+    - "Check open partner-portal reschedule slots and pre-dispatch batch swaps to protect our On-Time In-Full score and avoid chargebacks."
+    - "Show a visual chart of at-risk chargeback deductions shielded across Modern Trade and Quick-Commerce accounts."
+    - "Stage the slot rebooking requests on the Blinkit and DMart portals and flag the Zepto batch swap."

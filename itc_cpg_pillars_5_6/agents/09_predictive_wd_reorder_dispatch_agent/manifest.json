@@ -1,0 +1,42 @@
+{
+  "num": "09",
+  "slug": "09_predictive_wd_reorder_dispatch_agent",
+  "agent_id": "itc_predictive_wd_reorder_dispatch_agent",
+  "class_prefix": "PredictiveWdReorderDispatch",
+  "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
+  "itc_pillar": "Pillar 05 \u00b7 Wholesale Dealer (WD) Replenishment & FinAgg Credit",
+  "persona": "Wholesale Dealer (WD) / Stockist Ops Mgr",
+  "persona_named": "Rajeshwar Rao (TM&D Stockist Operations & DMS Lead \u2014 Mumbai, Bengaluru & Kolkata)",
+  "agent_name": "Predictive WD Reorder & Dispatch Agent",
+  "build_mode": "Low-Code Agent Studio",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "09_wd_stockist_doi_credit_and_reorders",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "dms_distributor_stock_balancer",
+    "store_capacity_agent (Live GE: reasoningEngines/7365119595465670656)"
+  ],
+  "target_system": "ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API",
+  "stops_at": "Never converts draft primary orders into firm SAP billing without Wholesale Dealer OTP/portal consent or FinAgg/bank credit-line confirmation.",
+  "problem_statement": "Wholesale Dealers frequently under-order core staples during UNNATI scheme surges (causing kirana stockouts within 48 hours) or hit credit-limit walls mid-week despite having approved FinAgg/SBI supply-chain credit headroom\u2014while manual push dispatches overflow small urban WD godowns.",
+  "special_tool_name": "verify_finagg_credit_and_godown_cube_fit",
+  "special_tool_doc": "Checks each Wholesale Dealer's open credit limit, FinAgg/SBI dealer-finance drawdown eligibility, and physical godown case capacity before staging primary SAP replenishment.",
+  "chart_label_key": "wd_name",
+  "chart_value_key": "order_billing_value_inr",
+  "headline_kpi_key": "total_auto_replenishment_billing_display",
+  "rows_key": "wd_dispatch_recommendations",
+  "levers_inr_cr": {
+    "productivity": 2.6,
+    "flow": 10.8,
+    "risk": 0.0,
+    "recovery": 19.2,
+    "zero_rationale": "Operates within pre-underwritten FinAgg/bank credit limits (Risk = 0); stabilizes WD Days-of-Inventory turnover (Flow), automates DMS order generation (Productivity), and eliminates secondary kirana stockouts (Revenue Recovery)."
+  },
+  "starter_prompts": [
+    "Which Wholesale Dealers are below 4 days of inventory on high-velocity SKUs and risk stocking out within 48 hours, and how many cases should we replenish respecting their godown space and FinAgg credit limit?",
+    "Which dealers need an automated FinAgg supply-chain credit drawdown so their urgent replenishment order doesn't get credit-blocked in SAP?",
+    "Show a chart of recommended primary replenishment order values across our most stockout-exposed Wholesale Dealers.",
+    "Stage the predictive Wholesale Dealer replenishment orders in DMS and SAP for dealer confirmation."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 EOD Billing & Cutoff Closer Agent Connector API",
+    "version": "1.0.0",
+    "description": "Mode: Low-Code + SAP OpenAPI | Target System: SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
+  },
+  "paths": {
+    "/v1/itc-tmd/06_eod_billing_cutoff_closer_agent/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live EOD Billing & Cutoff Closer Agent operational records"
+      }
+    },
+    "/v1/itc-tmd/06_eod_billing_cutoff_closer_agent/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for EOD Billing & Cutoff Closer Agent"
+      }
+    },
+    "/v1/itc-tmd/06_eod_billing_cutoff_closer_agent/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
+      }
+    }
+  }
+}

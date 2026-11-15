@@ -1,0 +1,41 @@
+{
+  "num": "11",
+  "slug": "11_routing_guide_compliance_agent",
+  "agent_id": "itc_routing_guide_compliance_agent",
+  "class_prefix": "RoutingGuideCompliance",
+  "functional_area": "Fleet, Carrier & Freight Governance",
+  "itc_pillar": "Pillar 06 \u00b7 Transport Procurement & Carrier Waterfall Governance",
+  "persona": "Transport Procurement Manager",
+  "persona_named": "Kavita Krishnamurthy (National Freight Procurement Lead \u2014 ITC TM&D HQ Kolkata)",
+  "agent_name": "Routing Guide Compliance Agent",
+  "build_mode": "No-Code Gemini Gem",
+  "priority": "P1",
+  "default_model": "gemini-3.8-flash",
+  "table_stem": "11_carrier_routing_guide_tenders_and_spot",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "freight_control_tower (Live GE: reasoningEngines/1933778444856852480)"
+  ],
+  "target_system": "SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard",
+  "stops_at": "Advisory & governance No-Code Gem\u2014flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally.",
+  "problem_statement": "ITC negotiates annual L1/L2/L3 waterfall rate cards across hundreds of ICML-to-CFA lanes, yet local dispatchers frequently bypass L2 backup carriers during evening rush and book ad-hoc spot-market brokers at 28-40% freight premiums\u2014leaking Crores annually.",
+  "special_tool_name": "diagnose_planner_bypass_vs_carrier_rejection",
+  "special_tool_doc": "Separates maverick planner waterfall bypasses (where L2 was skipped) from genuine L1+L2 carrier capacity rejections requiring lane rate-card re-indexing.",
+  "chart_label_key": "lane_description",
+  "chart_value_key": "monthly_spot_leakage_inr",
+  "headline_kpi_key": "annualized_recoverable_freight_display",
+  "rows_key": "waterfall_compliance_findings",
+  "levers_inr_cr": {
+    "productivity": 1.5,
+    "flow": 0.0,
+    "risk": 15.4,
+    "recovery": 0.0,
+    "zero_rationale": "Pure freight procurement & contract-compliance governance Gem (Flow = 0, Revenue Recovery = 0); eliminates maverick spot-market rate leakage (Risk & Leakage) and automates lane compliance audits (Productivity)."
+  },
+  "starter_prompts": [
+    "Which primary lanes are leaking the most money into expensive spot-market trucks instead of following our L1 and L2 contracted carrier routing guide?",
+    "Distinguish lanes where dispatch planners bypassed our L2 backup carrier from lanes where both L1 and L2 transporters rejected tenders due to capacity or backhaul issues.",
+    "Show a chart of monthly maverick spot-freight leakage across our top non-compliant lanes.",
+    "Draft carrier compliance notices and stage TMS waterfall lock recommendations for procurement review."
+  ]
+}

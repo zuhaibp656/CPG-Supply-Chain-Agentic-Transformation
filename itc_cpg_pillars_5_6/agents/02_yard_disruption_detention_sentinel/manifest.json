@@ -1,0 +1,42 @@
+{
+  "num": "02",
+  "slug": "02_yard_disruption_detention_sentinel",
+  "agent_id": "itc_yard_disruption_detention_sentinel",
+  "class_prefix": "YardDisruptionDetention",
+  "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
+  "itc_pillar": "Pillar 06 \u00b7 Green Logistics & Primary Dispatch",
+  "persona": "Plant Yard & Dispatch Lead",
+  "persona_named": "Harpreet Singh Gill (ICML Yard Master \u2014 Kapurthala & Ranjangaon)",
+  "agent_name": "Yard Disruption & Detention Sentinel",
+  "build_mode": "Low-Code Agent Studio",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "02_icml_yard_gate_fastag_dock_detention",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "yard_dock_sequencer (Live GE: reasoningEngines/2295192314953334784)",
+    "yard_dock_scheduling_agent"
+  ],
+  "target_system": "SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console",
+  "stops_at": "Never overrides ICML gate security tare-weight discrepancy holds or waives contractual detention claims without Plant Yard Lead approval.",
+  "problem_statement": "At peak shift handovers, 32-ft containers and frozen reefers queue at ICML weighbridges and blocked stretch-wrap doors beyond the 120-minute free-time slab\u2014triggering Rs 850-Rs 1,350/hr carrier detention charges and diesel burn on waiting reefers.",
+  "special_tool_name": "evaluate_reefer_shore_power_and_slab_clock",
+  "special_tool_doc": "Ranks waiting ICML yard trailers by remaining minutes to carrier detention slab breach and flags frozen/chilled reefers burning diesel without shore-power dock seals.",
+  "chart_label_key": "vehicle_reg_no",
+  "chart_value_key": "detention_avoided_inr",
+  "headline_kpi_key": "total_detention_charges_avoided_display",
+  "rows_key": "sequenced_dock_moves",
+  "levers_inr_cr": {
+    "productivity": 1.9,
+    "flow": 7.8,
+    "risk": 11.2,
+    "recovery": 0.0,
+    "zero_rationale": "Does not create incremental retail consumer demand (Revenue Recovery = 0); value is pure carrier detention avoidance (Risk & Leakage) and faster ICML dock turnaround (Flow)."
+  },
+  "starter_prompts": [
+    "Which trucks waiting inside our Ranjangaon, Kapurthala, and Panchla plant yards have breached or are about to breach free detention time, and which open dock doors should we move them to right now?",
+    "Are any frozen or chilled reefer trailers waiting on diesel at the gate that need immediate reassignment to a shore-power dock door?",
+    "Chart the detention penalties avoided by vehicle across our active yard bottleneck queue.",
+    "Stage the dock door reassignments and spotter move instructions for the yard crew."
+  ]
+}

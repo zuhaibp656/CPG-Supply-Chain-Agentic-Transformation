@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC SAP S/4HANA SD / EWM / FinAgg / NIC GST Cutoff OpenAPI Bundle",
+    "version": "2026.11",
+    "description": "Resolves EOD 21:00 IST CFA billing cutoff blockers across VL02N, VF01, VKM3 FinAgg Credit & NIC E-Way Part-B."
+  },
+  "paths": {
+    "/sap/opu/odata/sap/API_OUTBOUND_DELIVERY_SRV/ConfirmBatchSplitAndPGI": {
+      "post": {
+        "summary": "Reconciles FEFO batch split lines on picked CFA deliveries and posts Goods Issue (VL02N)."
+      }
+    },
+    "/sap/opu/odata/sap/Z_API_SD_FINAGG_SYNC_AND_VF01_BILLING": {
+      "post": {
+        "summary": "Syncs approved FinAgg/SBI dealer credit-line drawdowns into VKM3 and triggers VF01 GST invoice."
+      }
+    },
+    "/sap/opu/odata/sap/Z_API_GST_EWAYBILL_PARTB_RETRY": {
+      "post": {
+        "summary": "Normalizes vehicle registration number formatting and generates NIC E-Way Bill Part-B."
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "num": "06",
+  "slug": "06_eod_billing_cutoff_closer_agent",
+  "agent_id": "itc_eod_billing_cutoff_closer_agent",
+  "class_prefix": "EodBillingCutoffCloser",
+  "functional_area": "CFA / Depot Operations & Stock Allocation",
+  "itc_pillar": "Pillar 05 \u00b7 CFA Billing & SAP Cutoff Governance",
+  "persona": "Depot Dispatch & Billing Supervisor",
+  "persona_named": "Prakash Kulkarni (CFA Commercial & SAP Billing Lead \u2014 Bhiwandi & Dankuni)",
+  "agent_name": "EOD Billing & Cutoff Closer Agent",
+  "build_mode": "Low-Code + SAP OpenAPI",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "06_cfa_sap_eod_billing_irn_eway_cutoff",
+  "reuse_status": "NEW_ITC_SPECIFIC_BUILD",
+  "reused_from_agents": [
+    "eway_bill_gst_transit_auditor (NIC E-Way Bill foundation)",
+    "New SAP S/4HANA VL02N/VF01/VKM3/IRN EOD Cutoff Engine"
+  ],
+  "target_system": "SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API",
+  "stops_at": "Never releases hard overdue delinquency blocks (`VKM3 >15 days overdue`) without Commercial Finance Controller approval; auto-stages only technical batch-split, FinAgg sync, and Part-B format fixes.",
+  "problem_statement": "Every evening between 19:30 and the 21:00 IST gate lock (and critically on month-end close), fully loaded trucks sit trapped at CFA gates because SAP outbound deliveries (`VL02N`) fail Post Goods Issue or `VF01` billing due to minor FEFO batch-split variances, unsynced FinAgg dealer credit drawdowns, or hyphen typos in NIC E-Way Bill Part-B vehicle numbers\u2014pushing Crores of billed revenue into the next day/month.",
+  "special_tool_name": "validate_sap_openapi_bapi_and_nic_payload",
+  "special_tool_doc": "Validates exact SAP S/4HANA OData/BAPI payloads (`ConfirmBatchSplitAndPGI`, `Z_API_SD_FINAGG_SYNC`, `Z_API_GST_EWAYBILL_PARTB_RETRY`) and separates hard Finance credit stops.",
+  "chart_label_key": "outbound_delivery_no",
+  "chart_value_key": "invoice_value_inr",
+  "headline_kpi_key": "same_day_revenue_unlockable_display",
+  "rows_key": "prioritized_cutoff_queue",
+  "levers_inr_cr": {
+    "productivity": 3.4,
+    "flow": 14.6,
+    "risk": 0.0,
+    "recovery": 11.8,
+    "zero_rationale": "Enforces rather than alters credit/tax risk policy (Risk = 0); unlocks trapped gate-loaded trucks before 21:00/month-end cutoff (Flow & Revenue Recovery) while eliminating manual late-night SAP firefighting (Productivity)."
+  },
+  "starter_prompts": [
+    "Which loaded trucks at our CFAs are stuck waiting for SAP billing, GST e-Invoice IRN, or E-Way Bill generation before tonight's 21:00 gate cutoff, and which ones can we clear right now?",
+    "Separate the technical SAP batch-split, FinAgg credit-sync, and vehicle-number formatting errors we can fix automatically from hard overdue credit holds that need Finance sign-off.",
+    "Chart the trapped invoice value by outbound delivery ranked by urgency before cutoff.",
+    "Stage the SAP OpenAPI batch-split, FinAgg sync, and E-Way Bill Part-B fixes for billing supervisor sign-off."
+  ]
+}

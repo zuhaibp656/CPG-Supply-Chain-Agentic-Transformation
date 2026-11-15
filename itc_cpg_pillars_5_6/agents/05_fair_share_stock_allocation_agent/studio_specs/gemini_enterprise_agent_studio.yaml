@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_fair_share_stock_allocation_agent
+  slug: 05_fair_share_stock_allocation_agent
+  display_name: "Fair-Share Stock Allocation Agent"
+  build_mode: "Low-Code Agent Studio"
+  functional_area: "CFA / Depot Operations & Stock Allocation"
+  itc_pillar: "Pillar 05 · CFA Operations & Stock Allocation"
+  persona_owner: "Customer Service & Logistics (CS&L) Lead"
+  named_leader: "Meenakshi Sundaram (Zonal CS&L Head — Bengaluru & Southern Hub)"
+  priority_tier: "P0"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.1-pro-preview
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/05_csl_shortage_orders_and_channel_allocations.csv"
+  target_system_of_record: "SAP S/4HANA Advanced Available-to-Promise (aATP) & Order Rationing Engine"
+  human_signoff_boundary: "Never zeroes out General Trade baseline territory floors or overrides contractual key-account allocation commitments without CS&L Lead approval."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - compare_ortools_lp_vs_naive_fifo_rationing
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "We only have 2,400 cases of Sunfeast Dark Fantasy 300g at Nelamangala Bengaluru CFA against 3,650 cases of competing orders—how should we ration stock fairly across Quick-Commerce, Modern Trade, UNNATI kiranas, and Wholesale Dealers?"
+    - "Compare our Linear Programming fair-share split against standard First-In-First-Out allocation so we see how much penalty and margin we save without starving General Trade."
+    - "Plot the recommended case allocation and fill rate across each channel."
+    - "Stage the approved fair-share allocation quantities into SAP Available-to-Promise for release."

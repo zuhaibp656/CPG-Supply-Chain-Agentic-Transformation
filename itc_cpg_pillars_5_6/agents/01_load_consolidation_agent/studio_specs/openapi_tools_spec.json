@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 Load Consolidation Agent Connector API",
+    "version": "1.0.0",
+    "description": "Mode: Low-Code Agent Studio | Target System: SAP Transportation Management (SAP TM) & Zenith Indent Portal"
+  },
+  "paths": {
+    "/v1/itc-tmd/01_load_consolidation_agent/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live Load Consolidation Agent operational records"
+      }
+    },
+    "/v1/itc-tmd/01_load_consolidation_agent/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for Load Consolidation Agent"
+      }
+    },
+    "/v1/itc-tmd/01_load_consolidation_agent/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in SAP Transportation Management (SAP TM) & Zenith Indent Portal"
+      }
+    }
+  }
+}

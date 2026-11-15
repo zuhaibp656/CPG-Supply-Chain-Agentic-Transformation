@@ -1,0 +1,42 @@
+{
+  "num": "03",
+  "slug": "03_cold_chain_thermal_auditor",
+  "agent_id": "itc_cold_chain_thermal_auditor",
+  "class_prefix": "ColdChainThermalAuditor",
+  "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
+  "itc_pillar": "Pillar 06 \u00b7 Green Logistics & Cold-Chain Assurance",
+  "persona": "Cold-Chain & Transit QA Lead",
+  "persona_named": "Dr. Ananya Chatterjee (National Cold-Chain QA Lead \u2014 Kolkata & Kapurthala)",
+  "agent_name": "Cold-Chain Thermal Auditor",
+  "build_mode": "Low-Code Agent Studio",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "03_drishti_reefer_iot_thermal_telemetry",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "cold_chain_auditor (Live GE: reasoningEngines/8706771171468640256)",
+    "cold_chain_salvage_repack_advisor"
+  ],
+  "target_system": "SAP Quality Management (SAP QM `BAPI_INSPLOT_SETUSAGEDECISION`) & Carrier Claims Portal",
+  "stops_at": "Never auto-releases thermally abused frozen, dairy, or chocolate lots into unrestricted CFA stock without QA Lead usage decision.",
+  "problem_statement": "ITC Master Chef frozen snacks (-18C), Aashirvaad Svasti paneer/curd (2-8C), and Fabelle luxury chocolates (16-20C) suffer mid-highway compressor slips or driver fuel-saving switch-offs. Simple min/max threshold alerts miss cumulative Arrhenius kinetic heat damage.",
+  "special_tool_name": "inspect_drishti_strip_chart_multimodal",
+  "special_tool_doc": "Performs multimodal OCR & strip-chart inspection on scanned Drishti BLE thermal logger printouts (`DOC-STRIP-SHP-CLD-*.png`) to corroborate carrier negligence claims.",
+  "chart_label_key": "shipment_id",
+  "chart_value_key": "carrier_spoilage_claim_inr",
+  "headline_kpi_key": "recoverable_carrier_claims_display",
+  "rows_key": "thermal_audit_ledger",
+  "levers_inr_cr": {
+    "productivity": 1.6,
+    "flow": 0.0,
+    "risk": 14.8,
+    "recovery": 6.2,
+    "zero_rationale": "Does not accelerate fleet transit velocity (Flow = 0); protects consumer food safety & recovers carrier spoilage claims (Risk) while salvaging borderline cool-chain lots before total write-off (Recovery)."
+  },
+  "starter_prompts": [
+    "Audit our inbound frozen Master Chef, Svasti dairy, and Fabelle chocolate reefer shipments\u2014which loads breached Mean Kinetic Temperature limits and need quarantine or a carrier spoilage claim?",
+    "Inspect the thermal logger strip chart for the Kapurthala-to-Kundli frozen fries shipment and Patna paneer load to check what caused the temperature spike.",
+    "Create a visual breakdown of carrier spoilage claim values and shelf-life days lost across flagged reefer trips.",
+    "Stage a quality quarantine hold and carrier claim packet for the abused cold-chain lots."
+  ]
+}

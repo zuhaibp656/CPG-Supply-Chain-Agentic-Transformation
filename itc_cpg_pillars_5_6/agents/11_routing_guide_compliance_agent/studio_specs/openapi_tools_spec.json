@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 Routing Guide Compliance Agent Connector API",
+    "version": "1.0.0",
+    "description": "Mode: No-Code Gemini Gem | Target System: SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard"
+  },
+  "paths": {
+    "/v1/itc-tmd/11_routing_guide_compliance_agent/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live Routing Guide Compliance Agent operational records"
+      }
+    },
+    "/v1/itc-tmd/11_routing_guide_compliance_agent/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for Routing Guide Compliance Agent"
+      }
+    },
+    "/v1/itc-tmd/11_routing_guide_compliance_agent/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard"
+      }
+    }
+  }
+}

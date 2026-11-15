@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 Fair-Share Stock Allocation Agent Connector API",
+    "version": "1.0.0",
+    "description": "Mode: Low-Code Agent Studio | Target System: SAP S/4HANA Advanced Available-to-Promise (aATP) & Order Rationing Engine"
+  },
+  "paths": {
+    "/v1/itc-tmd/05_fair_share_stock_allocation_agent/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live Fair-Share Stock Allocation Agent operational records"
+      }
+    },
+    "/v1/itc-tmd/05_fair_share_stock_allocation_agent/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for Fair-Share Stock Allocation Agent"
+      }
+    },
+    "/v1/itc-tmd/05_fair_share_stock_allocation_agent/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in SAP S/4HANA Advanced Available-to-Promise (aATP) & Order Rationing Engine"
+      }
+    }
+  }
+}

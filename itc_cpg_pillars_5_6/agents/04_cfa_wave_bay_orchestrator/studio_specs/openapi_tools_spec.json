@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 CFA Wave & Bay Orchestrator Connector API",
+    "version": "1.0.0",
+    "description": "Mode: Low-Code Agent Studio | Target System: SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller"
+  },
+  "paths": {
+    "/v1/itc-tmd/04_cfa_wave_bay_orchestrator/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live CFA Wave & Bay Orchestrator operational records"
+      }
+    },
+    "/v1/itc-tmd/04_cfa_wave_bay_orchestrator/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for CFA Wave & Bay Orchestrator"
+      }
+    },
+    "/v1/itc-tmd/04_cfa_wave_bay_orchestrator/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller"
+      }
+    }
+  }
+}

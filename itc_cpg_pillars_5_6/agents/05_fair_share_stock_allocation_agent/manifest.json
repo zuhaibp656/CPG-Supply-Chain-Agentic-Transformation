@@ -1,0 +1,43 @@
+{
+  "num": "05",
+  "slug": "05_fair_share_stock_allocation_agent",
+  "agent_id": "itc_fair_share_stock_allocation_agent",
+  "class_prefix": "FairShareStockAllocation",
+  "functional_area": "CFA / Depot Operations & Stock Allocation",
+  "itc_pillar": "Pillar 05 \u00b7 CFA Operations & Stock Allocation",
+  "persona": "Customer Service & Logistics (CS&L) Lead",
+  "persona_named": "Meenakshi Sundaram (Zonal CS&L Head \u2014 Bengaluru & Southern Hub)",
+  "agent_name": "Fair-Share Stock Allocation Agent",
+  "build_mode": "Low-Code Agent Studio",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "05_csl_shortage_orders_and_channel_allocations",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "echelon_inventory_allocator",
+    "dynamic_order_promising_atp",
+    "atp_order_promising_agent"
+  ],
+  "target_system": "SAP S/4HANA Advanced Available-to-Promise (aATP) & Order Rationing Engine",
+  "stops_at": "Never zeroes out General Trade baseline territory floors or overrides contractual key-account allocation commitments without CS&L Lead approval.",
+  "problem_statement": "When a high-velocity SKU like Sunfeast Dark Fantasy 300g is constrained at a State CFA (e.g., 2,400 cases available vs 3,650 ordered), standard SAP First-In-First-Out (FIFO) lets early Modern Trade bulk orders consume 100% of stock\u2014starving 18 General Trade Wholesale Dealers and UNNATI kiranas or triggering steep 8% Quick-Commerce OTIF penalties.",
+  "special_tool_name": "compare_ortools_lp_vs_naive_fifo_rationing",
+  "special_tool_doc": "Compares Google OR-Tools Linear Programming fair-share allocation against naive SAP FIFO order consumption across margin, OTIF penalties, and kirana breadth.",
+  "chart_label_key": "channel_name",
+  "chart_value_key": "fair_share_lp_cases",
+  "headline_kpi_key": "net_economic_advantage_display",
+  "rows_key": "channel_allocations",
+  "levers_inr_cr": {
+    "productivity": 1.8,
+    "flow": 0.0,
+    "risk": 9.1,
+    "recovery": 16.5,
+    "zero_rationale": "Allocates already-manufactured scarce stock (Flow = 0); shields steep Modern Trade/Q-Comm OTIF chargebacks (Risk) and preserves high-margin UNNATI/General Trade sell-through (Revenue Recovery)."
+  },
+  "starter_prompts": [
+    "We only have 2,400 cases of Sunfeast Dark Fantasy 300g at Nelamangala Bengaluru CFA against 3,650 cases of competing orders\u2014how should we ration stock fairly across Quick-Commerce, Modern Trade, UNNATI kiranas, and Wholesale Dealers?",
+    "Compare our Linear Programming fair-share split against standard First-In-First-Out allocation so we see how much penalty and margin we save without starving General Trade.",
+    "Plot the recommended case allocation and fill rate across each channel.",
+    "Stage the approved fair-share allocation quantities into SAP Available-to-Promise for release."
+  ]
+}

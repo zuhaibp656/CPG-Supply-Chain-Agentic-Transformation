@@ -1,0 +1,33 @@
+{
+  "platform": "Google Maps Platform Routes Preferred v2 + WeatherNext 3 + NIC E-Way API",
+  "endpoints": [
+    {
+      "api": "https://routes.googleapis.com/distanceMatrix/v2:computeRouteMatrix",
+      "routingPreference": "TRAFFIC_AWARE_OPTIMAL",
+      "travelMode": "DRIVE",
+      "extraComputations": [
+        "TOLLS",
+        "FUEL_CONSUMPTION"
+      ]
+    },
+    {
+      "api": "https://routes.googleapis.com/directions/v2:computeRoutes",
+      "ev_green_logistics_profile": {
+        "vehicle_types": [
+          "Tata Ace EV 4W",
+          "Euler HiLoad EV 3W"
+        ],
+        "min_soc_arrival_pct": 18.0,
+        "dc_fast_charger_network": [
+          "BESCOM",
+          "Tata Power EZ Charge",
+          "Magenta ChargeGrid"
+        ]
+      }
+    }
+  ],
+  "curfew_geofences": [
+    "Mumbai MMR / Thane Heavy Vehicle Window (08:00-11:00 & 17:00-21:00 IST)",
+    "Kolkata Police Vidyasagar Setu Goods Restriction (08:00-21:00 IST)"
+  ]
+}

@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_freight_bill_audit_agent
+  slug: 12_freight_bill_audit_agent
+  display_name: "Freight Bill Audit Agent"
+  build_mode: "Multimodal + Agent Studio"
+  functional_area: "Fleet, Carrier & Freight Governance"
+  itc_pillar: "Pillar 06 · Multimodal Freight Audit, POD & Claims Settlement"
+  persona_owner: "Freight Bill & Claims Controller"
+  named_leader: "Subhashish Mukherjee (National Freight Audit & Commercial Claims Controller — Kolkata)"
+  priority_tier: "P0"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.1-pro-preview
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/12_freight_lr_pod_invoices_and_claims.csv"
+  target_system_of_record: "SAP S/4HANA FI-AP (`MIRO` / `FB60` Short-Pay Voucher & GST RCM Ledger) + Carrier Dispute Portal"
+  human_signoff_boundary: "Never releases bank NEFT/RTGS payouts or posts final carrier debit notes without Freight Bill Controller sign-off; blocks 100% of duplicate Lorry Receipt claims."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - audit_multimodal_lr_pod_and_carrier_invoice
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "Audit our pending carrier freight invoices against contracted lane rates, diesel fuel pegs, GPS detention logs, and scanned Proof of Delivery receipts—where are we being overcharged?"
+    - "Inspect the scanned Lorry Receipt, stamped POD, and invoice for LR-TCI-882910 and LR-HWK-771024 to verify the crushed Dark Fantasy cartons and check for duplicate billing."
+    - "Create a chart comparing carrier billed amounts versus verified net payable and overcharge recovery by invoice."
+    - "Stage the short-pay SAP vouchers, duplicate-LR block, and POD damage debit notes for controller sign-off."

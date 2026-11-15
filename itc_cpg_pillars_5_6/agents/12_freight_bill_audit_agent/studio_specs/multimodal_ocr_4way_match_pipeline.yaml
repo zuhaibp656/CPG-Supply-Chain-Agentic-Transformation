@@ -1,0 +1,18 @@
+# Multimodal Vision + Agent Studio 4-Way Freight Audit Pipeline
+pipeline_id: itc_multimodal_lr_pod_invoice_auditor_v1
+vision_model: gemini-3.1-pro-preview
+endpoint_location: global
+document_classes:
+  - class_id: lorry_receipt_bilty
+    sample_files: ["DOC-LR-882910.png", "DOC-LR-771024.png", "DOC-LR-664319.png"]
+    extracted_fields: ["lr_number", "consignor_icml", "consignee_cfa", "vehicle_reg_no", "manifested_cases", "contract_rate_ref"]
+  - class_id: stamped_cfa_pod_receipt
+    sample_files: ["DOC-POD-882910.png", "DOC-POD-771024.png", "DOC-POD-664319.png"]
+    extracted_fields: ["gate_in_ist", "gate_out_ist", "verified_detention_hrs", "good_cases_received", "handwritten_osd_damage_cases", "rubber_stamp_verdict"]
+  - class_id: carrier_gst_freight_invoice
+    sample_files: ["DOC-FINV-9041.png", "DOC-FINV-9042.png", "DOC-FINV-9043.png"]
+    extracted_fields: ["freight_invoice_id", "billed_base_inr", "billed_fsc_pct", "billed_detention_hrs", "gst_rcm_flag"]
+reconciliation_rules:
+  - Block 100% if `lr_number` matches an already settled SAP FI-AP voucher (`DUPLICATE_LR_BLOCK`).
+  - Cap billable detention to `max(0, min(pod_dwell_hrs, zenith_gps_dwell_hrs) - 2.0_free_hrs)`.
+  - Deduct scanned POD crushed/wet carton debit (`cases_short * case_mrp_realization`) before short-pay voucher staging.

@@ -1,0 +1,42 @@
+{
+  "num": "08",
+  "slug": "08_territory_rtm_morning_pulse_gem",
+  "agent_id": "itc_territory_rtm_morning_pulse_gem",
+  "class_prefix": "TerritoryRtmMorningPulseGem",
+  "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
+  "itc_pillar": "Pillar 05 \u00b7 UNNATI eB2B & Vajra Field Route-to-Market",
+  "persona": "Area Distribution / RTM Manager",
+  "persona_named": "Siddharth Banerjee (TM&D Area Manager \u2014 Pune, Lucknow & Kolkata Clusters)",
+  "agent_name": "Territory RTM Morning Pulse Gem",
+  "build_mode": "No-Code Gemini Gem",
+  "priority": "P1",
+  "default_model": "gemini-3.8-flash",
+  "table_stem": "08_unnati_eb2b_vajra_sfa_morning_pulse",
+  "reuse_status": "NEW_TAILORED_ITC_GEM",
+  "reused_from_agents": [
+    "field_beat_distributor_sync_agent (RTM Beat Foundation)",
+    "New Grounded UNNATI eB2B + Vajra SFA Morning Pulse Gem"
+  ],
+  "target_system": "ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast",
+  "stops_at": "Advisory No-Code Gemini Gem by design\u2014synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.",
+  "problem_statement": "Area Distribution Managers start every morning juggling four disconnected spreadsheets: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes\u2014missing urgent morning beat course-corrections before salesmen leave at 08:30.",
+  "special_tool_name": "generate_0730_ase_whatsapp_and_vajra_brief",
+  "special_tool_doc": "Synthesizes a crisp, plain-English 07:30 IST Area Sales Executive (ASE) beat action card pairing overnight UNNATI surges with Vajra strike-rate gaps.",
+  "chart_label_key": "territory_name",
+  "chart_value_key": "revenue_at_stake_inr",
+  "headline_kpi_key": "overnight_unnati_digital_gmv_display",
+  "rows_key": "morning_territory_briefing",
+  "levers_inr_cr": {
+    "productivity": 4.2,
+    "flow": 0.0,
+    "risk": 0.0,
+    "recovery": 15.6,
+    "zero_rationale": "Pure commercial & field-force morning intelligence Gem (Flow = 0, Risk = 0); saves 6+ hours/week per Area Manager assembling DMS/SFA trackers (Productivity) and lifts secondary beat strike rate & kirana fill (Revenue Recovery)."
+  },
+  "starter_prompts": [
+    "Give me my 7:30 AM Territory Morning Pulse\u2014where did UNNATI kirana orders surge overnight, which Vajra salesman beats had low strike rates yesterday, and which Wholesale Dealers have stockouts?",
+    "Draft crisp morning action notes for my Area Sales Executives in Pune, Lucknow, and South Kolkata before the 8:30 AM beat flag-off.",
+    "Chart secondary revenue at stake across territories by stockout and beat productivity gap.",
+    "Stage the morning Vajra beat priority nudges for Area Manager review."
+  ]
+}

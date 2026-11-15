@@ -1,0 +1,42 @@
+{
+  "num": "10",
+  "slug": "10_dynamic_rerouter",
+  "agent_id": "itc_dynamic_rerouter",
+  "class_prefix": "DynamicRerouter",
+  "functional_area": "Fleet, Carrier & Freight Governance",
+  "itc_pillar": "Pillar 06 \u00b7 Green Logistics, Fleet & Live Route Governance",
+  "persona": "Fleet & Route Dispatch Lead",
+  "persona_named": "Vikramaditya Menon (Central Zenith Fleet Control Tower Lead \u2014 Mumbai, Bengaluru & Kolkata)",
+  "agent_name": "Dynamic Rerouter",
+  "build_mode": "Low-Code + Maps Platform",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "10_zenith_fleet_gps_traffic_and_ev_routes",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "fleetflow_dispatch (Live GE: reasoningEngines/1064147210658119680)",
+    "port_drayage_orchestrator (Curfew Orchestrator)"
+  ],
+  "target_system": "Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API",
+  "stops_at": "Never routes heavy multi-axle trucks onto weight-restricted bridges/no-entry police zones or files statutory NIC E-Way Bill extensions without Fleet Lead confirmation.",
+  "problem_statement": "En-route highway landslides (NH-48 Khandala Ghat), urban waterlogging (Bengaluru ORR), police heavy-vehicle curfews (08:00-21:00 Kolkata/Mumbai), commercial EV low battery State-of-Charge, and expiring midnight NIC E-Way Bills cause severe delivery misses and Section 129 GST transit penalties (200% of tax).",
+  "special_tool_name": "evaluate_maps_routes_ev_soc_and_eway_clock",
+  "special_tool_doc": "Combines Google Maps Routes Matrix v2 live congestion deltas with commercial EV DC fast-charger waypoints, city no-entry curfews, and NIC E-Way Bill remaining hours.",
+  "chart_label_key": "vehicle_reg_no",
+  "chart_value_key": "net_minutes_saved",
+  "headline_kpi_key": "protected_in_transit_cargo_display",
+  "rows_key": "reroute_execution_plan",
+  "levers_inr_cr": {
+    "productivity": 1.7,
+    "flow": 11.5,
+    "risk": 8.8,
+    "recovery": 0.0,
+    "zero_rationale": "Protects already-sold in-transit dispatches (Revenue Recovery = 0); cuts highway/curfew dwell & empty detour km (Flow) and prevents Section 129 GST E-Way Bill expiry fines (Risk)."
+  },
+  "starter_prompts": [
+    "Which in-transit primary trucks and urban Green Logistics EV vans are delayed by highway blockages, waterlogging, or city no-entry curfews right now, and what is the fastest safe reroute?",
+    "Are any delayed trucks within 4 hours of their NIC E-Way Bill expiring, or do any commercial EV vans need a fast-charging stop added to finish their beat?",
+    "Chart the transit minutes saved across all active fleet reroutes.",
+    "Stage the updated Google Maps route diversions, EV charger stop, and E-Way Bill extension alert in Zenith."
+  ]
+}

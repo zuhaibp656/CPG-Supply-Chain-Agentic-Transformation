@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ITC CPG TM&D \u2014 Territory RTM Morning Pulse Gem Connector API",
+    "version": "1.0.0",
+    "description": "Mode: No-Code Gemini Gem | Target System: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast"
+  },
+  "paths": {
+    "/v1/itc-tmd/08_territory_rtm_morning_pulse_gem/records": {
+      "get": {
+        "operationId": "query_itc_enterprise_records",
+        "summary": "Fetch live Territory RTM Morning Pulse Gem operational records"
+      }
+    },
+    "/v1/itc-tmd/08_territory_rtm_morning_pulse_gem/solve": {
+      "post": {
+        "operationId": "run_deterministic_optimization_solver",
+        "summary": "Run deterministic solver for Territory RTM Morning Pulse Gem"
+      }
+    },
+    "/v1/itc-tmd/08_territory_rtm_morning_pulse_gem/stage-action": {
+      "post": {
+        "operationId": "stage_governed_erp_or_portal_action",
+        "summary": "Stage human-gated write-back in ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast"
+      }
+    }
+  }
+}

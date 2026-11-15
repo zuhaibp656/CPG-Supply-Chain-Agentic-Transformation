@@ -1,0 +1,42 @@
+{
+  "num": "01",
+  "slug": "01_load_consolidation_agent",
+  "agent_id": "itc_load_consolidation_agent",
+  "class_prefix": "LoadConsolidation",
+  "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
+  "itc_pillar": "Pillar 06 \u00b7 Green Logistics & Primary Dispatch",
+  "persona": "Primary Transport Planner",
+  "persona_named": "Raghavendra Kulkarni (Primary Transport Lead \u2014 Pune Ranjangaon ICML)",
+  "agent_name": "Load Consolidation Agent",
+  "build_mode": "Low-Code Agent Studio",
+  "priority": "P0",
+  "default_model": "gemini-3.1-pro-preview",
+  "table_stem": "01_icml_primary_dispatch_waves_and_cartons",
+  "reuse_status": "REUSED_AND_TAILORED",
+  "reused_from_agents": [
+    "load_consolidation_agent (Live GE: reasoningEngines/load_consolidation_agent)",
+    "fleetflow_cpg_tmd 3D Load Studio"
+  ],
+  "target_system": "SAP Transportation Management (SAP TM) & Zenith Indent Portal",
+  "stops_at": "Never auto-tenders overloaded vehicles violating Central Motor Vehicles Rules (CMVR) Rule 93 axle limits or commits SAP TM shipment cost docs without Primary Transport Planner sign-off.",
+  "problem_statement": "ITC ICML mega-plants ship both high-density Staples (Aashirvaad Atta at ~600 kg/m3, which weights out a 32-ft MXL truck at 45% volume) and ultra-light fragile Foods (Bingo! chips & Sunfeast biscuits at ~90-180 kg/m3, which cube out at 25% payload). Dispatching single-category FTLs wastes 28-36% of primary freight spend.",
+  "special_tool_name": "verify_cmvr_rule93_axle_and_crush_physics",
+  "special_tool_doc": "Verifies Central Motor Vehicles Rules (CMVR) Rule 93 front steering (<=7,500 kg) & rear drive (<=11,500 kg) axle weights and top-tier carton crush limits (<=85 kg on Bingo! / <=155 kg on Sunfeast).",
+  "chart_label_key": "composite_load_id",
+  "chart_value_key": "freight_saved_inr",
+  "headline_kpi_key": "net_freight_savings_display",
+  "rows_key": "composite_load_plans",
+  "levers_inr_cr": {
+    "productivity": 2.4,
+    "flow": 0.0,
+    "risk": 8.6,
+    "recovery": 18.4,
+    "zero_rationale": "Flow & working-capital inventory days stay governed by S&OP; value comes from eliminating air-shipping FTLs (Freight Recovery/Savings) and preventing axle-overload fines & carton crush damage (Risk)."
+  },
+  "starter_prompts": [
+    "Which staged dispatches at Ranjangaon and Khordha ICML are weighing out on Atta or cubing out on Bingo! and Sunfeast, and how can we co-load them into fewer 32-foot trucks without crushing fragile cartons?",
+    "Show me a visual comparison of freight savings and cube-plus-weight fill rates across today's composite load plans.",
+    "Verify that our composite Pune-to-Ahmedabad multi-stop load complies with highway front and rear axle weight regulations and reverse-stop unloading order.",
+    "Stage the recommended composite load consolidation plan in our transport system for planner sign-off."
+  ]
+}

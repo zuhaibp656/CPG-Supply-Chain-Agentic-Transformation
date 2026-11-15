@@ -1,5 +1,8 @@
-# Full 234 MB multi-table lake stays on local disk; seeds/ + generator are committed for fast Git clones
+# Full multi-hundred-MB lakes stay on local disk; seeds/, multimodal_docs/ + generators are committed for fast Git clones
 demo_data/lake_full/
+itc_cpg_pillars_5_6/enterprise_data/lake_full/
+itc_cpg_pillars_5_6/agents/*/artifacts_out/
+.venv/
 __pycache__/
 *.pyc
 .pytest_cache/

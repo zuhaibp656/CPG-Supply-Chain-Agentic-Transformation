@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_cfa_wave_bay_orchestrator
+  slug: 04_cfa_wave_bay_orchestrator
+  display_name: "CFA Wave & Bay Orchestrator"
+  build_mode: "Low-Code Agent Studio"
+  functional_area: "CFA / Depot Operations & Stock Allocation"
+  itc_pillar: "Pillar 05 · CFA Operations & Omnichannel Fulfillment"
+  persona_owner: "Depot / CFA Operations Manager"
+  named_leader: "Suresh Deshpande (Regional Mother CFA Manager — Bhiwandi & Kundli)"
+  priority_tier: "P0"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.1-pro-preview
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/04_cfa_wms_pick_waves_fefo_and_bays.csv"
+  target_system_of_record: "SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller"
+  human_signoff_boundary: "Never dispatches batches violating customer Minimum Remaining Shelf-Life (MRSL) gates or overrides cold-room safety capacity without CFA Manager sign-off."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - validate_channel_fefo_mrsl_batch_swaps
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "Which pick waves and loading bays at Bhiwandi and Kundli CFAs are congested or about to miss morning dispatch cutoffs, and are any Quick-Commerce orders picking batches that will fail the 75% shelf-life rule?"
+    - "Show how we can swap batch allocations between Quick-Commerce and General Trade waves so fresh stock protects Blinkit/Zepto while older compliant stock moves through Wholesale Dealers."
+    - "Generate a chart of protected dispatch value across our rebalanced CFA pick waves."
+    - "Stage the bay reassignments, picker shifts, and FEFO batch swaps in the warehouse system."

@@ -1,0 +1,36 @@
+# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+apiVersion: gemini-enterprise.cloud.google.com/v1
+kind: DeclarativeAgent
+metadata:
+  agent_id: itc_territory_rtm_morning_pulse_gem
+  slug: 08_territory_rtm_morning_pulse_gem
+  display_name: "Territory RTM Morning Pulse Gem"
+  build_mode: "No-Code Gemini Gem"
+  functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
+  itc_pillar: "Pillar 05 · UNNATI eB2B & Vajra Field Route-to-Market"
+  persona_owner: "Area Distribution / RTM Manager"
+  named_leader: "Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)"
+  priority_tier: "P1"
+spec:
+  model_routing:
+    endpoint: global
+    default_model: gemini-3.8-flash
+    escalation_model: gemini-3.1-pro-preview
+    workhorse_model: gemini-3.8-flash
+  enterprise_data_lake_table: "enterprise_data/lake_full/08_unnati_eb2b_vajra_sfa_morning_pulse.csv"
+  target_system_of_record: "ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast"
+  human_signoff_boundary: "Advisory No-Code Gemini Gem by design—synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records."
+  deterministic_tools:
+    - query_itc_enterprise_records
+    - query_itc_master_network_backbone
+    - run_deterministic_optimization_solver
+    - generate_0730_ase_whatsapp_and_vajra_brief
+    - stage_governed_erp_or_portal_action
+    - render_a2ui_visual_chart_and_canvas
+    - export_atomic_schedule_csv
+    - generate_interactive_html_cockpit
+  starter_prompts:
+    - "Give me my 7:30 AM Territory Morning Pulse—where did UNNATI kirana orders surge overnight, which Vajra salesman beats had low strike rates yesterday, and which Wholesale Dealers have stockouts?"
+    - "Draft crisp morning action notes for my Area Sales Executives in Pune, Lucknow, and South Kolkata before the 8:30 AM beat flag-off."
+    - "Chart secondary revenue at stake across territories by stockout and beat productivity gap."
+    - "Stage the morning Vajra beat priority nudges for Area Manager review."
