@@ -8,12 +8,6 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-SUITE_ROOT = Path(__file__).resolve().parents[1]
-ENTERPRISE_DATA_DIR = SUITE_ROOT / "enterprise_data"
-LAKE_FULL_DIR = ENTERPRISE_DATA_DIR / "lake_full"
-SEEDS_DIR = ENTERPRISE_DATA_DIR / "seeds"
-MULTIMODAL_DIR = ENTERPRISE_DATA_DIR / "multimodal_docs"
-
 _IDEMPOTENCY_LEDGER: Dict[str, Dict[str, Any]] = {}
 
 UNSAFE_OVERRIDE_KEYWORDS = (
@@ -47,28 +41,26 @@ def format_inr(amount_inr: float) -> str:
     return f"{sign}₹{abs_v:,.0f}"
 
 
-def _resolve_seeds_dir(agent_dir: Optional[Path] = None) -> Path:
-    candidates = [
-        SEEDS_DIR,
-        Path("/code/enterprise_data/seeds"),
-        Path.cwd() / "enterprise_data" / "seeds",
-    ]
-    if agent_dir:
-        candidates.insert(0, agent_dir / "fixtures" / "tables")
-    for c in candidates:
-        if c.is_dir():
-            return c
-    return SEEDS_DIR
+def _candidate_fixture_roots(agent_dir: Optional[Path] = None) -> List[Path]:
+    here = Path(__file__).resolve()
+    cands: List[Path] = [Path("/code/fixtures"), Path.cwd() / "fixtures"]
+    if agent_dir is not None:
+        cands.insert(0, agent_dir / "fixtures")
+    for anc in list(here.parents)[:6]:
+        cands.append(anc / "fixtures")
+        cands.append(anc / "enterprise_data")
+    return cands
 
 
-def load_backbone() -> Dict[str, Any]:
-    for cand in (
-        SEEDS_DIR / "00_itc_network_backbone.json",
-        LAKE_FULL_DIR / "00_itc_network_backbone.json",
-        Path("/code/enterprise_data/seeds/00_itc_network_backbone.json"),
-    ):
-        if cand.is_file():
-            return json.loads(cand.read_text(encoding="utf-8"))
+def load_backbone(agent_dir: Optional[Path] = None) -> Dict[str, Any]:
+    for root in _candidate_fixture_roots(agent_dir):
+        for sub in ("master/00_itc_network_backbone.json", "seeds/00_itc_network_backbone.json", "00_itc_network_backbone.json"):
+            p = root / sub
+            try:
+                if p.is_file():
+                    return json.loads(p.read_text(encoding="utf-8"))
+            except Exception:
+                continue
     return {"icml_plants": [], "cfa_depots": [], "sku_master": [], "wholesale_dealers": [], "carriers": []}
 
 
@@ -96,36 +88,43 @@ def query_domain_table(
     limit: int = 40,
     agent_dir: Optional[Path] = None,
 ) -> Dict[str, Any]:
-    """Queries the full 200+ MB local CSV lake first (preserving hero records) with container seed fallback."""
+    """Queries the full 405 MB local CSV lake when present, falling back seamlessly to container JSON fixtures."""
     stem = table_stem.replace(".csv", "").replace(".json", "")
-    csv_file = LAKE_FULL_DIR / f"{stem}.csv"
-    seed_file = SEEDS_DIR / f"{stem}.json"
-    if agent_dir and (agent_dir / "fixtures" / "tables" / f"{stem}.json").is_file():
-        local_fix = agent_dir / "fixtures" / "tables" / f"{stem}.json"
-    else:
-        local_fix = seed_file
+    roots = _candidate_fixture_roots(agent_dir)
+
+    csv_file: Optional[Path] = None
+    seed_file: Optional[Path] = None
+    for r in roots:
+        for sub_csv in (f"lake_full/{stem}.csv", f"{stem}.csv"):
+            pc = r / sub_csv
+            if csv_file is None and pc.is_file():
+                csv_file = pc
+        for sub_json in (f"tables/{stem}.json", f"seeds/{stem}.json", f"{stem}.json"):
+            pj = r / sub_json
+            if seed_file is None and pj.is_file():
+                seed_file = pj
 
     needle = (search_filter or "").strip().lower()
     matched: List[Dict[str, Any]] = []
     total_scanned = 0
     using_full_lake = False
 
-    if csv_file.is_file():
+    if csv_file is not None and csv_file.is_file():
         using_full_lake = True
         with csv_file.open("r", encoding="utf-8") as fh:
             reader = csv.DictReader(fh)
             for row in reader:
                 total_scanned += 1
                 if needle and needle not in " ".join(str(x) for x in row.values()).lower():
-                    if total_scanned > 15000 and len(matched) >= limit:
+                    if total_scanned > 12000 and len(matched) >= limit:
                         break
                     continue
                 if len(matched) < limit:
                     matched.append({k: _coerce_value(val) for k, val in row.items()})
                 elif total_scanned >= 5000:
                     break
-    elif local_fix.is_file():
-        raw_rows = json.loads(local_fix.read_text(encoding="utf-8"))
+    elif seed_file is not None and seed_file.is_file():
+        raw_rows = json.loads(seed_file.read_text(encoding="utf-8"))
         total_scanned = len(raw_rows)
         for row in raw_rows:
             if needle and needle not in json.dumps(row).lower():
@@ -134,9 +133,8 @@ def query_domain_table(
             if len(matched) >= limit:
                 break
 
-    # Fallback to unfiltered top hero rows if a user's conversational phrasing didn't substring-match
-    if not matched and local_fix.is_file():
-        raw_rows = json.loads(local_fix.read_text(encoding="utf-8"))
+    if not matched and seed_file is not None and seed_file.is_file():
+        raw_rows = json.loads(seed_file.read_text(encoding="utf-8"))
         matched = raw_rows[:limit]
 
     return {
@@ -148,10 +146,27 @@ def query_domain_table(
     }
 
 
-def inspect_multimodal_document(document_filename: str = "DOC-POD-882910.png") -> Dict[str, Any]:
-    """Reads actual scanned PNG binary metadata + extracted OCR lines from enterprise_data/multimodal_docs/."""
-    manifest_file = MULTIMODAL_DIR / "multimodal_ground_truth_manifest.json"
-    manifest = json.loads(manifest_file.read_text(encoding="utf-8")) if manifest_file.is_file() else []
+def resolve_multimodal_png_path(document_filename: str, agent_dir: Optional[Path] = None) -> Optional[Path]:
+    fname = (document_filename or "DOC-POD-882910.png").strip()
+    if not fname.endswith(".png"):
+        fname = f"{fname}.png"
+    for r in _candidate_fixture_roots(agent_dir):
+        for sub in (f"multimodal_docs/{fname}", fname):
+            p = r / sub
+            if p.is_file():
+                return p
+    return None
+
+
+def inspect_multimodal_document(document_filename: str = "DOC-POD-882910.png", agent_dir: Optional[Path] = None) -> Dict[str, Any]:
+    """Reads actual scanned PNG binary metadata + extracted OCR lines from fixtures/multimodal_docs/."""
+    manifest: List[Dict[str, Any]] = []
+    for r in _candidate_fixture_roots(agent_dir):
+        mf = r / "multimodal_docs" / "multimodal_ground_truth_manifest.json"
+        if mf.is_file():
+            manifest = json.loads(mf.read_text(encoding="utf-8"))
+            break
+
     fname = (document_filename or "DOC-POD-882910.png").strip()
     if not fname.endswith(".png"):
         fname = f"{fname}.png"
@@ -160,11 +175,13 @@ def inspect_multimodal_document(document_filename: str = "DOC-POD-882910.png") -
     if entry is None and manifest:
         entry = next((m for m in manifest if fname.lower().replace(".png", "") in m["document_filename"].lower()), manifest[0])
 
-    target_png = MULTIMODAL_DIR / (entry["document_filename"] if entry else fname)
+    resolved_name = entry["document_filename"] if entry else fname
+    target_png = resolve_multimodal_png_path(resolved_name, agent_dir=agent_dir)
+
     sha256_hex = ""
     byte_size = 0
     width_px, height_px = 0, 0
-    if target_png.is_file():
+    if target_png and target_png.is_file():
         raw = target_png.read_bytes()
         byte_size = len(raw)
         sha256_hex = hashlib.sha256(raw).hexdigest()[:16]
@@ -174,8 +191,9 @@ def inspect_multimodal_document(document_filename: str = "DOC-POD-882910.png") -
 
     return {
         "status": "MULTIMODAL_VISION_OCR_VERIFIED",
-        "document_filename": entry["document_filename"] if entry else fname,
-        "file_exists_on_disk": target_png.is_file(),
+        "document_filename": resolved_name,
+        "file_exists_on_disk": bool(target_png and target_png.is_file()),
+        "local_png_path": str(target_png) if target_png else "",
         "image_dimensions_px": f"{width_px}x{height_px}",
         "file_size_bytes": byte_size,
         "sha256_prefix": sha256_hex,

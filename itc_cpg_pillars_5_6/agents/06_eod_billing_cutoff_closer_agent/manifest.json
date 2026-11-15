@@ -2,7 +2,9 @@
   "num": "06",
   "slug": "06_eod_billing_cutoff_closer_agent",
   "agent_id": "itc_eod_billing_cutoff_closer_agent",
-  "class_prefix": "EodBillingCutoffCloser",
+  "class_prefix": "ItcEodBillingCutoffCloser",
+  "ge_display_name": "EOD Billing & Cutoff Closer Agent (ITC TMD)",
+  "icon": "receipt_long",
   "functional_area": "CFA / Depot Operations & Stock Allocation",
   "itc_pillar": "Pillar 05 \u00b7 CFA Billing & SAP Cutoff Governance",
   "persona": "Depot Dispatch & Billing Supervisor",
@@ -12,14 +14,15 @@
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "06_cfa_sap_eod_billing_irn_eway_cutoff",
+  "multimodal_docs": [],
   "reuse_status": "NEW_ITC_SPECIFIC_BUILD",
   "reused_from_agents": [
-    "eway_bill_gst_transit_auditor (NIC E-Way Bill foundation)",
-    "New SAP S/4HANA VL02N/VF01/VKM3/IRN EOD Cutoff Engine"
+    "eway_bill_gst_transit_auditor",
+    "New SAP S/4HANA VL02N/VF01/VKM3/IRN Cutoff Engine"
   ],
   "target_system": "SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API",
   "stops_at": "Never releases hard overdue delinquency blocks (`VKM3 >15 days overdue`) without Commercial Finance Controller approval; auto-stages only technical batch-split, FinAgg sync, and Part-B format fixes.",
-  "problem_statement": "Every evening between 19:30 and the 21:00 IST gate lock (and critically on month-end close), fully loaded trucks sit trapped at CFA gates because SAP outbound deliveries (`VL02N`) fail Post Goods Issue or `VF01` billing due to minor FEFO batch-split variances, unsynced FinAgg dealer credit drawdowns, or hyphen typos in NIC E-Way Bill Part-B vehicle numbers\u2014pushing Crores of billed revenue into the next day/month.",
+  "problem_statement": "Every evening before the 21:00 IST gate lock, loaded trucks sit trapped at CFA gates because SAP outbound deliveries (`VL02N`) fail Post Goods Issue or `VF01` billing due to FEFO batch-split variances, unsynced FinAgg dealer credit drawdowns, or hyphen typos in NIC E-Way Bill Part-B vehicle numbers.",
   "special_tool_name": "validate_sap_openapi_bapi_and_nic_payload",
   "special_tool_doc": "Validates exact SAP S/4HANA OData/BAPI payloads (`ConfirmBatchSplitAndPGI`, `Z_API_SD_FINAGG_SYNC`, `Z_API_GST_EWAYBILL_PARTB_RETRY`) and separates hard Finance credit stops.",
   "chart_label_key": "outbound_delivery_no",
@@ -31,12 +34,11 @@
     "flow": 14.6,
     "risk": 0.0,
     "recovery": 11.8,
-    "zero_rationale": "Enforces rather than alters credit/tax risk policy (Risk = 0); unlocks trapped gate-loaded trucks before 21:00/month-end cutoff (Flow & Revenue Recovery) while eliminating manual late-night SAP firefighting (Productivity)."
+    "zero_rationale": "Enforces credit/tax policy strictly while unlocking trapped gate-loaded trucks before 21:00/month-end cutoff."
   },
   "starter_prompts": [
-    "Which loaded trucks at our CFAs are stuck waiting for SAP billing, GST e-Invoice IRN, or E-Way Bill generation before tonight's 21:00 gate cutoff, and which ones can we clear right now?",
-    "Separate the technical SAP batch-split, FinAgg credit-sync, and vehicle-number formatting errors we can fix automatically from hard overdue credit holds that need Finance sign-off.",
-    "Chart the trapped invoice value by outbound delivery ranked by urgency before cutoff.",
-    "Stage the SAP OpenAPI batch-split, FinAgg sync, and E-Way Bill Part-B fixes for billing supervisor sign-off."
+    "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?",
+    "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds.",
+    "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
   ]
 }

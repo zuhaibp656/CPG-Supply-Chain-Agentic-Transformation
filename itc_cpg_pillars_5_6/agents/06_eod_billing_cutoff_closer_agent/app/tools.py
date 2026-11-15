@@ -1,32 +1,36 @@
-"""Deterministic Python Tools for EOD Billing & Cutoff Closer Agent (06_eod_billing_cutoff_closer_agent) — ITC Limited CPG Pillars 5 & 6."""
+"""Hermetic Deterministic Python & Multimodal Tools for EOD Billing & Cutoff Closer Agent (ITC TMD)."""
 from __future__ import annotations
 
-import sys
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Optional
 
-AGENT_DIR = Path(__file__).resolve().parents[1]
-SUITE_ROOT = AGENT_DIR.parents[1]
-if str(SUITE_ROOT) not in sys.path:
-    sys.path.insert(0, str(SUITE_ROOT))
-
-from common.itc_data_loader import (
-    format_inr,
-    inspect_multimodal_document,
-    load_backbone,
-    query_domain_table,
-    stage_governed_enterprise_action,
-)
-from common.solvers import SOLVER_REGISTRY
-from common.a2ui_and_cockpit import (
-    build_a2ui_vega_and_canvas,
-    export_verified_csv,
-    render_interactive_cockpit_html,
-)
+try:
+    from .itc_runtime.itc_data_loader import (
+        inspect_multimodal_document,
+        load_backbone,
+        query_domain_table,
+        resolve_multimodal_png_path,
+        stage_governed_enterprise_action,
+    )
+    from .itc_runtime.solvers import SOLVER_REGISTRY
+    from .itc_runtime.a2ui_wire import build_autonomous_2panel_vegalite
+    from .itc_runtime.gcs_publisher import publish_cockpit_and_csv, publish_multimodal_doc_image
+except ImportError:
+    from itc_runtime.itc_data_loader import (  # type: ignore
+        inspect_multimodal_document,
+        load_backbone,
+        query_domain_table,
+        resolve_multimodal_png_path,
+        stage_governed_enterprise_action,
+    )
+    from itc_runtime.solvers import SOLVER_REGISTRY  # type: ignore
+    from itc_runtime.a2ui_wire import build_autonomous_2panel_vegalite  # type: ignore
+    from itc_runtime.gcs_publisher import publish_cockpit_and_csv, publish_multimodal_doc_image  # type: ignore
 
 AGENT_SLUG = "06_eod_billing_cutoff_closer_agent"
 AGENT_ID = "itc_eod_billing_cutoff_closer_agent"
 AGENT_NAME = "EOD Billing & Cutoff Closer Agent"
+GE_DISPLAY_NAME = "EOD Billing & Cutoff Closer Agent (ITC TMD)"
 PERSONA_TITLE = "Depot Dispatch & Billing Supervisor"
 FUNCTIONAL_AREA = "CFA / Depot Operations & Stock Allocation"
 BUILD_MODE = "Low-Code + SAP OpenAPI"
@@ -34,15 +38,67 @@ TARGET_SYSTEM = "SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BI
 STOPS_AT_BOUNDARY = "Never releases hard overdue delinquency blocks (`VKM3 >15 days overdue`) without Commercial Finance Controller approval; auto-stages only technical batch-split, FinAgg sync, and Part-B format fixes."
 PRIMARY_TABLE = "06_cfa_sap_eod_billing_irn_eway_cutoff"
 
+# Lightweight per-turn state for autonomous A2UI chart, Canvas RichTable & GCS artifact emission
+_TURN_STATE: Dict[str, Any] = {
+    "active": False,
+    "user_query": "",
+    "vega_spec": None,
+    "rows": [],
+    "headline": "",
+    "doc_url": "",
+    "doc_label": "",
+}
+
+
+def _agent_root() -> Path:
+    return Path(__file__).resolve().parent.parent
+
+
+def reset_turn_state(user_query: str = "") -> None:
+    _TURN_STATE["active"] = False
+    _TURN_STATE["user_query"] = user_query
+    _TURN_STATE["vega_spec"] = None
+    _TURN_STATE["rows"] = []
+    _TURN_STATE["headline"] = ""
+    _TURN_STATE["doc_url"] = ""
+    _TURN_STATE["doc_label"] = ""
+
+
+def get_turn_state() -> Dict[str, Any]:
+    return dict(_TURN_STATE)
+
+
+def _record_visual_context(solved: Dict[str, Any]) -> None:
+    rows = list(solved.get("prioritized_cutoff_queue", []) or [])
+    headline = str(solved.get("same_day_revenue_unlockable_display", "Verified"))
+    spec = build_autonomous_2panel_vegalite(
+        agent_slug=AGENT_SLUG,
+        agent_title=AGENT_NAME,
+        subtitle=f"{FUNCTIONAL_AREA} · Verified Impact: {headline}",
+        rows=rows,
+        label_key="outbound_delivery_no",
+        value_key="invoice_value_inr",
+        value_title="Impact / Metric (₹ INR)",
+        user_query=str(_TURN_STATE.get("user_query", "")),
+    )
+    _TURN_STATE["active"] = True
+    _TURN_STATE["rows"] = rows
+    _TURN_STATE["headline"] = headline
+    _TURN_STATE["vega_spec"] = spec
+
 
 def query_itc_enterprise_records(search_filter: str = "", limit: int = 30) -> Dict[str, Any]:
-    """Queries ITC CPG enterprise records for EOD Billing & Cutoff Closer Agent from the 405 MB TM&D lake (or container seeds)."""
-    return query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=limit, agent_dir=AGENT_DIR)
+    """Queries ITC Limited TM&D operational records for EOD Billing & Cutoff Closer Agent."""
+    res = query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=limit, agent_dir=_agent_root())
+    if res.get("records") and not _TURN_STATE.get("active"):
+        solved = SOLVER_REGISTRY[AGENT_SLUG](res["records"])
+        _record_visual_context(solved)
+    return res
 
 
 def query_itc_master_network_backbone(entity_type: str = "all", search_filter: str = "") -> Dict[str, Any]:
-    """Queries ITC Master Backbone: ICML mega-plants, State CFAs, Wholesale Dealers (WDs), SKUs, and Carriers."""
-    bb = load_backbone()
+    """Queries ITC Master Network Backbone: ICML mega-plants, State CFAs, Wholesale Dealers (WDs), SKUs, and Carriers."""
+    bb = load_backbone(agent_dir=_agent_root())
     needle = (search_filter or "").strip().lower()
     mapping = {
         "icml": bb.get("icml_plants", []),
@@ -60,14 +116,15 @@ def query_itc_master_network_backbone(entity_type: str = "all", search_filter: s
 
 
 def run_deterministic_optimization_solver(search_filter: str = "") -> Dict[str, Any]:
-    """Executes the exact deterministic mathematical/OR-Tools/physics solver for EOD Billing & Cutoff Closer Agent."""
-    queried = query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=40, agent_dir=AGENT_DIR)
+    """Executes the deterministic mathematical / OR-Tools / physics solver for EOD Billing & Cutoff Closer Agent."""
+    queried = query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=40, agent_dir=_agent_root())
     solver_fn = SOLVER_REGISTRY[AGENT_SLUG]
     result = solver_fn(queried.get("records", []))
     result["agent_id"] = AGENT_ID
     result["agent_name"] = AGENT_NAME
     result["build_mode"] = BUILD_MODE
     result["using_full_enterprise_lake"] = queried.get("using_full_enterprise_lake", False)
+    _record_visual_context(result)
     return result
 
 
@@ -75,15 +132,34 @@ def validate_sap_openapi_bapi_and_nic_payload(reference_id: str = "") -> Dict[st
     """Validates exact SAP S/4HANA OData/BAPI payloads (`ConfirmBatchSplitAndPGI`, `Z_API_SD_FINAGG_SYNC`, `Z_API_GST_EWAYBILL_PARTB_RETRY`) and separates hard Finance credit stops."""
     if AGENT_SLUG in ("03_cold_chain_thermal_auditor", "12_freight_bill_audit_agent"):
         default_doc = "DOC-STRIP-SHP-CLD-70001.png" if "03_" in AGENT_SLUG else "DOC-POD-882910.png"
-        doc_name = reference_id if (reference_id and ".png" in reference_id.lower()) else default_doc
-        ocr = inspect_multimodal_document(doc_name)
+        ref_clean = (reference_id or "").strip()
+        if "771024" in ref_clean:
+            doc_name = "DOC-POD-771024.png"
+        elif "664319" in ref_clean:
+            doc_name = "DOC-POD-664319.png"
+        elif "70002" in ref_clean or "patna" in ref_clean.lower() or "paneer" in ref_clean.lower():
+            doc_name = "DOC-STRIP-SHP-CLD-70002.png"
+        elif ref_clean.lower().endswith(".png"):
+            doc_name = ref_clean
+        else:
+            doc_name = default_doc
+
+        ocr = inspect_multimodal_document(doc_name, agent_dir=_agent_root())
+        png_path = resolve_multimodal_png_path(ocr["document_filename"], agent_dir=_agent_root())
+        if png_path is not None:
+            img_url = publish_multimodal_doc_image(png_path)
+            if img_url:
+                _TURN_STATE["doc_url"] = img_url
+                _TURN_STATE["doc_label"] = f"{ocr['document_filename']} ({ocr['document_title']})"
         solved = run_deterministic_optimization_solver("")
         return {
             "tool": "validate_sap_openapi_bapi_and_nic_payload",
             "multimodal_vision_verification": ocr,
+            "scanned_document_view_url": _TURN_STATE.get("doc_url", ""),
             "headline_recovery_or_claim": solved.get("same_day_revenue_unlockable_display"),
             "top_audited_items": solved.get("prioritized_cutoff_queue", [])[:3],
         }
+
     solved = run_deterministic_optimization_solver(reference_id)
     return {
         "tool": "validate_sap_openapi_bapi_and_nic_payload",
@@ -114,42 +190,65 @@ def stage_governed_erp_or_portal_action(
 
 
 def render_a2ui_visual_chart_and_canvas(search_filter: str = "") -> Dict[str, Any]:
-    """Renders A2UI v0.9 visual-only VegaChart card + side-panel RichTable Canvas."""
+    """Prepares the autonomous 2-Panel Vega-Lite v5 visual card (Bar/Grouped/Line + Donut) and Looker RichTable Canvas."""
     solved = run_deterministic_optimization_solver(search_filter)
-    rows = solved.get("prioritized_cutoff_queue", [])
-    return build_a2ui_vega_and_canvas(
-        agent_title=AGENT_NAME,
-        subtitle=f"{FUNCTIONAL_AREA} · Headline Impact: {solved.get('same_day_revenue_unlockable_display', 'Verified')}",
-        rows=rows,
-        label_key="outbound_delivery_no",
-        value_key="invoice_value_inr",
-        value_title_inr="Verified Impact / Metric (₹ INR)",
-    )
+    return {
+        "a2ui_version": "0.9",
+        "card_component": "VegaChart",
+        "text_inside_card": False,
+        "vega_lite_spec": _TURN_STATE["vega_spec"],
+        "row_count": len(_TURN_STATE["rows"]),
+        "headline_impact": solved.get("same_day_revenue_unlockable_display"),
+    }
 
 
 def export_atomic_schedule_csv(search_filter: str = "") -> Dict[str, Any]:
-    """Exports an atomic RFC-4180 CSV schedule ready for Google Sheets or SAP upload."""
-    solved = run_deterministic_optimization_solver(search_filter)
-    rows = solved.get("prioritized_cutoff_queue", [])
-    out_dir = AGENT_DIR / "artifacts_out"
-    return export_verified_csv(AGENT_SLUG, rows, out_dir)
-
-
-def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]:
-    """Compiles a self-contained Light-Theme Default Interactive HTML5 Cockpit for EOD Billing & Cutoff Closer Agent."""
-    solved = run_deterministic_optimization_solver(search_filter)
-    rows = solved.get("prioritized_cutoff_queue", [])
-    out_dir = AGENT_DIR / "artifacts_out"
-    return render_interactive_cockpit_html(
+    """Exports an atomic RFC-4180 CSV schedule to local disk and Cloud Storage for Google Sheets / SAP."""
+    if not _TURN_STATE.get("rows"):
+        run_deterministic_optimization_solver(search_filter)
+    local_out = Path("/tmp") / "itc_tmd_artifacts" / AGENT_SLUG
+    urls = publish_cockpit_and_csv(
         agent_slug=AGENT_SLUG,
         agent_title=AGENT_NAME,
         persona_title=PERSONA_TITLE,
         functional_area=FUNCTIONAL_AREA,
-        headline_metric_label="Verified Deterministic Impact",
-        headline_metric_value=str(solved.get("same_day_revenue_unlockable_display", "₹0")),
-        rows=rows,
-        output_dir=out_dir,
+        headline_value=str(_TURN_STATE.get("headline") or "Verified"),
+        rows=list(_TURN_STATE.get("rows") or []),
+        label_key="outbound_delivery_no",
+        value_key="invoice_value_inr",
+        local_dir=local_out,
     )
+    return {
+        "status": "CSV_EXPORT_READY",
+        "csv_path": str(local_out / f"{AGENT_SLUG}_verified_schedule.csv"),
+        "csv_download_url": urls["csv_url"],
+        "row_count": len(_TURN_STATE.get("rows") or []),
+    }
+
+
+def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]:
+    """Compiles & publishes the Light-Theme Default Interactive HTML5 Cockpit (with Bar + Donut views & What-If slider)."""
+    if not _TURN_STATE.get("rows"):
+        run_deterministic_optimization_solver(search_filter)
+    local_out = Path("/tmp") / "itc_tmd_artifacts" / AGENT_SLUG
+    urls = publish_cockpit_and_csv(
+        agent_slug=AGENT_SLUG,
+        agent_title=AGENT_NAME,
+        persona_title=PERSONA_TITLE,
+        functional_area=FUNCTIONAL_AREA,
+        headline_value=str(_TURN_STATE.get("headline") or "Verified"),
+        rows=list(_TURN_STATE.get("rows") or []),
+        label_key="outbound_delivery_no",
+        value_key="invoice_value_inr",
+        local_dir=local_out,
+    )
+    return {
+        "status": "HTML_COCKPIT_READY",
+        "cockpit_path": str(local_out / f"{AGENT_SLUG}_cockpit.html"),
+        "cockpit_view_url": urls["html_url"],
+        "csv_download_url": urls["csv_url"],
+        "default_theme": "light",
+    }
 
 
 ALL_TOOLS = [

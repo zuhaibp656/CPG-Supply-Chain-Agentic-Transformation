@@ -2,7 +2,9 @@
   "num": "12",
   "slug": "12_freight_bill_audit_agent",
   "agent_id": "itc_freight_bill_audit_agent",
-  "class_prefix": "FreightBillAudit",
+  "class_prefix": "ItcFreightBillAudit",
+  "ge_display_name": "Freight Bill Audit Agent (ITC TMD)",
+  "icon": "fact_check",
   "functional_area": "Fleet, Carrier & Freight Governance",
   "itc_pillar": "Pillar 06 \u00b7 Multimodal Freight Audit, POD & Claims Settlement",
   "persona": "Freight Bill & Claims Controller",
@@ -12,14 +14,25 @@
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "12_freight_lr_pod_invoices_and_claims",
+  "multimodal_docs": [
+    "DOC-LR-882910.png",
+    "DOC-POD-882910.png",
+    "DOC-FINV-9041.png",
+    "DOC-LR-771024.png",
+    "DOC-POD-771024.png",
+    "DOC-FINV-9042.png",
+    "DOC-LR-664319.png",
+    "DOC-POD-664319.png",
+    "DOC-FINV-9043.png"
+  ],
   "reuse_status": "REUSED_AND_TAILORED",
   "reused_from_agents": [
-    "freight_bill_audit_agent (Live GE: reasoningEngines/8272173807427387392)",
-    "osd_freight_claims_agent (Live GE: reasoningEngines/5496125750106914816)"
+    "freight_bill_audit_agent",
+    "osd_freight_claims_agent"
   ],
   "target_system": "SAP S/4HANA FI-AP (`MIRO` / `FB60` Short-Pay Voucher & GST RCM Ledger) + Carrier Dispute Portal",
   "stops_at": "Never releases bank NEFT/RTGS payouts or posts final carrier debit notes without Freight Bill Controller sign-off; blocks 100% of duplicate Lorry Receipt claims.",
-  "problem_statement": "Indian CPG freight settlement requires reconciling paper-heavy Lorry Receipts (Bilty), rubber-stamped CFA Proof-of-Delivery (POD) slips with handwritten wet/crushed carton remarks, contracted diesel escalation pegs, and GPS-verified gate detention hours. Manual 5% sampling misses duplicate LR billings, inflated 8-12 hour detention claims, and unrecovered POD shortages.",
+  "problem_statement": "Indian CPG freight settlement requires reconciling paper-heavy Lorry Receipts (Bilty), rubber-stamped CFA Proof-of-Delivery (POD) slips with handwritten wet/crushed carton remarks, contracted diesel escalation pegs, and GPS-verified gate detention hours.",
   "special_tool_name": "audit_multimodal_lr_pod_and_carrier_invoice",
   "special_tool_doc": "Runs multimodal OCR & visual inspection across scanned Lorry Receipts (`DOC-LR-*.png`), stamped PODs (`DOC-POD-*.png`), and Carrier Tax Invoices (`DOC-FINV-*.png`) for 4-way match.",
   "chart_label_key": "freight_invoice_id",
@@ -31,12 +44,11 @@
     "flow": 0.0,
     "risk": 21.6,
     "recovery": 0.0,
-    "zero_rationale": "Post-delivery financial & multimodal claims audit (Flow = 0, Revenue Recovery = 0); recovers 3.8-5.2% of freight spend from duplicate LRs, detention padding, and POD damage claims (Risk & Leakage) while replacing manual paper-bilty checking (Productivity)."
+    "zero_rationale": "Recovers 3.8-5.2% of freight spend from duplicate LRs, detention padding, and POD damage claims."
   },
   "starter_prompts": [
-    "Audit our pending carrier freight invoices against contracted lane rates, diesel fuel pegs, GPS detention logs, and scanned Proof of Delivery receipts\u2014where are we being overcharged?",
-    "Inspect the scanned Lorry Receipt, stamped POD, and invoice for LR-TCI-882910 and LR-HWK-771024 to verify the crushed Dark Fantasy cartons and check for duplicate billing.",
-    "Create a chart comparing carrier billed amounts versus verified net payable and overcharge recovery by invoice.",
-    "Stage the short-pay SAP vouchers, duplicate-LR block, and POD damage debit notes for controller sign-off."
+    "Audit this week's pending transporter freight bills. Where do billed rates, fuel surcharges, or detention hours disagree with our contracts and GPS logs?",
+    "Check the scanned lorry receipts and stamped delivery slips on LR-TCI-882910 and LR-HWK-771024 for damaged cartons or duplicate billing.",
+    "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons."
   ]
 }

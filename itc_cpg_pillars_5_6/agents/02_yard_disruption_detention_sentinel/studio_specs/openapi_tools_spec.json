@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "ITC CPG TM&D \u2014 Yard Disruption & Detention Sentinel Connector API",
+    "title": "Yard Disruption & Detention Sentinel (ITC TMD) Connector API",
     "version": "1.0.0",
     "description": "Mode: Low-Code Agent Studio | Target System: SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console"
   },
   "paths": {
-    "/v1/itc-tmd/02_yard_disruption_detention_sentinel/records": {
-      "get": {
-        "operationId": "query_itc_enterprise_records",
-        "summary": "Fetch live Yard Disruption & Detention Sentinel operational records"
-      }
-    },
     "/v1/itc-tmd/02_yard_disruption_detention_sentinel/solve": {
       "post": {
         "operationId": "run_deterministic_optimization_solver",
         "summary": "Run deterministic solver for Yard Disruption & Detention Sentinel"
-      }
-    },
-    "/v1/itc-tmd/02_yard_disruption_detention_sentinel/stage-action": {
-      "post": {
-        "operationId": "stage_governed_erp_or_portal_action",
-        "summary": "Stage human-gated write-back in SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console"
       }
     }
   }

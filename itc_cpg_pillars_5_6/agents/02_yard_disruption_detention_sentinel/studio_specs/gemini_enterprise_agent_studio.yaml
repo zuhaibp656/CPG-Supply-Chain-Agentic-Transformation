@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — Yard Disruption & Detention Sentinel (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_yard_disruption_detention_sentinel
   slug: 02_yard_disruption_detention_sentinel
-  display_name: "Yard Disruption & Detention Sentinel"
+  display_name: "Yard Disruption & Detention Sentinel (ITC TMD)"
   build_mode: "Low-Code Agent Studio"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
-  itc_pillar: "Pillar 06 · Green Logistics & Primary Dispatch"
   persona_owner: "Plant Yard & Dispatch Lead"
   named_leader: "Harpreet Singh Gill (ICML Yard Master — Kapurthala & Ranjangaon)"
   priority_tier: "P0"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.1-pro-preview
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/02_icml_yard_gate_fastag_dock_detention.csv"
-  target_system_of_record: "SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console"
-  human_signoff_boundary: "Never overrides ICML gate security tare-weight discrepancy holds or waives contractual detention claims without Plant Yard Lead approval."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - evaluate_reefer_shore_power_and_slab_clock
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Which trucks waiting inside our Ranjangaon, Kapurthala, and Panchla plant yards have breached or are about to breach free detention time, and which open dock doors should we move them to right now?"
-    - "Are any frozen or chilled reefer trailers waiting on diesel at the gate that need immediate reassignment to a shore-power dock door?"
-    - "Chart the detention penalties avoided by vehicle across our active yard bottleneck queue."
-    - "Stage the dock door reassignments and spotter move instructions for the yard crew."
+  starter_prompts_on_screen:
+    - "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?"
+    - "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?"
+    - "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."

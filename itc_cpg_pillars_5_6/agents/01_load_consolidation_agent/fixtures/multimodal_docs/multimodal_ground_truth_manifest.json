@@ -1,0 +1,318 @@
+[
+  {
+    "document_filename": "DOC-LR-882910.png",
+    "document_title": "LORRY RECEIPT / CONSIGNMENT NOTE (BILTY)",
+    "stamp_verdict": "DISPATCHED - SUBJECT TO POD RECEIPT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Transporter: TCI Freight Primary Logistics #1   |   LR No: LR-TCI-882910   |   Date: 14-Nov-2026",
+      "Consignor: ITC Limited - Ranjangaon ICML (ICML-MH-RANJ01), MIDC Pune, Maharashtra (GSTIN: 27AAACI5950L1Z8)",
+      "Consignee: ITC Clearing & Forwarding Depot - Sanand Ahmedabad CFA (CFA-GJ-SANJ) (GSTIN: 24AAACI5950L1Z4)",
+      "Vehicle No: MH12-QW-4821 (32ft MXL Container)   |   NIC E-Way Bill: EWB-271099482101",
+      "Packages: 1,170 Master Cartons (560 Cases Aashirvaad Atta 10kgx3 + 610 Cases Sunfeast Dark Fantasy)",
+      "Gross Weight: 17,840 kg   |   Contracted Lane Tariff Ref: ITC-TM-WEST-2026-L1 (Base Rs 54,200)",
+      "Driver Signature: R. Suryavanshi   |   ICML Dispatch Security Gate Seal: SEAL-RJ-992014 [INTACT]"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-POD-882910.png",
+    "document_title": "STAMPED PROOF OF DELIVERY (POD) & GATE UNLOADING RECEIPT",
+    "stamp_verdict": "RECEIVED WITH 14 CASES DAMAGE / SHORTAGE",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Receiving Depot: Sanand Gujarat State CFA (CFA-GJ-SANJ)   |   Ref LR No: LR-TCI-882910",
+      "Gate Arrival (FASTag/ANPR): 15-Nov-2026 07:10 IST   |   Unloading Completed: 15-Nov-2026 10:10 IST",
+      "Total Elapsed Yard Time: 3.0 Hours (Free Time: 2.0 Hours -> Verified Billable Detention = 1.0 Hour ONLY)",
+      "Manifested Cartons: 1,170 Cases   |   Good Condition Received: 1,156 Cases",
+      "EXCEPTION / OS&D REMARK: 14 Master Cartons Sunfeast Dark Fantasy 300g CRUSHED & WET at rear door!",
+      "Debit Valuation: 14 Cases x Rs 1,440/case = Rs 20,160 OS&D Carrier Recovery Claim Logged (SAP QM Lot #8812)",
+      "CFA Receiving Supervisor Stamp & Sign: K. Patel (CFA-GJ-SANJ Seal #04)"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-FINV-9041.png",
+    "document_title": "CARRIER TAX INVOICE (FREIGHT & ACCESSORIALS)",
+    "stamp_verdict": "AUDIT HOLD - OVERCHARGE & POD DEBIT PENDING",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Issuer: TCI Freight Primary Logistics #1   |   Invoice No: FINV-TCI-2026-9041   |   Ref LR: LR-TCI-882910",
+      "Line 1 - Base Linehaul Charge (Billed Wrong Slab 22MT): Rs 58,900.00  [Contracted 32ft MXL = Rs 54,200.00]",
+      "Line 2 - Diesel Escalation Surcharge @ 7.8%:            Rs  4,594.00  [Contracted IOCL Peg = 4.2% = Rs 2,276.40]",
+      "Line 3 - Halting / Detention Claim (8.0 Hours @ Rs 850): Rs  6,800.00  [Zenith GPS + POD Verified = 1.0 Hr = Rs 850]",
+      "Line 4 - Less POD Shortage / Damage Credit:             Rs      0.00  [Omitted Rs 20,160 POD Exception!]",
+      "TOTAL BILLED BY CARRIER: Rs 70,294.00   |   AI-AUDITED NET PAYABLE: Rs 37,166.40 (Dispute Rs 33,127.60)"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-LR-771024.png",
+    "document_title": "SPOT MARKET LORRY RECEIPT (CONSIGNMENT NOTE)",
+    "stamp_verdict": "SPOT INDENT - ALL-IN FLAT RATE",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Broker / Carrier: Highway King Trans #1   |   LR No: LR-HWK-771024   |   Date: 09-Nov-2026",
+      "Lane: Haridwar ICML (ICML-UK-HARI04) -> Kundli NCR Mega CFA (CFA-DL-KUND) (215 km)",
+      "Vehicle No: HR55-BT-6019 (32ft MXL)   |   GST RCM 5% Applicable on Unregistered Spot GTA",
+      "Cargo: 980 Cases Savlon Handwash & Classmate Longbooks   |   Agreed Spot Memo Rate: Rs 26,500 All-In"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-POD-771024.png",
+    "document_title": "KUNDLI NCR CFA RECEIVING POD SLIP",
+    "stamp_verdict": "CLEAN POD - ALREADY PAID VOUCHER #51008941",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Ref LR: LR-HWK-771024   |   Gate In: 09-Nov-2026 15:20 IST   |   Gate Out: 09-Nov-2026 16:55 IST",
+      "Total Dwell: 1 Hr 35 Mins (Within 2-Hour Free Time -> ZERO Detention Applicable)",
+      "Packages Received: 980 / 980 Clean   |   PRIOR PAYMENT ALERT: Already Settled on SAP Voucher #51008941!"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-FINV-9042.png",
+    "document_title": "DUPLICATE CARRIER FREIGHT BILL SUBMISSION",
+    "stamp_verdict": "REJECTED - 100% DUPLICATE LR SUBMISSION",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Carrier: Highway King Trans #1   |   Invoice No: FINV-HWK-2026-9042   |   Ref LR: LR-HWK-771024",
+      "Billed Base Freight: Rs 26,500.00 + Uncontracted FSC 5.5% (Rs 1,457.50) + 12 Hrs Fake Detention (Rs 16,800.00)",
+      "TOTAL CLAIMED: Rs 44,757.50   |   AI VERDICT: 100% BLOCK - DUPLICATE SUBMISSION OF PAID LR-HWK-771024!"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-LR-664319.png",
+    "document_title": "LORRY RECEIPT - EASTERN CORRIDOR LINEHAUL",
+    "stamp_verdict": "IN TRANSIT / DELIVERED",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Transporter: VRL Logistics Surface Linehaul #1   |   LR No: LR-VRL-664319   |   Date: 13-Nov-2026",
+      "Origin: Panchla ICML (ICML-WB-PANC03)   |   Destination: Patna Fatuha State CFA (CFA-BR-PATN)",
+      "Vehicle: WB11-EK-3390   |   Cargo: 1,040 Cases Aashirvaad Atta & Sunfeast Marie Light",
+      "Contracted Base Freight: Rs 49,800.00   |   Fuel Peg: 4.0%"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-POD-664319.png",
+    "document_title": "PATNA FATUHA CFA STAMPED POD RECEIPT",
+    "stamp_verdict": "POD SHORTAGE / WET DAMAGE - 6 CASES",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Ref LR: LR-VRL-664319   |   Gate In: 14-Nov-2026 11:00 IST   |   Gate Out: 14-Nov-2026 15:00 IST",
+      "Verified Dwell: 4.0 Hours (2.0 Hrs Free -> 2.0 Hours Valid Detention = Rs 1,700)",
+      "EXCEPTION: 6 Cartons Sunfeast Marie Light TARPAULIN WATER SEEPAGE DAMAGE (Debit Rs 9,540)"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-FINV-9043.png",
+    "document_title": "CARRIER FREIGHT INVOICE - VRL #9043",
+    "stamp_verdict": "SHORT-PAY VOUCHER STAGED - SAVE RS 17,160",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Invoice No: FINV-VRL-2026-9043   |   Ref LR: LR-VRL-664319",
+      "Billed Base: Rs 49,800 + Billed FSC 6.5% (Rs 3,237) + Billed Detention 9.5 Hrs (Rs 8,075) = Rs 61,112",
+      "AI Verified Payable: Rs 49,800 + 4.0% FSC (Rs 1,992) + 2.0 Hrs Detention (Rs 1,700) - Rs 9,540 OS&D = Rs 43,952"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-STRIP-SHP-CLD-70001.png",
+    "document_title": "DRISHTI BLE REEFER THERMAL LOGGER STRIP CHART",
+    "stamp_verdict": "THERMAL EXCURSION ALERT - MKT BREACH",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Shipment: SHP-CLD-70001 (Kapurthala ICML -> Kundli NCR CFA)   |   SKU: ITC Master Chef Crispy Fries (-18C)",
+      "Logger Serial: DRISHTI-BLE-99401   |   Activation Energy (Ea): 86.5 kJ/mol   |   Max Threshold: -15.0 C",
+      "15-Min Trace (C): -18.4, -18.1, -17.8, -14.2, -11.6, -9.8, -8.9 [PEAK], -9.4, -11.2, -15.6, -17.9, -18.2",
+      "Computed Arrhenius MKT: -13.18 C (Exceeds -15.0 C Spec for 105 Mins due to Evaporator Fan Slip near Karnal)",
+      "QA Disposition: QUARANTINE PALLETS 14-18 AT REAR DOOR + FILE CARRIER COLD-CHAIN CLAIM"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-STRIP-SHP-CLD-70002.png",
+    "document_title": "DRISHTI BLE CHILLED DAIRY LOGGER STRIP CHART",
+    "stamp_verdict": "CRITICAL SPOILAGE EXCURSION - REJECT LOT",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Shipment: SHP-CLD-70002 (Panchla ICML -> Patna CFA)   |   SKU: Aashirvaad Svasti Malai Paneer (2-8 C)",
+      "15-Min Trace (C): 4.2, 4.5, 5.1, 9.4, 12.8, 14.1, 14.6 [PEAK], 13.9, 11.8, 8.4, 5.9, 4.6",
+      "Root Cause: Reefer Switched Off by Driver During 2-Hour Highway Halt (4 Door Events Logged)",
+      "Computed Arrhenius MKT: +10.42 C -> Shelf-Life Accelerated Loss = 6.4 Days -> REJECT LOT & DEBIT CARRIER"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-STRIP-SHP-CLD-70003.png",
+    "document_title": "DRISHTI COOL-CHAIN LOGGER - FABELLE LUXURY CHOCOLATES",
+    "stamp_verdict": "QA SENSORY HOLD - MINOR EXCURSION",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Shipment: SHP-CLD-70003 (Malur ICML -> Bhiwandi CFA)   |   SKU: Fabelle Choco Deck (16-20 C)",
+      "15-Min Trace (C): 17.8, 18.1, 18.4, 21.6, 23.4, 24.1 [PEAK], 22.5, 19.8, 18.5, 18.1, 17.9, 18.0",
+      "Computed Arrhenius MKT: +20.48 C -> Minor Cocoa-Butter Bloom Watch; Sensory QA Sample Required Before Release"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9001.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9001",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9001   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4801   |   Tare Weight: 9695 kg   |   Gross Weight: 26980 kg",
+      "Net Payload: 17285 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482101   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9002.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9002",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9002   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4802   |   Tare Weight: 9740 kg   |   Gross Weight: 27060 kg",
+      "Net Payload: 17320 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482102   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9003.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9003",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9003   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4803   |   Tare Weight: 9785 kg   |   Gross Weight: 27140 kg",
+      "Net Payload: 17355 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482103   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9004.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9004",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9004   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4804   |   Tare Weight: 9830 kg   |   Gross Weight: 27220 kg",
+      "Net Payload: 17390 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482104   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9005.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9005",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9005   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4805   |   Tare Weight: 9875 kg   |   Gross Weight: 27300 kg",
+      "Net Payload: 17425 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482105   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9006.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9006",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9006   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4806   |   Tare Weight: 9920 kg   |   Gross Weight: 27380 kg",
+      "Net Payload: 17460 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482106   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9007.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9007",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9007   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4807   |   Tare Weight: 9965 kg   |   Gross Weight: 27460 kg",
+      "Net Payload: 17495 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482107   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9008.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9008",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9008   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4808   |   Tare Weight: 10010 kg   |   Gross Weight: 27540 kg",
+      "Net Payload: 17530 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482108   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9009.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9009",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9009   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4809   |   Tare Weight: 10055 kg   |   Gross Weight: 27620 kg",
+      "Net Payload: 17565 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482109   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9010.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9010",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9010   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4810   |   Tare Weight: 10100 kg   |   Gross Weight: 27700 kg",
+      "Net Payload: 17600 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482110   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9011.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9011",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": false,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9011   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4811   |   Tare Weight: 10145 kg   |   Gross Weight: 27780 kg",
+      "Net Payload: 17635 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482111   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  },
+  {
+    "document_filename": "DOC-WB-SLIP-9012.png",
+    "document_title": "ICML AUTOMATED WEIGHBRIDGE & FASTAG GATE TICKET #9012",
+    "stamp_verdict": "WEIGHBRIDGE CERTIFIED - AXLE COMPLIANT",
+    "has_audit_exception": true,
+    "extracted_ocr_lines": [
+      "Plant: ICML-MH-RANJ01 / ICML-PB-KAPU05   |   Ticket ID: WB-2026-9012   |   Date: 15-Nov-2026",
+      "Vehicle Reg: MH12-QW-4812   |   Tare Weight: 10190 kg   |   Gross Weight: 27860 kg",
+      "Net Payload: 17670 kg (Within 18,000 kg 32ft MXL Payload & CMVR Rule 93 Axle Envelope)",
+      "NIC E-Way Bill Linked: EWB-271099482112   |   Security Seal Verified via Gate Camera OCR"
+    ],
+    "ocr_confidence_pct": 99.4
+  }
+]

@@ -2,7 +2,9 @@
   "num": "04",
   "slug": "04_cfa_wave_bay_orchestrator",
   "agent_id": "itc_cfa_wave_bay_orchestrator",
-  "class_prefix": "CfaWaveBayOrchestrator",
+  "class_prefix": "ItcCfaWaveBayOrchestrator",
+  "ge_display_name": "CFA Wave & Bay Orchestrator (ITC TMD)",
+  "icon": "warehouse",
   "functional_area": "CFA / Depot Operations & Stock Allocation",
   "itc_pillar": "Pillar 05 \u00b7 CFA Operations & Omnichannel Fulfillment",
   "persona": "Depot / CFA Operations Manager",
@@ -12,15 +14,15 @@
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "04_cfa_wms_pick_waves_fefo_and_bays",
+  "multimodal_docs": [],
   "reuse_status": "REUSED_AND_TAILORED",
   "reused_from_agents": [
     "wave_fulfillment_copilot",
-    "fefo_shelf_life_allocator",
-    "warehouse_slotting_agent"
+    "fefo_shelf_life_allocator"
   ],
   "target_system": "SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller",
   "stops_at": "Never dispatches batches violating customer Minimum Remaining Shelf-Life (MRSL) gates or overrides cold-room safety capacity without CFA Manager sign-off.",
-  "problem_statement": "State CFAs simultaneously pick rapid Quick-Commerce waves (strict 75% Minimum Remaining Shelf-Life gate, 10:30 cutoff), Modern Trade pallets, and General Trade Wholesale Dealer loads (55% MRSL gate). Unbalanced bays miss morning cutoffs while blind picking sends older batches to Quick-Commerce (causing instant dock rejection) and wastes ultra-fresh batches on General Trade.",
+  "problem_statement": "State CFAs simultaneously pick rapid Quick-Commerce waves (strict 75% Minimum Remaining Shelf-Life gate, 10:30 cutoff), Modern Trade pallets, and General Trade Wholesale Dealer loads (55% MRSL gate). Unbalanced bays miss morning cutoffs while blind picking sends older batches to Quick-Commerce.",
   "special_tool_name": "validate_channel_fefo_mrsl_batch_swaps",
   "special_tool_doc": "Identifies cross-channel batch swaps inside the CFA so >=75%-shelf-life batches serve Quick-Commerce/Modern Trade while 55-74% batches clear cleanly through high-velocity General Trade beats.",
   "chart_label_key": "cfa_wave_id",
@@ -32,12 +34,11 @@
     "flow": 9.4,
     "risk": 7.9,
     "recovery": 0.0,
-    "zero_rationale": "Executes existing booked orders faster and cleaner without altering commercial demand; drives picker throughput (Productivity), bay velocity (Flow), and zero shelf-life rejections (Risk)."
+    "zero_rationale": "Executes booked orders faster and cleaner without altering demand; drives picker throughput, bay velocity, and zero shelf-life rejections."
   },
   "starter_prompts": [
-    "Which pick waves and loading bays at Bhiwandi and Kundli CFAs are congested or about to miss morning dispatch cutoffs, and are any Quick-Commerce orders picking batches that will fail the 75% shelf-life rule?",
-    "Show how we can swap batch allocations between Quick-Commerce and General Trade waves so fresh stock protects Blinkit/Zepto while older compliant stock moves through Wholesale Dealers.",
-    "Generate a chart of protected dispatch value across our rebalanced CFA pick waves.",
-    "Stage the bay reassignments, picker shifts, and FEFO batch swaps in the warehouse system."
+    "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?",
+    "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?",
+    "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
   ]
 }

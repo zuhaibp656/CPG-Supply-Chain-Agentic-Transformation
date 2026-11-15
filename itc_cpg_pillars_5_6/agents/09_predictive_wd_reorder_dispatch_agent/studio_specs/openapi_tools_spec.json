@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "ITC CPG TM&D \u2014 Predictive WD Reorder & Dispatch Agent Connector API",
+    "title": "Predictive WD Reorder & Dispatch Agent (ITC TMD) Connector API",
     "version": "1.0.0",
     "description": "Mode: Low-Code Agent Studio | Target System: ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API"
   },
   "paths": {
-    "/v1/itc-tmd/09_predictive_wd_reorder_dispatch_agent/records": {
-      "get": {
-        "operationId": "query_itc_enterprise_records",
-        "summary": "Fetch live Predictive WD Reorder & Dispatch Agent operational records"
-      }
-    },
     "/v1/itc-tmd/09_predictive_wd_reorder_dispatch_agent/solve": {
       "post": {
         "operationId": "run_deterministic_optimization_solver",
         "summary": "Run deterministic solver for Predictive WD Reorder & Dispatch Agent"
-      }
-    },
-    "/v1/itc-tmd/09_predictive_wd_reorder_dispatch_agent/stage-action": {
-      "post": {
-        "operationId": "stage_governed_erp_or_portal_action",
-        "summary": "Stage human-gated write-back in ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API"
       }
     }
   }

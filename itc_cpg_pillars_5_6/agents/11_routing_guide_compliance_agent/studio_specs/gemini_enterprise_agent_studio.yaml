@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — Routing Guide Compliance Agent (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_routing_guide_compliance_agent
   slug: 11_routing_guide_compliance_agent
-  display_name: "Routing Guide Compliance Agent"
+  display_name: "Routing Guide Compliance Agent (ITC TMD)"
   build_mode: "No-Code Gemini Gem"
   functional_area: "Fleet, Carrier & Freight Governance"
-  itc_pillar: "Pillar 06 · Transport Procurement & Carrier Waterfall Governance"
   persona_owner: "Transport Procurement Manager"
   named_leader: "Kavita Krishnamurthy (National Freight Procurement Lead — ITC TM&D HQ Kolkata)"
   priority_tier: "P1"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.8-flash
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/11_carrier_routing_guide_tenders_and_spot.csv"
-  target_system_of_record: "SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard"
-  human_signoff_boundary: "Advisory & governance No-Code Gem—flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - diagnose_planner_bypass_vs_carrier_rejection
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Which primary lanes are leaking the most money into expensive spot-market trucks instead of following our L1 and L2 contracted carrier routing guide?"
-    - "Distinguish lanes where dispatch planners bypassed our L2 backup carrier from lanes where both L1 and L2 transporters rejected tenders due to capacity or backhaul issues."
-    - "Show a chart of monthly maverick spot-freight leakage across our top non-compliant lanes."
-    - "Draft carrier compliance notices and stage TMS waterfall lock recommendations for procurement review."
+  starter_prompts_on_screen:
+    - "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?"
+    - "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?"
+    - "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."

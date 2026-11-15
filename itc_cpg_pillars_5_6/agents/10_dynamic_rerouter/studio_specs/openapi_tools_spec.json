@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "ITC CPG TM&D \u2014 Dynamic Rerouter Connector API",
+    "title": "Dynamic Rerouter (ITC TMD) Connector API",
     "version": "1.0.0",
     "description": "Mode: Low-Code + Maps Platform | Target System: Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API"
   },
   "paths": {
-    "/v1/itc-tmd/10_dynamic_rerouter/records": {
-      "get": {
-        "operationId": "query_itc_enterprise_records",
-        "summary": "Fetch live Dynamic Rerouter operational records"
-      }
-    },
     "/v1/itc-tmd/10_dynamic_rerouter/solve": {
       "post": {
         "operationId": "run_deterministic_optimization_solver",
         "summary": "Run deterministic solver for Dynamic Rerouter"
-      }
-    },
-    "/v1/itc-tmd/10_dynamic_rerouter/stage-action": {
-      "post": {
-        "operationId": "stage_governed_erp_or_portal_action",
-        "summary": "Stage human-gated write-back in Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API"
       }
     }
   }

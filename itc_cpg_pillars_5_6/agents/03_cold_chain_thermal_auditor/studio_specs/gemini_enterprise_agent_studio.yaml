@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — Cold-Chain Thermal Auditor (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_cold_chain_thermal_auditor
   slug: 03_cold_chain_thermal_auditor
-  display_name: "Cold-Chain Thermal Auditor"
+  display_name: "Cold-Chain Thermal Auditor (ITC TMD)"
   build_mode: "Low-Code Agent Studio"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
-  itc_pillar: "Pillar 06 · Green Logistics & Cold-Chain Assurance"
   persona_owner: "Cold-Chain & Transit QA Lead"
   named_leader: "Dr. Ananya Chatterjee (National Cold-Chain QA Lead — Kolkata & Kapurthala)"
   priority_tier: "P0"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.1-pro-preview
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/03_drishti_reefer_iot_thermal_telemetry.csv"
-  target_system_of_record: "SAP Quality Management (SAP QM `BAPI_INSPLOT_SETUSAGEDECISION`) & Carrier Claims Portal"
-  human_signoff_boundary: "Never auto-releases thermally abused frozen, dairy, or chocolate lots into unrestricted CFA stock without QA Lead usage decision."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - inspect_drishti_strip_chart_multimodal
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Audit our inbound frozen Master Chef, Svasti dairy, and Fabelle chocolate reefer shipments—which loads breached Mean Kinetic Temperature limits and need quarantine or a carrier spoilage claim?"
-    - "Inspect the thermal logger strip chart for the Kapurthala-to-Kundli frozen fries shipment and Patna paneer load to check what caused the temperature spike."
-    - "Create a visual breakdown of carrier spoilage claim values and shelf-life days lost across flagged reefer trips."
-    - "Stage a quality quarantine hold and carrier claim packet for the abused cold-chain lots."
+  starter_prompts_on_screen:
+    - "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?"
+    - "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked."
+    - "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."

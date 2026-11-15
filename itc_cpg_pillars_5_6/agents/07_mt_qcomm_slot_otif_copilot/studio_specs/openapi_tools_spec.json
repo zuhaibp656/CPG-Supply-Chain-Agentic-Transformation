@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "ITC CPG TM&D \u2014 MT / Q-Comm Slot & OTIF Copilot Connector API",
+    "title": "MT / Q-Comm Slot & OTIF Copilot (ITC TMD) Connector API",
     "version": "1.0.0",
     "description": "Mode: Low-Code Agent Studio | Target System: Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)"
   },
   "paths": {
-    "/v1/itc-tmd/07_mt_qcomm_slot_otif_copilot/records": {
-      "get": {
-        "operationId": "query_itc_enterprise_records",
-        "summary": "Fetch live MT / Q-Comm Slot & OTIF Copilot operational records"
-      }
-    },
     "/v1/itc-tmd/07_mt_qcomm_slot_otif_copilot/solve": {
       "post": {
         "operationId": "run_deterministic_optimization_solver",
         "summary": "Run deterministic solver for MT / Q-Comm Slot & OTIF Copilot"
-      }
-    },
-    "/v1/itc-tmd/07_mt_qcomm_slot_otif_copilot/stage-action": {
-      "post": {
-        "operationId": "stage_governed_erp_or_portal_action",
-        "summary": "Stage human-gated write-back in Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)"
       }
     }
   }

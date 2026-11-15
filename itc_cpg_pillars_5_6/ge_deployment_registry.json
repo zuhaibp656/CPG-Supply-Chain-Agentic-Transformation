@@ -1,0 +1,194 @@
+{
+  "itc_load_consolidation_agent": {
+    "num": "01",
+    "slug": "01_load_consolidation_agent",
+    "ge_display_name": "Load Consolidation Agent (ITC TMD)",
+    "persona": "Primary Transport Planner",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/7322740019284672512",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/41610693945890168",
+    "starter_prompts": [
+      "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?",
+      "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?",
+      "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."
+    ],
+    "deployed_at": "2026-11-15T08:49:35Z"
+  },
+  "itc_yard_disruption_detention_sentinel": {
+    "num": "02",
+    "slug": "02_yard_disruption_detention_sentinel",
+    "ge_display_name": "Yard Disruption & Detention Sentinel (ITC TMD)",
+    "persona": "Plant Yard & Dispatch Lead",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/1693240485071552512",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/4795666764246492206",
+    "starter_prompts": [
+      "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?",
+      "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?",
+      "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
+    ],
+    "deployed_at": "2026-11-15T08:49:38Z"
+  },
+  "itc_cold_chain_thermal_auditor": {
+    "num": "03",
+    "slug": "03_cold_chain_thermal_auditor",
+    "ge_display_name": "Cold-Chain Thermal Auditor (ITC TMD)",
+    "persona": "Cold-Chain & Transit QA Lead",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/661916170403708928",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/15505209197662230344",
+    "starter_prompts": [
+      "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?",
+      "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.",
+      "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."
+    ],
+    "deployed_at": "2026-11-15T08:49:41Z"
+  },
+  "itc_cfa_wave_bay_orchestrator": {
+    "num": "04",
+    "slug": "04_cfa_wave_bay_orchestrator",
+    "ge_display_name": "CFA Wave & Bay Orchestrator (ITC TMD)",
+    "persona": "Depot / CFA Operations Manager",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/5152004998892093440",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/2773771553799396308",
+    "starter_prompts": [
+      "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?",
+      "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?",
+      "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
+    ],
+    "deployed_at": "2026-11-15T08:49:44Z"
+  },
+  "itc_fair_share_stock_allocation_agent": {
+    "num": "05",
+    "slug": "05_fair_share_stock_allocation_agent",
+    "ge_display_name": "Fair-Share Stock Allocation Agent (ITC TMD)",
+    "persona": "Customer Service & Logistics (CS&L) Lead",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/6989473646859255808",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/9202118731352281302",
+    "starter_prompts": [
+      "We are short on Sunfeast Dark Fantasy 300g at Nelamangala depot. How should we split the 2,400 available cases across channels?",
+      "What happens to our Quick-Commerce penalties and General Trade dealers if we let standard first-come-first-served allocation run?",
+      "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved."
+    ],
+    "deployed_at": "2026-11-15T08:49:46Z"
+  },
+  "itc_eod_billing_cutoff_closer_agent": {
+    "num": "06",
+    "slug": "06_eod_billing_cutoff_closer_agent",
+    "ge_display_name": "EOD Billing & Cutoff Closer Agent (ITC TMD)",
+    "persona": "Depot Dispatch & Billing Supervisor",
+    "build_mode": "Low-Code + SAP OpenAPI",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/1224866123825020928",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/7230909732670915574",
+    "starter_prompts": [
+      "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?",
+      "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds.",
+      "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
+    ],
+    "deployed_at": "2026-11-15T08:49:49Z"
+  },
+  "itc_mt_qcomm_slot_otif_copilot": {
+    "num": "07",
+    "slug": "07_mt_qcomm_slot_otif_copilot",
+    "ge_display_name": "MT / Q-Comm Slot & OTIF Copilot (ITC TMD)",
+    "persona": "Modern Trade & Q-Comm Logistics Lead",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/950146546555420672",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/14366296034264623629",
+    "starter_prompts": [
+      "Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?",
+      "What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?",
+      "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."
+    ],
+    "deployed_at": "2026-11-15T08:49:51Z"
+  },
+  "itc_territory_rtm_morning_pulse_gem": {
+    "num": "08",
+    "slug": "08_territory_rtm_morning_pulse_gem",
+    "ge_display_name": "Territory RTM Morning Pulse Gem (ITC TMD)",
+    "persona": "Area Distribution / RTM Manager",
+    "build_mode": "No-Code Gemini Gem",
+    "model": "gemini-3.8-flash",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/1171034034529107968",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/1654916665580027546",
+    "starter_prompts": [
+      "Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?",
+      "Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?",
+      "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."
+    ],
+    "deployed_at": "2026-11-15T08:49:53Z"
+  },
+  "itc_predictive_wd_reorder_dispatch_agent": {
+    "num": "09",
+    "slug": "09_predictive_wd_reorder_dispatch_agent",
+    "ge_display_name": "Predictive WD Reorder & Dispatch Agent (ITC TMD)",
+    "persona": "Wholesale Dealer (WD) / Stockist Ops Mgr",
+    "build_mode": "Low-Code Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/882803658377396224",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/9152999501602931019",
+    "starter_prompts": [
+      "Which wholesale dealers have dropped below four days of stock on fast-moving SKUs and risk running dry in the next 48 hours?",
+      "Do Mahavir Agencies, Kaveri Distributors, and Hooghly Enterprises have enough godown space and FinAgg credit room for a top-up load?",
+      "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation."
+    ],
+    "deployed_at": "2026-11-15T08:49:57Z"
+  },
+  "itc_dynamic_rerouter": {
+    "num": "10",
+    "slug": "10_dynamic_rerouter",
+    "ge_display_name": "Dynamic Rerouter (ITC TMD)",
+    "persona": "Fleet & Route Dispatch Lead",
+    "build_mode": "Low-Code + Maps Platform",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/1513096499976732672",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/7796378644329947655",
+    "starter_prompts": [
+      "Which primary trucks and city EV vans are stuck in highway blockages, waterlogging, or police no-entry curfews right now?",
+      "Are any delayed highway loads close to their E-Way Bill expiring tonight, or do any city EVs need a charging stop to finish their drops?",
+      "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval."
+    ],
+    "deployed_at": "2026-11-15T08:50:00Z"
+  },
+  "itc_routing_guide_compliance_agent": {
+    "num": "11",
+    "slug": "11_routing_guide_compliance_agent",
+    "ge_display_name": "Routing Guide Compliance Agent (ITC TMD)",
+    "persona": "Transport Procurement Manager",
+    "build_mode": "No-Code Gemini Gem",
+    "model": "gemini-3.8-flash",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/5494489676804784128",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/13477844154945305896",
+    "starter_prompts": [
+      "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?",
+      "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?",
+      "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."
+    ],
+    "deployed_at": "2026-11-15T08:50:03Z"
+  },
+  "itc_freight_bill_audit_agent": {
+    "num": "12",
+    "slug": "12_freight_bill_audit_agent",
+    "ge_display_name": "Freight Bill Audit Agent (ITC TMD)",
+    "persona": "Freight Bill & Claims Controller",
+    "build_mode": "Multimodal + Agent Studio",
+    "model": "gemini-3.1-pro-preview",
+    "reasoning_engine": "projects/632239123109/locations/us-central1/reasoningEngines/5656619263390121984",
+    "gemini_enterprise_agent": "projects/632239123109/locations/global/collections/default_collection/engines/gemini-enterprise-zuhaibp_1784012666241/assistants/default_assistant/agents/3118104517465970888",
+    "starter_prompts": [
+      "Audit this week's pending transporter freight bills. Where do billed rates, fuel surcharges, or detention hours disagree with our contracts and GPS logs?",
+      "Check the scanned lorry receipts and stamped delivery slips on LR-TCI-882910 and LR-HWK-771024 for damaged cartons or duplicate billing.",
+      "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons."
+    ],
+    "deployed_at": "2026-11-15T08:50:05Z"
+  }
+}

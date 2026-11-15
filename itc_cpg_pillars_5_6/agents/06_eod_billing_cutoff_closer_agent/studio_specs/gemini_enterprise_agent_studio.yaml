@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — EOD Billing & Cutoff Closer Agent (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_eod_billing_cutoff_closer_agent
   slug: 06_eod_billing_cutoff_closer_agent
-  display_name: "EOD Billing & Cutoff Closer Agent"
+  display_name: "EOD Billing & Cutoff Closer Agent (ITC TMD)"
   build_mode: "Low-Code + SAP OpenAPI"
   functional_area: "CFA / Depot Operations & Stock Allocation"
-  itc_pillar: "Pillar 05 · CFA Billing & SAP Cutoff Governance"
   persona_owner: "Depot Dispatch & Billing Supervisor"
   named_leader: "Prakash Kulkarni (CFA Commercial & SAP Billing Lead — Bhiwandi & Dankuni)"
   priority_tier: "P0"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.1-pro-preview
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/06_cfa_sap_eod_billing_irn_eway_cutoff.csv"
-  target_system_of_record: "SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
-  human_signoff_boundary: "Never releases hard overdue delinquency blocks (`VKM3 >15 days overdue`) without Commercial Finance Controller approval; auto-stages only technical batch-split, FinAgg sync, and Part-B format fixes."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - validate_sap_openapi_bapi_and_nic_payload
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Which loaded trucks at our CFAs are stuck waiting for SAP billing, GST e-Invoice IRN, or E-Way Bill generation before tonight's 21:00 gate cutoff, and which ones can we clear right now?"
-    - "Separate the technical SAP batch-split, FinAgg credit-sync, and vehicle-number formatting errors we can fix automatically from hard overdue credit holds that need Finance sign-off."
-    - "Chart the trapped invoice value by outbound delivery ranked by urgency before cutoff."
-    - "Stage the SAP OpenAPI batch-split, FinAgg sync, and E-Way Bill Part-B fixes for billing supervisor sign-off."
+  starter_prompts_on_screen:
+    - "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?"
+    - "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds."
+    - "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."

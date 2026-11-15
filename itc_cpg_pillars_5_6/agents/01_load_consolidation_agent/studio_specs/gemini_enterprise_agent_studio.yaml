@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — Load Consolidation Agent (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_load_consolidation_agent
   slug: 01_load_consolidation_agent
-  display_name: "Load Consolidation Agent"
+  display_name: "Load Consolidation Agent (ITC TMD)"
   build_mode: "Low-Code Agent Studio"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
-  itc_pillar: "Pillar 06 · Green Logistics & Primary Dispatch"
   persona_owner: "Primary Transport Planner"
   named_leader: "Raghavendra Kulkarni (Primary Transport Lead — Pune Ranjangaon ICML)"
   priority_tier: "P0"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.1-pro-preview
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/01_icml_primary_dispatch_waves_and_cartons.csv"
-  target_system_of_record: "SAP Transportation Management (SAP TM) & Zenith Indent Portal"
-  human_signoff_boundary: "Never auto-tenders overloaded vehicles violating Central Motor Vehicles Rules (CMVR) Rule 93 axle limits or commits SAP TM shipment cost docs without Primary Transport Planner sign-off."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - verify_cmvr_rule93_axle_and_crush_physics
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Which staged dispatches at Ranjangaon and Khordha ICML are weighing out on Atta or cubing out on Bingo! and Sunfeast, and how can we co-load them into fewer 32-foot trucks without crushing fragile cartons?"
-    - "Show me a visual comparison of freight savings and cube-plus-weight fill rates across today's composite load plans."
-    - "Verify that our composite Pune-to-Ahmedabad multi-stop load complies with highway front and rear axle weight regulations and reverse-stop unloading order."
-    - "Stage the recommended composite load consolidation plan in our transport system for planner sign-off."
+  starter_prompts_on_screen:
+    - "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?"
+    - "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?"
+    - "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."

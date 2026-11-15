@@ -1,27 +1,15 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "ITC CPG TM&D \u2014 Cold-Chain Thermal Auditor Connector API",
+    "title": "Cold-Chain Thermal Auditor (ITC TMD) Connector API",
     "version": "1.0.0",
     "description": "Mode: Low-Code Agent Studio | Target System: SAP Quality Management (SAP QM `BAPI_INSPLOT_SETUSAGEDECISION`) & Carrier Claims Portal"
   },
   "paths": {
-    "/v1/itc-tmd/03_cold_chain_thermal_auditor/records": {
-      "get": {
-        "operationId": "query_itc_enterprise_records",
-        "summary": "Fetch live Cold-Chain Thermal Auditor operational records"
-      }
-    },
     "/v1/itc-tmd/03_cold_chain_thermal_auditor/solve": {
       "post": {
         "operationId": "run_deterministic_optimization_solver",
         "summary": "Run deterministic solver for Cold-Chain Thermal Auditor"
-      }
-    },
-    "/v1/itc-tmd/03_cold_chain_thermal_auditor/stage-action": {
-      "post": {
-        "operationId": "stage_governed_erp_or_portal_action",
-        "summary": "Stage human-gated write-back in SAP Quality Management (SAP QM `BAPI_INSPLOT_SETUSAGEDECISION`) & Carrier Claims Portal"
       }
     }
   }

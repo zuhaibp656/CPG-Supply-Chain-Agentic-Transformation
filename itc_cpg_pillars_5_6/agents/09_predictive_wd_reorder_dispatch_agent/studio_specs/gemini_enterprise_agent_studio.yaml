@@ -1,13 +1,12 @@
-# Gemini Enterprise Agent Studio Declarative Specification — ITC Limited CPG
+# Gemini Enterprise Agent Studio Specification — Predictive WD Reorder & Dispatch Agent (ITC TMD)
 apiVersion: gemini-enterprise.cloud.google.com/v1
 kind: DeclarativeAgent
 metadata:
   agent_id: itc_predictive_wd_reorder_dispatch_agent
   slug: 09_predictive_wd_reorder_dispatch_agent
-  display_name: "Predictive WD Reorder & Dispatch Agent"
+  display_name: "Predictive WD Reorder & Dispatch Agent (ITC TMD)"
   build_mode: "Low-Code Agent Studio"
   functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
-  itc_pillar: "Pillar 05 · Wholesale Dealer (WD) Replenishment & FinAgg Credit"
   persona_owner: "Wholesale Dealer (WD) / Stockist Ops Mgr"
   named_leader: "Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)"
   priority_tier: "P0"
@@ -15,22 +14,7 @@ spec:
   model_routing:
     endpoint: global
     default_model: gemini-3.1-pro-preview
-    escalation_model: gemini-3.1-pro-preview
-    workhorse_model: gemini-3.8-flash
-  enterprise_data_lake_table: "enterprise_data/lake_full/09_wd_stockist_doi_credit_and_reorders.csv"
-  target_system_of_record: "ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API"
-  human_signoff_boundary: "Never converts draft primary orders into firm SAP billing without Wholesale Dealer OTP/portal consent or FinAgg/bank credit-line confirmation."
-  deterministic_tools:
-    - query_itc_enterprise_records
-    - query_itc_master_network_backbone
-    - run_deterministic_optimization_solver
-    - verify_finagg_credit_and_godown_cube_fit
-    - stage_governed_erp_or_portal_action
-    - render_a2ui_visual_chart_and_canvas
-    - export_atomic_schedule_csv
-    - generate_interactive_html_cockpit
-  starter_prompts:
-    - "Which Wholesale Dealers are below 4 days of inventory on high-velocity SKUs and risk stocking out within 48 hours, and how many cases should we replenish respecting their godown space and FinAgg credit limit?"
-    - "Which dealers need an automated FinAgg supply-chain credit drawdown so their urgent replenishment order doesn't get credit-blocked in SAP?"
-    - "Show a chart of recommended primary replenishment order values across our most stockout-exposed Wholesale Dealers."
-    - "Stage the predictive Wholesale Dealer replenishment orders in DMS and SAP for dealer confirmation."
+  starter_prompts_on_screen:
+    - "Which wholesale dealers have dropped below four days of stock on fast-moving SKUs and risk running dry in the next 48 hours?"
+    - "Do Mahavir Agencies, Kaveri Distributors, and Hooghly Enterprises have enough godown space and FinAgg credit room for a top-up load?"
+    - "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation."

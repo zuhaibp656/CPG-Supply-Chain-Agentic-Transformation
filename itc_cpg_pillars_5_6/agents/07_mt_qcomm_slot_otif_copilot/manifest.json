@@ -2,7 +2,9 @@
   "num": "07",
   "slug": "07_mt_qcomm_slot_otif_copilot",
   "agent_id": "itc_mt_qcomm_slot_otif_copilot",
-  "class_prefix": "MtQcommSlotOtifCopilot",
+  "class_prefix": "ItcMtQcommSlotOtifCopilot",
+  "ge_display_name": "MT / Q-Comm Slot & OTIF Copilot (ITC TMD)",
+  "icon": "gpp_good",
   "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
   "itc_pillar": "Pillar 05 \u00b7 Modern Trade & Quick-Commerce Fulfillment",
   "persona": "Modern Trade & Q-Comm Logistics Lead",
@@ -12,14 +14,15 @@
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "07_mt_qcomm_asn_dock_slots_and_otif",
+  "multimodal_docs": [],
   "reuse_status": "REUSED_AND_TAILORED",
   "reused_from_agents": [
-    "otif_penalty_shield (Live GE: reasoningEngines/3448113819560181760)",
+    "otif_penalty_shield",
     "modern_trade_dock_slot_booker"
   ],
   "target_system": "Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)",
-  "stops_at": "Never accepts contractual penalty waivers that alter commercial trade terms or commits premium dedicated air/express recovery above Rs 25,000 without MT Logistics Lead approval.",
-  "problem_statement": "Blinkit, Zepto, Swiggy Instamart, DMart, and Reliance enforce 15-to-30-minute dock arrival tolerances and strict 75% Minimum Remaining Shelf-Life gates. Missing a slot by 20 minutes or sending a 68%-MRSL batch triggers full truck turn-away, 5-10% PO chargebacks, and dark-store out-of-stocks.",
+  "stops_at": "Never accepts contractual penalty waivers that alter commercial trade terms or commits premium dedicated recovery above Rs 25,000 without MT Logistics Lead approval.",
+  "problem_statement": "Blinkit, Zepto, Swiggy Instamart, DMart, and Reliance enforce 15-to-30-minute dock arrival tolerances and strict 75% Minimum Remaining Shelf-Life gates. Missing a slot by 20 minutes or sending a 68%-MRSL batch triggers full truck turn-away and 5-10% PO chargebacks.",
   "special_tool_name": "scan_retailer_portal_open_appointment_windows",
   "special_tool_doc": "Checks live Blinkit, Zepto, Instamart, DMart, and Reliance appointment portals for open same-day swap slots and pre-dispatch MRSL compliance.",
   "chart_label_key": "account_name",
@@ -31,12 +34,11 @@
     "flow": 0.0,
     "risk": 12.4,
     "recovery": 13.9,
-    "zero_rationale": "Operates within existing inventory pools (Flow = 0); directly blocks 5-10% retailer OTIF chargebacks (Risk) and prevents full-PO dock refusals & dark-store delistings (Revenue Recovery)."
+    "zero_rationale": "Directly blocks 5-10% retailer OTIF chargebacks and prevents full-PO dock refusals & dark-store stockouts."
   },
   "starter_prompts": [
-    "Which of today's Blinkit, Zepto, Instamart, and DMart dispatches are at risk of missing their dock appointment slot or failing the 75% shelf-life check?",
-    "Check open partner-portal reschedule slots and pre-dispatch batch swaps to protect our On-Time In-Full score and avoid chargebacks.",
-    "Show a visual chart of at-risk chargeback deductions shielded across Modern Trade and Quick-Commerce accounts.",
-    "Stage the slot rebooking requests on the Blinkit and DMart portals and flag the Zepto batch swap."
+    "Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?",
+    "What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?",
+    "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."
   ]
 }

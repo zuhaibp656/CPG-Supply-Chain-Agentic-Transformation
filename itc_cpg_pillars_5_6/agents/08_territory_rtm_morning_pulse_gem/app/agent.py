@@ -1,24 +1,44 @@
-"""Google ADK + GlobalGemini Agent for Territory RTM Morning Pulse Gem (08_territory_rtm_morning_pulse_gem) — ITC Limited CPG Pillars 5 & 6."""
+"""Google ADK + GlobalGemini Agent for Territory RTM Morning Pulse Gem (ITC TMD)."""
 from __future__ import annotations
 
 import importlib.util as _ilu
+import logging
 import os
-import sys as _sys
+import uuid
 from functools import cached_property
 from pathlib import Path as _Path
 from typing import Any, Callable, Dict, List, Optional
 
 try:
     from . import tools
+    from .itc_runtime.a2ui_wire import (
+        SENTINEL_OPEN,
+        build_dual_a2ui_wire_parts,
+        sanitize_history_and_intercept_actions,
+    )
+    from .itc_runtime.gcs_publisher import publish_cockpit_and_csv
 except ImportError:
-    _t_spec = _ilu.spec_from_file_location(f"08_territory_rtm_morning_pulse_gem_tools", _Path(__file__).resolve().parent / "tools.py")
+    _here = _Path(__file__).resolve().parent
+    _t_spec = _ilu.spec_from_file_location(f"08_territory_rtm_morning_pulse_gem_tools", _here / "tools.py")
     assert _t_spec and _t_spec.loader
     tools = _ilu.module_from_spec(_t_spec)  # type: ignore
     _t_spec.loader.exec_module(tools)  # type: ignore
+    import sys as _sys
+    if str(_here) not in _sys.path:
+        _sys.path.insert(0, str(_here))
+    from itc_runtime.a2ui_wire import (  # type: ignore
+        SENTINEL_OPEN,
+        build_dual_a2ui_wire_parts,
+        sanitize_history_and_intercept_actions,
+    )
+    from itc_runtime.gcs_publisher import publish_cockpit_and_csv  # type: ignore
+
+logger = logging.getLogger(__name__)
 
 AGENT_ID = "itc_territory_rtm_morning_pulse_gem"
 AGENT_SLUG = "08_territory_rtm_morning_pulse_gem"
-AGENT_DISPLAY_NAME = "Territory RTM Morning Pulse Gem"
+AGENT_DISPLAY_NAME = "Territory RTM Morning Pulse Gem (ITC TMD)"
+SHORT_LABEL = "Territory RTM Morning Pulse Gem"
 FUNCTIONAL_AREA = "Channel & Route-to-Market (GT, MT & Q-Commerce)"
 PERSONA_OWNER = "Area Distribution / RTM Manager"
 NAMED_PERSONA = "Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)"
@@ -29,23 +49,25 @@ _WRITE_TOOLS = {
     "stage_governed_erp_or_portal_action": ["target_record_id", "proposed_action"],
 }
 
-SYSTEM_INSTRUCTION = """You are the **Territory RTM Morning Pulse Gem**, built in `No-Code Gemini Gem` mode for **Area Distribution / RTM Manager** (Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)) inside **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network (Channel & Route-to-Market (GT, MT & Q-Commerce)).
+SYSTEM_INSTRUCTION = """You are **Territory RTM Morning Pulse Gem (ITC TMD)**, built in `No-Code Gemini Gem` mode for **Area Distribution / RTM Manager** (Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)) across **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network (Channel & Route-to-Market (GT, MT & Q-Commerce)).
 
-1. ENTERPRISE MISSION & DETERMINISTIC MATH:
-   - Core Problem Solved: Area Distribution Managers start every morning juggling four disconnected spreadsheets: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes—missing urgent morning beat course-corrections before salesmen leave at 08:30.
-   - Connected Enterprise Systems: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast, Integrated Consumer Goods Manufacturing and Logistics (ICML) mega-plants, State Clearing & Forwarding Agent (CFA) depots, Wholesale Dealers (WDs), UNNATI eB2B kirana app, Vajra Sales Force Automation (SFA), Zenith Transport Control Tower, and Drishti IoT Cold-Chain loggers.
-   - Always call `query_itc_enterprise_records` and `run_deterministic_optimization_solver` (plus `generate_0730_ase_whatsapp_and_vajra_brief` when relevant) to compute exact deterministic figures—never guess or fabricate IDs, batches, Lorry Receipts, or currency figures.
+1. AUTONOMOUS DATA, SOLVER & VISUAL INTELLIGENCE (NO TECHNICAL PROMPTS NEEDED FROM USERS):
+   - Users ask everyday operational questions in plain English—they will NEVER ask you to "make an A2UI chart", "build an HTML cockpit", or cite internal table/tool names.
+   - On EVERY analytical, operational, or audit question, proactively call `run_deterministic_optimization_solver` (and `generate_0730_ase_whatsapp_and_vajra_brief` when checking physics, batch rules, portal slots, credit headroom, or scanned documents) so your answer is 100% grounded in deterministic math and our visual A2UI charts (bar charts, donut share charts, thermal traces) + interactive workbench render automatically!
+   - Core Problem You Solve: Area Distribution Managers start every morning juggling four disconnected trackers: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes—missing urgent beat course-corrections before 08:30.
 
-2. APPROACHABLE PLAIN-ENGLISH & INDIAN CURRENCY RULES (CRITICAL):
-   - Keep outputs clear, deterministic, and written in approachable plain business English at a balanced medium length (120–185 words).
-   - Spell out every domain abbreviation on first use (for example: Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT), Reverse Charge Mechanism (RCM)).
+2. CLEAR, BALANCED PLAIN-ENGLISH & INDIAN CURRENCY (`₹ Cr` / `₹ L`) STYLE:
+   - Write in clear, approachable business English at a balanced medium length (130–195 words).
+   - Spell out every domain abbreviation on first use (for example: Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT)).
    - Express ALL monetary figures in Indian Rupees using Crores (`₹ Cr`) and Lakhs (`₹ L`) or `₹`—never US Dollars.
-   - Present comparisons in a clean `<= 5`-column Markdown table outside the visual card, and never expose internal `snake_case` table filenames or Python function names in user-facing prose.
+   - Include ONE crisp, copy-ready Markdown table (`<= 5` columns) outside the visual card summarizing the top prioritized items, followed by 2–3 concrete recommended next steps.
+   - Never mention internal JSON/CSV filenames, `snake_case` column names, or Python function names in your user-facing response.
 
-3. VISUAL A2UI CARD & HUMAN SIGN-OFF GOVERNANCE:
-   - When illustrating multi-record comparisons or charts, call `render_a2ui_visual_chart_and_canvas` so only the visual `VegaChart` renders inside the card while tables and headed links stay cleanly outside in Markdown.
-   - HUMAN GATE (`STOPS AT`): Advisory No-Code Gemini Gem by design—synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.
-   - SAFETY GUARDRAIL: Never call `stage_governed_erp_or_portal_action` on read-only questions, and strictly refuse any request to bypass safety, axle-weight, cold-chain quality, shelf-life, duplicate-invoice, or credit controls.
+3. HUMAN SIGN-OFF BOUNDARY & SAFETY GUARDRAILS:
+   - Connected Enterprise System: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast
+   - STOPS AT: Advisory No-Code Gemini Gem by design—synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.
+   - Never invoke `stage_governed_erp_or_portal_action` on read-only diagnostic questions. When the user asks to prepare, hold, reassign, block, or stage an action, generate a clean `idempotency_key` (e.g. `ITC-08-STAGE-001`), call `stage_governed_erp_or_portal_action`, and confirm the staged voucher awaiting human sign-off.
+   - Strictly refuse any request to bypass safety, axle-weight, cold-chain quality, shelf-life, duplicate-invoice, or overdue credit controls.
 """
 
 
@@ -54,11 +76,7 @@ def enforce_tool_contract(tool_name: str, args: Dict[str, Any]) -> Optional[Dict
     if tool_name in _WRITE_TOOLS:
         missing = [k for k in _WRITE_TOOLS[tool_name] if args.get(k) in (None, "")]
         if missing:
-            return {
-                "status": "BLOCKED_MISSING_INPUTS",
-                "tool": tool_name,
-                "missing_fields": missing,
-            }
+            return {"status": "BLOCKED_MISSING_INPUTS", "tool": tool_name, "missing_fields": missing}
         if not args.get("idempotency_key"):
             return {
                 "status": "BLOCKED_MISSING_IDEMPOTENCY_KEY",
@@ -68,8 +86,8 @@ def enforce_tool_contract(tool_name: str, args: Dict[str, Any]) -> Optional[Dict
     return None
 
 
-class TerritoryRtmMorningPulseGemAgent:
-    """Deterministic Python & Google ADK orchestrator for Territory RTM Morning Pulse Gem."""
+class ItcTerritoryRtmMorningPulseGemAgent:
+    """Deterministic Python orchestrator for Territory RTM Morning Pulse Gem (ITC TMD)."""
 
     def __init__(self, model: str = DEFAULT_MODEL) -> None:
         self.name = AGENT_ID
@@ -83,25 +101,19 @@ class TerritoryRtmMorningPulseGemAgent:
         self.tool_map: Dict[str, Callable[..., Any]] = {fn.__name__: fn for fn in self.tools}
 
     def select_orchestrated_model(self, query: str = "") -> Dict[str, str]:
-        """Routes complex multi-constraint optimization/multimodal audits to Gemini 3.1 Pro and fast pulse queries to Gemini 3.8 Flash."""
         q_low = (query or "").lower()
         deep_keywords = ("optimize", "consolidate", "ration", "allocate", "arrhenius", "mkt", "multimodal", "pod", "sap", "reroute", "simulate")
         chosen = "gemini-3.1-pro-preview" if (DEFAULT_MODEL == "gemini-3.1-pro-preview" or any(k in q_low for k in deep_keywords)) else "gemini-3.8-flash"
-        return {
-            "selected_model": chosen,
-            "endpoint_location": "global",
-            "build_mode": BUILD_MODE,
-        }
+        return {"selected_model": chosen, "endpoint_location": "global", "build_mode": BUILD_MODE}
 
     def run_scenario(self, user_query: str = "") -> Dict[str, Any]:
-        """Executes deterministic data retrieval, solver math, and A2UI spec generation end-to-end."""
+        tools.reset_turn_state(user_query)
         routing = self.select_orchestrated_model(user_query)
         solved = tools.run_deterministic_optimization_solver("")
         special = tools.generate_0730_ase_whatsapp_and_vajra_brief("")
         a2ui = tools.render_a2ui_visual_chart_and_canvas("")
         rows = solved.get("morning_territory_briefing", [])[:4]
 
-        # Build concise <=5-column plain-English Markdown summary table
         if rows:
             cols = list(rows[0].keys())[:4]
             hdr = "| " + " | ".join(c.replace("_", " ").title() for c in cols) + " |"
@@ -113,7 +125,7 @@ class TerritoryRtmMorningPulseGemAgent:
 
         headline_val = solved.get("overnight_unnati_digital_gmv_display", "Verified")
         markdown = (
-            f"**Territory RTM Morning Pulse Gem** completed a deterministic review across **ITC Limited's Trade Marketing & Distribution (TM&D)** "
+            f"**Territory RTM Morning Pulse Gem (ITC TMD)** completed a deterministic review across **ITC Limited's Trade Marketing & Distribution (TM&D)** "
             f"network for **Area Distribution / RTM Manager**, identifying **{headline_val}** in verified operational value.\n\n"
             f"{md_table}\n\n"
             f"- **Connected System Boundary**: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast\n"
@@ -135,11 +147,16 @@ class TerritoryRtmMorningPulseGemAgent:
 
 try:
     from google.adk.agents import Agent
+    from google.adk.agents.callback_context import CallbackContext
+    from google.adk.apps import App
     from google.adk.models import Gemini
+    from google.adk.models.llm_request import LlmRequest
+    from google.adk.models.llm_response import LlmResponse
     from google.genai import Client, types
+    from vertexai.preview.reasoning_engines import AdkApp
 
     class GlobalGemini(Gemini):
-        """Routes Gemini 3.1 Pro and Gemini 3.8 Flash calls to the global Vertex AI endpoint (`location='global'`)."""
+        """Routes Gemini 3.1 Pro and Gemini 3.8 Flash calls to Vertex AI `global` endpoint even inside `us-central1` Reasoning Engines."""
 
         @cached_property
         def api_client(self) -> Client:
@@ -153,21 +170,149 @@ try:
                 ),
             )
 
+    def _before_model_cb(
+        callback_context: Optional[CallbackContext] = None,
+        llm_request: Optional[LlmRequest] = None,
+        **_: Any,
+    ) -> None:
+        if llm_request is None:
+            return None
+        try:
+            u_txt = sanitize_history_and_intercept_actions(llm_request)
+            if u_txt:
+                tools.reset_turn_state(u_txt)
+        except Exception as exc:
+            logger.warning("before_model_callback degraded cleanly: %s", exc)
+        return None
+
+    def _after_model_cb(
+        callback_context: Optional[CallbackContext] = None,
+        llm_response: Optional[LlmResponse] = None,
+        **_: Any,
+    ) -> Optional[LlmResponse]:
+        if llm_response is None or getattr(llm_response, "content", None) is None:
+            return None
+        if getattr(llm_response, "partial", False):
+            return None
+        try:
+            parts = list(llm_response.content.parts or [])
+            if any(getattr(p, "function_call", None) is not None for p in parts):
+                return llm_response
+
+            cleaned: List[types.Part] = []
+            for p in parts:
+                t = getattr(p, "text", None)
+                if t and SENTINEL_OPEN in t:
+                    t_clean = t.split(SENTINEL_OPEN)[0].strip()
+                    if t_clean:
+                        cleaned.append(types.Part(text=t_clean))
+                else:
+                    cleaned.append(p)
+
+            st = tools.get_turn_state()
+            idx = max((i for i, p in enumerate(cleaned) if getattr(p, "text", None)), default=-1)
+            existing_txt = (cleaned[idx].text or "") if idx >= 0 else ""
+
+            if st.get("active") and st.get("rows") and "itc_tmd/cockpits/" not in existing_txt:
+                urls = publish_cockpit_and_csv(
+                    agent_slug=AGENT_SLUG,
+                    agent_title=SHORT_LABEL,
+                    persona_title=PERSONA_OWNER,
+                    functional_area=FUNCTIONAL_AREA,
+                    headline_value=str(st.get("headline") or "Verified"),
+                    rows=list(st.get("rows") or []),
+                    label_key="territory_name",
+                    value_key="revenue_at_stake_inr",
+                )
+                bullets = [
+                    f"- 🌐 **[Open Interactive Visual Workbench & Simulator (Light/Dark HTML) ↗]({urls['html_url']})** — Live bar & donut breakdowns, What-If slider, and filterable ITC ledger.",
+                    f"- 📥 **[Download Atomic Schedule for Google Sheets / SAP (CSV) ↗]({urls['csv_url']})** — Verified row-level export.",
+                ]
+                if st.get("doc_url"):
+                    bullets.insert(
+                        0,
+                        f"- 🖼️ **[Inspect Scanned Document Evidence ({st.get('doc_label', 'PNG Scan')}) ↗]({st['doc_url']})** — High-resolution multimodal document scan.",
+                    )
+                nl = chr(10)
+                footer = f"{nl}{nl}### 🌐 Interactive Visual Workbench & Evidence{nl}{nl}" + nl.join(bullets) + nl
+                if idx >= 0:
+                    cleaned[idx] = types.Part(text=existing_txt.rstrip() + footer)
+                else:
+                    cleaned.append(types.Part(text=footer.lstrip()))
+
+            llm_response.content.parts = cleaned
+            return llm_response
+        except Exception as exc:
+            logger.warning("after_model_callback degraded cleanly: %s", exc)
+            return None
+
+    def _after_agent_cb(
+        callback_context: Optional[CallbackContext] = None,
+        **_: Any,
+    ) -> Optional[types.Content]:
+        try:
+            st = tools.get_turn_state()
+            if not st.get("active") or not st.get("vega_spec"):
+                return None
+            sid = f"itc-{uuid.uuid4().hex[:8]}"
+            rows = list(st.get("rows") or [])
+            banner = f"{len(rows)} verified ITC TM&D records · Headline Impact: {st.get('headline', 'Verified')}"
+            ui_parts = build_dual_a2ui_wire_parts(
+                surface_id=sid,
+                agent_id=AGENT_ID,
+                agent_short_label=SHORT_LABEL,
+                vega_spec=st["vega_spec"],
+                rows=rows,
+                headline_banner=banner,
+            )
+            tools.reset_turn_state("")
+            if ui_parts:
+                return types.Content(role="model", parts=ui_parts)
+        except Exception as exc:
+            logger.warning("after_agent_callback A2UI emission degraded cleanly: %s", exc)
+        return None
+
     root_agent = Agent(
         name=AGENT_ID,
         model=GlobalGemini(
             model=DEFAULT_MODEL,
             retry_options=types.HttpRetryOptions(attempts=3),
         ),
-        description=f"[ITC CPG · Channel & Route-to-Market (GT, MT & Q-Commerce)] Territory RTM Morning Pulse Gem for Area Distribution / RTM Manager (No-Code Gemini Gem)",
+        generate_content_config=types.GenerateContentConfig(
+            max_output_tokens=16384,
+            temperature=0.1,
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
+        description=f"[ITC TMD · Channel & Route-to-Market (GT, MT & Q-Commerce)] Territory RTM Morning Pulse Gem (Area Distribution / RTM Manager)",
         instruction=SYSTEM_INSTRUCTION,
         tools=list(tools.ALL_TOOLS),
+        before_model_callback=_before_model_cb,
+        after_model_callback=_after_model_cb,
+        after_agent_callback=_after_agent_cb,
     )
+
+    app = App(root_agent=root_agent, name=AGENT_ID)
+
+    class ItcTerritoryRtmMorningPulseGemAdkApp(AdkApp):
+        """Vertex AI Agent Engine wrapper for Territory RTM Morning Pulse Gem (ITC TMD)."""
+
+        def __init__(self, agent: Agent = root_agent, **kwargs: Any) -> None:
+            super().__init__(agent=agent, **kwargs)
+
+        @staticmethod
+        def _pin_env() -> None:
+            os.environ["GOOGLE_GENAI_USE_VERTEXAI"] = "TRUE"
+            os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "zuhaibp-ai")
+
+        def query(self, *args: Any, **kwargs: Any) -> Any:
+            self._pin_env()
+            return super().query(*args, **kwargs)
+
+        def stream_query(self, *args: Any, **kwargs: Any) -> Any:
+            self._pin_env()
+            yield from super().stream_query(*args, **kwargs)
+
 except Exception:
-    root_agent = TerritoryRtmMorningPulseGemAgent()  # type: ignore
-
-
-def create_adk_app() -> Any:
-    """Deferred factory for `AdkApp(agent=root_agent)` AFTER `vertexai.init(project=..., location=...)`."""
-    from vertexai.preview.reasoning_engines import AdkApp
-    return AdkApp(agent=root_agent)
+    root_agent = ItcTerritoryRtmMorningPulseGemAgent()  # type: ignore
+    app = None  # type: ignore
+    ItcTerritoryRtmMorningPulseGemAdkApp = None  # type: ignore

@@ -2,7 +2,9 @@
   "num": "02",
   "slug": "02_yard_disruption_detention_sentinel",
   "agent_id": "itc_yard_disruption_detention_sentinel",
-  "class_prefix": "YardDisruptionDetention",
+  "class_prefix": "ItcYardDisruptionDetention",
+  "ge_display_name": "Yard Disruption & Detention Sentinel (ITC TMD)",
+  "icon": "rv_hookup",
   "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
   "itc_pillar": "Pillar 06 \u00b7 Green Logistics & Primary Dispatch",
   "persona": "Plant Yard & Dispatch Lead",
@@ -12,9 +14,12 @@
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "02_icml_yard_gate_fastag_dock_detention",
+  "multimodal_docs": [
+    "DOC-WB-SLIP-9004.png"
+  ],
   "reuse_status": "REUSED_AND_TAILORED",
   "reused_from_agents": [
-    "yard_dock_sequencer (Live GE: reasoningEngines/2295192314953334784)",
+    "yard_dock_sequencer",
     "yard_dock_scheduling_agent"
   ],
   "target_system": "SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console",
@@ -31,12 +36,11 @@
     "flow": 7.8,
     "risk": 11.2,
     "recovery": 0.0,
-    "zero_rationale": "Does not create incremental retail consumer demand (Revenue Recovery = 0); value is pure carrier detention avoidance (Risk & Leakage) and faster ICML dock turnaround (Flow)."
+    "zero_rationale": "Does not create incremental retail consumer demand; value is pure carrier detention avoidance and faster ICML dock turnaround."
   },
   "starter_prompts": [
-    "Which trucks waiting inside our Ranjangaon, Kapurthala, and Panchla plant yards have breached or are about to breach free detention time, and which open dock doors should we move them to right now?",
-    "Are any frozen or chilled reefer trailers waiting on diesel at the gate that need immediate reassignment to a shore-power dock door?",
-    "Chart the detention penalties avoided by vehicle across our active yard bottleneck queue.",
-    "Stage the dock door reassignments and spotter move instructions for the yard crew."
+    "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?",
+    "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?",
+    "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
   ]
 }
