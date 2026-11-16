@@ -10,7 +10,7 @@
   "persona": "Primary Transport Planner",
   "persona_named": "Raghavendra Kulkarni (Primary Transport Lead \u2014 Pune Ranjangaon ICML)",
   "agent_name": "Load Consolidation Agent",
-  "build_mode": "Low-Code Agent Studio",
+  "build_mode": "Google ADK + Python Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "01_icml_primary_dispatch_waves_and_cartons",
@@ -41,6 +41,7 @@
   "starter_prompts": [
     "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?",
     "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?",
-    "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."
+    "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents.",
+    "Run a what-if scenario: how much freight cost can we save if diesel surcharge rises 15% and we prioritize mixed biscuit-and-atta loads across western lanes?"
   ]
 }

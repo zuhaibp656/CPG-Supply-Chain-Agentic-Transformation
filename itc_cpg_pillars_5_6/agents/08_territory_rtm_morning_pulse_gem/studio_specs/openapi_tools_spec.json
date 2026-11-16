@@ -3,7 +3,7 @@
   "info": {
     "title": "Territory RTM Morning Pulse Gem (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: No-Code Gemini Gem | Target System: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast"
+    "description": "Mode: Google ADK + Reasoning Coach | Target System: ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast"
   },
   "paths": {
     "/v1/itc-tmd/08_territory_rtm_morning_pulse_gem/solve": {

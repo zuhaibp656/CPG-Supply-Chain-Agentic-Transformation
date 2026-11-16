@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_mt_qcomm_slot_otif_copilot
   slug: 07_mt_qcomm_slot_otif_copilot
   display_name: "MT / Q-Comm Slot & OTIF Copilot (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
   persona_owner: "Modern Trade & Q-Comm Logistics Lead"
   named_leader: "Neha Kapoor (National MT & Quick-Commerce Supply Lead — Gurugram & Mumbai)"
@@ -18,3 +18,4 @@ spec:
     - "Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?"
     - "What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?"
     - "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."
+    - "Simulate pulling forward three Blinkit and Zepto darkstore dock appointments by two hours. How many late-delivery penalties do we avoid today?"

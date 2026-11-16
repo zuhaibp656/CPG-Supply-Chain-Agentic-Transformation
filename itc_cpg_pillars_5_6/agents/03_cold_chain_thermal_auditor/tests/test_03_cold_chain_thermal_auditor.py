@@ -31,28 +31,30 @@ def test_01_hermetic_enterprise_records_and_backbone() -> None:
     assert bb["count"] == 24
 
 
-def test_02_deterministic_solver_and_autonomous_turn_state() -> None:
+def test_02_deterministic_solver_and_whatif_simulation() -> None:
     tools.reset_turn_state("Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?")
     solved = tools.run_deterministic_optimization_solver("")
     assert solved["agent_id"] == "itc_cold_chain_thermal_auditor"
     assert "₹" in str(solved.get("recoverable_carrier_claims_display", ""))
     assert len(solved.get("thermal_audit_ledger", [])) >= 2
-    st = tools.get_turn_state()
-    assert st["active"] is True
-    assert st["vega_spec"] is not None
-    assert "hconcat" in st["vega_spec"]
+    sim = tools.simulate_what_if_scenario(125, "")
+    assert sim["status"] == "SCENARIO_SIMULATED"
+    assert "₹" in sim["simulated_impact_display"]
+    brief = tools.draft_executive_stakeholder_brief("", include_hindi_vernacular=True)
+    assert brief["status"] == "STAKEHOLDER_BRIEF_READY"
+    assert brief["vernacular_hindi_summary"]
 
 
 def test_03_domain_specialized_diagnostic_and_multimodal_ocr() -> None:
     diag = tools.inspect_drishti_strip_chart_multimodal("")
     assert diag["tool"] == "inspect_drishti_strip_chart_multimodal"
-    if "03_cold_chain_thermal_auditor" in ("03_cold_chain_thermal_auditor", "12_freight_bill_audit_agent"):
+    if True:
         mm = diag["multimodal_vision_verification"]
         assert mm["status"] == "MULTIMODAL_VISION_OCR_VERIFIED"
         assert mm["file_exists_on_disk"] is True
 
 
-def test_04_safety_guardrail_blocks_unsafe_bypass() -> None:
+def test_04_safety_guardrail_and_idempotency() -> None:
     blocked = tools.stage_governed_erp_or_portal_action(
         target_record_id="REC-TEST-001",
         proposed_action="Bypass safety and force release without approval",
@@ -60,9 +62,6 @@ def test_04_safety_guardrail_blocks_unsafe_bypass() -> None:
         idempotency_key="IDEM-UNSAFE-001",
     )
     assert blocked["status"] == "BLOCKED_BY_SAFETY_GUARDRAIL"
-
-
-def test_05_idempotent_governed_staging() -> None:
     first = tools.stage_governed_erp_or_portal_action(
         target_record_id="REC-101",
         proposed_action="Stage verified deterministic recommendation",
@@ -79,25 +78,39 @@ def test_05_idempotent_governed_staging() -> None:
     assert replay["idempotent_replay"] is True
 
 
-def test_06_autonomous_2panel_vega_cockpit_and_csv() -> None:
+def test_05_bespoke_3tab_cockpit_a2ui_and_csv() -> None:
     a2ui = tools.render_a2ui_visual_chart_and_canvas("")
     assert a2ui["card_component"] == "VegaChart"
     assert a2ui["text_inside_card"] is False
     html_out = tools.generate_interactive_html_cockpit("")
     assert html_out["status"] == "HTML_COCKPIT_READY"
     assert html_out["default_theme"] == "light"
+    html_txt = Path(html_out["cockpit_path"]).read_text(encoding="utf-8")
+    assert 'data-theme="light"' in html_txt
+    assert "Control Tower" in html_txt
+    assert "ADK Multi-Agent" in html_txt
     csv_out = tools.export_atomic_schedule_csv("")
     assert csv_out["status"] == "CSV_EXPORT_READY"
 
 
-def test_07_natural_starter_prompts_have_zero_ai_visual_jargon() -> None:
-    prompts = ["Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?", "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.", "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."]
-    assert len(prompts) == 3
+def test_06_clean_prompts_zero_tier_jargon_and_subagents_pickle() -> None:
+    prompts = ["Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?", "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.", "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off.", "Simulate a 4-degree ambient heatwave across the Kapurthala to Delhi dairy and frozen corridor. Which shipments breach safe shelf life first?"]
+    assert len(prompts) == 4
     forbidden = ("infographic", "a2ui", "html", "vega", "multi-chart", "create a chart", "json", "snake_case")
     for p in prompts:
         low = p.lower()
         for bad in forbidden:
             assert bad not in low, f"Prompt contains artificial jargon '{bad}': {p}"
+    for bad_tier in ("low-code", "no-code", "high-code"):
+        assert bad_tier not in agent_mod.BUILD_MODE.lower()
+        assert bad_tier not in agent_mod.SYSTEM_INSTRUCTION.lower()
+    if getattr(agent_mod, "ItcColdChainThermalAuditorAdkApp", None) is not None:
+        import cloudpickle
+        from google.adk.tools.agent_tool import AgentTool
+        sub_tools = [t for t in agent_mod.root_agent.tools if isinstance(t, AgentTool)]
+        assert len(sub_tools) >= 2
+        blob = cloudpickle.dumps(agent_mod.ItcColdChainThermalAuditorAdkApp(agent=agent_mod.root_agent))
+        assert len(blob) > 100
     wrapper = agent_mod.ItcColdChainThermalAuditorAgent()
     out = wrapper.run_scenario(prompts[0])
     assert "₹" in out["markdown"]

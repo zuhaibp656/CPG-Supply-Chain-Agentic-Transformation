@@ -10,7 +10,7 @@
   "persona": "Cold-Chain & Transit QA Lead",
   "persona_named": "Dr. Ananya Chatterjee (National Cold-Chain QA Lead \u2014 Kolkata & Kapurthala)",
   "agent_name": "Cold-Chain Thermal Auditor",
-  "build_mode": "Low-Code Agent Studio",
+  "build_mode": "Google ADK + Python Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "03_drishti_reefer_iot_thermal_telemetry",
@@ -43,6 +43,7 @@
   "starter_prompts": [
     "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?",
     "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.",
-    "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."
+    "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off.",
+    "Simulate a 4-degree ambient heatwave across the Kapurthala to Delhi dairy and frozen corridor. Which shipments breach safe shelf life first?"
   ]
 }

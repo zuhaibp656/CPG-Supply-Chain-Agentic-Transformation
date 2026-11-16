@@ -3,7 +3,7 @@
   "info": {
     "title": "Dynamic Rerouter (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code + Maps Platform | Target System: Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API"
+    "description": "Mode: Google ADK + Geospatial Routing | Target System: Zenith Fleet Control Tower + Google Maps Routes Matrix v2 + NIC E-Way Bill Part-B API"
   },
   "paths": {
     "/v1/itc-tmd/10_dynamic_rerouter/solve": {

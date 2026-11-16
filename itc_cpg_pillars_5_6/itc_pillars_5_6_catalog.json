@@ -9,14 +9,15 @@
     "icon": "view_in_ar",
     "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
     "persona": "Primary Transport Planner",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "ITC ICML mega-plants ship both high-density Staples (Aashirvaad Atta at ~600 kg/m3, weighting out a 32-ft MXL truck at 45% volume) and ultra-light fragile Foods (Bingo! chips & Sunfeast biscuits at ~90-180 kg/m3, cubing out at 25% payload). Dispatching single-category trucks wastes 28-36% of primary freight spend.",
     "starter_prompts": [
       "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?",
       "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?",
-      "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."
+      "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents.",
+      "Run a what-if scenario: how much freight cost can we save if diesel surcharge rises 15% and we prioritize mixed biscuit-and-atta loads across western lanes?"
     ],
     "annual_value_cr_inr": 29.4
   },
@@ -30,14 +31,15 @@
     "icon": "rv_hookup",
     "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
     "persona": "Plant Yard & Dispatch Lead",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "At peak shift handovers, 32-ft containers and frozen reefers queue at ICML weighbridges and blocked stretch-wrap doors beyond the 120-minute free-time slab\u2014triggering Rs 850-Rs 1,350/hr carrier detention charges and diesel burn on waiting reefers.",
     "starter_prompts": [
       "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?",
       "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?",
-      "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
+      "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off.",
+      "Simulate a 25% monsoon arrival spike at Ranjangaon and Panchla gates tonight. How many trucks risk detention charges if dock bay re-slotting runs automatically?"
     ],
     "annual_value_cr_inr": 20.9
   },
@@ -51,14 +53,15 @@
     "icon": "ac_unit",
     "functional_area": "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)",
     "persona": "Cold-Chain & Transit QA Lead",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "ITC Master Chef frozen snacks (-18C), Aashirvaad Svasti paneer/curd (2-8C), and Fabelle luxury chocolates (16-20C) suffer mid-highway compressor slips or driver fuel-saving switch-offs. Simple min/max alerts miss cumulative Arrhenius kinetic heat damage.",
     "starter_prompts": [
       "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?",
       "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.",
-      "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."
+      "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off.",
+      "Simulate a 4-degree ambient heatwave across the Kapurthala to Delhi dairy and frozen corridor. Which shipments breach safe shelf life first?"
     ],
     "annual_value_cr_inr": 22.6
   },
@@ -72,14 +75,15 @@
     "icon": "warehouse",
     "functional_area": "CFA / Depot Operations & Stock Allocation",
     "persona": "Depot / CFA Operations Manager",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "State CFAs simultaneously pick rapid Quick-Commerce waves (strict 75% Minimum Remaining Shelf-Life gate, 10:30 cutoff), Modern Trade pallets, and General Trade Wholesale Dealer loads (55% MRSL gate). Unbalanced bays miss morning cutoffs while blind picking sends older batches to Quick-Commerce.",
     "starter_prompts": [
       "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?",
       "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?",
-      "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
+      "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan.",
+      "Simulate shifting four General Trade pickers to Quick-Commerce bays at Bhiwandi before noon. How much dispatch revenue is protected before cutoff?"
     ],
     "annual_value_cr_inr": 21.1
   },
@@ -93,14 +97,15 @@
     "icon": "inventory_2",
     "functional_area": "CFA / Depot Operations & Stock Allocation",
     "persona": "Customer Service & Logistics (CS&L) Lead",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "When a high-velocity SKU like Sunfeast Dark Fantasy 300g is short at a State CFA (2,400 cases available vs 3,650 ordered), standard SAP First-In-First-Out lets early Modern Trade bulk orders consume 100% of stock\u2014starving 18 General Trade Wholesale Dealers and UNNATI kiranas.",
     "starter_prompts": [
       "We are short on Sunfeast Dark Fantasy 300g at Nelamangala depot. How should we split the 2,400 available cases across channels?",
       "What happens to our Quick-Commerce penalties and General Trade dealers if we let standard first-come-first-served allocation run?",
-      "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved."
+      "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved.",
+      "What happens if available Dark Fantasy stock drops another 20% at Nelamangala? How do we protect Quick-Commerce fill rates without starving general dealers?"
     ],
     "annual_value_cr_inr": 27.4
   },
@@ -114,14 +119,15 @@
     "icon": "receipt_long",
     "functional_area": "CFA / Depot Operations & Stock Allocation",
     "persona": "Depot Dispatch & Billing Supervisor",
-    "build_mode": "Low-Code + SAP OpenAPI",
+    "build_mode": "Google ADK + SAP OpenAPI + Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "Every evening before the 21:00 IST gate lock, loaded trucks sit trapped at CFA gates because SAP outbound deliveries (`VL02N`) fail Post Goods Issue or `VF01` billing due to FEFO batch-split variances, unsynced FinAgg dealer credit drawdowns, or hyphen typos in NIC E-Way Bill Part-B vehicle numbers.",
     "starter_prompts": [
       "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?",
       "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds.",
-      "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
+      "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance.",
+      "Simulate clearing temporary FinAgg credit holds before tonight's billing cutoff. How much blocked end-of-day invoicing unlocks immediately?"
     ],
     "annual_value_cr_inr": 29.8
   },
@@ -135,14 +141,15 @@
     "icon": "gpp_good",
     "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
     "persona": "Modern Trade & Q-Comm Logistics Lead",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "Blinkit, Zepto, Swiggy Instamart, DMart, and Reliance enforce 15-to-30-minute dock arrival tolerances and strict 75% Minimum Remaining Shelf-Life gates. Missing a slot by 20 minutes or sending a 68%-MRSL batch triggers full truck turn-away and 5-10% PO chargebacks.",
     "starter_prompts": [
       "Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?",
       "What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?",
-      "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."
+      "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed.",
+      "Simulate pulling forward three Blinkit and Zepto darkstore dock appointments by two hours. How many late-delivery penalties do we avoid today?"
     ],
     "annual_value_cr_inr": 28.4
   },
@@ -156,14 +163,15 @@
     "icon": "trending_up",
     "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
     "persona": "Area Distribution / RTM Manager",
-    "build_mode": "No-Code Gemini Gem",
+    "build_mode": "Google ADK + Reasoning Coach",
     "priority": "P1",
     "default_model": "gemini-3.8-flash",
     "problem_statement": "Area Distribution Managers start every morning juggling four disconnected trackers: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes\u2014missing urgent beat course-corrections before 08:30.",
     "starter_prompts": [
       "Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?",
       "Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?",
-      "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."
+      "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today.",
+      "Draft a quick morning note in simple Hindi and English for Territory Officers covering weak beats with zero-bill retail outlets."
     ],
     "annual_value_cr_inr": 19.8
   },
@@ -177,14 +185,15 @@
     "icon": "storefront",
     "functional_area": "Channel & Route-to-Market (GT, MT & Q-Commerce)",
     "persona": "Wholesale Dealer (WD) / Stockist Ops Mgr",
-    "build_mode": "Low-Code Agent Studio",
+    "build_mode": "Google ADK + Python Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "Wholesale Dealers frequently under-order core staples during UNNATI scheme surges (causing kirana stockouts within 48 hours) or hit credit-limit walls mid-week despite having approved FinAgg/SBI supply-chain credit headroom.",
     "starter_prompts": [
       "Which wholesale dealers have dropped below four days of stock on fast-moving SKUs and risk running dry in the next 48 hours?",
       "Do Mahavir Agencies, Kaveri Distributors, and Hooghly Enterprises have enough godown space and FinAgg credit room for a top-up load?",
-      "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation."
+      "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation.",
+      "Simulate a 25% festive demand surge next week. Which wholesale dealers run out of stock first and need higher FinAgg credit headroom?"
     ],
     "annual_value_cr_inr": 32.6
   },
@@ -198,14 +207,15 @@
     "icon": "local_shipping",
     "functional_area": "Fleet, Carrier & Freight Governance",
     "persona": "Fleet & Route Dispatch Lead",
-    "build_mode": "Low-Code + Maps Platform",
+    "build_mode": "Google ADK + Geospatial Routing",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "En-route highway landslides (NH-48 Khandala Ghat), urban waterlogging (Bengaluru ORR), police heavy-vehicle curfews, commercial EV low battery State-of-Charge, and expiring midnight NIC E-Way Bills cause severe delivery misses and Section 129 GST transit penalties.",
     "starter_prompts": [
       "Which primary trucks and city EV vans are stuck in highway blockages, waterlogging, or police no-entry curfews right now?",
       "Are any delayed highway loads close to their E-Way Bill expiring tonight, or do any city EVs need a charging stop to finish their drops?",
-      "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval."
+      "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval.",
+      "Simulate closing the Mumbai-Pune expressway lane for six hours. Which primary trucks and city electric vans must divert to avoid missed deliveries?"
     ],
     "annual_value_cr_inr": 22.0
   },
@@ -219,14 +229,15 @@
     "icon": "alt_route",
     "functional_area": "Fleet, Carrier & Freight Governance",
     "persona": "Transport Procurement Manager",
-    "build_mode": "No-Code Gemini Gem",
+    "build_mode": "Google ADK + Reasoning Coach",
     "priority": "P1",
     "default_model": "gemini-3.8-flash",
     "problem_statement": "ITC negotiates annual L1/L2/L3 waterfall rate cards across hundreds of ICML-to-CFA lanes, yet local dispatchers frequently bypass L2 backup carriers during evening rush and book ad-hoc spot-market brokers at 28-40% freight premiums.",
     "starter_prompts": [
       "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?",
       "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?",
-      "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."
+      "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review.",
+      "What happens to our monthly freight budget if spot market truck rates jump 18% and primary carrier tender acceptance slips below 70%?"
     ],
     "annual_value_cr_inr": 16.9
   },
@@ -240,14 +251,15 @@
     "icon": "fact_check",
     "functional_area": "Fleet, Carrier & Freight Governance",
     "persona": "Freight Bill & Claims Controller",
-    "build_mode": "Multimodal + Agent Studio",
+    "build_mode": "Google ADK + Multimodal Vision + Solvers",
     "priority": "P0",
     "default_model": "gemini-3.1-pro-preview",
     "problem_statement": "Indian CPG freight settlement requires reconciling paper-heavy Lorry Receipts (Bilty), rubber-stamped CFA Proof-of-Delivery (POD) slips with handwritten wet/crushed carton remarks, contracted diesel escalation pegs, and GPS-verified gate detention hours.",
     "starter_prompts": [
       "Audit this week's pending transporter freight bills. Where do billed rates, fuel surcharges, or detention hours disagree with our contracts and GPS logs?",
       "Check the scanned lorry receipts and stamped delivery slips on LR-TCI-882910 and LR-HWK-771024 for damaged cartons or duplicate billing.",
-      "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons."
+      "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons.",
+      "Draft the transporter dispute escalation summary and recovery breakdown for all duplicate bills, unverified detention, and damaged cartons found this week."
     ],
     "annual_value_cr_inr": 25.5
   }

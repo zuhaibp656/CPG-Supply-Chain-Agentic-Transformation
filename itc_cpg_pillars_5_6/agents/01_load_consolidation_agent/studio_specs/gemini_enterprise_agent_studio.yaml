@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_load_consolidation_agent
   slug: 01_load_consolidation_agent
   display_name: "Load Consolidation Agent (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
   persona_owner: "Primary Transport Planner"
   named_leader: "Raghavendra Kulkarni (Primary Transport Lead — Pune Ranjangaon ICML)"
@@ -18,3 +18,4 @@ spec:
     - "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?"
     - "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?"
     - "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."
+    - "Run a what-if scenario: how much freight cost can we save if diesel surcharge rises 15% and we prioritize mixed biscuit-and-atta loads across western lanes?"

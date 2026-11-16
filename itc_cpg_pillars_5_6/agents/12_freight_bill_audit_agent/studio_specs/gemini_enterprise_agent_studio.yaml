@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_freight_bill_audit_agent
   slug: 12_freight_bill_audit_agent
   display_name: "Freight Bill Audit Agent (ITC TMD)"
-  build_mode: "Multimodal + Agent Studio"
+  build_mode: "Google ADK + Multimodal Vision + Solvers"
   functional_area: "Fleet, Carrier & Freight Governance"
   persona_owner: "Freight Bill & Claims Controller"
   named_leader: "Subhashish Mukherjee (National Freight Audit & Commercial Claims Controller — Kolkata)"
@@ -18,3 +18,4 @@ spec:
     - "Audit this week's pending transporter freight bills. Where do billed rates, fuel surcharges, or detention hours disagree with our contracts and GPS logs?"
     - "Check the scanned lorry receipts and stamped delivery slips on LR-TCI-882910 and LR-HWK-771024 for damaged cartons or duplicate billing."
     - "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons."
+    - "Draft the transporter dispute escalation summary and recovery breakdown for all duplicate bills, unverified detention, and damaged cartons found this week."

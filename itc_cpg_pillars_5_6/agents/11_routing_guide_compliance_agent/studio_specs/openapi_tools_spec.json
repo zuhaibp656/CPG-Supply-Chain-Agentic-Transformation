@@ -3,7 +3,7 @@
   "info": {
     "title": "Routing Guide Compliance Agent (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: No-Code Gemini Gem | Target System: SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard"
+    "description": "Mode: Google ADK + Reasoning Coach | Target System: SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard"
   },
   "paths": {
     "/v1/itc-tmd/11_routing_guide_compliance_agent/solve": {

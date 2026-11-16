@@ -3,7 +3,7 @@
   "info": {
     "title": "Freight Bill Audit Agent (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Multimodal + Agent Studio | Target System: SAP S/4HANA FI-AP (`MIRO` / `FB60` Short-Pay Voucher & GST RCM Ledger) + Carrier Dispute Portal"
+    "description": "Mode: Google ADK + Multimodal Vision + Solvers | Target System: SAP S/4HANA FI-AP (`MIRO` / `FB60` Short-Pay Voucher & GST RCM Ledger) + Carrier Dispute Portal"
   },
   "paths": {
     "/v1/itc-tmd/12_freight_bill_audit_agent/solve": {

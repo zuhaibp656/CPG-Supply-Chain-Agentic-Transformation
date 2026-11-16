@@ -3,7 +3,7 @@
   "info": {
     "title": "Yard Disruption & Detention Sentinel (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code Agent Studio | Target System: SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console"
+    "description": "Mode: Google ADK + Python Solvers | Target System: SAP Extended Warehouse Management (SAP EWM) Yard & Weighbridge Gate Console"
   },
   "paths": {
     "/v1/itc-tmd/02_yard_disruption_detention_sentinel/solve": {

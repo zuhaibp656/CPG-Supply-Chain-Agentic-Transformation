@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_cfa_wave_bay_orchestrator
   slug: 04_cfa_wave_bay_orchestrator
   display_name: "CFA Wave & Bay Orchestrator (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "CFA / Depot Operations & Stock Allocation"
   persona_owner: "Depot / CFA Operations Manager"
   named_leader: "Suresh Deshpande (Regional Mother CFA Manager — Bhiwandi & Kundli)"
@@ -18,3 +18,4 @@ spec:
     - "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?"
     - "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?"
     - "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
+    - "Simulate shifting four General Trade pickers to Quick-Commerce bays at Bhiwandi before noon. How much dispatch revenue is protected before cutoff?"

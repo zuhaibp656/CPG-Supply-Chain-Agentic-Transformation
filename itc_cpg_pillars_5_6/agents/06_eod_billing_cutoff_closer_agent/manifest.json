@@ -10,7 +10,7 @@
   "persona": "Depot Dispatch & Billing Supervisor",
   "persona_named": "Prakash Kulkarni (CFA Commercial & SAP Billing Lead \u2014 Bhiwandi & Dankuni)",
   "agent_name": "EOD Billing & Cutoff Closer Agent",
-  "build_mode": "Low-Code + SAP OpenAPI",
+  "build_mode": "Google ADK + SAP OpenAPI + Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "06_cfa_sap_eod_billing_irn_eway_cutoff",
@@ -39,6 +39,7 @@
   "starter_prompts": [
     "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?",
     "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds.",
-    "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
+    "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance.",
+    "Simulate clearing temporary FinAgg credit holds before tonight's billing cutoff. How much blocked end-of-day invoicing unlocks immediately?"
   ]
 }

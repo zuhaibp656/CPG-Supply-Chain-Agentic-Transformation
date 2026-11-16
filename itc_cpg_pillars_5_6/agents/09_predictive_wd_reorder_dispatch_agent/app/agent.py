@@ -1,4 +1,4 @@
-"""Google ADK + GlobalGemini Agent for Predictive WD Reorder & Dispatch Agent (ITC TMD)."""
+"""Google ADK + Multi-Agent GlobalGemini Orchestrator for Predictive WD Reorder & Dispatch Agent (ITC TMD)."""
 from __future__ import annotations
 
 import importlib.util as _ilu
@@ -42,32 +42,34 @@ SHORT_LABEL = "Predictive WD Reorder & Dispatch Agent"
 FUNCTIONAL_AREA = "Channel & Route-to-Market (GT, MT & Q-Commerce)"
 PERSONA_OWNER = "Wholesale Dealer (WD) / Stockist Ops Mgr"
 NAMED_PERSONA = "Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)"
-BUILD_MODE = "Low-Code Agent Studio"
+BUILD_MODE = "Google ADK + Python Solvers"
 DEFAULT_MODEL = "gemini-3.1-pro-preview"
 
 _WRITE_TOOLS = {
     "stage_governed_erp_or_portal_action": ["target_record_id", "proposed_action"],
 }
 
-SYSTEM_INSTRUCTION = """You are **Predictive WD Reorder & Dispatch Agent (ITC TMD)**, built in `Low-Code Agent Studio` mode for **Wholesale Dealer (WD) / Stockist Ops Mgr** (Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)) across **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network (Channel & Route-to-Market (GT, MT & Q-Commerce)).
+SYSTEM_INSTRUCTION = """You are **Predictive WD Reorder & Dispatch Agent (ITC TMD)**, an intelligent Google Agent Development Kit (ADK) supply chain agent for **Wholesale Dealer (WD) / Stockist Ops Mgr** (Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)) across **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network (Channel & Route-to-Market (GT, MT & Q-Commerce)).
 
-1. AUTONOMOUS DATA, SOLVER & VISUAL INTELLIGENCE (NO TECHNICAL PROMPTS NEEDED FROM USERS):
-   - Users ask everyday operational questions in plain English—they will NEVER ask you to "make an A2UI chart", "build an HTML cockpit", or cite internal table/tool names.
-   - On EVERY analytical, operational, or audit question, proactively call `run_deterministic_optimization_solver` (and `verify_finagg_credit_and_godown_cube_fit` when checking physics, batch rules, portal slots, credit headroom, or scanned documents) so your answer is 100% grounded in deterministic math and our visual A2UI charts (bar charts, donut share charts, thermal traces) + interactive workbench render automatically!
-   - Core Problem You Solve: Wholesale Dealers frequently under-order core staples during UNNATI scheme surges (causing kirana stockouts within 48 hours) or hit credit-limit walls mid-week despite having approved FinAgg/SBI supply-chain credit headroom.
+1. AUTONOMOUS DATA, SOLVER & SPECIALIST SUB-AGENT INTELLIGENCE:
+   - Users ask everyday operational questions in plain English—they will never cite internal table names, function names, or chart formatting commands.
+   - For daily status, lane triage, exception detection, or optimization questions: call `run_deterministic_optimization_solver` (plus `verify_finagg_credit_and_godown_cube_fit` when verifying physics, portal appointments, batch rules, GST e-Invoice/E-Way errors, credit headroom, or scanned Lorry Receipt / POD / Strip Chart documents).
+   - For what-if stress tests (volume surge, stock cut, fuel spike, highway closure, heatwave): call `simulate_what_if_scenario` or delegate to your `signal_analyst` specialist sub-agent.
+   - For audit verification, transporter disputes, morning territory field notes (Hindi + English), or compliance escalations: consult `verify_finagg_credit_and_godown_cube_fit` or `draft_executive_stakeholder_brief` (or your `compliance_auditor` specialist sub-agent).
+   - Domain Mission: Wholesale Dealers frequently under-order core staples during UNNATI scheme surges (causing kirana stockouts within 48 hours) or hit credit-limit walls mid-week despite having approved FinAgg/SBI supply-chain credit headroom.
 
 2. CLEAR, BALANCED PLAIN-ENGLISH & INDIAN CURRENCY (`₹ Cr` / `₹ L`) STYLE:
-   - Write in clear, approachable business English at a balanced medium length (130–195 words).
-   - Spell out every domain abbreviation on first use (for example: Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT)).
+   - Write in approachable, clear business English at a balanced medium length (140–210 words).
+   - Spell out every domain abbreviation on first use (Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT), Goods and Services Tax (GST)).
    - Express ALL monetary figures in Indian Rupees using Crores (`₹ Cr`) and Lakhs (`₹ L`) or `₹`—never US Dollars.
-   - Include ONE crisp, copy-ready Markdown table (`<= 5` columns) outside the visual card summarizing the top prioritized items, followed by 2–3 concrete recommended next steps.
-   - Never mention internal JSON/CSV filenames, `snake_case` column names, or Python function names in your user-facing response.
+   - Include ONE crisp, copy-ready Markdown table (`<= 5` columns) outside the visual card summarizing top prioritized items, followed by 2–3 concrete recommended next steps.
+   - Never reveal internal JSON/CSV filenames, `snake_case` column names, or Python tool names to the user.
 
 3. HUMAN SIGN-OFF BOUNDARY & SAFETY GUARDRAILS:
-   - Connected Enterprise System: ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API
-   - STOPS AT: Never converts draft primary orders into firm SAP billing without Wholesale Dealer OTP/portal consent or FinAgg/bank credit-line confirmation.
-   - Never invoke `stage_governed_erp_or_portal_action` on read-only diagnostic questions. When the user asks to prepare, hold, reassign, block, or stage an action, generate a clean `idempotency_key` (e.g. `ITC-09-STAGE-001`), call `stage_governed_erp_or_portal_action`, and confirm the staged voucher awaiting human sign-off.
-   - Strictly refuse any request to bypass safety, axle-weight, cold-chain quality, shelf-life, duplicate-invoice, or overdue credit controls.
+   - Connected System of Record: ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API
+   - Sign-Off Gate: Never converts draft primary orders into firm SAP billing without Wholesale Dealer OTP/portal consent or FinAgg/bank credit-line confirmation.
+   - Never invoke `stage_governed_erp_or_portal_action` on read-only analytical questions. Only stage actions when explicitly asked to hold, block, reassign, or prepare indents/vouchers, supplying a unique `idempotency_key` (e.g. `ITC-09-STAGE-001`).
+   - Strictly refuse any request to bypass axle-weight safety, cold-chain quarantine, shelf-life limits, duplicate-invoice blocks, or overdue credit holds.
 """
 
 
@@ -152,6 +154,7 @@ try:
     from google.adk.models import Gemini
     from google.adk.models.llm_request import LlmRequest
     from google.adk.models.llm_response import LlmResponse
+    from google.adk.tools.agent_tool import AgentTool
     from google.genai import Client, types
     from vertexai.preview.reasoning_engines import AdkApp
 
@@ -169,6 +172,22 @@ try:
                     retry_options=self.retry_options,
                 ),
             )
+
+    def _is_refusal_or_smalltalk(text: str, turn_active: bool) -> bool:
+        low = (text or "").strip().lower()
+        refusal_markers = (
+            "cannot bypass",
+            "blocked by safety",
+            "strictly prohibited",
+            "i cannot override",
+            "cannot approve duplicate",
+            "safety policy prevents",
+        )
+        if any(m in low for m in refusal_markers):
+            return True
+        if not turn_active and len(low) < 110:
+            return True
+        return False
 
     def _before_model_cb(
         callback_context: Optional[CallbackContext] = None,
@@ -213,7 +232,12 @@ try:
             idx = max((i for i, p in enumerate(cleaned) if getattr(p, "text", None)), default=-1)
             existing_txt = (cleaned[idx].text or "") if idx >= 0 else ""
 
-            if st.get("active") and st.get("rows") and "itc_tmd/cockpits/" not in existing_txt:
+            if (
+                st.get("active")
+                and st.get("rows")
+                and not _is_refusal_or_smalltalk(existing_txt, bool(st.get("active")))
+                and "itc_tmd/cockpits/" not in existing_txt
+            ):
                 urls = publish_cockpit_and_csv(
                     agent_slug=AGENT_SLUG,
                     agent_title=SHORT_LABEL,
@@ -223,9 +247,11 @@ try:
                     rows=list(st.get("rows") or []),
                     label_key="wd_name",
                     value_key="order_billing_value_inr",
+                    doc_url=str(st.get("doc_url") or ""),
+                    doc_label=str(st.get("doc_label") or ""),
                 )
                 bullets = [
-                    f"- 🌐 **[Open Interactive Visual Workbench & Simulator (Light/Dark HTML) ↗]({urls['html_url']})** — Live bar & donut breakdowns, What-If slider, and filterable ITC ledger.",
+                    f"- 🌐 **[Open 3-Tab Control Tower Workbench & Simulator (Light/Dark HTML) ↗]({urls['html_url']})** — Interactive KPI cards, What-If scenario sliders, architecture lineage, and filterable ledger.",
                     f"- 📥 **[Download Atomic Schedule for Google Sheets / SAP (CSV) ↗]({urls['csv_url']})** — Verified row-level export.",
                 ]
                 if st.get("doc_url"):
@@ -234,7 +260,7 @@ try:
                         f"- 🖼️ **[Inspect Scanned Document Evidence ({st.get('doc_label', 'PNG Scan')}) ↗]({st['doc_url']})** — High-resolution multimodal document scan.",
                     )
                 nl = chr(10)
-                footer = f"{nl}{nl}### 🌐 Interactive Visual Workbench & Evidence{nl}{nl}" + nl.join(bullets) + nl
+                footer = f"{nl}{nl}### 🌐 Interactive Control Tower Report & Evidence{nl}{nl}" + nl.join(bullets) + nl
                 if idx >= 0:
                     cleaned[idx] = types.Part(text=existing_txt.rstrip() + footer)
                 else:
@@ -272,6 +298,52 @@ try:
             logger.warning("after_agent_callback A2UI emission degraded cleanly: %s", exc)
         return None
 
+    signal_analyst_agent = Agent(
+        name=f"{AGENT_ID}_signal_analyst",
+        model=GlobalGemini(
+            model="gemini-3.8-flash",
+            retry_options=types.HttpRetryOptions(attempts=3),
+        ),
+        generate_content_config=types.GenerateContentConfig(
+            max_output_tokens=8192,
+            temperature=0.1,
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
+        description=f"Specialist Signal & Scenario Analyst for Predictive WD Reorder & Dispatch Agent — queries enterprise tables and simulates what-if disruptions.",
+        instruction=(
+            f"You are the specialist signal & scenario analyst sub-agent for Predictive WD Reorder & Dispatch Agent (ITC TMD). "
+            f"Query ITC TM&D records, inspect master network entities (ICML plants, CFAs, distributors, carriers), "
+            f"and run what-if stress scenarios returning concise INR impact facts."
+        ),
+        tools=[
+            tools.query_itc_enterprise_records,
+            tools.query_itc_master_network_backbone,
+            tools.simulate_what_if_scenario,
+        ],
+    )
+
+    compliance_auditor_agent = Agent(
+        name=f"{AGENT_ID}_compliance_auditor",
+        model=GlobalGemini(
+            model="gemini-3.8-flash",
+            retry_options=types.HttpRetryOptions(attempts=3),
+        ),
+        generate_content_config=types.GenerateContentConfig(
+            max_output_tokens=8192,
+            temperature=0.1,
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
+        description=f"Specialist Audit, Multimodal & Stakeholder Brief Sub-Agent for Predictive WD Reorder & Dispatch Agent.",
+        instruction=(
+            f"You are the specialist compliance & communication auditor sub-agent for Predictive WD Reorder & Dispatch Agent (ITC TMD). "
+            f"Run domain diagnostics or scanned document verification and draft concise escalation or vernacular briefs."
+        ),
+        tools=[
+            tools.verify_finagg_credit_and_godown_cube_fit,
+            tools.draft_executive_stakeholder_brief,
+        ],
+    )
+
     root_agent = Agent(
         name=AGENT_ID,
         model=GlobalGemini(
@@ -283,9 +355,12 @@ try:
             temperature=0.1,
             thinking_config=types.ThinkingConfig(thinking_level="LOW"),
         ),
-        description=f"[ITC TMD · Channel & Route-to-Market (GT, MT & Q-Commerce)] Predictive WD Reorder & Dispatch Agent (Wholesale Dealer (WD) / Stockist Ops Mgr)",
+        description=f"Predictive WD Reorder & Dispatch Agent (ITC TMD) for Wholesale Dealer (WD) / Stockist Ops Mgr: Wholesale Dealers frequently under-order core staples during UNNATI scheme surges (causing kirana stockouts within 48 hours) or hit credit-limit walls mid-week despite having approved FinAgg/SBI supply-chain credit headr",
         instruction=SYSTEM_INSTRUCTION,
-        tools=list(tools.ALL_TOOLS),
+        tools=list(tools.ALL_TOOLS) + [
+            AgentTool(agent=signal_analyst_agent),
+            AgentTool(agent=compliance_auditor_agent),
+        ],
         before_model_callback=_before_model_cb,
         after_model_callback=_after_model_cb,
         after_agent_callback=_after_agent_cb,

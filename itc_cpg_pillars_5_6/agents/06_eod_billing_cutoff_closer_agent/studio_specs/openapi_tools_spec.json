@@ -3,7 +3,7 @@
   "info": {
     "title": "EOD Billing & Cutoff Closer Agent (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code + SAP OpenAPI | Target System: SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
+    "description": "Mode: Google ADK + SAP OpenAPI + Solvers | Target System: SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
   },
   "paths": {
     "/v1/itc-tmd/06_eod_billing_cutoff_closer_agent/solve": {

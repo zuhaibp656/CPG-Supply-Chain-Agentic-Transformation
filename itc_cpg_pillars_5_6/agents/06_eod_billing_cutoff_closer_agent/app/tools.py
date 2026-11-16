@@ -33,12 +33,11 @@ AGENT_NAME = "EOD Billing & Cutoff Closer Agent"
 GE_DISPLAY_NAME = "EOD Billing & Cutoff Closer Agent (ITC TMD)"
 PERSONA_TITLE = "Depot Dispatch & Billing Supervisor"
 FUNCTIONAL_AREA = "CFA / Depot Operations & Stock Allocation"
-BUILD_MODE = "Low-Code + SAP OpenAPI"
+BUILD_MODE = "Google ADK + SAP OpenAPI + Solvers"
 TARGET_SYSTEM = "SAP S/4HANA SD/FI OpenAPI (`API_OUTBOUND_DELIVERY_SRV`, `API_BILLING_DOCUMENT_SRV`) & NIC IRP/E-Way API"
 STOPS_AT_BOUNDARY = "Never releases hard overdue delinquency blocks (`VKM3 >15 days overdue`) without Commercial Finance Controller approval; auto-stages only technical batch-split, FinAgg sync, and Part-B format fixes."
 PRIMARY_TABLE = "06_cfa_sap_eod_billing_irn_eway_cutoff"
 
-# Lightweight per-turn state for autonomous A2UI chart, Canvas RichTable & GCS artifact emission
 _TURN_STATE: Dict[str, Any] = {
     "active": False,
     "user_query": "",
@@ -52,6 +51,17 @@ _TURN_STATE: Dict[str, Any] = {
 
 def _agent_root() -> Path:
     return Path(__file__).resolve().parent.parent
+
+
+def _format_inr(amount_inr: float) -> str:
+    val = float(amount_inr or 0.0)
+    sign = "-" if val < 0 else ""
+    av = abs(val)
+    if av >= 10_000_000.0:
+        return f"{sign}₹{av / 10_000_000.0:.2f} Cr"
+    if av >= 100_000.0:
+        return f"{sign}₹{av / 100_000.0:.2f} L"
+    return f"{sign}₹{av:,.0f}"
 
 
 def reset_turn_state(user_query: str = "") -> None:
@@ -68,9 +78,9 @@ def get_turn_state() -> Dict[str, Any]:
     return dict(_TURN_STATE)
 
 
-def _record_visual_context(solved: Dict[str, Any]) -> None:
-    rows = list(solved.get("prioritized_cutoff_queue", []) or [])
-    headline = str(solved.get("same_day_revenue_unlockable_display", "Verified"))
+def _record_visual_context(solved: Dict[str, Any], override_rows: Optional[List[Dict[str, Any]]] = None, override_headline: str = "") -> None:
+    rows = list(override_rows if override_rows is not None else (solved.get("prioritized_cutoff_queue", []) or []))
+    headline = override_headline or str(solved.get("same_day_revenue_unlockable_display", "Verified"))
     spec = build_autonomous_2panel_vegalite(
         agent_slug=AGENT_SLUG,
         agent_title=AGENT_NAME,
@@ -88,7 +98,7 @@ def _record_visual_context(solved: Dict[str, Any]) -> None:
 
 
 def query_itc_enterprise_records(search_filter: str = "", limit: int = 30) -> Dict[str, Any]:
-    """Queries ITC Limited TM&D operational records for EOD Billing & Cutoff Closer Agent."""
+    """Queries ITC Limited TM&D operational records for EOD Billing & Cutoff Closer Agent with flexible keyword matching."""
     res = query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=limit, agent_dir=_agent_root())
     if res.get("records") and not _TURN_STATE.get("active"):
         solved = SOLVER_REGISTRY[AGENT_SLUG](res["records"])
@@ -130,43 +140,87 @@ def run_deterministic_optimization_solver(search_filter: str = "") -> Dict[str, 
 
 def validate_sap_openapi_bapi_and_nic_payload(reference_id: str = "") -> Dict[str, Any]:
     """Validates exact SAP S/4HANA OData/BAPI payloads (`ConfirmBatchSplitAndPGI`, `Z_API_SD_FINAGG_SYNC`, `Z_API_GST_EWAYBILL_PARTB_RETRY`) and separates hard Finance credit stops."""
-    if AGENT_SLUG in ("03_cold_chain_thermal_auditor", "12_freight_bill_audit_agent"):
-        default_doc = "DOC-STRIP-SHP-CLD-70001.png" if "03_" in AGENT_SLUG else "DOC-POD-882910.png"
-        ref_clean = (reference_id or "").strip()
-        if "771024" in ref_clean:
-            doc_name = "DOC-POD-771024.png"
-        elif "664319" in ref_clean:
-            doc_name = "DOC-POD-664319.png"
-        elif "70002" in ref_clean or "patna" in ref_clean.lower() or "paneer" in ref_clean.lower():
-            doc_name = "DOC-STRIP-SHP-CLD-70002.png"
-        elif ref_clean.lower().endswith(".png"):
-            doc_name = ref_clean
-        else:
-            doc_name = default_doc
-
-        ocr = inspect_multimodal_document(doc_name, agent_dir=_agent_root())
-        png_path = resolve_multimodal_png_path(ocr["document_filename"], agent_dir=_agent_root())
-        if png_path is not None:
-            img_url = publish_multimodal_doc_image(png_path)
-            if img_url:
-                _TURN_STATE["doc_url"] = img_url
-                _TURN_STATE["doc_label"] = f"{ocr['document_filename']} ({ocr['document_title']})"
-        solved = run_deterministic_optimization_solver("")
-        return {
-            "tool": "validate_sap_openapi_bapi_and_nic_payload",
-            "multimodal_vision_verification": ocr,
-            "scanned_document_view_url": _TURN_STATE.get("doc_url", ""),
-            "headline_recovery_or_claim": solved.get("same_day_revenue_unlockable_display"),
-            "top_audited_items": solved.get("prioritized_cutoff_queue", [])[:3],
-        }
-
     solved = run_deterministic_optimization_solver(reference_id)
+    rows = solved.get("prioritized_cutoff_queue", [])
+    flagged = [r for r in rows if any(k in str(r).upper() for k in ("RISK", "HOLD", "BLOCK", "BREACH", "SPOT", "REJECT", "SWAP", "CRITICAL"))] or rows
     return {
         "tool": "validate_sap_openapi_bapi_and_nic_payload",
         "reference_filter": reference_id or "ALL_PRIORITY_EXCEPTIONS",
         "headline_impact_inr": solved.get("same_day_revenue_unlockable_display"),
-        "verified_diagnostics": solved.get("prioritized_cutoff_queue", [])[:4],
+        "exception_count": len(flagged),
+        "verified_diagnostics": flagged[:5],
         "human_gate_boundary": STOPS_AT_BOUNDARY,
+    }
+
+
+def simulate_what_if_scenario(adjustment_pct: int = 120, focus_filter: str = "") -> Dict[str, Any]:
+    """Simulates a live operational what-if scenario (volume surge, stock shortage, rate shift, or capacity reallocation)."""
+    solved = run_deterministic_optimization_solver(focus_filter)
+    base_rows = list(solved.get("prioritized_cutoff_queue", []) or [])
+    if -50 <= adjustment_pct <= 50 and adjustment_pct != 0:
+        factor = round(1.0 + (adjustment_pct / 100.0), 4)
+        delta_pct = float(adjustment_pct)
+    else:
+        factor = round(max(0.25, adjustment_pct / 100.0), 4)
+        delta_pct = round((factor - 1.0) * 100.0, 1)
+
+    sim_rows: List[Dict[str, Any]] = []
+    base_total = 0.0
+    sim_total = 0.0
+    for r in base_rows:
+        rc = dict(r)
+        try:
+            bv = float(rc.get("invoice_value_inr", 0.0) or 0.0)
+        except Exception:
+            bv = 0.0
+        sv = round(bv * factor, 2)
+        base_total += bv
+        sim_total += sv
+        rc["invoice_value_inr"] = sv
+        rc["baseline_value_inr"] = round(bv, 2)
+        rc["scenario_delta_inr"] = round(sv - bv, 2)
+        sim_rows.append(rc)
+
+    sim_headline = _format_inr(sim_total) if sim_total else str(solved.get("same_day_revenue_unlockable_display", "Verified"))
+    _record_visual_context(solved, override_rows=sim_rows, override_headline=sim_headline)
+    return {
+        "status": "SCENARIO_SIMULATED",
+        "focus_filter": focus_filter or "FULL_PORTFOLIO",
+        "adjustment_factor": factor,
+        "scenario_delta_pct": delta_pct,
+        "baseline_impact_inr": round(base_total, 2),
+        "baseline_impact_display": _format_inr(base_total),
+        "simulated_impact_inr": round(sim_total, 2),
+        "simulated_impact_display": sim_headline,
+        "net_change_display": _format_inr(sim_total - base_total),
+        "top_simulated_items": sim_rows[:5],
+        "human_gate_boundary": STOPS_AT_BOUNDARY,
+    }
+
+
+def draft_executive_stakeholder_brief(focus_filter: str = "", include_hindi_vernacular: bool = False) -> Dict[str, Any]:
+    """Drafts an escalation, transporter dispute, or field-beat morning brief (optionally bilingual Hindi + English)."""
+    solved = run_deterministic_optimization_solver(focus_filter)
+    rows = list(solved.get("prioritized_cutoff_queue", []) or [])[:4]
+    headline = str(solved.get("same_day_revenue_unlockable_display", "Verified"))
+    action_lines = [
+        f"{idx + 1}. {r.get('outbound_delivery_no', 'Item')}: {_format_inr(float(r.get('invoice_value_inr', 0.0) or 0.0))}"
+        for idx, r in enumerate(rows)
+    ]
+    hindi_note = ""
+    if include_hindi_vernacular:
+        hindi_note = (
+            f"Namaste Team — Aaj ke {AGENT_NAME} review mein {len(rows)} mukhya priority items ({headline} impact) chune gaye hain. "
+            f"Kripya top priority dispatches aur approval gate par turant action lein: " + "; ".join(action_lines[:3])
+        )
+    return {
+        "status": "STAKEHOLDER_BRIEF_READY",
+        "agent_name": AGENT_NAME,
+        "persona_owner": PERSONA_TITLE,
+        "headline_value_display": headline,
+        "priority_actions": action_lines,
+        "vernacular_hindi_summary": hindi_note or None,
+        "approval_gate": STOPS_AT_BOUNDARY,
     }
 
 
@@ -216,6 +270,8 @@ def export_atomic_schedule_csv(search_filter: str = "") -> Dict[str, Any]:
         rows=list(_TURN_STATE.get("rows") or []),
         label_key="outbound_delivery_no",
         value_key="invoice_value_inr",
+        doc_url=str(_TURN_STATE.get("doc_url") or ""),
+        doc_label=str(_TURN_STATE.get("doc_label") or ""),
         local_dir=local_out,
     )
     return {
@@ -227,7 +283,7 @@ def export_atomic_schedule_csv(search_filter: str = "") -> Dict[str, Any]:
 
 
 def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]:
-    """Compiles & publishes the Light-Theme Default Interactive HTML5 Cockpit (with Bar + Donut views & What-If slider)."""
+    """Compiles & publishes the Light-Theme Default 3-Tab Executive HTML5 Control Tower Cockpit."""
     if not _TURN_STATE.get("rows"):
         run_deterministic_optimization_solver(search_filter)
     local_out = Path("/tmp") / "itc_tmd_artifacts" / AGENT_SLUG
@@ -240,6 +296,8 @@ def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]
         rows=list(_TURN_STATE.get("rows") or []),
         label_key="outbound_delivery_no",
         value_key="invoice_value_inr",
+        doc_url=str(_TURN_STATE.get("doc_url") or ""),
+        doc_label=str(_TURN_STATE.get("doc_label") or ""),
         local_dir=local_out,
     )
     return {
@@ -256,6 +314,8 @@ ALL_TOOLS = [
     query_itc_master_network_backbone,
     run_deterministic_optimization_solver,
     validate_sap_openapi_bapi_and_nic_payload,
+    simulate_what_if_scenario,
+    draft_executive_stakeholder_brief,
     stage_governed_erp_or_portal_action,
     render_a2ui_visual_chart_and_canvas,
     export_atomic_schedule_csv,

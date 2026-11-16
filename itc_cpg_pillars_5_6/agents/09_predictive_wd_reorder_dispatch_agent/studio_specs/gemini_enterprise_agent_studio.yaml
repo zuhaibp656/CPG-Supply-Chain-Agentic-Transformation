@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_predictive_wd_reorder_dispatch_agent
   slug: 09_predictive_wd_reorder_dispatch_agent
   display_name: "Predictive WD Reorder & Dispatch Agent (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
   persona_owner: "Wholesale Dealer (WD) / Stockist Ops Mgr"
   named_leader: "Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)"
@@ -18,3 +18,4 @@ spec:
     - "Which wholesale dealers have dropped below four days of stock on fast-moving SKUs and risk running dry in the next 48 hours?"
     - "Do Mahavir Agencies, Kaveri Distributors, and Hooghly Enterprises have enough godown space and FinAgg credit room for a top-up load?"
     - "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation."
+    - "Simulate a 25% festive demand surge next week. Which wholesale dealers run out of stock first and need higher FinAgg credit headroom?"

@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_yard_disruption_detention_sentinel
   slug: 02_yard_disruption_detention_sentinel
   display_name: "Yard Disruption & Detention Sentinel (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
   persona_owner: "Plant Yard & Dispatch Lead"
   named_leader: "Harpreet Singh Gill (ICML Yard Master — Kapurthala & Ranjangaon)"
@@ -18,3 +18,4 @@ spec:
     - "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?"
     - "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?"
     - "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
+    - "Simulate a 25% monsoon arrival spike at Ranjangaon and Panchla gates tonight. How many trucks risk detention charges if dock bay re-slotting runs automatically?"

@@ -10,7 +10,7 @@
   "persona": "Area Distribution / RTM Manager",
   "persona_named": "Siddharth Banerjee (TM&D Area Manager \u2014 Pune, Lucknow & Kolkata Clusters)",
   "agent_name": "Territory RTM Morning Pulse Gem",
-  "build_mode": "No-Code Gemini Gem",
+  "build_mode": "Google ADK + Reasoning Coach",
   "priority": "P1",
   "default_model": "gemini-3.8-flash",
   "table_stem": "08_unnati_eb2b_vajra_sfa_morning_pulse",
@@ -21,7 +21,7 @@
     "New UNNATI eB2B + Vajra SFA Morning Pulse Gem"
   ],
   "target_system": "ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast",
-  "stops_at": "Advisory No-Code Gemini Gem by design\u2014synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.",
+  "stops_at": "Google ADK Advisory Coach by design\u2014synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.",
   "problem_statement": "Area Distribution Managers start every morning juggling four disconnected trackers: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes\u2014missing urgent beat course-corrections before 08:30.",
   "special_tool_name": "generate_0730_ase_whatsapp_and_vajra_brief",
   "special_tool_doc": "Synthesizes a crisp, plain-English 07:30 IST Area Sales Executive (ASE) beat action card pairing overnight UNNATI surges with Vajra strike-rate gaps.",
@@ -39,6 +39,7 @@
   "starter_prompts": [
     "Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?",
     "Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?",
-    "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."
+    "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today.",
+    "Draft a quick morning note in simple Hindi and English for Territory Officers covering weak beats with zero-bill retail outlets."
   ]
 }

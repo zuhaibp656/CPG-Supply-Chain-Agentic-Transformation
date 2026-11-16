@@ -3,7 +3,7 @@
   "info": {
     "title": "Load Consolidation Agent (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code Agent Studio | Target System: SAP Transportation Management (SAP TM) & Zenith Indent Portal"
+    "description": "Mode: Google ADK + Python Solvers | Target System: SAP Transportation Management (SAP TM) & Zenith Indent Portal"
   },
   "paths": {
     "/v1/itc-tmd/01_load_consolidation_agent/solve": {

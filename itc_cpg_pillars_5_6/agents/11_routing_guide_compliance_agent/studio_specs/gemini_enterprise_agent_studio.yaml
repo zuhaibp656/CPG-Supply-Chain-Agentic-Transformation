@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_routing_guide_compliance_agent
   slug: 11_routing_guide_compliance_agent
   display_name: "Routing Guide Compliance Agent (ITC TMD)"
-  build_mode: "No-Code Gemini Gem"
+  build_mode: "Google ADK + Reasoning Coach"
   functional_area: "Fleet, Carrier & Freight Governance"
   persona_owner: "Transport Procurement Manager"
   named_leader: "Kavita Krishnamurthy (National Freight Procurement Lead — ITC TM&D HQ Kolkata)"
@@ -18,3 +18,4 @@ spec:
     - "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?"
     - "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?"
     - "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."
+    - "What happens to our monthly freight budget if spot market truck rates jump 18% and primary carrier tender acceptance slips below 70%?"

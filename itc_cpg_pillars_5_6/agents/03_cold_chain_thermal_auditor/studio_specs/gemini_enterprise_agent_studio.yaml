@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_cold_chain_thermal_auditor
   slug: 03_cold_chain_thermal_auditor
   display_name: "Cold-Chain Thermal Auditor (ITC TMD)"
-  build_mode: "Low-Code Agent Studio"
+  build_mode: "Google ADK + Python Solvers"
   functional_area: "Primary Logistics & Plant Dispatch (Factory -> CFA / Depot)"
   persona_owner: "Cold-Chain & Transit QA Lead"
   named_leader: "Dr. Ananya Chatterjee (National Cold-Chain QA Lead — Kolkata & Kapurthala)"
@@ -18,3 +18,4 @@ spec:
     - "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?"
     - "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked."
     - "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."
+    - "Simulate a 4-degree ambient heatwave across the Kapurthala to Delhi dairy and frozen corridor. Which shipments breach safe shelf life first?"

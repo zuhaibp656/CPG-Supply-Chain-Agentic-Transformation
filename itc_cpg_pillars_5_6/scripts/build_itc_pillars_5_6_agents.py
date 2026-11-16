@@ -29,7 +29,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Primary Transport Planner",
         "persona_named": "Raghavendra Kulkarni (Primary Transport Lead — Pune Ranjangaon ICML)",
         "agent_name": "Load Consolidation Agent",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "01_icml_primary_dispatch_waves_and_cartons",
@@ -49,7 +49,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Check today's staged Ranjangaon and Khordha dispatches. Where are we sending half-empty Atta or Bingo! trucks that can be combined?",
             "Will co-loading Sunfeast biscuits and Bingo! cartons above Aashirvaad Atta on the Ahmedabad lane stay safe on axle weight and carton crushing?",
-            "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents."
+            "Prepare the consolidated truck loading plan for the Sanand and Dankuni lanes so I can review and release the indents.",
+            "Run a what-if scenario: how much freight cost can we save if diesel surcharge rises 15% and we prioritize mixed biscuit-and-atta loads across western lanes?",
         ],
     },
     {
@@ -64,7 +65,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Plant Yard & Dispatch Lead",
         "persona_named": "Harpreet Singh Gill (ICML Yard Master — Kapurthala & Ranjangaon)",
         "agent_name": "Yard Disruption & Detention Sentinel",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "02_icml_yard_gate_fastag_dock_detention",
@@ -84,7 +85,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?",
             "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?",
-            "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
+            "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off.",
+            "Simulate a 25% monsoon arrival spike at Ranjangaon and Panchla gates tonight. How many trucks risk detention charges if dock bay re-slotting runs automatically?",
         ],
     },
     {
@@ -99,7 +101,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Cold-Chain & Transit QA Lead",
         "persona_named": "Dr. Ananya Chatterjee (National Cold-Chain QA Lead — Kolkata & Kapurthala)",
         "agent_name": "Cold-Chain Thermal Auditor",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "03_drishti_reefer_iot_thermal_telemetry",
@@ -119,7 +121,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Review our inbound Master Chef frozen, Svasti dairy, and Fabelle chocolate reefers. Did any load suffer heat damage in transit?",
             "Check the logger printout on the Kapurthala frozen fries truck and the Patna paneer load to see why temperatures spiked.",
-            "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off."
+            "Hold the affected pallets in quarantine and prepare the carrier spoilage claim packet for quality sign-off.",
+            "Simulate a 4-degree ambient heatwave across the Kapurthala to Delhi dairy and frozen corridor. Which shipments breach safe shelf life first?",
         ],
     },
     {
@@ -134,7 +137,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Depot / CFA Operations Manager",
         "persona_named": "Suresh Deshpande (Regional Mother CFA Manager — Bhiwandi & Kundli)",
         "agent_name": "CFA Wave & Bay Orchestrator",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "04_cfa_wms_pick_waves_fefo_and_bays",
@@ -154,7 +157,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?",
             "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?",
-            "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
+            "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan.",
+            "Simulate shifting four General Trade pickers to Quick-Commerce bays at Bhiwandi before noon. How much dispatch revenue is protected before cutoff?",
         ],
     },
     {
@@ -169,7 +173,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Customer Service & Logistics (CS&L) Lead",
         "persona_named": "Meenakshi Sundaram (Zonal CS&L Head — Bengaluru & Southern Hub)",
         "agent_name": "Fair-Share Stock Allocation Agent",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "05_csl_shortage_orders_and_channel_allocations",
@@ -189,7 +193,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "We are short on Sunfeast Dark Fantasy 300g at Nelamangala depot. How should we split the 2,400 available cases across channels?",
             "What happens to our Quick-Commerce penalties and General Trade dealers if we let standard first-come-first-served allocation run?",
-            "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved."
+            "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved.",
+            "What happens if available Dark Fantasy stock drops another 20% at Nelamangala? How do we protect Quick-Commerce fill rates without starving general dealers?",
         ],
     },
     {
@@ -204,7 +209,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Depot Dispatch & Billing Supervisor",
         "persona_named": "Prakash Kulkarni (CFA Commercial & SAP Billing Lead — Bhiwandi & Dankuni)",
         "agent_name": "EOD Billing & Cutoff Closer Agent",
-        "build_mode": "Low-Code + SAP OpenAPI",
+        "build_mode": "Google ADK + SAP OpenAPI + Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "06_cfa_sap_eod_billing_irn_eway_cutoff",
@@ -224,7 +229,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?",
             "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds.",
-            "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
+            "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance.",
+            "Simulate clearing temporary FinAgg credit holds before tonight's billing cutoff. How much blocked end-of-day invoicing unlocks immediately?",
         ],
     },
     {
@@ -239,7 +245,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Modern Trade & Q-Comm Logistics Lead",
         "persona_named": "Neha Kapoor (National MT & Quick-Commerce Supply Lead — Gurugram & Mumbai)",
         "agent_name": "MT / Q-Comm Slot & OTIF Copilot",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "07_mt_qcomm_asn_dock_slots_and_otif",
@@ -259,7 +265,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?",
             "What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?",
-            "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."
+            "Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed.",
+            "Simulate pulling forward three Blinkit and Zepto darkstore dock appointments by two hours. How many late-delivery penalties do we avoid today?",
         ],
     },
     {
@@ -274,7 +281,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Area Distribution / RTM Manager",
         "persona_named": "Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)",
         "agent_name": "Territory RTM Morning Pulse Gem",
-        "build_mode": "No-Code Gemini Gem",
+        "build_mode": "Google ADK + Reasoning Coach",
         "priority": "P1",
         "default_model": "gemini-3.8-flash",
         "table_stem": "08_unnati_eb2b_vajra_sfa_morning_pulse",
@@ -282,7 +289,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "reuse_status": "NEW_TAILORED_ITC_GEM",
         "reused_from_agents": ["field_beat_distributor_sync_agent", "New UNNATI eB2B + Vajra SFA Morning Pulse Gem"],
         "target_system": "ITC Vajra SFA Beat Console & UNNATI eB2B Campaign Broadcast",
-        "stops_at": "Advisory No-Code Gemini Gem by design—synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.",
+        "stops_at": "Google ADK Advisory Coach by design—synthesizes morning beat priorities and drafts WhatsApp/Vajra nudges, never mutating trade scheme budgets or HR attendance records.",
         "problem_statement": "Area Distribution Managers start every morning juggling four disconnected trackers: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes—missing urgent beat course-corrections before 08:30.",
         "special_tool_name": "generate_0730_ase_whatsapp_and_vajra_brief",
         "special_tool_doc": "Synthesizes a crisp, plain-English 07:30 IST Area Sales Executive (ASE) beat action card pairing overnight UNNATI surges with Vajra strike-rate gaps.",
@@ -294,7 +301,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?",
             "Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?",
-            "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."
+            "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today.",
+            "Draft a quick morning note in simple Hindi and English for Territory Officers covering weak beats with zero-bill retail outlets.",
         ],
     },
     {
@@ -309,7 +317,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Wholesale Dealer (WD) / Stockist Ops Mgr",
         "persona_named": "Rajeshwar Rao (TM&D Stockist Operations & DMS Lead — Mumbai, Bengaluru & Kolkata)",
         "agent_name": "Predictive WD Reorder & Dispatch Agent",
-        "build_mode": "Low-Code Agent Studio",
+        "build_mode": "Google ADK + Python Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "09_wd_stockist_doi_credit_and_reorders",
@@ -329,7 +337,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Which wholesale dealers have dropped below four days of stock on fast-moving SKUs and risk running dry in the next 48 hours?",
             "Do Mahavir Agencies, Kaveri Distributors, and Hooghly Enterprises have enough godown space and FinAgg credit room for a top-up load?",
-            "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation."
+            "Prepare the primary replenishment orders and FinAgg credit drawdowns for dealer confirmation.",
+            "Simulate a 25% festive demand surge next week. Which wholesale dealers run out of stock first and need higher FinAgg credit headroom?",
         ],
     },
     {
@@ -344,7 +353,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Fleet & Route Dispatch Lead",
         "persona_named": "Vikramaditya Menon (Central Zenith Fleet Control Tower Lead — Mumbai, Bengaluru & Kolkata)",
         "agent_name": "Dynamic Rerouter",
-        "build_mode": "Low-Code + Maps Platform",
+        "build_mode": "Google ADK + Geospatial Routing",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "10_zenith_fleet_gps_traffic_and_ev_routes",
@@ -364,7 +373,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Which primary trucks and city EV vans are stuck in highway blockages, waterlogging, or police no-entry curfews right now?",
             "Are any delayed highway loads close to their E-Way Bill expiring tonight, or do any city EVs need a charging stop to finish their drops?",
-            "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval."
+            "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval.",
+            "Simulate closing the Mumbai-Pune expressway lane for six hours. Which primary trucks and city electric vans must divert to avoid missed deliveries?",
         ],
     },
     {
@@ -379,7 +389,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Transport Procurement Manager",
         "persona_named": "Kavita Krishnamurthy (National Freight Procurement Lead — ITC TM&D HQ Kolkata)",
         "agent_name": "Routing Guide Compliance Agent",
-        "build_mode": "No-Code Gemini Gem",
+        "build_mode": "Google ADK + Reasoning Coach",
         "priority": "P1",
         "default_model": "gemini-3.8-flash",
         "table_stem": "11_carrier_routing_guide_tenders_and_spot",
@@ -387,7 +397,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "reuse_status": "REUSED_AND_TAILORED",
         "reused_from_agents": ["freight_control_tower"],
         "target_system": "SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard",
-        "stops_at": "Advisory & governance No-Code Gem—flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally.",
+        "stops_at": "Advisory & governance Google ADK Coach—flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally.",
         "problem_statement": "ITC negotiates annual L1/L2/L3 waterfall rate cards across hundreds of ICML-to-CFA lanes, yet local dispatchers frequently bypass L2 backup carriers during evening rush and book ad-hoc spot-market brokers at 28-40% freight premiums.",
         "special_tool_name": "diagnose_planner_bypass_vs_carrier_rejection",
         "special_tool_doc": "Separates maverick planner waterfall bypasses (where L2 was skipped) from genuine L1+L2 carrier capacity rejections requiring lane rate-card re-indexing.",
@@ -399,7 +409,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?",
             "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?",
-            "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."
+            "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review.",
+            "What happens to our monthly freight budget if spot market truck rates jump 18% and primary carrier tender acceptance slips below 70%?",
         ],
     },
     {
@@ -414,7 +425,7 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "persona": "Freight Bill & Claims Controller",
         "persona_named": "Subhashish Mukherjee (National Freight Audit & Commercial Claims Controller — Kolkata)",
         "agent_name": "Freight Bill Audit Agent",
-        "build_mode": "Multimodal + Agent Studio",
+        "build_mode": "Google ADK + Multimodal Vision + Solvers",
         "priority": "P0",
         "default_model": "gemini-3.1-pro-preview",
         "table_stem": "12_freight_lr_pod_invoices_and_claims",
@@ -438,7 +449,8 @@ AGENTS_CATALOG: List[Dict[str, Any]] = [
         "starter_prompts": [
             "Audit this week's pending transporter freight bills. Where do billed rates, fuel surcharges, or detention hours disagree with our contracts and GPS logs?",
             "Check the scanned lorry receipts and stamped delivery slips on LR-TCI-882910 and LR-HWK-771024 for damaged cartons or duplicate billing.",
-            "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons."
+            "Block the duplicate bill and stage short-pay vouchers deducting the unverified detention and damaged Dark Fantasy cartons.",
+            "Draft the transporter dispute escalation summary and recovery breakdown for all duplicate bills, unverified detention, and damaged cartons found this week.",
         ],
     },
 ]
@@ -456,6 +468,59 @@ def render_tools_py(meta: Dict[str, Any]) -> str:
     val_k = meta["chart_value_key"]
     kpi_k = meta["headline_kpi_key"]
     rows_k = meta["rows_key"]
+    mm_docs = list(meta.get("multimodal_docs") or [])
+    default_mm_doc = mm_docs[0] if mm_docs else ""
+
+    if mm_docs:
+        special_impl = f'''def {spec_fn}(reference_id: str = "") -> Dict[str, Any]:
+    """{spec_doc}"""
+    default_doc = {json.dumps(default_mm_doc)}
+    available_docs = {json.dumps(mm_docs)}
+    ref_clean = (reference_id or "").strip()
+    doc_name = default_doc
+    if ref_clean:
+        matched_doc = next((d for d in available_docs if ref_clean.lower() in d.lower()), "")
+        if matched_doc:
+            doc_name = matched_doc
+        elif "771024" in ref_clean:
+            doc_name = "DOC-POD-771024.png"
+        elif "664319" in ref_clean:
+            doc_name = "DOC-POD-664319.png"
+        elif "70002" in ref_clean or "patna" in ref_clean.lower() or "paneer" in ref_clean.lower():
+            doc_name = "DOC-STRIP-SHP-CLD-70002.png"
+        elif ref_clean.lower().endswith(".png"):
+            doc_name = ref_clean
+
+    ocr = inspect_multimodal_document(doc_name, agent_dir=_agent_root())
+    png_path = resolve_multimodal_png_path(ocr["document_filename"], agent_dir=_agent_root())
+    if png_path is not None:
+        img_url = publish_multimodal_doc_image(png_path)
+        if img_url:
+            _TURN_STATE["doc_url"] = img_url
+            _TURN_STATE["doc_label"] = f"{{ocr['document_filename']}} ({{ocr['document_title']}})"
+    solved = run_deterministic_optimization_solver(ref_clean)
+    return {{
+        "tool": "{spec_fn}",
+        "multimodal_vision_verification": ocr,
+        "scanned_document_view_url": _TURN_STATE.get("doc_url", ""),
+        "headline_recovery_or_claim": solved.get("{kpi_k}"),
+        "top_audited_items": solved.get("{rows_k}", [])[:4],
+        "human_gate_boundary": STOPS_AT_BOUNDARY,
+    }}'''
+    else:
+        special_impl = f'''def {spec_fn}(reference_id: str = "") -> Dict[str, Any]:
+    """{spec_doc}"""
+    solved = run_deterministic_optimization_solver(reference_id)
+    rows = solved.get("{rows_k}", [])
+    flagged = [r for r in rows if any(k in str(r).upper() for k in ("RISK", "HOLD", "BLOCK", "BREACH", "SPOT", "REJECT", "SWAP", "CRITICAL"))] or rows
+    return {{
+        "tool": "{spec_fn}",
+        "reference_filter": reference_id or "ALL_PRIORITY_EXCEPTIONS",
+        "headline_impact_inr": solved.get("{kpi_k}"),
+        "exception_count": len(flagged),
+        "verified_diagnostics": flagged[:5],
+        "human_gate_boundary": STOPS_AT_BOUNDARY,
+    }}'''
 
     return f'''"""Hermetic Deterministic Python & Multimodal Tools for {meta['ge_display_name']}."""
 from __future__ import annotations
@@ -497,7 +562,6 @@ TARGET_SYSTEM = "{target_sys}"
 STOPS_AT_BOUNDARY = "{stops_at}"
 PRIMARY_TABLE = "{t_stem}"
 
-# Lightweight per-turn state for autonomous A2UI chart, Canvas RichTable & GCS artifact emission
 _TURN_STATE: Dict[str, Any] = {{
     "active": False,
     "user_query": "",
@@ -511,6 +575,17 @@ _TURN_STATE: Dict[str, Any] = {{
 
 def _agent_root() -> Path:
     return Path(__file__).resolve().parent.parent
+
+
+def _format_inr(amount_inr: float) -> str:
+    val = float(amount_inr or 0.0)
+    sign = "-" if val < 0 else ""
+    av = abs(val)
+    if av >= 10_000_000.0:
+        return f"{{sign}}₹{{av / 10_000_000.0:.2f}} Cr"
+    if av >= 100_000.0:
+        return f"{{sign}}₹{{av / 100_000.0:.2f}} L"
+    return f"{{sign}}₹{{av:,.0f}}"
 
 
 def reset_turn_state(user_query: str = "") -> None:
@@ -527,9 +602,9 @@ def get_turn_state() -> Dict[str, Any]:
     return dict(_TURN_STATE)
 
 
-def _record_visual_context(solved: Dict[str, Any]) -> None:
-    rows = list(solved.get("{rows_k}", []) or [])
-    headline = str(solved.get("{kpi_k}", "Verified"))
+def _record_visual_context(solved: Dict[str, Any], override_rows: Optional[List[Dict[str, Any]]] = None, override_headline: str = "") -> None:
+    rows = list(override_rows if override_rows is not None else (solved.get("{rows_k}", []) or []))
+    headline = override_headline or str(solved.get("{kpi_k}", "Verified"))
     spec = build_autonomous_2panel_vegalite(
         agent_slug=AGENT_SLUG,
         agent_title=AGENT_NAME,
@@ -547,7 +622,7 @@ def _record_visual_context(solved: Dict[str, Any]) -> None:
 
 
 def query_itc_enterprise_records(search_filter: str = "", limit: int = 30) -> Dict[str, Any]:
-    """Queries ITC Limited TM&D operational records for {meta['agent_name']}."""
+    """Queries ITC Limited TM&D operational records for {meta['agent_name']} with flexible keyword matching."""
     res = query_domain_table(PRIMARY_TABLE, search_filter=search_filter, limit=limit, agent_dir=_agent_root())
     if res.get("records") and not _TURN_STATE.get("active"):
         solved = SOLVER_REGISTRY[AGENT_SLUG](res["records"])
@@ -587,45 +662,77 @@ def run_deterministic_optimization_solver(search_filter: str = "") -> Dict[str, 
     return result
 
 
-def {spec_fn}(reference_id: str = "") -> Dict[str, Any]:
-    """{spec_doc}"""
-    if AGENT_SLUG in ("03_cold_chain_thermal_auditor", "12_freight_bill_audit_agent"):
-        default_doc = "DOC-STRIP-SHP-CLD-70001.png" if "03_" in AGENT_SLUG else "DOC-POD-882910.png"
-        ref_clean = (reference_id or "").strip()
-        if "771024" in ref_clean:
-            doc_name = "DOC-POD-771024.png"
-        elif "664319" in ref_clean:
-            doc_name = "DOC-POD-664319.png"
-        elif "70002" in ref_clean or "patna" in ref_clean.lower() or "paneer" in ref_clean.lower():
-            doc_name = "DOC-STRIP-SHP-CLD-70002.png"
-        elif ref_clean.lower().endswith(".png"):
-            doc_name = ref_clean
-        else:
-            doc_name = default_doc
+{special_impl}
 
-        ocr = inspect_multimodal_document(doc_name, agent_dir=_agent_root())
-        png_path = resolve_multimodal_png_path(ocr["document_filename"], agent_dir=_agent_root())
-        if png_path is not None:
-            img_url = publish_multimodal_doc_image(png_path)
-            if img_url:
-                _TURN_STATE["doc_url"] = img_url
-                _TURN_STATE["doc_label"] = f"{{ocr['document_filename']}} ({{ocr['document_title']}})"
-        solved = run_deterministic_optimization_solver("")
-        return {{
-            "tool": "{spec_fn}",
-            "multimodal_vision_verification": ocr,
-            "scanned_document_view_url": _TURN_STATE.get("doc_url", ""),
-            "headline_recovery_or_claim": solved.get("{kpi_k}"),
-            "top_audited_items": solved.get("{rows_k}", [])[:3],
-        }}
 
-    solved = run_deterministic_optimization_solver(reference_id)
+def simulate_what_if_scenario(adjustment_pct: int = 120, focus_filter: str = "") -> Dict[str, Any]:
+    """Simulates a live operational what-if scenario (volume surge, stock shortage, rate shift, or capacity reallocation)."""
+    solved = run_deterministic_optimization_solver(focus_filter)
+    base_rows = list(solved.get("{rows_k}", []) or [])
+    if -50 <= adjustment_pct <= 50 and adjustment_pct != 0:
+        factor = round(1.0 + (adjustment_pct / 100.0), 4)
+        delta_pct = float(adjustment_pct)
+    else:
+        factor = round(max(0.25, adjustment_pct / 100.0), 4)
+        delta_pct = round((factor - 1.0) * 100.0, 1)
+
+    sim_rows: List[Dict[str, Any]] = []
+    base_total = 0.0
+    sim_total = 0.0
+    for r in base_rows:
+        rc = dict(r)
+        try:
+            bv = float(rc.get("{val_k}", 0.0) or 0.0)
+        except Exception:
+            bv = 0.0
+        sv = round(bv * factor, 2)
+        base_total += bv
+        sim_total += sv
+        rc["{val_k}"] = sv
+        rc["baseline_value_inr"] = round(bv, 2)
+        rc["scenario_delta_inr"] = round(sv - bv, 2)
+        sim_rows.append(rc)
+
+    sim_headline = _format_inr(sim_total) if sim_total else str(solved.get("{kpi_k}", "Verified"))
+    _record_visual_context(solved, override_rows=sim_rows, override_headline=sim_headline)
     return {{
-        "tool": "{spec_fn}",
-        "reference_filter": reference_id or "ALL_PRIORITY_EXCEPTIONS",
-        "headline_impact_inr": solved.get("{kpi_k}"),
-        "verified_diagnostics": solved.get("{rows_k}", [])[:4],
+        "status": "SCENARIO_SIMULATED",
+        "focus_filter": focus_filter or "FULL_PORTFOLIO",
+        "adjustment_factor": factor,
+        "scenario_delta_pct": delta_pct,
+        "baseline_impact_inr": round(base_total, 2),
+        "baseline_impact_display": _format_inr(base_total),
+        "simulated_impact_inr": round(sim_total, 2),
+        "simulated_impact_display": sim_headline,
+        "net_change_display": _format_inr(sim_total - base_total),
+        "top_simulated_items": sim_rows[:5],
         "human_gate_boundary": STOPS_AT_BOUNDARY,
+    }}
+
+
+def draft_executive_stakeholder_brief(focus_filter: str = "", include_hindi_vernacular: bool = False) -> Dict[str, Any]:
+    """Drafts an escalation, transporter dispute, or field-beat morning brief (optionally bilingual Hindi + English)."""
+    solved = run_deterministic_optimization_solver(focus_filter)
+    rows = list(solved.get("{rows_k}", []) or [])[:4]
+    headline = str(solved.get("{kpi_k}", "Verified"))
+    action_lines = [
+        f"{{idx + 1}}. {{r.get('{lbl_k}', 'Item')}}: {{_format_inr(float(r.get('{val_k}', 0.0) or 0.0))}}"
+        for idx, r in enumerate(rows)
+    ]
+    hindi_note = ""
+    if include_hindi_vernacular:
+        hindi_note = (
+            f"Namaste Team — Aaj ke {{AGENT_NAME}} review mein {{len(rows)}} mukhya priority items ({{headline}} impact) chune gaye hain. "
+            f"Kripya top priority dispatches aur approval gate par turant action lein: " + "; ".join(action_lines[:3])
+        )
+    return {{
+        "status": "STAKEHOLDER_BRIEF_READY",
+        "agent_name": AGENT_NAME,
+        "persona_owner": PERSONA_TITLE,
+        "headline_value_display": headline,
+        "priority_actions": action_lines,
+        "vernacular_hindi_summary": hindi_note or None,
+        "approval_gate": STOPS_AT_BOUNDARY,
     }}
 
 
@@ -675,6 +782,8 @@ def export_atomic_schedule_csv(search_filter: str = "") -> Dict[str, Any]:
         rows=list(_TURN_STATE.get("rows") or []),
         label_key="{lbl_k}",
         value_key="{val_k}",
+        doc_url=str(_TURN_STATE.get("doc_url") or ""),
+        doc_label=str(_TURN_STATE.get("doc_label") or ""),
         local_dir=local_out,
     )
     return {{
@@ -686,7 +795,7 @@ def export_atomic_schedule_csv(search_filter: str = "") -> Dict[str, Any]:
 
 
 def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]:
-    """Compiles & publishes the Light-Theme Default Interactive HTML5 Cockpit (with Bar + Donut views & What-If slider)."""
+    """Compiles & publishes the Light-Theme Default 3-Tab Executive HTML5 Control Tower Cockpit."""
     if not _TURN_STATE.get("rows"):
         run_deterministic_optimization_solver(search_filter)
     local_out = Path("/tmp") / "itc_tmd_artifacts" / AGENT_SLUG
@@ -699,6 +808,8 @@ def generate_interactive_html_cockpit(search_filter: str = "") -> Dict[str, Any]
         rows=list(_TURN_STATE.get("rows") or []),
         label_key="{lbl_k}",
         value_key="{val_k}",
+        doc_url=str(_TURN_STATE.get("doc_url") or ""),
+        doc_label=str(_TURN_STATE.get("doc_label") or ""),
         local_dir=local_out,
     )
     return {{
@@ -715,6 +826,8 @@ ALL_TOOLS = [
     query_itc_master_network_backbone,
     run_deterministic_optimization_solver,
     {spec_fn},
+    simulate_what_if_scenario,
+    draft_executive_stakeholder_brief,
     stage_governed_erp_or_portal_action,
     render_a2ui_visual_chart_and_canvas,
     export_atomic_schedule_csv,
@@ -731,8 +844,9 @@ def render_agent_py(meta: Dict[str, Any]) -> str:
     kpi_k = meta["headline_kpi_key"]
     lbl_k = meta["chart_label_key"]
     val_k = meta["chart_value_key"]
+    spec_fn = meta["special_tool_name"]
 
-    return f'''"""Google ADK + GlobalGemini Agent for {meta['ge_display_name']}."""
+    return f'''"""Google ADK + Multi-Agent GlobalGemini Orchestrator for {meta['ge_display_name']}."""
 from __future__ import annotations
 
 import importlib.util as _ilu
@@ -783,25 +897,27 @@ _WRITE_TOOLS = {{
     "stage_governed_erp_or_portal_action": ["target_record_id", "proposed_action"],
 }}
 
-SYSTEM_INSTRUCTION = """You are **{meta['ge_display_name']}**, built in `{meta['build_mode']}` mode for **{meta['persona']}** ({meta['persona_named']}) across **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network ({meta['functional_area']}).
+SYSTEM_INSTRUCTION = """You are **{meta['ge_display_name']}**, an intelligent Google Agent Development Kit (ADK) supply chain agent for **{meta['persona']}** ({meta['persona_named']}) across **ITC Limited's Consumer Packaged Goods (CPG) Trade Marketing & Distribution (TM&D)** network ({meta['functional_area']}).
 
-1. AUTONOMOUS DATA, SOLVER & VISUAL INTELLIGENCE (NO TECHNICAL PROMPTS NEEDED FROM USERS):
-   - Users ask everyday operational questions in plain English—they will NEVER ask you to "make an A2UI chart", "build an HTML cockpit", or cite internal table/tool names.
-   - On EVERY analytical, operational, or audit question, proactively call `run_deterministic_optimization_solver` (and `{meta['special_tool_name']}` when checking physics, batch rules, portal slots, credit headroom, or scanned documents) so your answer is 100% grounded in deterministic math and our visual A2UI charts (bar charts, donut share charts, thermal traces) + interactive workbench render automatically!
-   - Core Problem You Solve: {meta['problem_statement']}
+1. AUTONOMOUS DATA, SOLVER & SPECIALIST SUB-AGENT INTELLIGENCE:
+   - Users ask everyday operational questions in plain English—they will never cite internal table names, function names, or chart formatting commands.
+   - For daily status, lane triage, exception detection, or optimization questions: call `run_deterministic_optimization_solver` (plus `{spec_fn}` when verifying physics, portal appointments, batch rules, GST e-Invoice/E-Way errors, credit headroom, or scanned Lorry Receipt / POD / Strip Chart documents).
+   - For what-if stress tests (volume surge, stock cut, fuel spike, highway closure, heatwave): call `simulate_what_if_scenario` or delegate to your `signal_analyst` specialist sub-agent.
+   - For audit verification, transporter disputes, morning territory field notes (Hindi + English), or compliance escalations: consult `{spec_fn}` or `draft_executive_stakeholder_brief` (or your `compliance_auditor` specialist sub-agent).
+   - Domain Mission: {meta['problem_statement']}
 
 2. CLEAR, BALANCED PLAIN-ENGLISH & INDIAN CURRENCY (`₹ Cr` / `₹ L`) STYLE:
-   - Write in clear, approachable business English at a balanced medium length (130–195 words).
-   - Spell out every domain abbreviation on first use (for example: Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT)).
+   - Write in approachable, clear business English at a balanced medium length (140–210 words).
+   - Spell out every domain abbreviation on first use (Integrated Consumer Goods Manufacturing and Logistics (ICML), Clearing & Forwarding Agent (CFA), Wholesale Dealer (WD), On-Time In-Full (OTIF), Minimum Remaining Shelf-Life (MRSL), Mean Kinetic Temperature (MKT), Goods and Services Tax (GST)).
    - Express ALL monetary figures in Indian Rupees using Crores (`₹ Cr`) and Lakhs (`₹ L`) or `₹`—never US Dollars.
-   - Include ONE crisp, copy-ready Markdown table (`<= 5` columns) outside the visual card summarizing the top prioritized items, followed by 2–3 concrete recommended next steps.
-   - Never mention internal JSON/CSV filenames, `snake_case` column names, or Python function names in your user-facing response.
+   - Include ONE crisp, copy-ready Markdown table (`<= 5` columns) outside the visual card summarizing top prioritized items, followed by 2–3 concrete recommended next steps.
+   - Never reveal internal JSON/CSV filenames, `snake_case` column names, or Python tool names to the user.
 
 3. HUMAN SIGN-OFF BOUNDARY & SAFETY GUARDRAILS:
-   - Connected Enterprise System: {meta['target_system']}
-   - STOPS AT: {meta['stops_at']}
-   - Never invoke `stage_governed_erp_or_portal_action` on read-only diagnostic questions. When the user asks to prepare, hold, reassign, block, or stage an action, generate a clean `idempotency_key` (e.g. `ITC-{meta['num']}-STAGE-001`), call `stage_governed_erp_or_portal_action`, and confirm the staged voucher awaiting human sign-off.
-   - Strictly refuse any request to bypass safety, axle-weight, cold-chain quality, shelf-life, duplicate-invoice, or overdue credit controls.
+   - Connected System of Record: {meta['target_system']}
+   - Sign-Off Gate: {meta['stops_at']}
+   - Never invoke `stage_governed_erp_or_portal_action` on read-only analytical questions. Only stage actions when explicitly asked to hold, block, reassign, or prepare indents/vouchers, supplying a unique `idempotency_key` (e.g. `ITC-{meta['num']}-STAGE-001`).
+   - Strictly refuse any request to bypass axle-weight safety, cold-chain quarantine, shelf-life limits, duplicate-invoice blocks, or overdue credit holds.
 """
 
 
@@ -844,7 +960,7 @@ class {cls}Agent:
         tools.reset_turn_state(user_query)
         routing = self.select_orchestrated_model(user_query)
         solved = tools.run_deterministic_optimization_solver("")
-        special = tools.{meta['special_tool_name']}("")
+        special = tools.{spec_fn}("")
         a2ui = tools.render_a2ui_visual_chart_and_canvas("")
         rows = solved.get("{rows_k}", [])[:4]
 
@@ -886,6 +1002,7 @@ try:
     from google.adk.models import Gemini
     from google.adk.models.llm_request import LlmRequest
     from google.adk.models.llm_response import LlmResponse
+    from google.adk.tools.agent_tool import AgentTool
     from google.genai import Client, types
     from vertexai.preview.reasoning_engines import AdkApp
 
@@ -903,6 +1020,22 @@ try:
                     retry_options=self.retry_options,
                 ),
             )
+
+    def _is_refusal_or_smalltalk(text: str, turn_active: bool) -> bool:
+        low = (text or "").strip().lower()
+        refusal_markers = (
+            "cannot bypass",
+            "blocked by safety",
+            "strictly prohibited",
+            "i cannot override",
+            "cannot approve duplicate",
+            "safety policy prevents",
+        )
+        if any(m in low for m in refusal_markers):
+            return True
+        if not turn_active and len(low) < 110:
+            return True
+        return False
 
     def _before_model_cb(
         callback_context: Optional[CallbackContext] = None,
@@ -947,7 +1080,12 @@ try:
             idx = max((i for i, p in enumerate(cleaned) if getattr(p, "text", None)), default=-1)
             existing_txt = (cleaned[idx].text or "") if idx >= 0 else ""
 
-            if st.get("active") and st.get("rows") and "itc_tmd/cockpits/" not in existing_txt:
+            if (
+                st.get("active")
+                and st.get("rows")
+                and not _is_refusal_or_smalltalk(existing_txt, bool(st.get("active")))
+                and "itc_tmd/cockpits/" not in existing_txt
+            ):
                 urls = publish_cockpit_and_csv(
                     agent_slug=AGENT_SLUG,
                     agent_title=SHORT_LABEL,
@@ -957,9 +1095,11 @@ try:
                     rows=list(st.get("rows") or []),
                     label_key="{lbl_k}",
                     value_key="{val_k}",
+                    doc_url=str(st.get("doc_url") or ""),
+                    doc_label=str(st.get("doc_label") or ""),
                 )
                 bullets = [
-                    f"- 🌐 **[Open Interactive Visual Workbench & Simulator (Light/Dark HTML) ↗]({{urls['html_url']}})** — Live bar & donut breakdowns, What-If slider, and filterable ITC ledger.",
+                    f"- 🌐 **[Open 3-Tab Control Tower Workbench & Simulator (Light/Dark HTML) ↗]({{urls['html_url']}})** — Interactive KPI cards, What-If scenario sliders, architecture lineage, and filterable ledger.",
                     f"- 📥 **[Download Atomic Schedule for Google Sheets / SAP (CSV) ↗]({{urls['csv_url']}})** — Verified row-level export.",
                 ]
                 if st.get("doc_url"):
@@ -968,7 +1108,7 @@ try:
                         f"- 🖼️ **[Inspect Scanned Document Evidence ({{st.get('doc_label', 'PNG Scan')}}) ↗]({{st['doc_url']}})** — High-resolution multimodal document scan.",
                     )
                 nl = chr(10)
-                footer = f"{{nl}}{{nl}}### 🌐 Interactive Visual Workbench & Evidence{{nl}}{{nl}}" + nl.join(bullets) + nl
+                footer = f"{{nl}}{{nl}}### 🌐 Interactive Control Tower Report & Evidence{{nl}}{{nl}}" + nl.join(bullets) + nl
                 if idx >= 0:
                     cleaned[idx] = types.Part(text=existing_txt.rstrip() + footer)
                 else:
@@ -1006,6 +1146,52 @@ try:
             logger.warning("after_agent_callback A2UI emission degraded cleanly: %s", exc)
         return None
 
+    signal_analyst_agent = Agent(
+        name=f"{{AGENT_ID}}_signal_analyst",
+        model=GlobalGemini(
+            model="gemini-3.8-flash",
+            retry_options=types.HttpRetryOptions(attempts=3),
+        ),
+        generate_content_config=types.GenerateContentConfig(
+            max_output_tokens=8192,
+            temperature=0.1,
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
+        description=f"Specialist Signal & Scenario Analyst for {meta['agent_name']} — queries enterprise tables and simulates what-if disruptions.",
+        instruction=(
+            f"You are the specialist signal & scenario analyst sub-agent for {meta['ge_display_name']}. "
+            f"Query ITC TM&D records, inspect master network entities (ICML plants, CFAs, distributors, carriers), "
+            f"and run what-if stress scenarios returning concise INR impact facts."
+        ),
+        tools=[
+            tools.query_itc_enterprise_records,
+            tools.query_itc_master_network_backbone,
+            tools.simulate_what_if_scenario,
+        ],
+    )
+
+    compliance_auditor_agent = Agent(
+        name=f"{{AGENT_ID}}_compliance_auditor",
+        model=GlobalGemini(
+            model="gemini-3.8-flash",
+            retry_options=types.HttpRetryOptions(attempts=3),
+        ),
+        generate_content_config=types.GenerateContentConfig(
+            max_output_tokens=8192,
+            temperature=0.1,
+            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+        ),
+        description=f"Specialist Audit, Multimodal & Stakeholder Brief Sub-Agent for {meta['agent_name']}.",
+        instruction=(
+            f"You are the specialist compliance & communication auditor sub-agent for {meta['ge_display_name']}. "
+            f"Run domain diagnostics or scanned document verification and draft concise escalation or vernacular briefs."
+        ),
+        tools=[
+            tools.{spec_fn},
+            tools.draft_executive_stakeholder_brief,
+        ],
+    )
+
     root_agent = Agent(
         name=AGENT_ID,
         model=GlobalGemini(
@@ -1017,9 +1203,12 @@ try:
             temperature=0.1,
             thinking_config=types.ThinkingConfig(thinking_level="LOW"),
         ),
-        description=f"[ITC TMD · {meta['functional_area']}] {meta['agent_name']} ({meta['persona']})",
+        description=f"{meta['agent_name']} (ITC TMD) for {meta['persona']}: {meta['problem_statement'][:220]}",
         instruction=SYSTEM_INSTRUCTION,
-        tools=list(tools.ALL_TOOLS),
+        tools=list(tools.ALL_TOOLS) + [
+            AgentTool(agent=signal_analyst_agent),
+            AgentTool(agent=compliance_auditor_agent),
+        ],
         before_model_callback=_before_model_cb,
         after_model_callback=_after_model_cb,
         after_agent_callback=_after_agent_cb,
@@ -1102,6 +1291,7 @@ def render_test_smoke_py(meta: Dict[str, Any]) -> str:
     spec_fn = meta["special_tool_name"]
     rows_k = meta["rows_key"]
     kpi_k = meta["headline_kpi_key"]
+    has_mm = bool(meta.get("multimodal_docs"))
 
     return f'''"""Comprehensive Hermetic Pytest Suite for {meta['ge_display_name']} ({meta['slug']})."""
 from __future__ import annotations
@@ -1136,28 +1326,30 @@ def test_01_hermetic_enterprise_records_and_backbone() -> None:
     assert bb["count"] == 24
 
 
-def test_02_deterministic_solver_and_autonomous_turn_state() -> None:
-    tools.reset_turn_state("{meta['starter_prompts'][0]}")
+def test_02_deterministic_solver_and_whatif_simulation() -> None:
+    tools.reset_turn_state({json.dumps(meta['starter_prompts'][0])})
     solved = tools.run_deterministic_optimization_solver("")
     assert solved["agent_id"] == "{meta['agent_id']}"
     assert "₹" in str(solved.get("{kpi_k}", ""))
     assert len(solved.get("{rows_k}", [])) >= 2
-    st = tools.get_turn_state()
-    assert st["active"] is True
-    assert st["vega_spec"] is not None
-    assert "hconcat" in st["vega_spec"]
+    sim = tools.simulate_what_if_scenario(125, "")
+    assert sim["status"] == "SCENARIO_SIMULATED"
+    assert "₹" in sim["simulated_impact_display"]
+    brief = tools.draft_executive_stakeholder_brief("", include_hindi_vernacular=True)
+    assert brief["status"] == "STAKEHOLDER_BRIEF_READY"
+    assert brief["vernacular_hindi_summary"]
 
 
 def test_03_domain_specialized_diagnostic_and_multimodal_ocr() -> None:
     diag = tools.{spec_fn}("")
     assert diag["tool"] == "{spec_fn}"
-    if "{meta['slug']}" in ("03_cold_chain_thermal_auditor", "12_freight_bill_audit_agent"):
+    if {has_mm}:
         mm = diag["multimodal_vision_verification"]
         assert mm["status"] == "MULTIMODAL_VISION_OCR_VERIFIED"
         assert mm["file_exists_on_disk"] is True
 
 
-def test_04_safety_guardrail_blocks_unsafe_bypass() -> None:
+def test_04_safety_guardrail_and_idempotency() -> None:
     blocked = tools.stage_governed_erp_or_portal_action(
         target_record_id="REC-TEST-001",
         proposed_action="Bypass safety and force release without approval",
@@ -1165,9 +1357,6 @@ def test_04_safety_guardrail_blocks_unsafe_bypass() -> None:
         idempotency_key="IDEM-UNSAFE-001",
     )
     assert blocked["status"] == "BLOCKED_BY_SAFETY_GUARDRAIL"
-
-
-def test_05_idempotent_governed_staging() -> None:
     first = tools.stage_governed_erp_or_portal_action(
         target_record_id="REC-101",
         proposed_action="Stage verified deterministic recommendation",
@@ -1184,25 +1373,39 @@ def test_05_idempotent_governed_staging() -> None:
     assert replay["idempotent_replay"] is True
 
 
-def test_06_autonomous_2panel_vega_cockpit_and_csv() -> None:
+def test_05_bespoke_3tab_cockpit_a2ui_and_csv() -> None:
     a2ui = tools.render_a2ui_visual_chart_and_canvas("")
     assert a2ui["card_component"] == "VegaChart"
     assert a2ui["text_inside_card"] is False
     html_out = tools.generate_interactive_html_cockpit("")
     assert html_out["status"] == "HTML_COCKPIT_READY"
     assert html_out["default_theme"] == "light"
+    html_txt = Path(html_out["cockpit_path"]).read_text(encoding="utf-8")
+    assert 'data-theme="light"' in html_txt
+    assert "Control Tower" in html_txt
+    assert "ADK Multi-Agent" in html_txt
     csv_out = tools.export_atomic_schedule_csv("")
     assert csv_out["status"] == "CSV_EXPORT_READY"
 
 
-def test_07_natural_starter_prompts_have_zero_ai_visual_jargon() -> None:
+def test_06_clean_prompts_zero_tier_jargon_and_subagents_pickle() -> None:
     prompts = {json.dumps(meta['starter_prompts'])}
-    assert len(prompts) == 3
+    assert len(prompts) == 4
     forbidden = ("infographic", "a2ui", "html", "vega", "multi-chart", "create a chart", "json", "snake_case")
     for p in prompts:
         low = p.lower()
         for bad in forbidden:
             assert bad not in low, f"Prompt contains artificial jargon '{{bad}}': {{p}}"
+    for bad_tier in ("low-code", "no-code", "high-code"):
+        assert bad_tier not in agent_mod.BUILD_MODE.lower()
+        assert bad_tier not in agent_mod.SYSTEM_INSTRUCTION.lower()
+    if getattr(agent_mod, "{cls}AdkApp", None) is not None:
+        import cloudpickle
+        from google.adk.tools.agent_tool import AgentTool
+        sub_tools = [t for t in agent_mod.root_agent.tools if isinstance(t, AgentTool)]
+        assert len(sub_tools) >= 2
+        blob = cloudpickle.dumps(agent_mod.{cls}AdkApp(agent=agent_mod.root_agent))
+        assert len(blob) > 100
     wrapper = agent_mod.{cls}Agent()
     out = wrapper.run_scenario(prompts[0])
     assert "₹" in out["markdown"]
@@ -1223,7 +1426,7 @@ def render_agent_readme(meta: Dict[str, Any], spec_files: List[str]) -> str:
 - **Build Mode**: **`{meta['build_mode']}`** · **Priority**: `{meta['priority']}`
 - **Model Routing (`GlobalGemini`, `location="global"`)**: `{meta['default_model']}`
 
-## 1. On-Screen Gemini Enterprise Starter Prompts (3 Authentic Persona Prompts)
+## 1. On-Screen Gemini Enterprise Starter Prompts (4 Authentic Persona Prompts)
 {prompts_md}
 
 ## 2. Operational Problem Solved in ITC CPG
@@ -1284,7 +1487,11 @@ def main() -> None:
         (adir / "app" / "tools.py").write_text(render_tools_py(meta), encoding="utf-8")
         (adir / "app" / "agent.py").write_text(render_agent_py(meta), encoding="utf-8")
         spec_files = write_mode_specific_specs(adir, meta)
-        (adir / "tests" / "test_smoke.py").write_text(render_test_smoke_py(meta), encoding="utf-8")
+        old_smoke = adir / "tests" / "test_smoke.py"
+        if old_smoke.exists():
+            old_smoke.unlink()
+        test_fname = f"test_{meta['num']}_{meta['slug'][3:]}.py"
+        (adir / "tests" / test_fname).write_text(render_test_smoke_py(meta), encoding="utf-8")
         (adir / "README.md").write_text(render_agent_readme(meta, spec_files), encoding="utf-8")
         (adir / "manifest.json").write_text(json.dumps(meta, indent=2), encoding="utf-8")
 

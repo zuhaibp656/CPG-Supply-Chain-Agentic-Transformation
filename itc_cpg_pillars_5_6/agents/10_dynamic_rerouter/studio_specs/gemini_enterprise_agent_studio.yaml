@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_dynamic_rerouter
   slug: 10_dynamic_rerouter
   display_name: "Dynamic Rerouter (ITC TMD)"
-  build_mode: "Low-Code + Maps Platform"
+  build_mode: "Google ADK + Geospatial Routing"
   functional_area: "Fleet, Carrier & Freight Governance"
   persona_owner: "Fleet & Route Dispatch Lead"
   named_leader: "Vikramaditya Menon (Central Zenith Fleet Control Tower Lead — Mumbai, Bengaluru & Kolkata)"
@@ -18,3 +18,4 @@ spec:
     - "Which primary trucks and city EV vans are stuck in highway blockages, waterlogging, or police no-entry curfews right now?"
     - "Are any delayed highway loads close to their E-Way Bill expiring tonight, or do any city EVs need a charging stop to finish their drops?"
     - "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval."
+    - "Simulate closing the Mumbai-Pune expressway lane for six hours. Which primary trucks and city electric vans must divert to avoid missed deliveries?"

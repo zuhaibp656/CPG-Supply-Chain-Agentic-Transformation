@@ -10,7 +10,7 @@
   "persona": "Transport Procurement Manager",
   "persona_named": "Kavita Krishnamurthy (National Freight Procurement Lead \u2014 ITC TM&D HQ Kolkata)",
   "agent_name": "Routing Guide Compliance Agent",
-  "build_mode": "No-Code Gemini Gem",
+  "build_mode": "Google ADK + Reasoning Coach",
   "priority": "P1",
   "default_model": "gemini-3.8-flash",
   "table_stem": "11_carrier_routing_guide_tenders_and_spot",
@@ -20,7 +20,7 @@
     "freight_control_tower"
   ],
   "target_system": "SAP TM / Zenith Carrier Waterfall Guide & Monthly Transporter Allocation Scorecard",
-  "stops_at": "Advisory & governance No-Code Gem\u2014flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally.",
+  "stops_at": "Advisory & governance Google ADK Coach\u2014flags maverick spot indents and drafts L1/L2 carrier show-cause or rate-reindexing memos, never altering signed annual transport contracts unilaterally.",
   "problem_statement": "ITC negotiates annual L1/L2/L3 waterfall rate cards across hundreds of ICML-to-CFA lanes, yet local dispatchers frequently bypass L2 backup carriers during evening rush and book ad-hoc spot-market brokers at 28-40% freight premiums.",
   "special_tool_name": "diagnose_planner_bypass_vs_carrier_rejection",
   "special_tool_doc": "Separates maverick planner waterfall bypasses (where L2 was skipped) from genuine L1+L2 carrier capacity rejections requiring lane rate-card re-indexing.",
@@ -38,6 +38,7 @@
   "starter_prompts": [
     "Where did we overspend on spot-market trucks this month instead of using our contracted L1 and L2 transporters?",
     "On which lanes did our dispatchers skip the backup carrier waterfall versus lanes where contracted transporters actually refused loads?",
-    "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review."
+    "Prepare compliance notes for the skipped waterfall lanes and flag chronic rejection lanes for rate review.",
+    "What happens to our monthly freight budget if spot market truck rates jump 18% and primary carrier tender acceptance slips below 70%?"
   ]
 }

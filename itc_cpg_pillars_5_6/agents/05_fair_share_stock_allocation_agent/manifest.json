@@ -10,7 +10,7 @@
   "persona": "Customer Service & Logistics (CS&L) Lead",
   "persona_named": "Meenakshi Sundaram (Zonal CS&L Head \u2014 Bengaluru & Southern Hub)",
   "agent_name": "Fair-Share Stock Allocation Agent",
-  "build_mode": "Low-Code Agent Studio",
+  "build_mode": "Google ADK + Python Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "05_csl_shortage_orders_and_channel_allocations",
@@ -39,6 +39,7 @@
   "starter_prompts": [
     "We are short on Sunfeast Dark Fantasy 300g at Nelamangala depot. How should we split the 2,400 available cases across channels?",
     "What happens to our Quick-Commerce penalties and General Trade dealers if we let standard first-come-first-served allocation run?",
-    "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved."
+    "Hold the fair-share channel split in SAP for my review so neither Blinkit nor our Karnataka wholesale dealers get starved.",
+    "What happens if available Dark Fantasy stock drops another 20% at Nelamangala? How do we protect Quick-Commerce fill rates without starving general dealers?"
   ]
 }

@@ -3,13 +3,14 @@
 - **Gemini Enterprise Display Name**: **`MT / Q-Comm Slot & OTIF Copilot (ITC TMD)`**
 - **Functional Area**: Channel & Route-to-Market (GT, MT & Q-Commerce) (Pillar 05 · Modern Trade & Quick-Commerce Fulfillment)
 - **Persona Owner**: **Modern Trade & Q-Comm Logistics Lead** (*Neha Kapoor (National MT & Quick-Commerce Supply Lead — Gurugram & Mumbai)*)
-- **Build Mode**: **`Low-Code Agent Studio`** · **Priority**: `P0`
+- **Build Mode**: **`Google ADK + Python Solvers`** · **Priority**: `P0`
 - **Model Routing (`GlobalGemini`, `location="global"`)**: `gemini-3.1-pro-preview`
 
-## 1. On-Screen Gemini Enterprise Starter Prompts (3 Authentic Persona Prompts)
+## 1. On-Screen Gemini Enterprise Starter Prompts (4 Authentic Persona Prompts)
 1. `"Which Blinkit, Zepto, Instamart, or DMart trucks are running late for their dock slot today or carrying short-shelf-life stock?"`
 2. `"What open appointment slots are available on the retailer portals right now so we avoid turn-aways and OTIF penalties?"`
 3. `"Move the delayed dispatches to the next open portal slots and swap the short-dated Zepto batch before the truck is sealed."`
+4. `"Simulate pulling forward three Blinkit and Zepto darkstore dock appointments by two hours. How many late-delivery penalties do we avoid today?"`
 
 ## 2. Operational Problem Solved in ITC CPG
 Blinkit, Zepto, Swiggy Instamart, DMart, and Reliance enforce 15-to-30-minute dock arrival tolerances and strict 75% Minimum Remaining Shelf-Life gates. Missing a slot by 20 minutes or sending a 68%-MRSL batch triggers full truck turn-away and 5-10% PO chargebacks.

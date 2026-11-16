@@ -10,7 +10,7 @@
   "persona": "Depot / CFA Operations Manager",
   "persona_named": "Suresh Deshpande (Regional Mother CFA Manager \u2014 Bhiwandi & Kundli)",
   "agent_name": "CFA Wave & Bay Orchestrator",
-  "build_mode": "Low-Code Agent Studio",
+  "build_mode": "Google ADK + Python Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "04_cfa_wms_pick_waves_fefo_and_bays",
@@ -39,6 +39,7 @@
   "starter_prompts": [
     "How are morning pick waves and loading bays tracking at Bhiwandi and Kundli, and will any wave miss its dispatch cutoff?",
     "Are any Blinkit or Zepto orders picking older stock that could get rejected at their dock for having less than 75% shelf life?",
-    "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan."
+    "Swap those older compliant batches to General Trade beats, rebalance the pickers across bays, and stage the updated wave plan.",
+    "Simulate shifting four General Trade pickers to Quick-Commerce bays at Bhiwandi before noon. How much dispatch revenue is protected before cutoff?"
   ]
 }

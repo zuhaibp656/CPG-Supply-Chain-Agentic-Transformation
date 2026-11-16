@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_eod_billing_cutoff_closer_agent
   slug: 06_eod_billing_cutoff_closer_agent
   display_name: "EOD Billing & Cutoff Closer Agent (ITC TMD)"
-  build_mode: "Low-Code + SAP OpenAPI"
+  build_mode: "Google ADK + SAP OpenAPI + Solvers"
   functional_area: "CFA / Depot Operations & Stock Allocation"
   persona_owner: "Depot Dispatch & Billing Supervisor"
   named_leader: "Prakash Kulkarni (CFA Commercial & SAP Billing Lead — Bhiwandi & Dankuni)"
@@ -18,3 +18,4 @@ spec:
     - "Which loaded trucks at our depots are still unbilled before tonight's 9 PM SAP cutoff, and what is holding each one up?"
     - "Separate the deliveries we can clear right away, like batch splits, FinAgg credit sync, or E-Way Bill typos, from overdue credit holds."
     - "Clear the fixable SAP delivery, e-Invoice, and E-Way Bill errors for my sign-off and flag the overdue account to Finance."
+    - "Simulate clearing temporary FinAgg credit holds before tonight's billing cutoff. How much blocked end-of-day invoicing unlocks immediately?"

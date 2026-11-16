@@ -3,7 +3,7 @@
   "info": {
     "title": "MT / Q-Comm Slot & OTIF Copilot (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code Agent Studio | Target System: Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)"
+    "description": "Mode: Google ADK + Python Solvers | Target System: Retailer EDI 856 ASN & Partner Appointment Portals (Blinkit, Zepto, Instamart, DMart, Reliance)"
   },
   "paths": {
     "/v1/itc-tmd/07_mt_qcomm_slot_otif_copilot/solve": {

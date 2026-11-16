@@ -105,9 +105,22 @@ def query_domain_table(
                 seed_file = pj
 
     needle = (search_filter or "").strip().lower()
+    stop_words = {"and", "the", "for", "with", "from", "into", "across", "this", "that", "what", "which", "all"}
+    tokens = [t.strip(",.;:/") for t in needle.split() if len(t.strip(",.;:/")) >= 3 and t.strip(",.;:/") not in stop_words]
     matched: List[Dict[str, Any]] = []
+    scored_matches: List[tuple[int, Dict[str, Any]]] = []
     total_scanned = 0
     using_full_lake = False
+
+    def _score_row_text(txt: str) -> int:
+        if not needle:
+            return 1
+        if needle in txt:
+            return 100
+        if not tokens:
+            return 1 if needle in txt else 0
+        hits = sum(1 for tok in tokens if tok in txt)
+        return hits
 
     if csv_file is not None and csv_file.is_file():
         using_full_lake = True
@@ -115,23 +128,28 @@ def query_domain_table(
             reader = csv.DictReader(fh)
             for row in reader:
                 total_scanned += 1
-                if needle and needle not in " ".join(str(x) for x in row.values()).lower():
-                    if total_scanned > 12000 and len(matched) >= limit:
+                row_txt = " ".join(str(x) for x in row.values()).lower()
+                sc = _score_row_text(row_txt)
+                if sc <= 0:
+                    if total_scanned > 12000 and len(scored_matches) >= limit:
                         break
                     continue
-                if len(matched) < limit:
-                    matched.append({k: _coerce_value(val) for k, val in row.items()})
+                if len(scored_matches) < limit * 3:
+                    scored_matches.append((sc, {k: _coerce_value(val) for k, val in row.items()}))
                 elif total_scanned >= 5000:
                     break
     elif seed_file is not None and seed_file.is_file():
         raw_rows = json.loads(seed_file.read_text(encoding="utf-8"))
         total_scanned = len(raw_rows)
         for row in raw_rows:
-            if needle and needle not in json.dumps(row).lower():
-                continue
-            matched.append(row)
-            if len(matched) >= limit:
-                break
+            row_txt = json.dumps(row).lower()
+            sc = _score_row_text(row_txt)
+            if sc > 0:
+                scored_matches.append((sc, row))
+
+    if scored_matches:
+        scored_matches.sort(key=lambda pair: pair[0], reverse=True)
+        matched = [row for _, row in scored_matches[:limit]]
 
     if not matched and seed_file is not None and seed_file.is_file():
         raw_rows = json.loads(seed_file.read_text(encoding="utf-8"))

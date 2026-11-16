@@ -3,7 +3,7 @@
   "info": {
     "title": "Predictive WD Reorder & Dispatch Agent (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code Agent Studio | Target System: ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API"
+    "description": "Mode: Google ADK + Python Solvers | Target System: ITC Distribution Management System (DMS) -> SAP S/4HANA Primary Sales Order (`VA01`) & FinAgg Credit API"
   },
   "paths": {
     "/v1/itc-tmd/09_predictive_wd_reorder_dispatch_agent/solve": {

@@ -3,7 +3,7 @@
   "info": {
     "title": "CFA Wave & Bay Orchestrator (ITC TMD) Connector API",
     "version": "1.0.0",
-    "description": "Mode: Low-Code Agent Studio | Target System: SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller"
+    "description": "Mode: Google ADK + Python Solvers | Target System: SAP Extended Warehouse Management (SAP EWM) Pick-Wave & Loading Bay Controller"
   },
   "paths": {
     "/v1/itc-tmd/04_cfa_wave_bay_orchestrator/solve": {

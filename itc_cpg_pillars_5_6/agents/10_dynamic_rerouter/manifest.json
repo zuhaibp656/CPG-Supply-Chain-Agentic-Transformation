@@ -10,7 +10,7 @@
   "persona": "Fleet & Route Dispatch Lead",
   "persona_named": "Vikramaditya Menon (Central Zenith Fleet Control Tower Lead \u2014 Mumbai, Bengaluru & Kolkata)",
   "agent_name": "Dynamic Rerouter",
-  "build_mode": "Low-Code + Maps Platform",
+  "build_mode": "Google ADK + Geospatial Routing",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "10_zenith_fleet_gps_traffic_and_ev_routes",
@@ -39,6 +39,7 @@
   "starter_prompts": [
     "Which primary trucks and city EV vans are stuck in highway blockages, waterlogging, or police no-entry curfews right now?",
     "Are any delayed highway loads close to their E-Way Bill expiring tonight, or do any city EVs need a charging stop to finish their drops?",
-    "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval."
+    "Send the diversion routes, charger stop, and E-Way Bill extension request to the control tower queue for approval.",
+    "Simulate closing the Mumbai-Pune expressway lane for six hours. Which primary trucks and city electric vans must divert to avoid missed deliveries?"
   ]
 }

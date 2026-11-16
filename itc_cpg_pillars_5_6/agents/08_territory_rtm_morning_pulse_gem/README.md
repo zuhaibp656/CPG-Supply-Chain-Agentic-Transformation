@@ -3,13 +3,14 @@
 - **Gemini Enterprise Display Name**: **`Territory RTM Morning Pulse Gem (ITC TMD)`**
 - **Functional Area**: Channel & Route-to-Market (GT, MT & Q-Commerce) (Pillar 05 · UNNATI eB2B & Vajra Field Route-to-Market)
 - **Persona Owner**: **Area Distribution / RTM Manager** (*Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)*)
-- **Build Mode**: **`No-Code Gemini Gem`** · **Priority**: `P1`
+- **Build Mode**: **`Google ADK + Reasoning Coach`** · **Priority**: `P1`
 - **Model Routing (`GlobalGemini`, `location="global"`)**: `gemini-3.8-flash`
 
-## 1. On-Screen Gemini Enterprise Starter Prompts (3 Authentic Persona Prompts)
+## 1. On-Screen Gemini Enterprise Starter Prompts (4 Authentic Persona Prompts)
 1. `"Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?"`
 2. `"Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?"`
 3. `"Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."`
+4. `"Draft a quick morning note in simple Hindi and English for Territory Officers covering weak beats with zero-bill retail outlets."`
 
 ## 2. Operational Problem Solved in ITC CPG
 Area Distribution Managers start every morning juggling four disconnected trackers: overnight UNNATI kirana app orders, yesterday's Vajra salesman beat strike rates, Wholesale Dealer stockout lines, and active trade schemes—missing urgent beat course-corrections before 08:30.

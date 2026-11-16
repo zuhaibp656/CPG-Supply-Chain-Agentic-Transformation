@@ -10,7 +10,7 @@
   "persona": "Plant Yard & Dispatch Lead",
   "persona_named": "Harpreet Singh Gill (ICML Yard Master \u2014 Kapurthala & Ranjangaon)",
   "agent_name": "Yard Disruption & Detention Sentinel",
-  "build_mode": "Low-Code Agent Studio",
+  "build_mode": "Google ADK + Python Solvers",
   "priority": "P0",
   "default_model": "gemini-3.1-pro-preview",
   "table_stem": "02_icml_yard_gate_fastag_dock_detention",
@@ -41,6 +41,7 @@
   "starter_prompts": [
     "Which trucks waiting at Ranjangaon, Kapurthala, and Panchla gates are close to breaching free detention time right now?",
     "Do we have any frozen or chilled reefers running on diesel in the yard that need an open shore-power dock door immediately?",
-    "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off."
+    "Reassign the delayed trailers from blocked doors to open bays and queue the yard move instructions for sign-off.",
+    "Simulate a 25% monsoon arrival spike at Ranjangaon and Panchla gates tonight. How many trucks risk detention charges if dock bay re-slotting runs automatically?"
   ]
 }

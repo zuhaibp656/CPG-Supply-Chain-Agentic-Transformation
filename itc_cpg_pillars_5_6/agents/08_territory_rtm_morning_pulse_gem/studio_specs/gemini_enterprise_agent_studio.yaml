@@ -5,7 +5,7 @@ metadata:
   agent_id: itc_territory_rtm_morning_pulse_gem
   slug: 08_territory_rtm_morning_pulse_gem
   display_name: "Territory RTM Morning Pulse Gem (ITC TMD)"
-  build_mode: "No-Code Gemini Gem"
+  build_mode: "Google ADK + Reasoning Coach"
   functional_area: "Channel & Route-to-Market (GT, MT & Q-Commerce)"
   persona_owner: "Area Distribution / RTM Manager"
   named_leader: "Siddharth Banerjee (TM&D Area Manager — Pune, Lucknow & Kolkata Clusters)"
@@ -18,3 +18,4 @@ spec:
     - "Give me this morning's territory pulse. Where did overnight UNNATI kirana orders jump and where did salesman beat productivity dip yesterday?"
     - "Which wholesale dealers in Pune, Lucknow, and South Kolkata are running out of top SKUs before today's beats go out?"
     - "Draft quick 8 AM priorities for my Area Sales Executives so they cover the weak beats and push active trade schemes today."
+    - "Draft a quick morning note in simple Hindi and English for Territory Officers covering weak beats with zero-bill retail outlets."
