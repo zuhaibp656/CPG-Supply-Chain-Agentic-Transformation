@@ -415,9 +415,9 @@ try {
           '<div class="ag-hl"><b>How It Works:</b>' + esc(concise(a.does, 120)) + '</div>' +
           '<div class="ag-hl"><b>Human Gate:</b>' + esc(concise(a.stopsAt, 115)) + '</div>' +
         '</div>' +
-        '<div class="ag-foot-link">' +
-          '<span>Agent Architecture &amp; 4-Lever Math</span>' +
-          '<span>&rarr;</span>' +
+        '<div class="ag-foot-link" style="gap:10px;">' +
+          '<span>Agent Architecture &amp; 4-Lever Math &rarr;</span>' +
+          (a.liveInGE && a.geUrl ? '<span role="link" tabindex="0" onclick="event.preventDefault(); event.stopPropagation(); window.open(\'' + esc(a.geUrl).replace(/'/g, "\\'") + '\', \'_blank\', \'noopener,noreferrer\');" style="padding:4px 10px;border-radius:999px;background:rgba(0,175,87,.14);color:#007F3F;font-weight:700;font-size:11.5px;cursor:pointer;">Open in GE &#8599;</span>' : '') +
         '</div>' +
       '</a>';
     }).join('');

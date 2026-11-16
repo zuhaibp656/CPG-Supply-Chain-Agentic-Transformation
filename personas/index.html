@@ -947,6 +947,8 @@
     }
 
     var agentLinkUrl = "../pages/agent_blueprint.html?agent=" + encodeURIComponent(a.agentId || r.primaryAgentId) + "&persona=" + encodeURIComponent(r.id);
+    var liveAgObj = (DATA.agents || []).find(function (x) { return x.id === (a.agentId || r.primaryAgentId); });
+    var directGeUrl = (liveAgObj && liveAgObj.liveInGE && liveAgObj.geUrl) ? liveAgObj.geUrl : ((a.liveInGE && a.geUrl) ? a.geUrl : "");
 
     drawer.innerHTML =
       '<div class="d-head">' +
@@ -971,10 +973,17 @@
       '</div>' +
 
       '<div class="d-foot">' +
-        '<a class="ge-launch" href="' + esc(agentLinkUrl) + '" title="Inspect 4-stage runtime architecture, Demo Video & Gemini Enterprise launch">' +
-          '<img class="ge-mark" src="../assets/media/gemini_enterprise_logo.svg" alt="Gemini Enterprise">' +
-          '<span class="ge-cta">' + (a.own === "agentic" ? "Open agent architecture" : "Inspect primary agent") + '</span>' +
-          '<span class="ge-arrow" aria-hidden="true">&#8599;</span>' +
+        (directGeUrl ? (
+          '<a class="ge-launch" href="' + esc(directGeUrl) + '" target="_blank" rel="noopener noreferrer" title="Open ' + esc((liveAgObj && liveAgObj.name) || a.agentName || 'agent') + ' directly in Gemini Enterprise">' +
+            '<img class="ge-mark" src="../assets/media/gemini_enterprise_logo.svg" alt="Gemini Enterprise">' +
+            '<span class="ge-cta">Open in Gemini Enterprise</span>' +
+            '<span class="ge-arrow" aria-hidden="true">&#8599;</span>' +
+          '</a>'
+        ) : '') +
+        '<a class="' + (directGeUrl ? 'btn-ghost' : 'ge-launch') + '" href="' + esc(agentLinkUrl) + '" title="Inspect 4-stage runtime architecture &amp; Demo Video">' +
+          (directGeUrl ? '' : '<img class="ge-mark" src="../assets/media/gemini_enterprise_logo.svg" alt="Gemini Enterprise">') +
+          '<span class="' + (directGeUrl ? '' : 'ge-cta') + '">' + (a.own === "agentic" ? "Open agent architecture" : "Inspect primary agent") + '</span>' +
+          (directGeUrl ? ' &rarr;' : '<span class="ge-arrow" aria-hidden="true">&#8599;</span>') +
         '</a>' +
         '<a class="btn-ghost" href="dossier.html?id=' + encodeURIComponent(r.id) + (a.agentId ? '&agent=' + encodeURIComponent(a.agentId) : '') + '">Full persona dossier &rarr;</a>' +
         (a.source ? '<span class="d-src">' + esc(a.source) + '</span>' : '') +
@@ -1108,7 +1117,7 @@
             '<span class="pname">' + esc(r.name) + '</span>' +
             '<span class="psub"><span class="pcode">' + esc(r.code) + '</span> &middot; ' + esc(r.personName) + ' &middot; ' + r.agentSuite.length + ' agents (' + r.val.leverCount + '/4 levers)</span>' +
           '</span>' +
-          (r.liveInGE ? '<span class="plive" data-live="' + esc(r.id) + '" title="Live agent deployed on Vertex AI & Gemini Enterprise">Live</span>' : '') +
+          (r.liveInGE ? '<span class="plive" style="cursor:default;" title="Includes live agent(s) in Gemini Enterprise">Live</span>' : '') +
           '<span class="pval">' + fmtINR(r.val.total) + '</span>' +
         '</a>'
       );
@@ -1180,12 +1189,6 @@
   });
 
   board.addEventListener("click", function (e) {
-    var pill = e.target.closest(".plive");
-    if (pill) {
-      e.preventDefault(); e.stopPropagation();
-      window.location.href = "dossier.html?id=" + encodeURIComponent(pill.getAttribute("data-live"));
-      return;
-    }
     var b = e.target.closest(".bcell");
     if (!b) return;
     if (pinned === b) { unpin(); return; }

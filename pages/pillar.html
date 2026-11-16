@@ -686,8 +686,10 @@
           '<div class="gs-mp"><b>How it works:</b>' + esc(shortSentence(ag.does, 115)) + '</div>' +
           '<div class="gs-mp"><b>Human sign-off:</b>' + esc(shortSentence(ag.stopsAt, 110)) + '</div>' +
         '</div>' +
-        '<div class="gs-ag-foot">' +
-          '<span>Agent Architecture &amp; 4-Lever Math</span>' +
+        '<div class="gs-ag-foot" style="gap:10px;">' +
+          '<span>Agent Architecture &amp; 4-Lever Math &rarr;</span>' +
+          (ag.liveInGE && ag.geUrl ? '<span role="link" tabindex="0" onclick="event.preventDefault(); event.stopPropagation(); window.open(\'' + esc(ag.geUrl).replace(/'/g, "\\'") + '\', \'_blank\', \'noopener,noreferrer\');" style="padding:4px 10px;border-radius:999px;background:rgba(0,175,87,.14);color:#007F3F;font-weight:700;font-size:11.5px;cursor:pointer;">Open in GE &#8599;</span>' : '') +
+        '</div>' +
           '<span>&rarr;</span>' +
         '</div>' +
       '</a>';
